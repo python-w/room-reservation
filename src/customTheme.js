@@ -111,6 +111,29 @@ const CustomTheme = createTheme({
                         }
                     }
 
+                },
+                '.modal_content': {
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 750,
+                    bgcolor: 'background.paper',
+                    border: '1px solid rgba(230, 230, 230, 1)',
+                    boxShadow: '0px 4px 25px 0px rgba(0, 0, 0, 0.15)',
+                    borderRadius: '12px',
+                    padding: '20px',
+                    background: '#fff',
+                },
+                '.modal_content_auto_width': {
+                    width: 'auto',
+                    'h2': {
+                        fontSize: '18px'
+                    }
+                },
+                '.rdrCalendarWrapper ': {
+                    border: '1px solid rgba(230, 230, 230, 1)',
+                    borderRadius: '12px',
                 }
             }),
         },

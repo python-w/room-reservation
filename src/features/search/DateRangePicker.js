@@ -4,20 +4,7 @@ import { DateRangePicker } from 'react-date-range';
 
 import { addDays } from 'date-fns';
 import { useState } from 'react';
-import { Box, Modal } from '@mui/material';
-import BasicModal from '../../ui/BasicModal';
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+import { Box, Modal, Typography } from '@mui/material';
 
 export default function StyledDateRangePicker({ open, handleClose }) {
     const [state, setState] = useState([
@@ -29,28 +16,31 @@ export default function StyledDateRangePicker({ open, handleClose }) {
     ]);
     return (
         <>
-            <BasicModal
+            <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby="date picker"
+                aria-describedby="date picker"
             >
-
-                <DateRangePicker
-                    staticRanges={[]}
-                    inputRanges={[]}
-                    onChange={item => setState([item.selection])}
-                    showSelectionPreview={false}
-                    moveRangeOnFirstSelection={false}
-                    months={2}
-                    ranges={state}
-                    direction="horizontal"
-                    showMonthAndYearPickers={false}
-                    dateDisplayFormat="E, MMM d"
-
-                    showDateDisplay={false}
-                />
-            </BasicModal>
+                <Box className='modal_content modal_content_auto_width'>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Select Dates
+                    </Typography>
+                    <DateRangePicker
+                        staticRanges={[]}
+                        inputRanges={[]}
+                        onChange={item => setState([item.selection])}
+                        showSelectionPreview={false}
+                        moveRangeOnFirstSelection={false}
+                        months={2}
+                        ranges={state}
+                        direction="horizontal"
+                        showMonthAndYearPickers={false}
+                        dateDisplayFormat="E, MMM d"
+                        showDateDisplay={false}
+                    />
+                </Box>
+            </Modal>
         </>
     )
 }
