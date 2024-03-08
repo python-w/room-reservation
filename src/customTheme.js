@@ -2,16 +2,27 @@ import { createTheme } from "@mui/material";
 import { get4k, mediaQueries } from "./utils/Helper";
 
 const CustomTheme = createTheme({
-    palette: {
-        primary: {
-            main: "#0E53A8",
-        },
-        secondary: {
-            main: "#42566C",
-        },
-    },
+    // palette: {
+    //     primary: {
+    //         main: color('var(--primary-color)'),
+    //     },
+    //     secondary: {
+    //         main: "var(--secondary-color)",
+    //     },
+    //     success: {
+    //         main: "#2F8D20"
+    //     },
+    //     text: {
+    //         primary: "var(--wc-font-color)",
+    //         secondary: "#43425D",
+    //         success: "#2F8D20",
+    //         danger: "#C72D2D",
+    //         light: "#ffffff"
+    //     },
+    //     divider: "var(--wc-border-color)"
+    // },
     typography: {
-        fontFamily: "'Arial', sans-serif",
+        fontFamily: 'var(--wc-font-family)',
     },
     breakpoints: {
         values: {
@@ -26,19 +37,14 @@ const CustomTheme = createTheme({
     components: {
         MuiCssBaseline: {
             styleOverrides: (theme) => ({
-                ':root': {
-                    '--primary-color': '#0E53A8',
-                    '--body-text-color': '#42566C',
-                    '--border-color': '#C2CBD6',
-                },
                 body: {
-                    color: "var(--body-text-color)",
+                    color: "var(--wc-font-color)",
                 },
                 '.rdrDefinedRangesWrapper': {
                     display: 'none'
                 },
                 '.search_wrap': {
-                    border: '1px solid #E6E6E6',
+                    border: '1px solid var(--wc-border-color)',
                     boxShadow: '0px 2px 20px 0px rgba(0, 0, 0, 0.08)',
                     borderRadius: '20px',
                     padding: '40px'
@@ -143,6 +149,7 @@ const CustomTheme = createTheme({
                 },
                 paragraph: {
                     fontWeight: 400,
+                    color: 'var(--wc-font-color)',
                 },
                 h1: {
                     fontWeight: 600,
