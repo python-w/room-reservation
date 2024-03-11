@@ -1,6 +1,28 @@
 body {
   &.wcprop-2 {
     .ListingPage {
+      /* filter */
+      .lfilter-heading {
+        border-bottom: 1px solid var(--wc-border-color);
+        padding-bottom: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .filter {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--wc-border-color);
+        padding-bottom: 1.5rem;
+        p {
+          strong {
+            color: var(--heading-color6);
+            font-weight: 600;
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+      }
+      /* filter */
       .status-badges {
         margin-bottom: 1rem;
       }
