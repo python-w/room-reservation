@@ -21,7 +21,7 @@ const initialState = {
     dateModalOpen: false,
     roomsModalOpen: false,
     initialRooms: initialRooms,
-    bookedRooms: [{ id: initialRooms[0].id, adults: initialRooms[0].adults, children: initialRooms[0].childrenCount }],
+    bookedRooms: [{ id: initialRooms[0].id, }],
     rooms: [initialRooms[0]],
     adultsCount: 1,
     childrenCount: 0,
@@ -73,6 +73,7 @@ function reducer(state, action) {
                             [roomIdAddAdult]: (state.adultsCount[roomIdAddAdult] || 1) + 1,
                         },
                         guests: state.guests + 1,
+                        bookedRooms: [...state.bookedRooms, { id: roomIdAddAdult.id, adults: state.adultsCount + 1, children: state.childrenCount }]
                     };
                 }
             }

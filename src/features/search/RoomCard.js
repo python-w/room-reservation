@@ -7,12 +7,11 @@ import { useRooms } from "../../contexts/RoomsContext";
 export default function RoomCard({ room, showRemoveButton }) {
 
     const { state, dispatch } = useRooms();
-    const { adultsCount, childrenCount } = state;
-
-    console.log(adultsCount, childrenCount)
+    const { adultsCount, childrenCount, bookedRooms } = state;
 
     const handleAddAdults = (roomId) => {
         dispatch({ type: 'ADD_ADULT', payload: roomId });
+        console.log(bookedRooms)
     };
 
     const handleMinusAdults = (roomId) => {

@@ -10,11 +10,10 @@ export default function AddRoomCard() {
 
     const refRoomModal = useRef();
     const { state, dispatch } = useRooms();
-    const { initialRooms, bookedRooms, rooms } = state;
+    const { initialRooms, rooms } = state;
 
     const addRoom = () => {
         dispatch({ type: 'ADD_ROOM' })
-        console.log(bookedRooms)
     };
 
     const handleClose = () => {
