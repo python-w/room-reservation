@@ -15,28 +15,14 @@ code {
   padding: 0 var(--container-padding);
 }
 
-@media (min-width: 1200px) {
-  .container {
-    max-width: 100%;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    max-width: 100%;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 100%;
-  }
-}
-@media (min-width: 576px) {
-  .container {
-    max-width: 100%;
-  }
-}
 p {
   margin-bottom: 1rem;
+}
+
+body.wcprop-2 section.portlet .btn.btnc-outlined {
+  background: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 body a {
@@ -159,4 +145,40 @@ body a:hover {
   --trash-icon: "\f2ed";
   --edit-icon: "\f044";
   --fontawesome-family: "Font Awesome 5 Free";
+
+
+}
+@media (min-width: 2201px) and (max-width: 4000px) {
+  :root {
+    --4k-ratio: 22;
+    --container-padding: 6.54%;
+    --section-padding: 4.543vw;
+  }
+}
+@media (max-width: 1440.98px) {
+  :root {
+    --container-padding: 5.594rem;
+  }
+}
+@media (max-width: 1199.98px) {
+  :root {
+  --container-padding: 50px;
+  --section-padding: 80px;
+  }
+}
+@media (max-width: 991.98px) {
+  :root {
+  --container-padding: 30px;
+  }
+}
+@media (max-width: 767.98px) {
+  :root {
+  --container-padding: 25px;
+  --section-padding: 50px;
+  }
+}
+@media (max-width: 374.98px) {
+  :root {
+  --container-padding: 20px;
+  }
 }
