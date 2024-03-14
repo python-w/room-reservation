@@ -19,11 +19,18 @@ p {
   margin-bottom: 1rem;
 }
 
-body.wcprop-2 section.portlet .btn.btnc-outlined {
+body.wcprop-2 section.portlet .btn.btn-wc-outlined {
   background: transparent;
   color: var(--primary-color);
   border-color: var(--primary-color);
 }
+body.wcprop-2 section.portlet .btn.btn-wc-transparent {
+  background: transparent;
+  color: var(--primary-color);
+  margin-top: 0;
+  font-size: calc((var(--wc-font-size) - 2) * 1px);
+}
+
 
 body a {
   color: var(--link-color);
@@ -102,13 +109,13 @@ body a:hover {
   --primary-color-hover: #42566C;
   --secondary-color: #42566C;
   --secondary-color-hover: #0E53A8;
-  --wc-body-bg: rgba(242, 242, 242, 1);
+  --wc-body-bg: #fafafa;
   --wc-overlay-bg: rgba(56, 108, 141, 1);
   --bg-text-color: rgba(255, 255, 255, 1);
   --borderRadius: 12;
   --white-color: rgba(255, 255, 255, 1);
   --wc-border-color: #D6D6D6;
-  --field-height: 50;
+  --field-height: 56;
   --sliderArrow-bg: rgba(255, 255, 255, 1);
   --sliderArrow-width: 50;
   --sliderArrow-height: 50;

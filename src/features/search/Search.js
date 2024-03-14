@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, FormLabel } from "@mui/material";
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import StyledLabel from "../../ui/StyledLabel";
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
@@ -26,8 +26,8 @@ export default function Search() {
             <Grid container spacing={2} alignItems={"flex-end"}>
                 <Grid item flex={1}>
                     <Box display="flex" justifyContent={"space-between"} alignItems={"center"} className="label_group">
-                        <StyledLabel>Check in & out dates</StyledLabel>
-                        <Button><DateRangeOutlinedIcon /> Check Availability</Button>
+                        <FormLabel>Check in & out dates</FormLabel>
+                        <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
                     </Box>
                     <div className="custom_input_outer">
                         <Box role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
@@ -46,7 +46,7 @@ export default function Search() {
                 <Grid item flex={1}>
                     <Box>
                         <Box className="label_group">
-                            <StyledLabel>Guests & Rooms</StyledLabel>
+                            <FormLabel>Guests & Rooms</FormLabel>
                         </Box>
                         <div className="custom_input_outer">
                             <Box role="button" onClick={handleRoomsModalOpen} className="customInputBox">
@@ -62,7 +62,7 @@ export default function Search() {
                 </Grid>
                 <Grid item>
                     <Box className="search_btn_wrap">
-                        <Button>Search <EastOutlinedIcon /></Button>
+                        <button className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
                     </Box>
                 </Grid>
             </Grid>
