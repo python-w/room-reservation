@@ -1,3 +1,16 @@
+/* Media Query */
+$mq-4k: "(min-width: 2201px) and (max-width: 4000px)";
+$mq-laptop: "(max-width: 1440.98px)";
+$mq-tablet-lg: "(max-width: 1199.98px)";
+$mq-tablet-md: "(max-width: 991.98px)";
+$mq-tablet-sm: "(max-width: 767.98px)";
+$mq-mobile-sm: "(max-width: 575.98px)";
+
+@function get4k($target) {
+  $vw-context: (2201 * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vw;
+}
+
 body {
   &.wcprop-2 {
     .ListingPage {
@@ -56,11 +69,40 @@ body {
       .card {
         border: 1px solid var(--wc-border-color);
         padding: 1rem;
+        margin-bottom: 1.5rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .ListingFancyB {
+        display: flex;
+        height: 100%;
+        border-radius: calc(var(--borderRadius) * 1px);
+        overflow: hidden;
+        & > div {
+          height: 100%;
+          display: flex;
+        }
+        .f-button {
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 100px;
+          color: white;
+          --f-button-width: 32px;
+          --f-button-height: 32px;
+        }
       }
       .lcard-img {
         height: 100%;
-        border-radius: calc(var(--borderRadius) * 1px);
         aspect-ratio: 16/9;
+        max-height: 300px;
+        object-fit: cover;
+        @media #{$mq-tablet-sm} {
+          width: 100%;
+          max-height: 257px;
+        }
+        @media (max-width: 424.98px) {
+          max-height: 162px;
+        }
       }
       .price-container {
         border-radius: 0px 0px calc(var(--borderRadius) * 1px) calc(var(--borderRadius) * 1px);
@@ -77,8 +119,12 @@ body {
         padding: 0.5rem;
         position: absolute;
         right: 0.75rem;
-        top: -1rem;
+        top: 0;
         line-height: var(--wc-base-lineHeight);
+        z-index: 1;
+        @media #{$mq-tablet-sm} {
+          right: 1rem;
+        }
         small {
           font-size: 14px;
           display: block;
@@ -90,6 +136,11 @@ body {
       }
       .card-title {
         margin-bottom: 0.5rem;
+        padding-right: 100px;
+        @media #{$mq-tablet-sm} {
+          margin-bottom: 1rem;
+          padding-right: 0;
+        }
       }
       .small-card-title {
         font-weight: 500;
