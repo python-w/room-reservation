@@ -39,7 +39,7 @@ export default function RoomCard({ room, showRemoveButton }) {
         <Box className="add_room_card">
             <Box className="room_card_header">
                 <Typography variant="h6" component="h2">
-                    Rooms # {room.id}
+                    Room # {room.id}
                 </Typography>
                 {showRemoveButton && (
                     <Button variant="transparent" onClick={() => removeRoom(room)}>
@@ -51,9 +51,9 @@ export default function RoomCard({ room, showRemoveButton }) {
                 <Box className="room_row">
                     <Typography component="p">Adults</Typography>
                     <Box className="room_counter">
-                        <Button variant="outlined" className={adultsCount[room.id] === 1 || adultsCount === 1 ? 'disabled' : ''} onClick={() => handleMinusAdults(room.id)}><RemoveOutlinedIcon /></Button>
+                        <Button variant="outlined" disabled={!adultsCount[room.id] >= 1 || adultsCount[room.id] === 1} onClick={() => handleMinusAdults(room.id)}><RemoveOutlinedIcon /></Button>
                         <Typography component='span'>{adultsCount[room.id] || 1}</Typography>
-                        <Button variant="outlined" className={adultsCount[room.id] === room.adults ? 'disabled' : ''} onClick={() => handleAddAdults(room.id)}><AddOutlinedIcon /></Button>
+                        <Button variant="outlined" className={adultsCount[room.id] === room.adults ? 'is_disabled' : ''} onClick={() => handleAddAdults(room.id)}><AddOutlinedIcon /></Button>
                     </Box>
                 </Box>
             }
@@ -65,9 +65,9 @@ export default function RoomCard({ room, showRemoveButton }) {
                             <Typography component="small">Age 0 to 17</Typography>
                         </Box>
                         <Box className="room_counter">
-                            <Button variant="outlined" className={childrenCount[room.id] === 0 || childrenCount === 0 ? 'disabled' : ''} onClick={() => handleMinusChildren(room.id)}><RemoveOutlinedIcon /></Button>
+                            <Button variant="outlined" disabled={!childrenCount[room.id] > 0 || childrenCount[room.id] === 0} onClick={() => handleMinusChildren(room.id)}><RemoveOutlinedIcon /></Button>
                             <Typography component='span'>{childrenCount[room.id] || 0}</Typography>
-                            <Button variant="outlined" className={childrenCount[room.id] === room.children ? 'disabled' : ''} onClick={() => handleAddChildren(room.id)}><AddOutlinedIcon /></Button>
+                            <Button variant="outlined" className={childrenCount[room.id] === room.children ? 'is_disabled' : ''} onClick={() => handleAddChildren(room.id)}><AddOutlinedIcon /></Button>
                         </Box>
                     </Box>
                     <Grid container>

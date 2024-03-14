@@ -15,9 +15,7 @@ export default function Search() {
     const { dateModalOpen, roomsModalOpen, startDate, endDate, guests, rooms, todayDate } = state;
 
     const handleDateModalOpen = () => {
-        if (dateModalOpen === false) {
-            dispatch({ type: 'DATE_MODAL' })
-        }
+        dispatch({ type: 'DATE_MODAL' })
     }
     const handleRoomsModalOpen = () => {
         dispatch({ type: 'ROOMS_MODAL' })

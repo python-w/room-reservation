@@ -21,7 +21,7 @@ const initialState = {
     dateModalOpen: false,
     roomsModalOpen: false,
     initialRooms: initialRooms,
-    bookedRooms: [{ id: initialRooms[0].id, }],
+    bookedRooms: [{ id: initialRooms[0].id, adults: 1, children: 0 }],
     rooms: [initialRooms[0]],
     adultsCount: 1,
     childrenCount: 0,
@@ -73,7 +73,7 @@ function reducer(state, action) {
                             [roomIdAddAdult]: (state.adultsCount[roomIdAddAdult] || 1) + 1,
                         },
                         guests: state.guests + 1,
-                        bookedRooms: [...state.bookedRooms, { id: roomIdAddAdult.id, adults: state.adultsCount + 1, children: state.childrenCount }]
+                        bookedRooms: { id: roomIdAddAdult, adults: roomToAddAdult.adults + 1, children: roomToAddAdult.children }
                     };
                 }
             }
@@ -130,6 +130,7 @@ function reducer(state, action) {
                         ...state,
                         rooms: newRooms,
                         guests: state.guests + 1,
+                        bookedRooms: [...state.bookedRooms, { id: nextRoom.id, adults: state.adultsCount + 1, children: state.childrenCount }]
                     }
                 }
             }

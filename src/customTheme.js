@@ -411,7 +411,7 @@ const CustomTheme = createTheme({
                 height: 32,
                 color: 'var(--body-text-color)',
                 borderColor: 'var(--wc-border-color)',
-                '&.disabled': {
+                '&.is_disabled, :disabled': {
                   opacity: 0.4,
                   pointerEvents: 'none',
                 },
