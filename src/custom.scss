@@ -1,0 +1,105 @@
+body {
+  &.wcprop-2 {
+    .ListingPage {
+      /* filter */
+      .lfilter-heading {
+        border-bottom: 1px solid var(--wc-border-color);
+        padding-bottom: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .filter {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--wc-border-color);
+        padding-bottom: 1.5rem;
+        p {
+          strong {
+            color: var(--heading-color6);
+            font-weight: 600;
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+      }
+      /* filter */
+      .status-badges {
+        margin-bottom: 1rem;
+      }
+      .badge {
+        border-radius: calc(var(--BtnborderRadius) * 1px);
+        padding: 6px 10px;
+        font-size: calc((var(--wc-font-size) - 4) * 1px);
+        font-weight: normal;
+        margin-right: 0.5rem;
+      }
+      .badge-primary {
+        background-color: #e5f1ff;
+        color: #0e53a8;
+      }
+      .badge-success {
+        background-color: #ddf1da;
+        color: #2f8d20;
+      }
+      .badge-light {
+        background-color: var(--wc-body-bg);
+        color: var(--wc-font-color);
+        font-size: calc((var(--wc-font-size) - 3) * 1px);
+        border: 1px solid var(--wc-border-color);
+        &.lbadge-light {
+          align-items: center;
+          svg {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      .card {
+        border: 1px solid var(--wc-border-color);
+        padding: 1rem;
+      }
+      .lcard-img {
+        height: 100%;
+        border-radius: calc(var(--borderRadius) * 1px);
+        aspect-ratio: 16/9;
+      }
+      .price-container {
+        border-radius: 0px 0px calc(var(--borderRadius) * 1px) calc(var(--borderRadius) * 1px);
+        background: linear-gradient(180deg, #f0f7ff 0%, #cce3ff 100%);
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--primary-color);
+        width: 92px;
+        height: 76px;
+        justify-content: flex-end;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0.5rem;
+        position: absolute;
+        right: 0.75rem;
+        top: -1rem;
+        line-height: var(--wc-base-lineHeight);
+        small {
+          font-size: 14px;
+          display: block;
+          font-weight: 500;
+        }
+      }
+      .card-body {
+        padding: 0;
+      }
+      .card-title {
+        margin-bottom: 0.5rem;
+      }
+      .small-card-title {
+        font-weight: 500;
+        color: var(--heading-color6);
+      }
+      .card-footer {
+        background: transparent;
+        padding: 0;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

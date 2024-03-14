@@ -2,8 +2,35 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import StyledSelect from "../../ui/StyledSelect";
+import { useRooms } from "../../contexts/RoomsContext";
 
-export default function RoomCard({ room, showRemoveButton, onRemove, adultsCount, childrenCount, handleAddChildren, handleMinusChildren, handleAddAdults, handleMinusAdults }) {
+export default function RoomCard({ room, showRemoveButton }) {
+
+    const { state, dispatch } = useRooms();
+    const { adultsCount, childrenCount } = state;
+
+    console.log(adultsCount, childrenCount)
+
+    const handleAddAdults = (roomId) => {
+        dispatch({ type: 'ADD_ADULT', payload: roomId });
+    };
+
+    const handleMinusAdults = (roomId) => {
+        dispatch({ type: 'MINUS_ADULT', payload: roomId });
+    }
+
+    const handleAddChildren = (roomId) => {
+        dispatch({ type: 'ADD_CHILDREN', payload: roomId })
+    };
+
+    const handleMinusChildren = (roomId) => {
+        dispatch({ type: 'MINUS_CHILDREN', payload: roomId })
+    };
+
+    const removeRoom = (room) => {
+        dispatch({ type: 'REMOVE_ROOM', payload: { roomToRemove: room } });
+    };
+
     const options = [
         { value: 'Under 1', label: 'Under 1' },
         { value: 'Under 2', label: 'Under 2' },
@@ -16,7 +43,7 @@ export default function RoomCard({ room, showRemoveButton, onRemove, adultsCount
                     Rooms # {room.id}
                 </Typography>
                 {showRemoveButton && (
-                    <Button variant="transparent" onClick={onRemove}>
+                    <Button variant="transparent" onClick={() => removeRoom(room)}>
                         Remove Room
                     </Button>
                 )}
@@ -25,9 +52,9 @@ export default function RoomCard({ room, showRemoveButton, onRemove, adultsCount
                 <Box className="room_row">
                     <Typography component="p">Adults</Typography>
                     <Box className="room_counter">
-                        <Button variant="outlined" onClick={() => handleMinusAdults(room.id)}><RemoveOutlinedIcon></RemoveOutlinedIcon></Button>
+                        <Button variant="outlined" className={adultsCount[room.id] === 1 || adultsCount === 1 ? 'disabled' : ''} onClick={() => handleMinusAdults(room.id)}><RemoveOutlinedIcon /></Button>
                         <Typography component='span'>{adultsCount[room.id] || 1}</Typography>
-                        <Button variant="outlined" onClick={() => handleAddAdults(room.id)}><AddOutlinedIcon></AddOutlinedIcon></Button>
+                        <Button variant="outlined" className={adultsCount[room.id] === room.adults ? 'disabled' : ''} onClick={() => handleAddAdults(room.id)}><AddOutlinedIcon /></Button>
                     </Box>
                 </Box>
             }
@@ -39,9 +66,9 @@ export default function RoomCard({ room, showRemoveButton, onRemove, adultsCount
                             <Typography component="small">Age 0 to 17</Typography>
                         </Box>
                         <Box className="room_counter">
-                            <Button variant="outlined" onClick={() => handleMinusChildren(room.id)}><RemoveOutlinedIcon></RemoveOutlinedIcon></Button>
+                            <Button variant="outlined" className={childrenCount[room.id] === 0 || childrenCount === 0 ? 'disabled' : ''} onClick={() => handleMinusChildren(room.id)}><RemoveOutlinedIcon /></Button>
                             <Typography component='span'>{childrenCount[room.id] || 0}</Typography>
-                            <Button variant="outlined" onClick={() => handleAddChildren(room.id)}><AddOutlinedIcon></AddOutlinedIcon></Button>
+                            <Button variant="outlined" className={childrenCount[room.id] === room.children ? 'disabled' : ''} onClick={() => handleAddChildren(room.id)}><AddOutlinedIcon /></Button>
                         </Box>
                     </Box>
                     <Grid container>
