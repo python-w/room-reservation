@@ -13,6 +13,386 @@ $mq-mobile-sm: "(max-width: 575.98px)";
 
 body {
   &.wcprop-2 {
+    .search_wrap {
+      border: 1px solid var(--wc-border-color);
+      box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
+      border-radius: calc(var(--borderRadius) * 1px);
+      padding: 56px 40px;
+      .btn.btn-checkavail {
+        padding: 8px 0;
+      }
+    }
+    .label_group {
+      padding: 0 20px;
+      button {
+        padding: 0;
+        color: var(--primary-color);
+        text-decoration: underline;
+        background: transparent !important;
+        height: auto;
+      }
+      svg {
+        font-size: 18px;
+        margin-right: 8px;
+      }
+    }
+    .customInputBox {
+      display: flex;
+      align-items: center;
+      height: calc(var(--field-height) * 1px);
+      border: 1px solid var(--wc-border-color);
+      box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
+      border-radius: calc(var(--BtnborderRadius) * 1px);
+      padding: 0 20px;
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+      div {
+        display: inline-flex;
+        align-items: center;
+        flex: 1;
+        svg {
+          font-size: 18px;
+          color: var(--primary-color);
+        }
+        span {
+          padding-left: 10px;
+        }
+      }
+    }
+    .customInputBoxCal {
+      div:last-of-type {
+        position: relative;
+        padding-left: 20px;
+        &:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0;
+          width: 1px;
+          height: 80%;
+          background: var(--wc-border-color);
+        }
+      }
+    }
+    .search_btn_wrap {
+      position: relative;
+      padding-left: 40px;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        height: calc((var(--field-height) / 1.5) * 1px);
+        width: 1px;
+        background: var(--wc-border-color);
+      }
+      .btn.btn-wc-primary {
+        height: calc(var(--field-height) * 1px);
+        padding: 0 30px;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 0;
+        svg {
+          margin-left: 10px;
+        }
+      }
+    }
+    .custom_input_outer {
+      position: relative;
+    }
+    .inline_modal {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 8px;
+      border: 1px solid var(--wc-border-color);
+      box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      background: var(--white-color);
+      z-index: 9;
+      .room_card_header {
+        strong {
+          font-size: calc((var(--wc-font-size) + 2) * 1px);
+          padding: 15px;
+          line-height: normal;
+          margin: 0;
+        }
+      }
+      .rdrcalendar-header {
+        font-size: calc((var(--wc-font-size) + 2) * 1px);
+        padding: 20px;
+        line-height: normal;
+        margin: 0;
+        display: flex;
+      }
+      .inline_modal_body {
+        margin: 0 15px;
+      }
+      .inline_modal_footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px;
+        margin-top: 15px;
+        border-top: 1px solid var(--wc-border-color);
+        gap: 10;
+        .btn {
+          margin-top: 0;
+          font-size: calc((var(--wc-font-size) - 2) * 1px);
+          svg {
+            font-size: 20px;
+            margin-right: 10px;
+          }
+        }
+      }
+      //Add Room Card
+      .add_room_card {
+        background: var(--wc-body-bg);
+        margin-top: 15px;
+        border-radius: 12px;
+        border: 1px solid var(--wc-border-color);
+        width: 500px;
+        max-width: 100%;
+        user-select: none;
+        .room_card_header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid var(--wc-border-color);
+          margin-bottom: 15px;
+          button {
+            background: transparent;
+            height: auto;
+            color: var(--primary-color);
+            text-decoration: underline;
+          }
+        }
+        .room_row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px 15px 15px;
+          line-height: normal;
+          small {
+            font-size: 80%;
+            color: #898989;
+          }
+          .room_counter {
+            display: flex;
+            align-items: center;
+          }
+          button {
+            padding: 0;
+            min-width: 32px;
+            height: 32px;
+            color: var(--body-text-color);
+            border-color: var(--wc-border-color);
+            &.disabled {
+              opacity: 0.4;
+              pointer-events: none;
+            }
+            svg {
+              font-size: 20px;
+            }
+          }
+          span {
+            padding: 0 10px;
+            &.required {
+              padding: 0;
+              color: #c72d2d;
+            }
+          }
+        }
+        .child_age_row {
+          & > div {
+            width: 100%;
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+      .add_room_btn {
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px 15px 0 15px;
+        .btn {
+          margin: 0;
+          font-size: calc((var(--wc-font-size) - 2) * 1px);
+          font-weight: 500;
+          svg {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+    }
+    //Customize Calendar
+    .rdrCalendarWrapper {
+      border: 1px solid var(--wc-border-color);
+      border-radius: calc(var(--borderRadius) * 1px);
+      background: var(--wc-body-bg);
+      .rdrDayToday {
+        .rdrDayNumber {
+          span {
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+      .rdrMonthAndYearPickers {
+        display: none;
+      }
+      .rdrMonthAndYearWrapper {
+        border-bottom: 1px solid var(--wc-border-color);
+        padding-top: 0;
+        height: 56px;
+        position: relative;
+        z-index: 9;
+      }
+      .rdrMonths {
+        width: 650px;
+        max-width: 100%;
+        .rdrMonthName {
+          font-size: calc(var(--wc-font-size) * 1px);
+          text-align: center;
+          position: absolute;
+          width: 100%;
+          top: -52px;
+          color: inherit;
+        }
+      }
+      .rdrMonth {
+        position: relative;
+        padding: 10px 0;
+        flex: 1;
+        &:first-of-type {
+          padding-right: 10px;
+        }
+        &:last-of-type {
+          padding-left: 10px;
+        }
+      }
+      .rdrWeekDay {
+        font-size: calc(var(--wc-font-size) * 1px);
+        color: var(--wc-font-color);
+        font-weight: 500;
+      }
+      .rdrDays {
+        .rdrDay {
+          font-size: calc((var(--wc-font-size) - 2) * 1px);
+          color: var(--wc-font-color);
+          .rdrDayStartPreview,
+          .rdrDayInPreview,
+          .rdrDayEndPreview {
+            top: 0;
+            bottom: 5px;
+            color: var(--primary-color) !important;
+            // width: 90%;
+            margin: 0 auto;
+          }
+          .rdrDayStartPreview {
+            border-top-left-radius: calc(var(--borderRadius) * 1px);
+            border-bottom-left-radius: calc(var(--borderRadius) * 1px);
+          }
+          .rdrDayEndPreview {
+            border-top-right-radius: calc(var(--borderRadius) * 1px);
+            border-bottom-right-radius: calc(var(--borderRadius) * 1px);
+          }
+          &.rdrDayStartOfMonth,
+          &.rdrDayStartOfWeek {
+            .rdrInRange,
+            .rdrEndEdge {
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            }
+          }
+          &.rdrDayEndOfMonth,
+          &.rdrDayEndOfWeek {
+            .rdrInRange,
+            .rdrStartEdge {
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+          }
+          &.rdrDayEndOfMonth, &.rdrDayEndOfWeek {
+            .rdrDayInPreview, .rdrDayStartPreview {
+              border-top-right-radius: calc(var(--borderRadius) * 1px);
+              border-bottom-right-radius: calc(var(--borderRadius) * 1px);
+            }
+          }
+          &.rdrDayStartOfMonth, &.rdrDayStartOfWeek {
+            .rdrDayInPreview, .rdrDayStartPreview {
+              border-top-left-radius: calc(var(--borderRadius) * 1px);
+              border-bottom-left-radius: calc(var(--borderRadius) * 1px);
+            }
+          }
+          .rdrInRange {
+            color: #cadff9 !important;
+          }
+          .rdrStartEdge {
+            border-top-left-radius: calc(var(--borderRadius) * 1px);
+            border-bottom-left-radius: calc(var(--borderRadius) * 1px);
+          }
+          .rdrEndEdge {
+            border-top-right-radius: calc(var(--borderRadius) * 1px);
+            border-bottom-right-radius: calc(var(--borderRadius) * 1px);
+          }
+          &:not(.rdrDayPassive) {
+            .rdrStartEdge,
+            .rdrEndEdge {
+              & ~ .rdrDayNumber {
+                span {
+                  color: var(--white-color);
+                }
+              }
+            }
+            .rdrInRange {
+              & ~ .rdrDayNumber {
+                span {
+                  color: var(--wc-font-color);
+                }
+              }
+            }
+          }
+          .rdrSelected,
+          .rdrInRange,
+          .rdrStartEdge,
+          .rdrEndEdge {
+            top: 0;
+            left: 0;
+            right: 0;
+          }
+          .rdrStartEdge,
+          .rdrEndEdge {
+            color: #cadff9 !important;
+            &::after {
+              content: "";
+              background: var(--primary-color) !important;
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: calc(var(--borderRadius) * 1px);
+            }
+          }
+          .rdrDayNumber {
+            // width: 90%;
+            height: 90%;
+            display: flex;
+            top: 0;
+            bottom: 0;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+
     .ListingPage {
       /* filter */
       .lfilter-heading {

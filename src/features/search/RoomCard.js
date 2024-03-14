@@ -38,13 +38,13 @@ export default function RoomCard({ room, showRemoveButton }) {
     return (
         <Box className="add_room_card">
             <Box className="room_card_header">
-                <Typography variant="h6" component="h2">
+                <Typography variant="p" component="strong">
                     Room # {room.id}
                 </Typography>
                 {showRemoveButton && (
-                    <Button variant="transparent" onClick={() => removeRoom(room)}>
+                    <button className="btn btn-wc-transparent" variant="transparent" onClick={() => removeRoom(room)}>
                         Remove Room
-                    </Button>
+                    </button>
                 )}
             </Box>
             {room.adults !== 0 &&

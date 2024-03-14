@@ -38,13 +38,13 @@ export default function AddRoomCard() {
             </Box>
             {rooms.length < initialRooms.length && (
                 <Box className="add_room_btn" >
-                    <Button variant="outlined" color="primary" onClick={addRoom}>
+                    <button className="btn btn-wc-outlined" variant="outlined" color="primary" onClick={addRoom}>
                         <AddOutlinedIcon /> Add Another Room
-                    </Button>
+                    </button>
                 </Box>
             )}
             <Box className='inline_modal_footer'>
-                <Button onClick={handleClose}>Done</Button>
+                <button className="btn btn-wc-primary" onClick={handleClose}>Done</button>
             </Box>
         </Box>
     )
