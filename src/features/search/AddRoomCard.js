@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import RoomCard from "./RoomCard";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useRooms } from "../../contexts/RoomsContext";

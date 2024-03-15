@@ -7,6 +7,7 @@ import CustomTheme from "./customTheme";
 import Listing from "../src/pages/Listing";
 import { RoomsProvider } from "./contexts/RoomsContext";
 import ListItemWrapper from './ListItems'
+import ReservationSummary from "./pages/ReservationSummary";
 
 
 function App() {
@@ -17,13 +18,12 @@ function App() {
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <RoomsProvider>
-          <br />
-          <br />
           <Search />
           {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
             <ListItemWrapper items={items} />
           </div> */}
           {/* <Listing /> */}
+          {/* <ReservationSummary /> */}
         </RoomsProvider>
       </ThemeProvider>
     </div>

@@ -1,6 +1,5 @@
-import { Box, Button, Grid, Typography, FormLabel } from "@mui/material";
+import { Box, Grid, Typography, FormLabel } from "@mui/material";
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
-import StyledLabel from "../../ui/StyledLabel";
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -26,7 +25,7 @@ export default function Search() {
             <Grid container spacing={2} alignItems={"flex-end"}>
                 <Grid item flex={1}>
                     <Box display="flex" justifyContent={"space-between"} alignItems={"center"} className="label_group">
-                        <FormLabel>Check in & out dates</FormLabel>
+                        <FormLabel>Check In & Out Dates</FormLabel>
                         <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
                     </Box>
                     <div className="custom_input_outer">
