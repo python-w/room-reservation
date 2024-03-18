@@ -2,6 +2,7 @@ import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import { useRooms } from '../contexts/RoomsContext';
 import { format } from 'date-fns';
+import BookedRoom from '../features/reservation-summary/BookedRoom';
 
 export default function ReservationSummary() {
     const { state } = useRooms();
@@ -19,7 +20,10 @@ export default function ReservationSummary() {
                 <div className="col-md-6">
                     <div className="res_date_card">
                         <div className="res_date_title">
-                            <TodayOutlinedIcon />Check in:
+                            <span>
+                                <TodayOutlinedIcon />
+                            </span>
+                            <strong>Check in:</strong>
                         </div>
                         <div className='res_date_body'>
                             <span>{checkedInDay}</span>
@@ -31,7 +35,10 @@ export default function ReservationSummary() {
                 <div className="col-md-6">
                     <div className="res_date_card">
                         <div className="res_date_title">
-                            <InsertInvitationOutlinedIcon />Check Out:
+                            <span>
+                                <InsertInvitationOutlinedIcon />
+                            </span>
+                            <strong>Check Out:</strong>
                         </div>
                         <div className='res_date_body'>
                             <span>{checkedOutDay}</span>
@@ -43,6 +50,14 @@ export default function ReservationSummary() {
             </div>
             <div className='room_count'>
                 <span>{bookedRooms.length}</span> rooms selected
+            </div>
+            <div className='row'>
+                {bookedRooms.map((room, index) => <BookedRoom room={room} index={index + 1} />)}
+            </div>
+
+            <div className='comments_box'>
+                <label>Comments</label>
+                <textarea></textarea>
             </div>
         </div>
     )
