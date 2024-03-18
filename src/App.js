@@ -11,7 +11,6 @@ import ReservationSummary from "./pages/ReservationSummary";
 
 
 function App() {
-  const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
 
   return (
     <div className="webc-container">
@@ -20,10 +19,11 @@ function App() {
         <RoomsProvider>
           <Search />
           {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
+            const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
             <ListItemWrapper items={items} />
           </div> */}
           {/* <Listing /> */}
-          {/* <ReservationSummary /> */}
+          <ReservationSummary />
         </RoomsProvider>
       </ThemeProvider>
     </div>

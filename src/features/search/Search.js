@@ -7,11 +7,15 @@ import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useRooms } from "../../contexts/RoomsContext";
+import { format } from 'date-fns';
 
 export default function Search() {
 
     const { state, dispatch } = useRooms();
     const { dateModalOpen, roomsModalOpen, startDate, endDate, guests, rooms, todayDate } = state;
+
+    const checkedInDate = startDate ? format(startDate, 'E, d MMM') : todayDate;
+    const checkedOutDate = endDate ? format(endDate, 'E, d MMM') : todayDate;
 
     const handleDateModalOpen = () => {
         dispatch({ type: 'DATE_MODAL' })
@@ -31,10 +35,10 @@ export default function Search() {
                     <div className="custom_input_outer">
                         <Box role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
                             <Box>
-                                <TodayOutlinedIcon /> <Typography component="span">{startDate === null ? todayDate : startDate}</Typography>
+                                <TodayOutlinedIcon /> <Typography component="span">{checkedInDate}</Typography>
                             </Box>
                             <Box>
-                                <InsertInvitationOutlinedIcon /> <Typography component="span">{endDate === null ? todayDate : endDate}</Typography>
+                                <InsertInvitationOutlinedIcon /> <Typography component="span">{checkedOutDate}</Typography>
                             </Box>
                         </Box>
                         {dateModalOpen &&

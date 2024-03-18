@@ -8,7 +8,7 @@ const initialRooms = [
 ]
 
 const initialState = {
-    todayDate: format(new Date(), 'E, MMM d'),
+    todayDate: format(new Date(), 'E, d MMM'),
     selectedRange: [
         {
             startDate: new Date(),
@@ -52,12 +52,10 @@ function reducer(state, action) {
             const item = action.payload;
             const start = item.selection.startDate;
             const end = item.selection.endDate;
-            const newStart = format(start, 'E, MMM d');
-            const newEnd = format(end, 'E, MMM d');
             return {
                 ...state,
-                startDate: newStart,
-                endDate: newEnd,
+                startDate: start,
+                endDate: end,
                 selectedRange: [item.selection],
             }
         case 'ADD_ADULT':

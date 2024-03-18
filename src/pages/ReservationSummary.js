@@ -5,9 +5,13 @@ import { format } from 'date-fns';
 
 export default function ReservationSummary() {
     const { state } = useRooms();
-    const { todayDate, startDate, endDate } = state;
-    const formattedDay = format(new Date(startDate), 'EEEE')
-    const formattedDate = format(new Date(todayDate), 'MMM dd, yyyy');
+    const { startDate, endDate, bookedRooms } = state;
+    const toDay = format(new Date(), 'EEEE');
+    const todayDate = format(new Date(), 'MMM dd, yyyy');
+    const checkedInDay = startDate ? format(new Date(startDate), 'EEEE') : toDay;
+    const checkedInDate = startDate ? format(new Date(startDate), 'MMM dd, yyyy') : todayDate;
+    const checkedOutDay = startDate ? format(new Date(endDate), 'EEEE') : toDay;
+    const checkedOutDate = startDate ? format(new Date(endDate), 'MMM dd, yyyy') : todayDate;
     return (
         <div className="res_sum">
             <h3>Reservation Summary</h3>
@@ -18,11 +22,27 @@ export default function ReservationSummary() {
                             <TodayOutlinedIcon />Check in:
                         </div>
                         <div className='res_date_body'>
-                            <span>{formattedDay}</span>
-                            <span>{formattedDate}</span>
+                            <span>{checkedInDay}</span>
+                            <span>{checkedInDate}</span>
+                            <span>06:05 pm</span>
                         </div>
                     </div>
                 </div>
+                <div className="col-md-6">
+                    <div className="res_date_card">
+                        <div className="res_date_title">
+                            <InsertInvitationOutlinedIcon />Check Out:
+                        </div>
+                        <div className='res_date_body'>
+                            <span>{checkedOutDay}</span>
+                            <span>{checkedOutDate}</span>
+                            <span>06:05 pm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='room_count'>
+                <span>{bookedRooms.length}</span> rooms selected
             </div>
         </div>
     )
