@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 import Search from "./features/search/Search";
 import CustomTheme from "./customTheme";
 import Listing from "../src/pages/Listing";
+import RoomDetail from "../src/pages/RoomDetail";
 import { RoomsProvider } from "./contexts/RoomsContext";
 import ListItemWrapper from './ListItems'
 
@@ -19,11 +20,12 @@ function App() {
         <RoomsProvider>
           <br />
           <br />
-          <Search />
+          {/* <Search /> */}
           {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
             <ListItemWrapper items={items} />
           </div> */}
-          {/* <Listing /> */}
+          <Listing />
+          {/* <RoomDetail /> */}
         </RoomsProvider>
       </ThemeProvider>
     </div>

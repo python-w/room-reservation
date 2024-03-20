@@ -1,9 +1,6 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
 import { Button } from "@mui/material";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import roomImg from "../images/room-img.png";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
@@ -13,8 +10,9 @@ import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";
 import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import ListWithSummary from "./AmenitiesList";
-import ListingFancybox from "../ui/ListingFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
+import Filters from "../features/filter/filter";
+import Search from "../features/search/Search";
 
 const BpIcon = styled("span")(({ theme }) => ({
   width: 18,
@@ -52,58 +50,82 @@ export default function RoomListing() {
     setAmenitiesWidth(parseFloat(ref.current.offsetWidth));
   }, [amenitiesWidth]);
 
-  const amenitiesItems = ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking"];
+  const amenitiesItems = [
+    {
+      label: "2 Double Beds",
+      icon: <BedOutlinedIcon />,
+    },
+    {
+      label: "Dinner",
+      icon: <DinnerDiningOutlinedIcon />,
+    },
+    {
+      label: "Swimming Pool",
+      icon: <PoolOutlinedIcon />,
+    },
+    {
+      label: "Wifi",
+      icon: <WifiOutlinedIcon />,
+    },
+    {
+      label: "Free Parking",
+      icon: <DirectionsCarFilledOutlinedIcon />,
+    },
+    {
+      label: "2 Double Beds",
+      icon: <BedOutlinedIcon />,
+    },
+    {
+      label: "Dinner",
+      icon: <DinnerDiningOutlinedIcon />,
+    },
+    {
+      label: "Swimming Pool",
+      icon: <PoolOutlinedIcon />,
+    },
+    {
+      label: "Wifi",
+      icon: <WifiOutlinedIcon />,
+    },
+    {
+      label: "Free Parking",
+      icon: <DirectionsCarFilledOutlinedIcon />,
+    },
+    {
+      label: "2 Double Beds",
+      icon: <BedOutlinedIcon />,
+    },
+    {
+      label: "Dinner",
+      icon: <DinnerDiningOutlinedIcon />,
+    },
+    {
+      label: "Swimming Pool",
+      icon: <PoolOutlinedIcon />,
+    },
+    {
+      label: "Wifi",
+      icon: <WifiOutlinedIcon />,
+    },
+    {
+      label: "Free Parking",
+      icon: <DirectionsCarFilledOutlinedIcon />,
+    },
+  ];
 
   const handleFilter = () => {
     setLFilterShow((show) => !show);
   };
 
   return (
-    <div className="ListingPage" style={{ marginTop: "5rem" }}>
+    <div className="ListingPage">
+      <Search />
       <Button variant="outlined" onClick={handleFilter} startIcon={<SortOutlinedIcon />} className="btn btnc-outlined d-lg-none mb-lg-0 mb-4">
         Filter Results
       </Button>
       <div className="row">
         <div className={`col-lg-3 pr-lg-4 ${lfilterShow ? "d-none" : "d-lg-block"}`}>
-          <h4 className="lfilter-heading">Filter results by</h4>
-          <div className="filter filter-01">
-            <p>
-              <strong>Room Types</strong>
-            </p>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Standard Room" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Deluxe Room" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Executive Room" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Superior Room" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Connecting Rooms" />
-            </FormGroup>
-          </div>
-          <div className="filter filter-02">
-            <p>
-              <strong>Bed Type</strong>
-            </p>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Single / Twin" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Double" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="King" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Queen" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Bunk Bed" />
-            </FormGroup>
-          </div>
-          <div className="filter filter-03">
-            <p>
-              <strong>Room Amenities</strong>
-            </p>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Air Conditioning" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="TV" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Balcony" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Heating" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Bathtub" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Internet Access" />
-              <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Smoking" />
-            </FormGroup>
-          </div>
+          <Filters />
         </div>
         <div className="col-lg-9 pl-lg-3">
           <div className="card">
@@ -113,9 +135,7 @@ export default function RoomListing() {
               </div>
               <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
                 <div className="ListingFancyB">
-                  <ListingCarousel
-                    options={{ infinite: false }}
-                  >
+                  <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
                     <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
                       <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
                     </div>
@@ -146,7 +166,8 @@ export default function RoomListing() {
                   </div>
                 </div>
                 <div className="card-footer">
-                  <a href="#">View More Details</a>
+                  <a className="btn btn-wc-transparent" href="#">View More Details</a>
+                  <a className="btn btn-wc-outlined" href="#">Select Room</a>
                 </div>
               </div>
             </div>
@@ -158,9 +179,7 @@ export default function RoomListing() {
               </div>
               <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
                 <div className="ListingFancyB">
-                  <ListingCarousel
-                    options={{ infinite: false }}
-                  >
+                  <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
                     <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
                       <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
                     </div>
@@ -191,7 +210,8 @@ export default function RoomListing() {
                   </div>
                 </div>
                 <div className="card-footer">
-                  <a href="#">View More Details</a>
+                  <a className="btn btn-wc-transparent" href="#">View More Details</a>
+                  <a className="btn btn-wc-outlined" href="#">Select Room</a>
                 </div>
               </div>
             </div>
@@ -203,9 +223,7 @@ export default function RoomListing() {
               </div>
               <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
                 <div className="ListingFancyB">
-                  <ListingCarousel
-                    options={{ infinite: false }}
-                  >
+                  <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
                     <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
                       <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
                     </div>
@@ -236,7 +254,8 @@ export default function RoomListing() {
                   </div>
                 </div>
                 <div className="card-footer">
-                  <a href="#">View More Details</a>
+                  <a className="btn btn-wc-transparent" href="#">View More Details</a>
+                  <a className="btn btn-wc-outlined" href="#">Select Room</a>
                 </div>
               </div>
             </div>

@@ -123,6 +123,20 @@ const CustomTheme = createTheme({
         },
       },
     },
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          padding: "0",
+          color: 'var(--wc-border-color)',
+          '&.Mui-checked': {
+            color: 'var(--primary-color)',
+          },
+          '& .PrivateSwitchBase-input': {
+            display: 'none !important',
+          }
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {

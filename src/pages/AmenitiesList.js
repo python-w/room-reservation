@@ -1,4 +1,7 @@
+import { Typography } from "@mui/material";
 import React, { useRef, useEffect, useState } from "react";
+import Icon from "@mui/material/Icon";
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 export default function ListWithSummary({ items, maxWidth }) {
   const listRef = useRef(null);
@@ -29,12 +32,14 @@ export default function ListWithSummary({ items, maxWidth }) {
             summarized.push(items[Number(span.getAttribute("data-index"))]);
             currentWidth += spanWidth;
           } else {
-            unsummarized.push(items[Number(span.getAttribute("data-index"))]);
+            break;
+            // unsummarized.push(items[Number(span.getAttribute("data-index"))]);
           }
         }
         const remainingCount = items.length - summarized.length;
-        summarized.push(`${remainingCount} more...`);
+        summarized.push({ label: `${remainingCount} more...` , icon: <AddOutlinedIcon />});
         setSummarizedList(summarized);
+        console.log(summarized);
       }
     };
 
@@ -45,7 +50,7 @@ export default function ListWithSummary({ items, maxWidth }) {
     <div ref={listRef} className="amenitiesList-inner">
       {summarizedList.map((item, index) => (
         <span key={index} data-index={index} className="badge badge-pill badge-light lbadge-light">
-          {item}
+          <Icon>{item.icon}</Icon> {item.label}
         </span>
       ))}
     </div>
