@@ -3,6 +3,8 @@ import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOu
 import { useRooms } from '../contexts/RoomsContext';
 import { format } from 'date-fns';
 import BookedRoom from '../features/reservation-summary/BookedRoom';
+import { Check, SearchOutlined } from '@material-ui/icons';
+
 
 export default function ReservationSummary() {
     const { state } = useRooms();
@@ -52,12 +54,17 @@ export default function ReservationSummary() {
                 <span>{bookedRooms.length}</span> rooms selected
             </div>
             <div className='row'>
-                {bookedRooms.map((room, index) => <BookedRoom room={room} index={index + 1} />)}
+                {bookedRooms.map((room, index) => <BookedRoom key={room.id} room={room} index={index + 1} />)}
             </div>
 
             <div className='comments_box'>
                 <label>Comments</label>
-                <textarea></textarea>
+                <textarea placeholder='Write here...'></textarea>
+            </div>
+
+            <div className='d-flex justify-content-end'>
+                <button className='btn btn-wc-outlined mr-3'><SearchOutlined className='mr-2' />Search Again</button>
+                <button className='btn'><Check className='mr-2' />Book Now</button>
             </div>
         </div>
     )

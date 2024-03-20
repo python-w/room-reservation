@@ -19,11 +19,15 @@ p {
   margin-bottom: 1rem;
 }
 
+body.wcprop-2 .btn.btn-wc-outlined,
 body.wcprop-2 section.portlet .btn.btn-wc-outlined {
   background: transparent;
   color: var(--primary-color);
   border-color: var(--primary-color);
+  font-weight: 500;
 }
+
+body.wcprop-2 .btn.btn-wc-transparent,
 body.wcprop-2 section.portlet .btn.btn-wc-transparent {
   background: transparent;
   color: var(--primary-color);
@@ -74,7 +78,7 @@ body a:hover {
   --footer-font-size: 17;
   --wc-font-family: Roboto, sans-serif;
   --wc-font-size: 16;
-  --wc-font-color: #6E6E6E;
+  --wc-font-color: #43425D;
   --wc-base-lineHeight: 1.5;
   --wc-mobile-font-size: 14;
   --wc-heading-font-family1: Roboto, sans-serif;
@@ -115,7 +119,7 @@ body a:hover {
   --borderRadius: 12;
   --white-color: rgba(255, 255, 255, 1);
   --wc-border-color: #D6D6D6;
-  --field-height: 56;
+  --field-height: 46;
   --sliderArrow-bg: rgba(255, 255, 255, 1);
   --sliderArrow-width: 50;
   --sliderArrow-height: 50;
@@ -155,6 +159,7 @@ body a:hover {
 
 
 }
+
 @media (min-width: 2201px) and (max-width: 4000px) {
   :root {
     --4k-ratio: 22;
@@ -162,30 +167,35 @@ body a:hover {
     --section-padding: 4.543vw;
   }
 }
+
 @media (max-width: 1440.98px) {
   :root {
     --container-padding: 5.594rem;
   }
 }
+
 @media (max-width: 1199.98px) {
   :root {
-  --container-padding: 50px;
-  --section-padding: 80px;
+    --container-padding: 50px;
+    --section-padding: 80px;
   }
 }
+
 @media (max-width: 991.98px) {
   :root {
-  --container-padding: 30px;
+    --container-padding: 30px;
   }
 }
+
 @media (max-width: 767.98px) {
   :root {
-  --container-padding: 25px;
-  --section-padding: 50px;
+    --container-padding: 25px;
+    --section-padding: 50px;
   }
 }
+
 @media (max-width: 374.98px) {
   :root {
-  --container-padding: 20px;
+    --container-padding: 20px;
   }
 }
