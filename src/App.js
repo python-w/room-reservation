@@ -8,24 +8,23 @@ import Listing from "../src/pages/Listing";
 import RoomDetail from "../src/pages/RoomDetail";
 import { RoomsProvider } from "./contexts/RoomsContext";
 import ListItemWrapper from './ListItems'
+import ReservationSummary from "./pages/ReservationSummary";
 
 
 function App() {
-  const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
 
   return (
     <div className="webc-container">
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <RoomsProvider>
-          <br />
-          <br />
-          {/* <Search /> */}
+          <Search />
           {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
+            const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
             <ListItemWrapper items={items} />
           </div> */}
-          <Listing />
-          {/* <RoomDetail /> */}
+          {/* <Listing /> */}
+          <ReservationSummary />
         </RoomsProvider>
       </ThemeProvider>
     </div>

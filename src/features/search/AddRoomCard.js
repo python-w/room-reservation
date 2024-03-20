@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import RoomCard from "./RoomCard";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useRooms } from "../../contexts/RoomsContext";
@@ -10,11 +10,10 @@ export default function AddRoomCard() {
 
     const refRoomModal = useRef();
     const { state, dispatch } = useRooms();
-    const { initialRooms, bookedRooms, rooms } = state;
+    const { initialRooms, rooms } = state;
 
     const addRoom = () => {
         dispatch({ type: 'ADD_ROOM' })
-        console.log(bookedRooms)
     };
 
     const handleClose = () => {

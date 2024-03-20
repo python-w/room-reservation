@@ -1,6 +1,5 @@
-import { Box, Button, Grid, Typography, FormLabel } from "@mui/material";
+import { Box, Grid, Typography, FormLabel } from "@mui/material";
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
-import StyledLabel from "../../ui/StyledLabel";
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -8,11 +7,15 @@ import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useRooms } from "../../contexts/RoomsContext";
+import { format } from 'date-fns';
 
 export default function Search() {
 
     const { state, dispatch } = useRooms();
     const { dateModalOpen, roomsModalOpen, startDate, endDate, guests, rooms, todayDate } = state;
+
+    const checkedInDate = startDate ? format(startDate, 'E, d MMM') : todayDate;
+    const checkedOutDate = endDate ? format(endDate, 'E, d MMM') : todayDate;
 
     const handleDateModalOpen = () => {
         dispatch({ type: 'DATE_MODAL' })
@@ -26,16 +29,16 @@ export default function Search() {
             <Grid container spacing={2} alignItems={"flex-end"}>
                 <Grid item flex={1}>
                     <Box display="flex" justifyContent={"space-between"} alignItems={"center"} className="label_group">
-                        <FormLabel>Check in & out dates</FormLabel>
+                        <FormLabel>Check In & Out Dates</FormLabel>
                         <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
                     </Box>
                     <div className="custom_input_outer">
                         <Box role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
                             <Box>
-                                <TodayOutlinedIcon /> <Typography component="span">{startDate === null ? todayDate : startDate}</Typography>
+                                <TodayOutlinedIcon /> <Typography component="span">{checkedInDate}</Typography>
                             </Box>
                             <Box>
-                                <InsertInvitationOutlinedIcon /> <Typography component="span">{endDate === null ? todayDate : endDate}</Typography>
+                                <InsertInvitationOutlinedIcon /> <Typography component="span">{checkedOutDate}</Typography>
                             </Box>
                         </Box>
                         {dateModalOpen &&

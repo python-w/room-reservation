@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export function useOnClickOutside(ref, handler) {
     useEffect(() => {
         const listener = event => {
-            if (!ref.current || ref.current.contains(event.target)) {
+            if (!ref.current || ref.current.contains(event.target) || event.target.closest('.customInputBox, .MuiPopover-root')) {
                 return;
             }
             handler(event);
