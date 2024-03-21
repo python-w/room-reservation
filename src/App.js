@@ -18,13 +18,13 @@ function App() {
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <RoomsProvider>
-          <Search />
+          {/* <Search /> */}
           {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
             const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
             <ListItemWrapper items={items} />
           </div> */}
-          {/* <Listing /> */}
-          <ReservationSummary />
+          <Listing />
+          {/* <ReservationSummary /> */}
         </RoomsProvider>
       </ThemeProvider>
     </div>

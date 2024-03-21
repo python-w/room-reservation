@@ -1,11 +1,11 @@
-import { Typography } from "@mui/material";
-import React, { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Icon from "@mui/material/Icon";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 export default function ListWithSummary({ items, maxWidth }) {
   const listRef = useRef(null);
   const [summarizedList, setSummarizedList] = useState([]);
+  const [isSummarized, setIsSummarized] = useState(false);
 
   useEffect(() => {
     const calculateWidth = () => {
@@ -32,25 +32,26 @@ export default function ListWithSummary({ items, maxWidth }) {
             summarized.push(items[Number(span.getAttribute("data-index"))]);
             currentWidth += spanWidth;
           } else {
-            break;
-            // unsummarized.push(items[Number(span.getAttribute("data-index"))]);
+            unsummarized.push(items[Number(span.getAttribute("data-index"))]);
           }
         }
         const remainingCount = items.length - summarized.length;
         summarized.push({ label: `${remainingCount} more...` , icon: <AddOutlinedIcon />});
         setSummarizedList(summarized);
-        console.log(summarized);
+        setIsSummarized(true);
       }
     };
 
-    summarizeList();
-  }, [items, maxWidth]);
+    if (!isSummarized) {
+      summarizeList();
+    }
+  }, [items, maxWidth, isSummarized]);
 
   return (
     <div ref={listRef} className="amenitiesList-inner">
-      {summarizedList.map((item, index) => (
+      {summarizedList.map((summarizeitem, index) => (
         <span key={index} data-index={index} className="badge badge-pill badge-light lbadge-light">
-          <Icon>{item.icon}</Icon> {item.label}
+          {summarizeitem && summarizeitem.icon && <Icon>{summarizeitem.icon}</Icon>} {summarizeitem && summarizeitem.label}
         </span>
       ))}
     </div>

@@ -13,6 +13,7 @@ import ListWithSummary from "./AmenitiesList";
 import ListingCarousel from "../ui/ListingCarousel";
 import Filters from "../features/filter/filter";
 import Search from "../features/search/Search";
+import { RoomListings } from "../contexts/RoomListingApi";
 
 const BpIcon = styled("span")(({ theme }) => ({
   width: 18,
@@ -44,78 +45,66 @@ const BpCheckedIcon = styled(BpIcon)({
 
 export default function RoomListing() {
   const ref = useRef(null);
-  const [amenitiesWidth, setAmenitiesWidth] = useState(0);
-  const [lfilterShow, setLFilterShow] = useState(false);
-  useLayoutEffect(() => {
-    setAmenitiesWidth(parseFloat(ref.current.offsetWidth));
-  }, [amenitiesWidth]);
 
-  const amenitiesItems = [
+  const RoomFilters = [
     {
-      label: "2 Double Beds",
-      icon: <BedOutlinedIcon />,
+      title: "Room Types",
+      options: ["Standard Room", "Deluxe Room", "Executive Room", "Superior Room", "Connecting Rooms"],
     },
     {
-      label: "Dinner",
-      icon: <DinnerDiningOutlinedIcon />,
+      title: "Bed Type",
+      options: ["Single / Twin", "Double", "King", "Queen", "Bunk Bed"],
     },
     {
-      label: "Swimming Pool",
-      icon: <PoolOutlinedIcon />,
-    },
-    {
-      label: "Wifi",
-      icon: <WifiOutlinedIcon />,
-    },
-    {
-      label: "Free Parking",
-      icon: <DirectionsCarFilledOutlinedIcon />,
-    },
-    {
-      label: "2 Double Beds",
-      icon: <BedOutlinedIcon />,
-    },
-    {
-      label: "Dinner",
-      icon: <DinnerDiningOutlinedIcon />,
-    },
-    {
-      label: "Swimming Pool",
-      icon: <PoolOutlinedIcon />,
-    },
-    {
-      label: "Wifi",
-      icon: <WifiOutlinedIcon />,
-    },
-    {
-      label: "Free Parking",
-      icon: <DirectionsCarFilledOutlinedIcon />,
-    },
-    {
-      label: "2 Double Beds",
-      icon: <BedOutlinedIcon />,
-    },
-    {
-      label: "Dinner",
-      icon: <DinnerDiningOutlinedIcon />,
-    },
-    {
-      label: "Swimming Pool",
-      icon: <PoolOutlinedIcon />,
-    },
-    {
-      label: "Wifi",
-      icon: <WifiOutlinedIcon />,
-    },
-    {
-      label: "Free Parking",
-      icon: <DirectionsCarFilledOutlinedIcon />,
+      title: "Room Amenities",
+      options: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "Air Conditioning", "TV", "Balcony", "Heating", "Bathtub", "Smoking"],
     },
   ];
+
+  const [amenitiesWidth, setAmenitiesWidth] = useState(0);
+  const [lfilterShow, setLFilterShow] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      setAmenitiesWidth(ref.current.offsetWidth);
+    }
+  }, [ref.current]);
 
   const handleFilter = () => {
     setLFilterShow((show) => !show);
   };
+  const handleFilterChange = (e) => {
+    const filterValue = e.target.value;
+    let updatedFilters = [...selectedFilters];
+    if (updatedFilters.includes(filterValue)) {
+      updatedFilters = updatedFilters.filter((filter) => filter !== filterValue);
+    } else {
+      updatedFilters.push(filterValue);
+    }
+    setSelectedFilters(updatedFilters);
+  };
+  const filterRoomListings = () => {
+    if (selectedFilters.length === 0) {
+      return RoomListings;
+    }
+    return RoomListings.filter((room) => {
+      // Check if room type matches any selected room types
+      if (selectedFilters.includes(room.roomtype)) {
+        return true;
+      }
+
+      // Check if bed type matches any selected bed types
+      if (selectedFilters.includes(room.bedtype)) {
+        return true;
+      }
+      if (selectedFilters.every((amenity) => room.amenities.some((roomAmenity) => roomAmenity.label === amenity))) {
+        const amenitiesMatch = selectedFilters.every((amenity) => room.amenities.some((roomAmenity) => roomAmenity.label === amenity));
+        return amenitiesMatch;
+      }
+    });
+  };
+  const filteredListings = filterRoomListings();
 
   return (
     <div className="ListingPage">
@@ -125,141 +114,59 @@ export default function RoomListing() {
       </Button>
       <div className="row">
         <div className={`col-lg-3 pr-lg-4 ${lfilterShow ? "d-none" : "d-lg-block"}`}>
-          <Filters />
+          <Filters filterItems={RoomFilters} handleFilterChange={handleFilterChange} />
         </div>
         <div className="col-lg-9 pl-lg-3">
-          <div className="card">
-            <div className="row">
-              <div className="price-container">
-                $100.50 <small>/ night</small>
-              </div>
-              <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
-                <div className="ListingFancyB">
-                  <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
-                      <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
-                    </div>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src="https://lipsum.app/id/64/1600x1200">
-                      <img className="lcard-img img-fluid" alt="" src="https://lipsum.app/id/64/400x300" width="400" height="300" />
-                    </div>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
-                      <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
-                    </div>
-                  </ListingCarousel>
+          {filteredListings.map((room, index) => (
+            <div className="card" key={index}>
+              <div className="row">
+                <div className="price-container">
+                  {room.price} <small>/ night</small>
                 </div>
-              </div>
-              <div className="col-xl-8 col-lg-7 col-md-8 col-12">
-                <div className="card-body">
-                  <div className="status-badges">
-                    <span className="badge badge-pill badge-primary">Executive Room</span>
-                    <span className="badge badge-pill badge-success">Available</span>
-                  </div>
-                  <h6 className="card-title">Royal Suite, Executive lounge access, Suite, 1 King</h6>
-                  <p className="card-text" style={{ alignItems: "center", display: "flex" }}>
-                    <LocationOnOutlinedIcon />
-                    1600 Northstar dr. Atlanta, GA 30012
-                  </p>
-                  <p className="card-desc lcard-desc">Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui...</p>
-                  <p className="small-card-title">This facility offers:</p>
-                  <div className="amenitiesList-container" ref={ref}>
-                    <ListWithSummary items={amenitiesItems} maxWidth={amenitiesWidth} />
+                <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
+                  <div className="ListingFancyB">
+                    <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
+                      <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
+                        <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
+                      </div>
+                      <div className="f-carousel__slide" data-fancybox="gallery" data-src="https://lipsum.app/id/64/1600x1200">
+                        <img className="lcard-img img-fluid" alt="" src="https://lipsum.app/id/64/400x300" width="400" height="300" />
+                      </div>
+                      <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
+                        <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
+                      </div>
+                    </ListingCarousel>
                   </div>
                 </div>
-                <div className="card-footer">
-                  <a className="btn btn-wc-transparent" href="#">View More Details</a>
-                  <a className="btn btn-wc-outlined" href="#">Select Room</a>
+                <div className="col-xl-8 col-lg-7 col-md-8 col-12">
+                  <div className="card-body">
+                    <div className="status-badges">
+                      <span className="badge badge-pill badge-primary">{room.roomtype}</span>
+                      {room.status ? <span className="badge badge-pill badge-success">Available</span> : <span className="badge badge-pill badge-danger">Not Available</span>}
+                    </div>
+                    <h6 className="card-title">{room.title}</h6>
+                    <p className="card-text" style={{ alignItems: "center", display: "flex" }}>
+                      <LocationOnOutlinedIcon />
+                      {room.address}
+                    </p>
+                    <p className="card-desc lcard-desc">{room.roomdescription}</p>
+                    <p className="small-card-title">This facility offers:</p>
+                    <div className="amenitiesList-container" ref={ref}>
+                      <ListWithSummary items={room.amenities} maxWidth={amenitiesWidth} />
+                    </div>
+                  </div>
+                  <div className="card-footer">
+                    <a className="btn btn-wc-transparent" href="#">
+                      View More Details
+                    </a>
+                    <a className="btn btn-wc-outlined" href="#">
+                      Select Room
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="card">
-            <div className="row">
-              <div className="price-container">
-                $100.50 <small>/ night</small>
-              </div>
-              <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
-                <div className="ListingFancyB">
-                  <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
-                      <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
-                    </div>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src="https://lipsum.app/id/64/1600x1200">
-                      <img className="lcard-img img-fluid" alt="" src="https://lipsum.app/id/64/400x300" width="400" height="300" />
-                    </div>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
-                      <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
-                    </div>
-                  </ListingCarousel>
-                </div>
-              </div>
-              <div className="col-xl-8 col-lg-7 col-md-8 col-12">
-                <div className="card-body">
-                  <div className="status-badges">
-                    <span className="badge badge-pill badge-primary">Executive Room</span>
-                    <span className="badge badge-pill badge-success">Available</span>
-                  </div>
-                  <h6 className="card-title">Royal Suite, Executive lounge access, Suite, 1 King</h6>
-                  <p className="card-text" style={{ alignItems: "center", display: "flex" }}>
-                    <LocationOnOutlinedIcon />
-                    1600 Northstar dr. Atlanta, GA 30012
-                  </p>
-                  <p className="card-desc lcard-desc">Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui...</p>
-                  <p className="small-card-title">This facility offers:</p>
-                  <div className="amenitiesList-container" ref={ref}>
-                    <ListWithSummary items={amenitiesItems} maxWidth={amenitiesWidth} />
-                  </div>
-                </div>
-                <div className="card-footer">
-                  <a className="btn btn-wc-transparent" href="#">View More Details</a>
-                  <a className="btn btn-wc-outlined" href="#">Select Room</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="card">
-            <div className="row">
-              <div className="price-container">
-                $100.50 <small>/ night</small>
-              </div>
-              <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
-                <div className="ListingFancyB">
-                  <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
-                      <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
-                    </div>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src="https://lipsum.app/id/64/1600x1200">
-                      <img className="lcard-img img-fluid" alt="" src="https://lipsum.app/id/64/400x300" width="400" height="300" />
-                    </div>
-                    <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>
-                      <img className="lcard-img img-fluid" alt="" src={roomImg} width="400" height="300" />
-                    </div>
-                  </ListingCarousel>
-                </div>
-              </div>
-              <div className="col-xl-8 col-lg-7 col-md-8 col-12">
-                <div className="card-body">
-                  <div className="status-badges">
-                    <span className="badge badge-pill badge-primary">Executive Room</span>
-                    <span className="badge badge-pill badge-success">Available</span>
-                  </div>
-                  <h6 className="card-title">Royal Suite, Executive lounge access, Suite, 1 King</h6>
-                  <p className="card-text" style={{ alignItems: "center", display: "flex" }}>
-                    <LocationOnOutlinedIcon />
-                    1600 Northstar dr. Atlanta, GA 30012
-                  </p>
-                  <p className="card-desc lcard-desc">Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui...</p>
-                  <p className="small-card-title">This facility offers:</p>
-                  <div className="amenitiesList-container" ref={ref}>
-                    <ListWithSummary items={amenitiesItems} maxWidth={amenitiesWidth} />
-                  </div>
-                </div>
-                <div className="card-footer">
-                  <a className="btn btn-wc-transparent" href="#">View More Details</a>
-                  <a className="btn btn-wc-outlined" href="#">Select Room</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

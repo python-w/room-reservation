@@ -32,7 +32,7 @@ const BpCheckedIcon = styled(BpIcon)({
   },
 });
 
-export default function RoomListing() {
+export default function RoomListing(props) {
   const [lfilterShow, setLFilterShow] = useState(false);
 
   const handleFilter = () => {
@@ -42,44 +42,18 @@ export default function RoomListing() {
   return (
     <>
       <h4 className="lfilter-heading">Filter results by</h4>
-      <div className="filter filter-01">
-        <p>
-          <strong>Room Types</strong>
-        </p>
-        <FormGroup>
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Standard Room" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Deluxe Room" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Executive Room" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Superior Room" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Connecting Rooms" />
-        </FormGroup>
-      </div>
-      <div className="filter filter-02">
-        <p>
-          <strong>Bed Type</strong>
-        </p>
-        <FormGroup>
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Single / Twin" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Double" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="King" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Queen" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Bunk Bed" />
-        </FormGroup>
-      </div>
-      <div className="filter filter-03">
-        <p>
-          <strong>Room Amenities</strong>
-        </p>
-        <FormGroup>
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Air Conditioning" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="TV" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Balcony" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Heating" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Bathtub" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Internet Access" />
-          <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Smoking" />
-        </FormGroup>
-      </div>
+      {props.filterItems.map((item, index) => (
+        <div className={`filter filter-0${index}`} key={index}>
+          <p>
+            <strong>{item.title}</strong>
+          </p>
+          <FormGroup>
+            {item.options.map((item, index) => (
+              <FormControlLabel control={<Checkbox onChange={(e) => props.handleFilterChange(e)} value={item} icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label={item} key={index} />
+            ))}
+          </FormGroup>
+        </div>
+      ))}
     </>
   );
 }
