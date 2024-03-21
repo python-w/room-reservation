@@ -7,7 +7,6 @@ $mq-tablet-sm: "(max-width: 767.98px)";
 $mq-mobile-sm: "(max-width: 575.98px)";
 @function get4k($target) {
   $vw-context: (2201 * 0.01) * 1px;
-  $vw-context: (2201 * 0.01) * 1px;
   @return ($target / $vw-context) * 1vw;
 }
 body {
