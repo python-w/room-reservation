@@ -2,11 +2,11 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import StyledSelect from "../../ui/StyledSelect";
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 
 export default function RoomCard({ index, room, showRemoveButton }) {
 
-    const { state, dispatch } = useRooms();
+    const { state, dispatch } = useSearch();
     const { adultsCount, childrenCount } = state;
 
     const handleAddAdults = (roomId) => {

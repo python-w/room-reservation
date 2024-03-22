@@ -35,7 +35,6 @@ function Carousel(props) {
     };
 
     const instance = new NativeCarousel(container, options, { Thumbs });
-    console.log(instance.events[0])
     return () => {
       instance.destroy();
     };

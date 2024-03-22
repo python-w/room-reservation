@@ -1,13 +1,13 @@
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
-import { useRooms } from '../contexts/RoomsContext';
+import { useSearch } from '../contexts/SearchContext';
 import { format } from 'date-fns';
 import BookedRoom from '../features/reservation-summary/BookedRoom';
 import { Check, SearchOutlined } from '@material-ui/icons';
 
 
 export default function ReservationSummary() {
-    const { state } = useRooms();
+    const { state } = useSearch();
     const { startDate, endDate, bookedRooms } = state;
     const toDay = format(new Date(), 'EEEE');
     const todayDate = format(new Date(), 'MMM dd, yyyy');

@@ -6,26 +6,29 @@ import Search from "./features/search/Search";
 import CustomTheme from "./customTheme";
 import Listing from "../src/pages/Listing";
 import RoomDetail from "../src/pages/RoomDetail";
-import { RoomsProvider } from "./contexts/RoomsContext";
+import { SearchProvider } from "./contexts/SearchContext";
 import ListItemWrapper from './ListItems'
 import ReservationSummary from "./pages/ReservationSummary";
+import { RoomsProvider } from "./contexts/RoomsContext";
 
 
 function App() {
+  // const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
 
   return (
     <div className="webc-container">
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
-        <RoomsProvider>
-          {/* <Search /> */}
-          {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
-            const items = Array.from({ length: 24 }, (_, index) => `List Item ${index + 1}`);
+        <SearchProvider>
+          <RoomsProvider>
+            {/* <Search /> */}
+            {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
             <ListItemWrapper items={items} />
           </div> */}
-          <Listing />
-          {/* <ReservationSummary /> */}
-        </RoomsProvider>
+            <Listing />
+            {/* <ReservationSummary /> */}
+          </RoomsProvider>
+        </SearchProvider>
       </ThemeProvider>
     </div>
   );

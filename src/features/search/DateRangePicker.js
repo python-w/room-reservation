@@ -2,13 +2,13 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { Box, Button, Typography } from "@mui/material";
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 import { useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 export default function StyledDateRangePicker() {
   const refDateModal = useRef();
-  const { state, dispatch } = useRooms();
+  const { state, dispatch } = useSearch();
   const { selectedRange } = state;
 
   const handleClose = () => {

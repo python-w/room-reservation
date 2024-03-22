@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import RoomCard from "./RoomCard";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useRef } from "react";
 
@@ -9,7 +9,7 @@ import { useRef } from "react";
 export default function AddRoomCard() {
 
     const refRoomModal = useRef();
-    const { state, dispatch } = useRooms();
+    const { state, dispatch } = useSearch();
     const { initialRooms, rooms } = state;
 
     const addRoom = () => {

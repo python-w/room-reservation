@@ -55,7 +55,7 @@ export default function RoomDetails() {
       </button>
       <div className="row">
         <div className="col-12">
-          <div className="ListingFancyB">
+          <div className="roomThumb">
             <Fancybox>
               <ListingCarousel showPageCount={true} options={{ infinite: false, Thumbs: false }}>
                 <div className="f-carousel__slide" data-fancybox="gallery" data-src={roomImg}>

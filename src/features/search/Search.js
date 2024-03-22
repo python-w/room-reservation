@@ -6,12 +6,12 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 import { format } from 'date-fns';
 
 export default function Search() {
 
-    const { state, dispatch } = useRooms();
+    const { state, dispatch } = useSearch();
     const { dateModalOpen, roomsModalOpen, startDate, endDate, guests, rooms, todayDate } = state;
 
     const checkedInDate = startDate ? format(startDate, 'E, d MMM') : todayDate;

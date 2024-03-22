@@ -1,51 +1,3 @@
-body {
-  margin: 0;
-  font-family: var(--wc-font-family);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.container {
-  max-width: 100%;
-  padding: 0 var(--container-padding);
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-body.wcprop-2 .btn.btn-wc-outlined,
-body.wcprop-2 section.portlet .btn.btn-wc-outlined {
-  background: transparent;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  font-weight: 500;
-}
-
-body.wcprop-2 .btn.btn-wc-transparent,
-body.wcprop-2 section.portlet .btn.btn-wc-transparent {
-  background: transparent;
-  color: var(--primary-color);
-  margin-top: 0;
-  font-size: calc((var(--wc-font-size) - 2) * 1px);
-}
-
-
-body a {
-  color: var(--link-color);
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-body a:hover {
-  color: var(--link-color-hover)
-}
-
 :root {
   --container-padding: 9.7rem;
   --section-padding: 100px;
@@ -158,6 +110,53 @@ body a:hover {
   --fontawesome-family: "Font Awesome 5 Free";
 
 
+}
+
+body {
+  margin: 0;
+  font-family: var(--wc-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 var(--container-padding);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+body.wcprop-2 .btn.btn-wc-outlined,
+body.wcprop-2 section.portlet .btn.btn-wc-outlined {
+  background: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 500;
+}
+
+body.wcprop-2 .btn.btn-wc-transparent,
+body.wcprop-2 section.portlet .btn.btn-wc-transparent {
+  background: transparent;
+  color: var(--primary-color);
+  margin-top: 0;
+  font-size: calc((var(--wc-font-size) - 2) * 1px);
+}
+
+body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled).active,
+body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active {
+  border-color: var(--primary-color-hover);
+}
+
+body a {
+  color: var(--link-color);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+body a:hover {
+  color: var(--link-color-hover)
 }
 
 @media (min-width: 2201px) and (max-width: 4000px) {
