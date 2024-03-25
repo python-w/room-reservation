@@ -10,7 +10,7 @@ export default function AddRoomCard() {
 
     const refRoomModal = useRef();
     const { state, dispatch } = useSearch();
-    const { initialRooms, rooms } = state;
+    const { roomsToSearch, roomsInSearch } = state;
 
     const addRoom = () => {
         dispatch({ type: 'ADD_ROOM' })
@@ -27,16 +27,16 @@ export default function AddRoomCard() {
     return (
         <Box ref={refRoomModal} className='inline_modal'>
             <Box className="inline_modal_body">
-                {rooms.map((room, index) => (
+                {roomsInSearch.map((room, index) => (
                     <RoomCard
                         key={index}
                         room={room}
                         index={index}
-                        showRemoveButton={rooms.length > 1}
+                        showRemoveButton={roomsInSearch.length > 1}
                     />
                 ))}
             </Box>
-            {rooms.length < initialRooms.length && (
+            {roomsInSearch.length < roomsToSearch.length && (
                 <Box className="add_room_btn" >
                     <button className="btn btn-wc-outlined" variant="outlined" color="primary" onClick={addRoom}>
                         <AddOutlinedIcon /> Add Another Room

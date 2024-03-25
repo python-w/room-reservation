@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 
-const rooms = [
+export const rooms = [
     {
         id: 1,
         title: "Royal Suite, Executive lounge access, Suite, 1 King",
@@ -10,10 +10,7 @@ const rooms = [
         price: "$100.50",
         address: "1600 Northstar dr. Atlanta, GA 30012",
         description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
-        maxOccupancy: {
-            adults: 2,
-            children: 1,
-        },
+        maxOccupancy: 8,
         available: true,
         reservations: [],
         images: {
@@ -30,11 +27,8 @@ const rooms = [
         price: "$200.50",
         address: "1400 Northstar dr. Atlanta, FL 30012",
         description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples.",
-        maxOccupancy: {
-            adults: 2,
-            children: 1,
-        },
-        available: false,
+        maxOccupancy: 6,
+        available: true,
         reservations: [
             { startDate: "2024-03-25", endDate: "2024-03-28" },
         ],
@@ -54,11 +48,8 @@ const rooms = [
         price: "$300.50",
         address: "1600 Northstar dr. Atlanta, CA 30012",
         description: "Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
-        maxOccupancy: {
-            adults: 2,
-            children: 1,
-        },
-        available: false,
+        maxOccupancy: 4,
+        available: true,
         reservations: [
             { startDate: "2024-03-25", endDate: "2024-03-28" },
         ],
@@ -76,10 +67,7 @@ const rooms = [
         price: "$400.50",
         address: "1700 Northstar dr. Atlanta, GA 30012",
         description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV.",
-        maxOccupancy: {
-            adults: 2,
-            children: 1,
-        },
+        maxOccupancy: 2,
         available: true,
         reservations: [
             { startDate: "2024-03-25", endDate: "2024-03-28" },
@@ -92,20 +80,15 @@ const rooms = [
     {
         id: 5,
         title: "Royal Suite, Executive lounge access, Suite, 1 King",
-        roomtype: "Executive Room",
+        roomtype: "Connecting Rooms",
         bedtype: "Bunk Bed",
         amenities: ["2 Double Beds", "Dinner", "Swimming Pool", "Balcony", "Heating", "Bathtub", "Smoking"],
         price: "$500.50",
         address: "1600 Northstar dr. Atlanta, IL 30012",
         description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
-        maxOccupancy: {
-            adults: 2,
-            children: 1,
-        },
-        available: true,
-        reservations: [
-            { startDate: "2024-03-25", endDate: "2024-03-28" },
-        ],
+        maxOccupancy: 6,
+        available: false,
+        reservations: [],
         images: {
             thumbs: ['https://lipsum.app/id/73/400x300', 'https://lipsum.app/id/74/400x300', 'https://lipsum.app/id/75/400x300'],
             large: ['https://lipsum.app/id/73/1920x1080', 'https://lipsum.app/id/74/1920x1080', 'https://lipsum.app/id/75/1920x1080'],

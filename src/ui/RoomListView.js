@@ -5,16 +5,37 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@mui/material";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { useSearch } from "../contexts/SearchContext";
 
 export default function RoomListView({ room, index }) {
     const amenitiesRef = useRef();
     const [amenitiesWidth, setAmenitiesWidth] = useState(0);
+    const { state, dispatch } = useSearch();
+    const { bookedRooms, searchedRooms } = state;
 
     useLayoutEffect(() => {
         if (amenitiesRef.current) {
             setAmenitiesWidth(amenitiesRef.current.offsetWidth);
         }
     }, []);
+
+    const handleSelectRoom = (roomId, roomMaxOccupancy) => {
+        dispatch({ type: 'SELECT_ROOM', payload: { id: roomId, maxOccupancy: roomMaxOccupancy, bookedRoomCount: 1 } })
+    }
+
+    const handleRoomAdd = (roomId) => {
+        dispatch({ type: 'SELECTROOM_ADD', payload: roomId })
+    }
+
+    const handleRoomSub = (roomId) => {
+        if (state.bookedRooms.length >= 1) {
+            dispatch({ type: 'SELECTROOM_SUB', payload: roomId })
+        }
+    }
+
+    const handleDetailView = (roomId) => {
+        console.log(roomId)
+    }
 
     return (
         <div className="card" key={index}>
@@ -36,6 +57,7 @@ export default function RoomListView({ room, index }) {
                 <div className="col-xl-8 col-lg-7 col-md-8 col-12">
                     <div className="card-body">
                         <div className="status-badges">
+                            <span className="badge badge-pill badge-primary">{room.maxOccupancy}</span>
                             <span className="badge badge-pill badge-primary">{room.roomtype}</span>
                             {room.available ? <span className="badge badge-pill badge-success">Available</span> : <span className="badge badge-pill badge-danger">Not Available</span>}
                         </div>
@@ -51,18 +73,22 @@ export default function RoomListView({ room, index }) {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <a className="btn btn-wc-transparent" href="#">
+                        <button onClick={() => handleDetailView(room.id)} className="btn btn-wc-transparent">
                             View More Details
-                        </a>
-                        <button className="btn btn-wc-outlined" href="#">
-                            Select Room
                         </button>
-                        <div className="room_counter">
-                            <p>Rooms</p>
-                            <Button variant="outlined" disabled=""><RemoveOutlinedIcon /></Button>
-                            <span>1</span>
-                            <Button variant="outlined" disabled=""><AddOutlinedIcon /></Button>
-                        </div>
+                        {room.isSelected ?
+                            <div className="room_counter">
+                                <p>Rooms</p>
+                                <Button variant="outlined" onClick={() => handleRoomSub(room.id)}><RemoveOutlinedIcon /></Button>
+                                <span>{room.bookedRoomCount}</span>
+                                <Button variant="outlined" disabled={searchedRooms.length === bookedRooms.length} onClick={() => handleRoomAdd(room.id)}><AddOutlinedIcon /></Button>
+                            </div> :
+                            searchedRooms.length !== bookedRooms.length &&
+                            <button className="btn btn-wc-outlined" onClick={() => handleSelectRoom(room.id, room.maxOccupancy)}>
+                                Select Room
+                            </button>
+
+                        }
                     </div>
                 </div>
             </div>

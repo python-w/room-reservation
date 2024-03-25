@@ -1,11 +1,11 @@
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 
 
 export default function RoomListing() {
-  const { state, dispatch } = useRooms();
+  const { state, dispatch } = useSearch();
   const { roomsfilterItems } = state;
 
   const handleFilterChange = (e) => {

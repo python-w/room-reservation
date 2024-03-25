@@ -11,6 +11,9 @@ export default function StyledDateRangePicker() {
   const { state, dispatch } = useSearch();
   const { selectedRange } = state;
 
+  const today = new Date();
+  const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
   const handleClose = () => {
     dispatch({ type: "CLOSE_MODAL" });
   };
@@ -30,7 +33,7 @@ export default function StyledDateRangePicker() {
           Select Dates
         </Typography>
         <Box className="inline_modal_body">
-          <DateRangePicker staticRanges={[]} inputRanges={[]} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
+          <DateRangePicker staticRanges={[]} inputRanges={[]} minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
         </Box>
         <Box className="inline_modal_footer">
           <Button onClick={handleClose}>Done</Button>

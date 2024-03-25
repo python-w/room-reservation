@@ -16,6 +16,14 @@ body {
   &.wcprop-2 {
     section.portlet {
 
+      .spinner {
+        text-align: center;
+
+        img {
+          margin: 2rem auto;
+        }
+      }
+
       //Search Component
       .search_wrap {
         border: 1px solid var(--wc-border-color
@@ -27,6 +35,9 @@ body {
     }
 
     .label_group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 0 20px;
       margin-bottom: 0.5rem;
 
@@ -976,6 +987,8 @@ body {
         margin-top: 1rem;
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        height: 41px;
 
         .btn-wc-transparent {
           padding: 0;

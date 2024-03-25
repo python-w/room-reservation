@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, FormLabel } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
@@ -8,14 +8,17 @@ import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
 import { format } from 'date-fns';
+import { getRooms } from "../../services/apiRooms";
+
+
 
 export default function Search() {
-
     const { state, dispatch } = useSearch();
-    const { dateModalOpen, roomsModalOpen, startDate, endDate, guests, rooms, todayDate } = state;
+    const { dateModalOpen, roomsModalOpen, isSearchActive, startDate, endDate, prevStartDate, prevEndDate, guests, roomsInSearch } = state;
 
-    const checkedInDate = startDate ? format(startDate, 'E, d MMM') : todayDate;
-    const checkedOutDate = endDate ? format(endDate, 'E, d MMM') : todayDate;
+    const checkInDate = format(startDate, 'E, d MMM');
+    const checkOutDate = format(endDate, 'E, d MMM');
+
 
     const handleDateModalOpen = () => {
         dispatch({ type: 'DATE_MODAL' })
@@ -24,52 +27,70 @@ export default function Search() {
         dispatch({ type: 'ROOMS_MODAL' })
     };
 
+    async function searchDispatch() {
+        dispatch({ type: 'SEARCH_LOADING' });
+        const roomlisting = await getRooms();
+        dispatch({ type: 'SEARCH_ROOMS', payload: roomlisting });
+    }
+
+    const handleSearch = async () => {
+        const startDateFormat = format(startDate, 'MMM dd, yyyy');
+        const prevStartDateFormat = format(prevStartDate, 'MMM dd, yyyy');
+        const endDateFormat = format(endDate, 'MMM dd, yyyy');
+        const prevEndDateFormat = format(prevEndDate, 'MMM dd, yyyy');
+        try {
+            !isSearchActive && searchDispatch();
+            (startDateFormat !== prevStartDateFormat || endDateFormat !== prevEndDateFormat) && searchDispatch();
+        } catch (error) {
+            dispatch({ type: 'SEARCH_ERROR', payload: error.message });
+        }
+    }
+
     return (
         <div className="search_wrap">
             <Grid container spacing={2} alignItems={"flex-end"}>
                 <Grid item flex={1}>
-                    <Box display="flex" justifyContent={"space-between"} alignItems={"center"} className="label_group">
-                        <FormLabel>Check In & Out Dates</FormLabel>
+                    <div className="label_group">
+                        <label>Check In & Out Dates</label>
                         <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
-                    </Box>
+                    </div>
                     <div className="custom_input_outer">
-                        <Box role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
-                            <Box>
-                                <TodayOutlinedIcon /> <Typography component="span">{checkedInDate}</Typography>
-                            </Box>
-                            <Box>
-                                <InsertInvitationOutlinedIcon /> <Typography component="span">{checkedOutDate}</Typography>
-                            </Box>
-                        </Box>
+                        <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
+                            <div>
+                                <TodayOutlinedIcon /> <Typography component="span">{checkInDate}</Typography>
+                            </div>
+                            <div>
+                                <InsertInvitationOutlinedIcon /> <Typography component="span">{checkOutDate}</Typography>
+                            </div>
+                        </div>
                         {dateModalOpen &&
                             <StyledDateRangePicker />
                         }
                     </div>
                 </Grid>
                 <Grid item flex={1}>
-                    <Box>
-                        <Box className="label_group">
-                            <FormLabel>Guests & Rooms</FormLabel>
-                        </Box>
+                    <div>
+                        <div className="label_group">
+                            <label>Guests & Rooms</label>
+                        </div>
                         <div className="custom_input_outer">
-                            <Box role="button" onClick={handleRoomsModalOpen} className="customInputBox">
-                                <Box>
-                                    <PersonOutlineOutlinedIcon /> <Typography component="span">{guests || 1} {guests > 1 ? 'Guests' : 'Guest'}, {rooms.length} {rooms.length > 1 ? 'Rooms' : 'Room'}</Typography>
-                                </Box>
-                            </Box>
+                            <div role="button" onClick={handleRoomsModalOpen} className="customInputBox">
+                                <div>
+                                    <PersonOutlineOutlinedIcon /> <Typography component="span">{guests || 1} {guests > 1 ? 'Guests' : 'Guest'}, {roomsInSearch.length} {roomsInSearch.length > 1 ? 'Rooms' : 'Room'}</Typography>
+                                </div>
+                            </div>
                             {roomsModalOpen &&
                                 <AddRoomCard />
                             }
                         </div>
-                    </Box>
+                    </div>
                 </Grid>
                 <Grid item>
-                    <Box className="search_btn_wrap">
-                        <button className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
-                    </Box>
+                    <div className="search_btn_wrap">
+                        <button onClick={handleSearch} className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
+                    </div>
                 </Grid>
             </Grid>
-
         </div >
     )
 }
