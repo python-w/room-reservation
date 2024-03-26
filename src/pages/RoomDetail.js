@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, FormControlLabel, FormControl, Radio, RadioGroup } from "@mui/material";
 import roomImg from "../images/room-detail-img.png";
@@ -135,9 +135,9 @@ export default function RoomDetails() {
                   Rate Details
                 </Typography>
                 <FormControl className="rateFormControl">
-                  <RadioGroup defaultValue="Rate #1" name="rate-selection-radio">
+                  <RadioGroup defaultValue="$250.00" name="rate-selection-radio">
                     <FormControlLabel
-                      value="Rate #1"
+                      value="$250.00"
                       control={<BpRadio />}
                       label={
                         <Typography variant="p" component="p" className="rateSelectionLabel">
@@ -152,7 +152,7 @@ export default function RoomDetails() {
                       className="rateFormLabel"
                     />
                     <FormControlLabel
-                      value="Rate #2"
+                      value="$350.00"
                       control={<BpRadio />}
                       label={
                         <Typography variant="p" component="p" className="rateSelectionLabel">
@@ -167,7 +167,7 @@ export default function RoomDetails() {
                       className="rateFormLabel"
                     />
                     <FormControlLabel
-                      value="Rate #3"
+                      value="$450.00"
                       control={<BpRadio />}
                       label={
                         <Typography variant="p" component="p" className="rateSelectionLabel">
@@ -182,7 +182,7 @@ export default function RoomDetails() {
                       className="rateFormLabel"
                     />
                     <FormControlLabel
-                      value="Rate #4"
+                      value="$550.00"
                       control={<BpRadio />}
                       label={
                         <Typography variant="p" component="p" className="rateSelectionLabel">
@@ -197,7 +197,7 @@ export default function RoomDetails() {
                       className="rateFormLabel"
                     />
                     <FormControlLabel
-                      value="Rate #5"
+                      value="$650.00"
                       control={<BpRadio />}
                       label={
                         <Typography variant="p" component="p" className="rateSelectionLabel">
@@ -225,7 +225,7 @@ export default function RoomDetails() {
                         Rate:
                       </Typography>
                       <Typography className="rateBDPrice" variant="p" component="span">
-                        $250.00
+                        $400.00
                       </Typography>
                     </Typography>
                     <Typography variant="p" component="p" className="rateBDLabel">
@@ -259,7 +259,7 @@ export default function RoomDetails() {
                     Total
                   </Typography>
                   <Typography className="rateTDPrice" variant="p" component="span">
-                    $450.00
+                    $500.00
                   </Typography>
                 </div>
               </div>

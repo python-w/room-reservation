@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import { Button } from "@mui/material";
+import { Button, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import roomImg from "../images/room-img.png";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
@@ -159,9 +159,12 @@ export default function RoomListing() {
                     <a className="btn btn-wc-transparent" href="#">
                       View More Details
                     </a>
-                    <a className="btn btn-wc-outlined" href="#">
+                    {/* <a className="btn btn-wc-outlined" href="#">
                       Select Room
-                    </a>
+                    </a> */}
+                    <FormGroup className="customSelectRoom">
+                      <FormControlLabel control={<Checkbox icon={<BpIcon />} checkedIcon={<BpCheckedIcon />} />} label="Select Room" />
+                    </FormGroup>
                   </div>
                 </div>
               </div>
