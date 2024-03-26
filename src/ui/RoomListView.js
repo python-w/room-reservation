@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useSearch } from "../contexts/SearchContext";
+import { Link } from "react-router-dom";
 
 export default function RoomListView({ room, index }) {
     const amenitiesRef = useRef();
@@ -73,9 +74,9 @@ export default function RoomListView({ room, index }) {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <button onClick={() => handleDetailView(room.id)} className="btn btn-wc-transparent">
+                        <Link to={`/room/${room.id}`} className="btn btn-wc-transparent">
                             View More Details
-                        </button>
+                        </Link>
                         {room.isSelected ?
                             <div className="room_counter">
                                 <p>Rooms</p>

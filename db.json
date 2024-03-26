@@ -16,9 +16,25 @@
                 "Balcony",
                 "Smoking"
             ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
+            ],
             "price": "$100.50",
             "address": "1600 Northstar dr. Atlanta, GA 30012",
-            "description": "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
+            "description": "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-suite bathroom with a rejuvenating shower. Your perfect retreat awaits!",
             "maxOccupancy": 8,
             "available": true,
             "reservations": [],
@@ -33,7 +49,31 @@
                     "https://lipsum.app/id/61/1920x1080",
                     "https://lipsum.app/id/63/1920x1080"
                 ]
-            }
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "taxRate": 8,
+            "discount": 10
         },
         {
             "id": 2,
@@ -46,6 +86,22 @@
                 "Swimming Pool",
                 "Wifi",
                 "Free Parking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
             ],
             "price": "$200.50",
             "address": "1400 Northstar dr. Atlanta, FL 30012",
@@ -69,7 +125,31 @@
                     "https://lipsum.app/id/65/1920x1080",
                     "https://lipsum.app/id/66/1920x1080"
                 ]
-            }
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "taxRate": 8,
+            "discount": 10
         },
         {
             "id": 3,
@@ -85,6 +165,22 @@
                 "Heating",
                 "Bathtub",
                 "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
             ],
             "price": "$300.50",
             "address": "1600 Northstar dr. Atlanta, CA 30012",
@@ -108,7 +204,31 @@
                     "https://lipsum.app/id/68/1920x1080",
                     "https://lipsum.app/id/69/1920x1080"
                 ]
-            }
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "taxRate": 8,
+            "discount": 10
         },
         {
             "id": 4,
@@ -127,6 +247,22 @@
                 "Heating",
                 "Bathtub",
                 "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
             ],
             "price": "$400.50",
             "address": "1700 Northstar dr. Atlanta, GA 30012",
@@ -150,7 +286,31 @@
                     "https://lipsum.app/id/71/1920x1080",
                     "https://lipsum.app/id/72/1920x1080"
                 ]
-            }
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "taxRate": 8,
+            "discount": 10
         },
         {
             "id": 5,
@@ -165,6 +325,22 @@
                 "Heating",
                 "Bathtub",
                 "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
             ],
             "price": "$500.50",
             "address": "1600 Northstar dr. Atlanta, IL 30012",
@@ -183,7 +359,31 @@
                     "https://lipsum.app/id/74/1920x1080",
                     "https://lipsum.app/id/75/1920x1080"
                 ]
-            }
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "taxRate": 8,
+            "discount": 10
         }
     ]
 }

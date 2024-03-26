@@ -9,7 +9,7 @@ import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
 import { format } from 'date-fns';
 import { getRooms } from "../../services/apiRooms";
-
+import Listing from "../../pages/Listing";
 
 
 export default function Search() {
@@ -47,50 +47,53 @@ export default function Search() {
     }
 
     return (
-        <div className="search_wrap">
-            <Grid container spacing={2} alignItems={"flex-end"}>
-                <Grid item flex={1}>
-                    <div className="label_group">
-                        <label>Check In & Out Dates</label>
-                        <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
-                    </div>
-                    <div className="custom_input_outer">
-                        <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
-                            <div>
-                                <TodayOutlinedIcon /> <Typography component="span">{checkInDate}</Typography>
-                            </div>
-                            <div>
-                                <InsertInvitationOutlinedIcon /> <Typography component="span">{checkOutDate}</Typography>
-                            </div>
-                        </div>
-                        {dateModalOpen &&
-                            <StyledDateRangePicker />
-                        }
-                    </div>
-                </Grid>
-                <Grid item flex={1}>
-                    <div>
+        <>
+            <div className="search_wrap">
+                <Grid container spacing={2} alignItems={"flex-end"}>
+                    <Grid item flex={1}>
                         <div className="label_group">
-                            <label>Guests & Rooms</label>
+                            <label>Check In & Out Dates</label>
+                            <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
                         </div>
                         <div className="custom_input_outer">
-                            <div role="button" onClick={handleRoomsModalOpen} className="customInputBox">
+                            <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
                                 <div>
-                                    <PersonOutlineOutlinedIcon /> <Typography component="span">{guests || 1} {guests > 1 ? 'Guests' : 'Guest'}, {roomsInSearch.length} {roomsInSearch.length > 1 ? 'Rooms' : 'Room'}</Typography>
+                                    <TodayOutlinedIcon /> <Typography component="span">{checkInDate}</Typography>
+                                </div>
+                                <div>
+                                    <InsertInvitationOutlinedIcon /> <Typography component="span">{checkOutDate}</Typography>
                                 </div>
                             </div>
-                            {roomsModalOpen &&
-                                <AddRoomCard />
+                            {dateModalOpen &&
+                                <StyledDateRangePicker />
                             }
                         </div>
-                    </div>
+                    </Grid>
+                    <Grid item flex={1}>
+                        <div>
+                            <div className="label_group">
+                                <label>Guests & Rooms</label>
+                            </div>
+                            <div className="custom_input_outer">
+                                <div role="button" onClick={handleRoomsModalOpen} className="customInputBox">
+                                    <div>
+                                        <PersonOutlineOutlinedIcon /> <Typography component="span">{guests || 1} {guests > 1 ? 'Guests' : 'Guest'}, {roomsInSearch.length} {roomsInSearch.length > 1 ? 'Rooms' : 'Room'}</Typography>
+                                    </div>
+                                </div>
+                                {roomsModalOpen &&
+                                    <AddRoomCard />
+                                }
+                            </div>
+                        </div>
+                    </Grid>
+                    <Grid item>
+                        <div className="search_btn_wrap">
+                            <button onClick={handleSearch} className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
+                        </div>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <div className="search_btn_wrap">
-                        <button onClick={handleSearch} className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
-                    </div>
-                </Grid>
-            </Grid>
-        </div >
+            </div >
+            <Listing />
+        </>
     )
 }

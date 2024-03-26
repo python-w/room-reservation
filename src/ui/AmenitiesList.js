@@ -1,31 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@mui/material/Icon";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
-import DiningOutlinedIcon from '@mui/icons-material/DiningOutlined'; import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
-import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";
-import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
-import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
-import HvacOutlinedIcon from '@mui/icons-material/HvacOutlined';
-import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
-import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';
-import TvOutlinedIcon from '@mui/icons-material/TvOutlined';
-import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
-
-const amenityIcons = {
-  "2 Double Beds": <BedOutlinedIcon />,
-  "Dinner": <DiningOutlinedIcon />,
-  "Swimming Pool": <PoolOutlinedIcon />,
-  "Wifi": <WifiOutlinedIcon />,
-  "Free Parking": <DirectionsCarFilledOutlinedIcon />,
-  "TV": <TvOutlinedIcon />,
-  "Air Conditioning": <AcUnitOutlinedIcon />,
-  "Balcony": <BalconyOutlinedIcon />,
-  "Heating": <HvacOutlinedIcon />,
-  "Bathtub": <BathtubOutlinedIcon />,
-  "Smoking": <SmokingRoomsOutlinedIcon />
-};
+import { amenityIcons } from '../utils/Icons'
 
 export default function ListWithSummary({ items, maxWidth }) {
   const listRef = useRef(null);

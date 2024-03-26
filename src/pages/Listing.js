@@ -10,7 +10,7 @@ export default function RoomListing() {
   const { state } = useSearch();
 
   const isLargeScreen = useWindowWidth();
-  const { filteredRooms, filterToggle, isFilterShow, isLoading, error } = state;
+  const { availableRooms, filterToggle, isFilterShow, isLoading, error } = state;
 
   if (isLoading) return <Spinner />;
 
@@ -36,9 +36,9 @@ export default function RoomListing() {
             </>
           }
           {
-            filteredRooms.length > 0 &&
+            availableRooms.length > 0 &&
             <div className="col-lg-9 pl-lg-3">
-              {filteredRooms.map((room, index) => (
+              {availableRooms.map((room, index) => (
                 <RoomListView room={room} index={index} key={room.id} />
               ))}
               <div className="d-flex justify-content-end rl_btn_wrap">
@@ -49,7 +49,7 @@ export default function RoomListing() {
             </div>
           }
           {
-            filteredRooms.length === 0 && isFilterShow &&
+            availableRooms.length === 0 && isFilterShow &&
             <div className="col-lg-9 pl-lg-3">
               <div class="alert alert-info" role="alert">No rooms match the selected filters.</div>
             </div>

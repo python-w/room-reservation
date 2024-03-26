@@ -44,9 +44,9 @@ const initialState = {
     roomsToSearch: roomsToSearch,
     searchedRooms: [{ id: roomsToSearch[0].id, adults: 1, children: 0 }],
     roomsInSearch: [roomsToSearch[0]],
-    availableRooms: [],
+    roomListing: [],
     isFilterShow: false,
-    filteredRooms: [],
+    availableRooms: [],
     filterToggle: false,
     roomsfilterItems,
     selectedFilters: [],
@@ -204,9 +204,9 @@ function reducer(state, action) {
             return state;
         case 'ADD_ROOM':
             if (state.roomsInSearch.length < roomsToSearch.length) {
-                const availableRooms = roomsToSearch.filter(room => !state.roomsInSearch.some(r => r.id === room.id));
-                if (availableRooms.length > 0) {
-                    const nextRoom = availableRooms[0];
+                const roomListing = roomsToSearch.filter(room => !state.roomsInSearch.some(r => r.id === room.id));
+                if (roomListing.length > 0) {
+                    const nextRoom = roomListing[0];
                     const newRooms = [...state.roomsInSearch, nextRoom];
                     const searchedRooms = [...state.searchedRooms, { ...nextRoom, adults: 1, children: 0 }]
                     return {
@@ -247,9 +247,9 @@ function reducer(state, action) {
                 error: null
             };
         case 'SEARCH_ROOMS':
-            const roomlisting = action.payload;
+            const searchrooms = action.payload;
             const minOccupancy = Math.min(...state.searchedRooms.map(room => room.adults + room.children));
-            const availableRooms = roomlisting.filter(room => {
+            const roomListing = searchrooms.filter(room => {
                 const overlappingReservations = room.reservations.some(reservation => {
                     const resStartDate = new Date(reservation.startDate);
                     const resEndDate = new Date(reservation.endDate);
@@ -264,8 +264,8 @@ function reducer(state, action) {
                 ...state,
                 isLoading: false,
                 isFilterShow: true,
-                availableRooms,
-                filteredRooms: availableRooms,
+                roomListing,
+                availableRooms: roomListing,
                 prevStartDate: state.startDate,
                 prevEndDate: state.endDate,
                 isSearchActive: true,
@@ -287,21 +287,21 @@ function reducer(state, action) {
                 ? state.selectedFilters.filter((filter) => filter !== filterValue)
                 : [...state.selectedFilters, filterValue];
 
-            let filteredRooms = filterRooms(state.availableRooms, updatedFilters);
-            if (filteredRooms.length === 0) {
-                filteredRooms = [];
+            let availableRooms = filterRooms(state.roomListing, updatedFilters);
+            if (availableRooms.length === 0) {
+                availableRooms = [];
             }
-            console.log(filteredRooms, state.availableRooms, updatedFilters)
+            console.log(availableRooms, state.roomListing, updatedFilters)
             return {
                 ...state,
                 selectedFilters: updatedFilters,
-                filteredRooms: filteredRooms,
+                availableRooms: availableRooms,
             };
         case 'SELECT_ROOM':
             return {
                 ...state,
                 bookedRooms: [...state.bookedRooms, action.payload],
-                filteredRooms: state.filteredRooms.map(room => {
+                availableRooms: state.availableRooms.map(room => {
                     if (room.id === action.payload.id) {
                         return {
                             ...room,
@@ -320,7 +320,7 @@ function reducer(state, action) {
                 return {
                     ...state,
                     bookedRooms: updatedBookedRooms,
-                    filteredRooms: state.filteredRooms.map(room => {
+                    availableRooms: state.availableRooms.map(room => {
                         if (room.id === roomToAddId) {
                             return {
                                 ...room,
@@ -339,7 +339,7 @@ function reducer(state, action) {
             return {
                 ...state,
                 bookedRooms: state.bookedRooms.filter(id => id !== roomToSubId),
-                filteredRooms: state.filteredRooms.map(room => {
+                availableRooms: state.availableRooms.map(room => {
                     if (room.id === roomToSubId) {
                         const updatedRoom = {
                             ...room,
@@ -362,11 +362,11 @@ function reducer(state, action) {
     }
 }
 
-const filterRooms = (availableRooms, selectedFilters) => {
+const filterRooms = (roomListing, selectedFilters) => {
     if (selectedFilters.length === 0) {
-        return availableRooms;
+        return roomListing;
     }
-    return availableRooms.filter((room) => {
+    return roomListing.filter((room) => {
         if (
             selectedFilters.includes(room.roomtype) ||
             selectedFilters.includes(room.bedtype) ||
