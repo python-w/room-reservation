@@ -1,0 +1,1 @@
+export const texRate = 8; //percent

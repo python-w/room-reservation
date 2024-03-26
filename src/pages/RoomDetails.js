@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
 import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '../utils/Icons'
 import RateDetails from "../features/room-details/RateDetails";
+import { useState } from "react";
 
 export default function RoomDetails() {
   const { roomId } = useParams();

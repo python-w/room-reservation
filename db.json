@@ -72,7 +72,6 @@
                     "rate": 650
                 }
             ],
-            "taxRate": 8,
             "discount": 10
         },
         {
@@ -148,7 +147,6 @@
                     "rate": 650
                 }
             ],
-            "taxRate": 8,
             "discount": 10
         },
         {
@@ -227,7 +225,6 @@
                     "rate": 650
                 }
             ],
-            "taxRate": 8,
             "discount": 10
         },
         {
@@ -309,7 +306,6 @@
                     "rate": 650
                 }
             ],
-            "taxRate": 8,
             "discount": 10
         },
         {
@@ -382,7 +378,6 @@
                     "rate": 650
                 }
             ],
-            "taxRate": 8,
             "discount": 10
         }
     ]

@@ -1,7 +1,19 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
+import { formatCurrency } from '../../utils/FormatCurrency';
+import { calculateDiscountedAmount } from '../../utils/CalculateDiscountedAmount';
+import { calculateVATOnDiscountedRate } from '../../utils/CalculateVATOnDiscountedRate';
+import { texRate } from '../../utils/TaxRate';
 
 export default function RateDetails({ room }) {
+
+    const [selectedRate, setSelectedRate] = useState(room.rates[0].rate);
+    const formattedRate = formatCurrency(selectedRate);
+    const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount));
+
+    const vat = formatCurrency(calculateVATOnDiscountedRate(selectedRate, room.discount, texRate));
+
+
     return (
         <div className="card-body">
             <div className="rate-dInner">
@@ -13,15 +25,16 @@ export default function RateDetails({ room }) {
                         {room.rates.map((room, index) =>
                             <FormControlLabel
                                 key={index}
-                                value={room.label}
+                                value={room.rate}
                                 control={<Radio />}
+                                onChange={(e) => setSelectedRate(e.target.value)}
                                 label={
                                     <span className="rateSelectionLabel">
                                         <span>
                                             {room.label}
                                         </span>
                                         <span>
-                                            ${room.rate}.00
+                                            {formatCurrency(room.rate)}
                                         </span>
                                     </span>
                                 }
@@ -33,48 +46,32 @@ export default function RateDetails({ room }) {
             </div>
             <div className="breakDMain">
                 <div className="drateBreakDown">
-                    <Typography variant="p" component="p" className="card-heading-small">
+                    <p className="card-heading-small">
                         Rate Breakdown
-                    </Typography>
-                    <div className="dRateBD">
-                        <Typography variant="p" component="p" className="rateBDLabel">
-                            <Typography variant="p" component="span">
-                                Rate:
-                            </Typography>
-                            <Typography className="rateBDPrice" variant="p" component="span">
-                                $250.00
-                            </Typography>
-                        </Typography>
-                        <Typography variant="p" component="p" className="rateBDLabel">
-                            <Typography variant="p" component="span">
-                                Discount:
-                            </Typography>
-                            <Typography className="rateBDPrice" variant="p" component="span">
-                                $0.00
-                            </Typography>
-                        </Typography>
-                        <Typography variant="p" component="p" className="rateBDLabel">
-                            <Typography variant="p" component="span">
-                                VAT:
-                            </Typography>
-                            <Typography className="rateBDPrice" variant="p" component="span">
-                                $50.00
-                            </Typography>
-                        </Typography>
-                        <Typography variant="p" component="p" className="rateBDLabel">
-                            <Typography variant="p" component="span">
-                                Grand Total:
-                            </Typography>
-                            <Typography className="rateBDPrice" variant="p" component="span">
-                                $450.00
-                            </Typography>
-                        </Typography>
-                    </div>
+                    </p>
+                    <ul className="dRateBD">
+                        <li>
+                            <span>Rate:</span>
+                            <span>{formattedRate}</span>
+                        </li>
+                        <li>
+                            <span>Discount:</span>
+                            <span>{discountedAmount}</span>
+                        </li>
+                        <li>
+                            <span>VAT:</span>
+                            <span>{vat}</span>
+                        </li>
+                        <li>
+                            <span>Grand Total:</span>
+                            <span>$450.00</span>
+                        </li>
+                    </ul>
                 </div>
                 <div className="drateTotalPrice">
-                    <Typography variant="p" component="span" className="rateTDLabel">
+                    <span className="rateTDLabel">
                         Total
-                    </Typography>
+                    </span>
                     <Typography className="rateTDPrice" variant="p" component="span">
                         $450.00
                     </Typography>
