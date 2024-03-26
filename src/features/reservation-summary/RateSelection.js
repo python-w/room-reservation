@@ -4,40 +4,38 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { Checkbox } from '@mui/material';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { formatCurrency } from '../../utils/FormatCurrency';
+import { useSearch } from '../../contexts/SearchContext';
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+export default function RateSelection({ roomId, roomRates }) {
+    const { state, dispatch } = useSearch();
+    const { selectedRate } = state;
 
-const ratelist = [
-    { title: 'Rate #1', rate: '$250.00' },
-    { title: 'Rate #2', rate: '$350.00' },
-    { title: 'Rate #3', rate: '$450.00' },
-    { title: 'Rate #4', rate: '$550.00' },
-    { title: 'Rate #5', rate: '$650.00' },
-];
-
-
-export default function RateSelection() {
+    const handleRateSelect = (selectedRate) => {
+        dispatch({ type: 'SELECT_RATE', payload: { roomId, selectedRate } });
+    };
     return (
         <Autocomplete
             id="rate_selection"
-            options={ratelist}
+            options={roomRates}
             disableCloseOnSelect
-            getOptionLabel={(option) => `${option.title} - ${option.rate}`}
+            getOptionLabel={(option) => `${option.label} - ${option.rate}`}
+            value={selectedRate}
+            onChange={(event, value) => handleRateSelect(value)}
             renderInput={(params) => (
                 <TextField {...params} placeholder="Select an option" />
             )}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>
                     <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
+                        icon={<CheckBoxOutlineBlankIcon />}
+                        checkedIcon={<CheckBoxIcon />}
                         style={{ marginRight: 12 }}
                         checked={selected}
                     />
                     <div>
-                        {option.title}
-                        <strong>{option.rate}</strong>
+                        {option.label}
+                        <strong>{formatCurrency(option.rate)}</strong>
                     </div>
                 </li>
             )}

@@ -5,8 +5,7 @@ import { CssBaseline } from "@mui/material";
 import Search from "./features/search/Search";
 import CustomTheme from "./customTheme";
 import RoomDetails from "../src/pages/RoomDetails";
-import { SearchProvider, useSearch } from "./contexts/SearchContext";
-import ListItemWrapper from './ListItems'
+import { SearchProvider } from "./contexts/SearchContext";
 import ReservationSummary from "./pages/ReservationSummary";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
     element: <RoomDetails />
   },
   {
-    path: '/reservation-suummary',
+    path: '/reservation-summary',
     element: <ReservationSummary />
   }
 ])

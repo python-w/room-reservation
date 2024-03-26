@@ -3,18 +3,25 @@ import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOu
 import { useSearch } from '../contexts/SearchContext';
 import { format } from 'date-fns';
 import BookedRoom from '../features/reservation-summary/BookedRoom';
-import { Check, SearchOutlined } from '@material-ui/icons';
+import { Check, ChevronLeft, SearchOutlined } from '@material-ui/icons';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function ReservationSummary() {
+    const navigate = useNavigate();
     const { state } = useSearch();
-    const { startDate, endDate, searchRooms } = state;
+    const { startDate, endDate, bookedRooms } = state;
     const checkedInDay = format(new Date(startDate), 'EEEE');
     const checkedInDate = format(new Date(startDate), 'MMM dd, yyyy');
     const checkedOutDay = format(new Date(endDate), 'EEEE');
     const checkedOutDate = format(new Date(endDate), 'MMM dd, yyyy');
+
     return (
         <div className="res_sum">
+            <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
+                <ChevronLeft />
+                Go Back
+            </button>
             <h3>Reservation Summary</h3>
             <div className="row">
                 <div className="col-md-6">
@@ -49,10 +56,10 @@ export default function ReservationSummary() {
                 </div>
             </div>
             <div className='room_count'>
-                <span>{searchRooms.length}</span> rooms selected
+                <span>{bookedRooms.length}</span> {bookedRooms.length > 1 ? 'Rooms' : 'Room'} selected
             </div>
             <div className='row'>
-                {searchRooms.map((room, index) => <BookedRoom key={room.id} room={room} index={index + 1} />)}
+                {bookedRooms.map((room, index) => <BookedRoom key={room.id} room={room} index={index + 1} />)}
             </div>
 
             <div className='comments_box'>

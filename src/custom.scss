@@ -567,6 +567,14 @@ body {
         }
       }
 
+      .btn.btn-back {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        font-size: calc(var(--wc-font-size) * 1px);
+        margin: 2rem 0;
+      }
+
       .room_count {
         display: flex;
         align-items: center;
@@ -1619,20 +1627,24 @@ body {
       .rl_btn_wrap {
         border-top: 1px solid var(--wc-border-color);
         padding: 12px 12px 0 0;
+
+        a {
+          text-decoration: none;
+        }
       }
     }
 
     /* Detail */
-    .DetailingPage {
+    .detail_page {
       .btn.btn-back {
         display: flex;
         align-items: center;
         padding: 0;
         font-size: calc(var(--wc-font-size) * 1px);
-        margin-bottom: 2rem;
+        margin: 2rem 0;
 
         @media #{$mq-4k} {
-          margin-bottom: get4k(20px);
+          margin: get4k(32px) 0;
           padding: 0;
           font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
         }

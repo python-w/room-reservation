@@ -3,16 +3,17 @@ import React, { useState } from 'react'
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { calculateDiscountedAmount } from '../../utils/CalculateDiscountedAmount';
 import { calculateVATOnDiscountedRate } from '../../utils/CalculateVATOnDiscountedRate';
-import { texRate } from '../../utils/TaxRate';
+import { calculateDiscountedRoomRate } from '../../utils/CalculateDiscountedRoomRate';
+import { taxRate } from '../../utils/TaxRate';
 
 export default function RateDetails({ room }) {
-
     const [selectedRate, setSelectedRate] = useState(room.rates[0].rate);
     const formattedRate = formatCurrency(selectedRate);
     const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount));
-
-    const vat = formatCurrency(calculateVATOnDiscountedRate(selectedRate, room.discount, texRate));
-
+    const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount)
+    const vat = calculateVATOnDiscountedRate(selectedRate, room.discount, taxRate);
+    const formattedVAT = formatCurrency(vat);
+    const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
 
     return (
         <div className="card-body">
@@ -60,11 +61,11 @@ export default function RateDetails({ room }) {
                         </li>
                         <li>
                             <span>VAT:</span>
-                            <span>{vat}</span>
+                            <span>{formattedVAT}</span>
                         </li>
                         <li>
                             <span>Grand Total:</span>
-                            <span>$450.00</span>
+                            <span>{totalAmount}</span>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +74,7 @@ export default function RateDetails({ room }) {
                         Total
                     </span>
                     <Typography className="rateTDPrice" variant="p" component="span">
-                        $450.00
+                        {totalAmount}
                     </Typography>
                 </div>
             </div>

@@ -356,7 +356,21 @@ function reducer(state, action) {
                     }
                 })
             };
-
+        case 'SELECT_RATE':
+            const { roomId, selectedRate: { rate } } = action.payload;
+            const updatedBookedRooms = state.bookedRooms.map(room => {
+                if (room.id === roomId) {
+                    return {
+                        ...room,
+                        selectedRate: rate
+                    };
+                }
+                return room;
+            });
+            return {
+                ...state,
+                bookedRooms: updatedBookedRooms,
+            };
         default:
             return state;
     }

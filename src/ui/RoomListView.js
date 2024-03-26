@@ -20,8 +20,8 @@ export default function RoomListView({ room, index }) {
         }
     }, []);
 
-    const handleSelectRoom = (roomId, roomMaxOccupancy) => {
-        dispatch({ type: 'SELECT_ROOM', payload: { id: roomId, maxOccupancy: roomMaxOccupancy, bookedRoomCount: 1 } })
+    const handleSelectRoom = (room) => {
+        dispatch({ type: 'SELECT_ROOM', payload: { ...room, bookedRoomCount: 1 } })
     }
 
     const handleRoomAdd = (roomId) => {
@@ -85,7 +85,7 @@ export default function RoomListView({ room, index }) {
                                 <Button variant="outlined" disabled={searchedRooms.length === bookedRooms.length} onClick={() => handleRoomAdd(room.id)}><AddOutlinedIcon /></Button>
                             </div> :
                             searchedRooms.length !== bookedRooms.length &&
-                            <button className="btn btn-wc-outlined" onClick={() => handleSelectRoom(room.id, room.maxOccupancy)}>
+                            <button className="btn btn-wc-outlined" onClick={() => handleSelectRoom(room)}>
                                 Select Room
                             </button>
 

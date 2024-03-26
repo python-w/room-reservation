@@ -1,7 +1,7 @@
 {
     "rooms": [
         {
-            "id": 1,
+            "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
             "title": "Royal Suite, Executive lounge access, Suite, 1 King",
             "roomtype": "Standard Room",
             "bedtype": "Single / Twin",
@@ -75,7 +75,7 @@
             "discount": 10
         },
         {
-            "id": 2,
+            "id": "6b7c187f-9a5e-4fe9-bc5a-8a58f0d2e3d7",
             "title": "Royal Suite, Executive lounge access, Suite, 1 King",
             "roomtype": "Deluxe Room",
             "bedtype": "Double",
@@ -150,7 +150,7 @@
             "discount": 10
         },
         {
-            "id": 3,
+            "id": "d0f3e9b2-7e05-4e80-a6a3-d7cb44d12b14",
             "title": "Royal Suite, Executive lounge access, Suite, 1 King",
             "roomtype": "Executive Room",
             "bedtype": "King",
@@ -228,7 +228,7 @@
             "discount": 10
         },
         {
-            "id": 4,
+            "id": "c2f7a0a6-8717-4a76-8f43-9db3eae46a99",
             "title": "Royal Suite, Executive lounge access, Suite, 1 King",
             "roomtype": "Superior Room",
             "bedtype": "Queen",
@@ -309,7 +309,7 @@
             "discount": 10
         },
         {
-            "id": 5,
+            "id": "c2f7a0a6-8717-4a76-8f43-9db3eae46a99",
             "title": "Royal Suite, Executive lounge access, Suite, 1 King",
             "roomtype": "Connecting Rooms",
             "bedtype": "Bunk Bed",
