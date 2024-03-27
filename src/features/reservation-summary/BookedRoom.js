@@ -10,7 +10,32 @@ import { useSearch } from '../../contexts/SearchContext';
 
 export default function BookedRoom({ room, index }) {
     const { state } = useSearch();
-    const { selectedRate } = state;
+    const { searchedRooms, bookedRooms } = state;
+
+    function findSuitableRoom(booking) {
+        for (const room of bookedRooms) {
+            const totalOccupancy = booking.adults + booking.children;
+            if (totalOccupancy <= room.maxOccupancy) {
+                room.adultsCount = booking.adults;
+                room.childrenCount = booking.children;
+                return room;
+            }
+        }
+        return null;
+    }
+
+    const bookedRoomSummary = searchedRooms.map(booking => {
+        const room = findSuitableRoom(booking);
+        return {
+            id: room.id,
+            adultsCount: room ? room.adultsCount : null,
+            childrenCount: room ? room.childrenCount : null
+        };
+    });
+
+    console.log(bookedRoomSummary);
+
+    const selectedRate = room.selectedRate ? room.selectedRate.rate : 0;
     const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount));
     const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount)
     const vat = calculateVATOnDiscountedRate(selectedRate, room.discount, taxRate);

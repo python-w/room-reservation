@@ -59,7 +59,7 @@ export default function ReservationSummary() {
                 <span>{bookedRooms.length}</span> {bookedRooms.length > 1 ? 'Rooms' : 'Room'} selected
             </div>
             <div className='row'>
-                {bookedRooms.map((room, index) => <BookedRoom key={room.id} room={room} index={index + 1} />)}
+                {bookedRooms.map((room, index) => <BookedRoom key={index} room={room} index={index + 1} />)}
             </div>
 
             <div className='comments_box'>

@@ -1,18 +1,20 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Checkbox } from '@mui/material';
+import { Checkbox, Radio } from '@mui/material';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { useSearch } from '../../contexts/SearchContext';
 
 export default function RateSelection({ roomId, roomRates }) {
-    const { state, dispatch } = useSearch();
-    const { selectedRate } = state;
+    const { dispatch } = useSearch();
 
-    const handleRateSelect = (selectedRate) => {
-        dispatch({ type: 'SELECT_RATE', payload: { roomId, selectedRate } });
+    const [open, setOpen] = React.useState(false);
+
+    const handleRateSelect = (value) => {
+        setOpen(false);
+        dispatch({ type: 'SELECT_RATE', payload: { roomId, value } });
     };
     return (
         <Autocomplete
@@ -20,16 +22,17 @@ export default function RateSelection({ roomId, roomRates }) {
             options={roomRates}
             disableCloseOnSelect
             getOptionLabel={(option) => `${option.label} - ${option.rate}`}
-            value={selectedRate}
+            value={undefined}
             onChange={(event, value) => handleRateSelect(value)}
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
             renderInput={(params) => (
                 <TextField {...params} placeholder="Select an option" />
             )}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>
-                    <Checkbox
-                        icon={<CheckBoxOutlineBlankIcon />}
-                        checkedIcon={<CheckBoxIcon />}
+                    <Radio
                         style={{ marginRight: 12 }}
                         checked={selected}
                     />

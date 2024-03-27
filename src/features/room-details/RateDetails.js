@@ -22,7 +22,7 @@ export default function RateDetails({ room }) {
                     Rate Details
                 </h6>
                 <FormControl className="rateFormControl">
-                    <RadioGroup defaultValue="Rate #1" name="rate-selection-radio">
+                    <RadioGroup defaultValue={room.rate} name="rate-selection-radio">
                         {room.rates.map((room, index) =>
                             <FormControlLabel
                                 key={index}

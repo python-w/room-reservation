@@ -357,12 +357,12 @@ function reducer(state, action) {
                 })
             };
         case 'SELECT_RATE':
-            const { roomId, selectedRate: { rate } } = action.payload;
+            const { roomId, value } = action.payload;
             const updatedBookedRooms = state.bookedRooms.map(room => {
                 if (room.id === roomId) {
                     return {
                         ...room,
-                        selectedRate: rate
+                        selectedRate: value
                     };
                 }
                 return room;

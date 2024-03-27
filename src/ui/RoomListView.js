@@ -7,6 +7,7 @@ import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useSearch } from "../contexts/SearchContext";
 import { Link } from "react-router-dom";
+import { formatCurrency } from "../utils/FormatCurrency";
 
 export default function RoomListView({ room, index }) {
     const amenitiesRef = useRef();
@@ -21,7 +22,7 @@ export default function RoomListView({ room, index }) {
     }, []);
 
     const handleSelectRoom = (room) => {
-        dispatch({ type: 'SELECT_ROOM', payload: { ...room, bookedRoomCount: 1 } })
+        dispatch({ type: 'SELECT_ROOM', payload: { ...room, bookedRoomCount: 1, adultsCount: 0, childrenCount: 0 } })
     }
 
     const handleRoomAdd = (roomId) => {
@@ -34,15 +35,11 @@ export default function RoomListView({ room, index }) {
         }
     }
 
-    const handleDetailView = (roomId) => {
-        console.log(roomId)
-    }
-
     return (
         <div className="card" key={index}>
             <div className="row">
                 <div className="price-container">
-                    {room.price} <small>/ night</small>
+                    {formatCurrency(room.rates[0].rate)} <small>/ night</small>
                 </div>
                 <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
                     <div className="roomThumb">
