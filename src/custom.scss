@@ -636,6 +636,7 @@ body {
             margin: 0 0 20px 0;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             padding: 0;
 
             @media #{$mq-4k} {
@@ -680,6 +681,25 @@ body {
                 @media #{$mq-4k} {
                   height: get4k(40px);
                   padding: 0 get4k(40px) 0 get4k(15px);
+                }
+              }
+            }
+
+            &>ul {
+              flex: 0 0 100%;
+              width: 100%;
+              background: var(--wc-body-bg);
+              border-radius: calc(var(--borderRadius) * 1px);
+              padding: 1rem;
+              margin-top: 20px;
+
+              &>li {
+                strong {
+                  color: var(--wc-font-color);
+                }
+
+                &:last-child {
+                  margin-bottom: 0;
                 }
               }
             }
@@ -746,6 +766,26 @@ body {
             margin-right: get4k(10px);
           }
         }
+      }
+    }
+
+    //Phone Input 
+    .react-international-phone-input-container {
+      .react-international-phone-country-selector {
+        position: absolute;
+        z-index: 1;
+
+        &>button {
+          height: calc(var(--field-height)* 1px);
+          padding-left: 5px;
+          border: 0;
+          background: transparent;
+        }
+
+      }
+
+      .react-international-phone-input {
+        padding-left: 55px;
       }
     }
 

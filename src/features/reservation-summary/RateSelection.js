@@ -1,20 +1,18 @@
-import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Checkbox, Radio } from '@mui/material';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { useSearch } from '../../contexts/SearchContext';
+import { useState } from 'react';
+import { Radio } from '@mui/material';
 
 export default function RateSelection({ roomId, roomRates }) {
     const { dispatch } = useSearch();
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleRateSelect = (value) => {
         setOpen(false);
-        dispatch({ type: 'SELECT_RATE', payload: { roomId, value } });
+        dispatch({ type: 'SELECT_RATE', payload: { rateRoomId: roomId, value } });
     };
     return (
         <Autocomplete

@@ -357,9 +357,9 @@ function reducer(state, action) {
                 })
             };
         case 'SELECT_RATE':
-            const { roomId, value } = action.payload;
+            const { rateRoomId, value } = action.payload;
             const updatedBookedRooms = state.bookedRooms.map(room => {
-                if (room.id === roomId) {
+                if (room.id === rateRoomId) {
                     return {
                         ...room,
                         selectedRate: value
@@ -371,6 +371,23 @@ function reducer(state, action) {
                 ...state,
                 bookedRooms: updatedBookedRooms,
             };
+        case 'ADD_GUEST':
+            const { guestRoomId, formData } = action.payload;
+            return {
+                ...state,
+                bookedRooms: state.bookedRooms.map(room => {
+                    if (room.id === guestRoomId) {
+                        const updatedGuests = Array.isArray(room.guests) ? room.guests : [];
+                        console.log(room)
+                        return {
+                            ...room,
+                            guests: [...updatedGuests, formData]
+                        };
+                    } else {
+                        return room;
+                    }
+                })
+            }
         default:
             return state;
     }

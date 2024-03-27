@@ -33,7 +33,6 @@ export default function BookedRoom({ room, index }) {
         };
     });
 
-    console.log(bookedRoomSummary);
 
     const selectedRate = room.selectedRate ? room.selectedRate.rate : 0;
     const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount));
@@ -46,7 +45,17 @@ export default function BookedRoom({ room, index }) {
             <div className='booked_room_card'>
                 <h2>Room {index}: {room.roomtype}</h2>
                 <ul>
-                    <li>Reservation for: <GuestsSelection /></li>
+                    <li>Reservation for: <GuestsSelection roomId={room.id} />
+                        {room.guests && room.guests.map((guest, index) =>
+
+                            <ul key={index}>
+                                <li>Name: <strong>{guest.guestname}</strong></li>
+                                <li>Email: <strong>{guest.email}</strong></li>
+                                <li>Phone Number: <strong>{guest.phone}</strong></li>
+                            </ul>
+                        )}
+
+                    </li>
                     <li>No of persons: <strong>{room.adults} {room.adults > 1 ? 'Adults' : 'Adult'}, {room.children} {room.children > 1 ? 'Children' : 'Child'}</strong></li>
                     <li>Per Day Room Charges: <RateSelection roomId={room.id} roomRates={room.rates} /></li>
                     <li>Value Added Tax (VAT): <strong>{formattedVAT}</strong></li>

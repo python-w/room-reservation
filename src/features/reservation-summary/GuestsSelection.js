@@ -23,12 +23,11 @@ const memberlist = [
 ];
 
 
-export default function GuestsSelection() {
+export default function GuestsSelection({ roomId }) {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
 
     const options = [
         { id: 1234567, name: 'Book for myself', type: 'myself' },
@@ -73,7 +72,7 @@ export default function GuestsSelection() {
                 }}
             />
 
-            <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} />
+            <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} roomId={roomId} />
 
         </>
     );
