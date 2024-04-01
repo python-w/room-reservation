@@ -1,43 +1,42 @@
-import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Checkbox } from '@mui/material';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { formatCurrency } from '../../utils/FormatCurrency';
+import { useSearch } from '../../contexts/SearchContext';
+import { useState } from 'react';
+import { Radio } from '@mui/material';
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+export default function RateSelection({ bookingId, roomRates }) {
+    console.log(bookingId)
+    const { dispatch } = useSearch();
 
-const ratelist = [
-    { title: 'Rate #1', rate: '$250.00' },
-    { title: 'Rate #2', rate: '$350.00' },
-    { title: 'Rate #3', rate: '$450.00' },
-    { title: 'Rate #4', rate: '$550.00' },
-    { title: 'Rate #5', rate: '$650.00' },
-];
+    const [open, setOpen] = useState(false);
 
-
-export default function RateSelection() {
+    const handleRateSelect = (value) => {
+        setOpen(false);
+        dispatch({ type: 'SELECT_RATE', payload: { rateRoomId: bookingId, value } });
+    };
     return (
         <Autocomplete
-            id="rate_selection"
-            options={ratelist}
+            options={roomRates}
             disableCloseOnSelect
-            getOptionLabel={(option) => `${option.title} - ${option.rate}`}
+            getOptionLabel={(option) => `${option.label} - ${option.rate}`}
+            value={undefined}
+            onChange={(event, value) => handleRateSelect(value)}
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
             renderInput={(params) => (
                 <TextField {...params} placeholder="Select an option" />
             )}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>
-                    <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
+                    <Radio
                         style={{ marginRight: 12 }}
                         checked={selected}
                     />
                     <div>
-                        {option.title}
-                        <strong>{option.rate}</strong>
+                        {option.label}
+                        <strong>{formatCurrency(option.rate)}</strong>
                     </div>
                 </li>
             )}

@@ -1,1 +1,1 @@
-export const texRate = 8; //percent
+export const taxRate = 8; //percent

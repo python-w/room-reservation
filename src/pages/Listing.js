@@ -4,13 +4,14 @@ import RoomListView from "../ui/RoomListView";
 import useWindowWidth from "../hooks/useWindowWidth";
 import { useSearch } from "../contexts/SearchContext";
 import Spinner from "../ui/Spinner";
+import { Link } from "react-router-dom";
 
 export default function RoomListing() {
 
   const { state } = useSearch();
 
   const {isLargeScreen} = useWindowWidth();
-  const { availableRooms, filterToggle, isFilterShow, isLoading, error, isSearchFixed } = state;
+  const { availableRooms, filterToggle, isFilterShow, isLoading, error, bookedRooms, isSearchFixed } = state;
 
   if (isLoading) return <Spinner />;
 
@@ -40,17 +41,19 @@ export default function RoomListing() {
               {availableRooms.map((room, index) => (
                 <RoomListView room={room} index={index} key={room.id} />
               ))}
-              <div className="d-flex justify-content-end rl_btn_wrap">
-                <button className="btn btn-primary">
-                  Proceed
-                </button>
-              </div>
+              {bookedRooms.length > 0 &&
+                <div className="d-flex justify-content-end rl_btn_wrap">
+                  <Link to='/reservation-summary' className="btn btn-wc-primary">
+                    Proceed
+                  </Link>
+                </div>
+              }
             </div>
           }
           {
             availableRooms.length === 0 && isFilterShow &&
             <div className="col-lg-9 pl-lg-3">
-              <div class="alert alert-info" role="alert">No rooms match the selected filters.</div>
+              <div classNam="alert alert-info" role="alert">No rooms match the selected filters.</div>
             </div>
           }
         </div>

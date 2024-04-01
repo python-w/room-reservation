@@ -4,13 +4,13 @@ import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Fancybox from "../ui/ListingFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
 import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '../utils/Icons'
 import RateDetails from "../features/room-details/RateDetails";
-import { useState } from "react";
 
 export default function RoomDetails() {
+  const navigate = useNavigate();
   const { roomId } = useParams();
   const { state } = useSearch();
   const { availableRooms } = state;
@@ -19,8 +19,8 @@ export default function RoomDetails() {
   return (
     <>
       {room &&
-        <div className="DetailingPage">
-          <button className="btn btn-wc-transparent btn-back">
+        <div className="detail_page">
+          <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
             <ChevronLeft />
             See Other Options
           </button>
