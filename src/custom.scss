@@ -599,6 +599,13 @@ body {
             margin-bottom: get4k(40px);
           }
         }
+        .btn.btn-back {
+          display: flex;
+          align-items: center;
+          padding: 0;
+          font-size: calc(var(--wc-font-size) * 1px);
+          margin: 2rem 0;
+        }
         .room_count {
           display: flex;
           align-items: center;
@@ -652,6 +659,7 @@ body {
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
+              flex-wrap: wrap;
               padding: 0;
               @media #{$mq-4k} {
                 margin: 0 0 get4k(20px) 0;
@@ -688,6 +696,22 @@ body {
                   @media #{$mq-4k} {
                     height: get4k(40px);
                     padding: 0 get4k(40px) 0 get4k(15px);
+                  }
+                }
+              }
+              & > ul {
+                flex: 0 0 100%;
+                width: 100%;
+                background: var(--wc-body-bg);
+                border-radius: calc(var(--borderRadius) * 1px);
+                padding: 1rem;
+                margin-top: 20px;
+                & > li {
+                  strong {
+                    color: var(--wc-font-color);
+                  }
+                  &:last-child {
+                    margin-bottom: 0;
                   }
                 }
               }
@@ -744,6 +768,22 @@ body {
           }
         }
       }
+      //Phone Input
+      .react-international-phone-input-container {
+        .react-international-phone-country-selector {
+          position: absolute;
+          z-index: 1;
+          & > button {
+            height: calc(var(--field-height) * 1px);
+            padding-left: 5px;
+            border: 0;
+            background: transparent;
+          }
+        }
+        .react-international-phone-input {
+          padding-left: 55px;
+        }
+      }
       //Customize Calendar
       .rdrDateRangePickerWrapper {
         @media #{$mq-mobile-sm} {
@@ -794,7 +834,7 @@ body {
           }
           @media #{$mq-tablet-sm} {
             width: auto;
-          } 
+          }
           @media (#{$mq-mobile-sm}) {
             width: 100%;
           }
@@ -1480,21 +1520,82 @@ body {
             }
           }
         }
+        /* search */
+        .search_wrap {
+          margin-top: 0;
+          box-shadow: none;
+          margin-bottom: 2rem;
+          position: relative;
+          z-index: 1;
+          background: white;
+          padding: 30px 0;
+          z-index: 9;
+          border: 0;
+          border-radius: 0;
+          @media #{$mq-4k} {
+            padding: get4k(30px) 0;
+            margin-bottom: get4k(32px);
+            border-radius: 0;
+            margin-top: 0;
+          }
+          &::before {
+            content: "";
+            background: var(--primary-color);
+            width: calc(100% + (var(--container-padding) * 2));
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: calc(var(--container-padding) * -1);
+          }
+          .label_group {
+            label {
+              font-size: calc((var(--wc-font-size) - 2) * 1px);
+              color: var(--white-color);
+              margin-bottom: 0.25rem;
+              @media #{$mq-4k} {
+                font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
+                margin-bottom: get4k(4px);
+              }
+            }
+          }
+          .customInputBox {
+            background: var(--white-color);
+            border-color: transparent;
+            height: calc(var(--field-height) * 1px);
+          }
+          .search_btn_wrap {
+            .btn.btn-wc-primary {
+              background: #03b0fa;
+              height: calc(var(--field-height) * 1px);
+            }
+          }
+          .btn.btn-checkavail {
+            position: relative;
+            color: var(--white-color);
+            padding: 0 0 0.25rem;
+            @media #{$mq-4k} {
+              padding: 0 0 get4k(4px);
+            }
+          }
+        }
         .rl_btn_wrap {
           border-top: 1px solid var(--wc-border-color);
           padding: 12px 12px 0 0;
+          a {
+            text-decoration: none;
+          }
         }
       }
       /* Detail */
-      .DetailingPage {
+      .detail_page {
         .btn.btn-back {
           display: flex;
           align-items: center;
           padding: 0;
           font-size: calc(var(--wc-font-size) * 1px);
-          margin-bottom: 2rem;
+          margin: 2rem 0;
           @media #{$mq-4k} {
-            margin-bottom: get4k(20px);
+            margin: get4k(32px) 0;
             padding: 0;
             font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
           }
@@ -1550,8 +1651,9 @@ body {
             }
             @media #{$mq-mobile-sm} {
               padding: 1rem;
-            } 
+            }
             .card-heading {
+              font-weight: 400;
               margin-bottom: 0.5rem;
               @media #{$mq-4k} {
                 margin-bottom: get4k(8px);
