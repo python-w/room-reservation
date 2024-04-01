@@ -1,224 +1,178 @@
 import { createContext, useContext, useReducer } from "react";
-import { addDays, format } from 'date-fns';
 
-const initialRooms = [
-    { id: '1', 'adults': 4, 'children': 2 },
-    { id: '2', 'adults': 6, 'children': 2 },
-    { id: '3', 'adults': 8, 'children': 4 },
-]
+export const rooms = [
+    {
+        id: 1,
+        title: "Royal Suite, Executive lounge access, Suite, 1 King",
+        roomtype: "Standard Room",
+        bedtype: "Single / Twin",
+        amenities: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "TV", "Air Conditioning", "Balcony", "Smoking"],
+        price: "$100.50",
+        address: "1600 Northstar dr. Atlanta, GA 30012",
+        description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
+        maxOccupancy: 8,
+        available: true,
+        reservations: [],
+        images: {
+            thumbs: ['https://lipsum.app/id/60/400x300', 'https://lipsum.app/id/61/400x300', 'https://lipsum.app/id/63/400x300'],
+            large: ['https://lipsum.app/id/60/1920x1080', 'https://lipsum.app/id/61/1920x1080', 'https://lipsum.app/id/63/1920x1080'],
+        }
+    },
+    {
+        id: 2,
+        title: "Royal Suite, Executive lounge access, Suite, 1 King",
+        roomtype: "Deluxe Room",
+        bedtype: "Double",
+        amenities: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking"],
+        price: "$200.50",
+        address: "1400 Northstar dr. Atlanta, FL 30012",
+        description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples.",
+        maxOccupancy: 6,
+        available: true,
+        reservations: [
+            { startDate: "2024-03-25", endDate: "2024-03-28" },
+        ],
+        images: {
+            thumbs: ['https://lipsum.app/id/64/400x300', 'https://lipsum.app/id/65/400x300', 'https://lipsum.app/id/66/400x300'],
+            large: ['https://lipsum.app/id/64/1920x1080', 'https://lipsum.app/id/65/1920x1080', 'https://lipsum.app/id/66/1920x1080'],
+        }
+
+    },
+    {
+        id: 3,
+        title: "Royal Suite, Executive lounge access, Suite, 1 King",
+        roomtype: "Executive Room",
+        bedtype: "King",
+        amenities: ["Wifi", "Free Parking", "TV", "Air Conditioning", "Balcony", "Heating", "Bathtub", "Smoking"],
+
+        price: "$300.50",
+        address: "1600 Northstar dr. Atlanta, CA 30012",
+        description: "Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
+        maxOccupancy: 4,
+        available: true,
+        reservations: [
+            { startDate: "2024-03-25", endDate: "2024-03-28" },
+        ],
+        images: {
+            thumbs: ['https://lipsum.app/id/67/400x300', 'https://lipsum.app/id/68/400x300', 'https://lipsum.app/id/69/400x300'],
+            large: ['https://lipsum.app/id/67/1920x1080', 'https://lipsum.app/id/68/1920x1080', 'https://lipsum.app/id/69/1920x1080'],
+        }
+    },
+    {
+        id: 4,
+        title: "Royal Suite, Executive lounge access, Suite, 1 King",
+        roomtype: "Superior Room",
+        bedtype: "Queen",
+        amenities: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "TV", "Air Conditioning", "Balcony", "Heating", "Bathtub", "Smoking"],
+        price: "$400.50",
+        address: "1700 Northstar dr. Atlanta, GA 30012",
+        description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV.",
+        maxOccupancy: 2,
+        available: true,
+        reservations: [
+            { startDate: "2024-03-25", endDate: "2024-03-28" },
+        ],
+        images: {
+            thumbs: ['https://lipsum.app/id/70/400x300', 'https://lipsum.app/id/71/400x300', 'https://lipsum.app/id/72/400x300'],
+            large: ['https://lipsum.app/id/70/1920x1080', 'https://lipsum.app/id/71/1920x1080', 'https://lipsum.app/id/72/1920x1080'],
+        }
+    },
+    {
+        id: 5,
+        title: "Royal Suite, Executive lounge access, Suite, 1 King",
+        roomtype: "Connecting Rooms",
+        bedtype: "Bunk Bed",
+        amenities: ["2 Double Beds", "Dinner", "Swimming Pool", "Balcony", "Heating", "Bathtub", "Smoking"],
+        price: "$500.50",
+        address: "1600 Northstar dr. Atlanta, IL 30012",
+        description: "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
+        maxOccupancy: 6,
+        available: false,
+        reservations: [],
+        images: {
+            thumbs: ['https://lipsum.app/id/73/400x300', 'https://lipsum.app/id/74/400x300', 'https://lipsum.app/id/75/400x300'],
+            large: ['https://lipsum.app/id/73/1920x1080', 'https://lipsum.app/id/74/1920x1080', 'https://lipsum.app/id/75/1920x1080'],
+        }
+
+    },
+];
+
+const roomsfilterItems = [
+    {
+        title: "Room Types",
+        options: ["Standard Room", "Deluxe Room", "Executive Room", "Superior Room", "Connecting Rooms"],
+    },
+    {
+        title: "Bed Type",
+        options: ["Single / Twin", "Double", "King", "Queen", "Bunk Bed"],
+    },
+    {
+        title: "Room Amenities",
+        options: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "Air Conditioning", "TV", "Balcony", "Heating", "Bathtub", "Smoking"],
+    },
+];
 
 const initialState = {
-    todayDate: format(new Date(), 'E, d MMM'),
-    selectedRange: [
-        {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 0),
-            key: 'selection'
-        }
-    ],
-    startDate: null,
-    endDate: null,
-    dateModalOpen: false,
-    roomsModalOpen: false,
-    initialRooms: initialRooms,
-    bookedRooms: [{ id: initialRooms[0].id, adults: 1, children: 0 }],
-    rooms: [initialRooms[0]],
-    adultsCount: 1,
-    childrenCount: 0,
-    guests: 1,
+    rooms,
+    roomsfilterItems,
+    amenitiesWidth: 0,
+    isFilterShow: false,
+    selectedFilters: [],
+    filteredRooms: rooms
 }
 
 function reducer(state, action) {
     switch (action.type) {
-        case 'DATE_MODAL':
+        case 'FILTER_TOGGLE':
             return {
                 ...state,
-                dateModalOpen: ((modal) => !modal),
-                roomsModalOpen: false,
+                isFilterShow: !state.isFilterShow,
             }
-        case 'ROOMS_MODAL':
+        case 'FILTER_UPDATE':
+            const filterValue = action.payload;
+            const updatedFilters = state.selectedFilters.includes(filterValue)
+                ? state.selectedFilters.filter((filter) => filter !== filterValue)
+                : [...state.selectedFilters, filterValue];
+
+            const filteredRooms = filterRooms(state.rooms, updatedFilters);
+
             return {
                 ...state,
-                roomsModalOpen: ((modal) => !modal),
-                dateModalOpen: false,
-            }
-        case 'CLOSE_MODAL':
-            return {
-                ...state,
-                dateModalOpen: false,
-                roomsModalOpen: false,
-            }
-        case 'DATE_RANGE':
-            const item = action.payload;
-            const start = item.selection.startDate;
-            const end = item.selection.endDate;
-            return {
-                ...state,
-                startDate: start,
-                endDate: end,
-                selectedRange: [item.selection],
-            }
-        case 'ADD_ADULT':
-            const roomIdAddAdult = action.payload;
-            const roomToAddAdult = state.rooms.find(r => r.id === roomIdAddAdult);
-
-            if (roomToAddAdult) {
-                const totalAdultsInRoom = state.adultsCount[roomIdAddAdult] || 1;
-
-                if (totalAdultsInRoom < roomToAddAdult.adults) {
-                    const updatedAdultsCount = {
-                        ...state.adultsCount,
-                        [roomIdAddAdult]: totalAdultsInRoom + 1,
-                    };
-
-                    const bookedRooms = state.bookedRooms.map(room => {
-                        if (room.id === roomIdAddAdult) {
-                            return {
-                                ...room,
-                                adults: updatedAdultsCount[roomIdAddAdult],
-                            };
-                        }
-                        return room;
-                    });
-
-                    return {
-                        ...state,
-                        adultsCount: updatedAdultsCount,
-                        guests: state.guests + 1,
-                        bookedRooms: bookedRooms,
-                    };
-                }
-            }
-            return state;
-        case 'MINUS_ADULT':
-            const roomIdMinusAdult = action.payload;
-            if (state.adultsCount[roomIdMinusAdult] > 1) {
-
-                const updatedAdultsCount = {
-                    ...state.adultsCount,
-                    [roomIdMinusAdult]: state.adultsCount[roomIdMinusAdult] - 1
-                };
-
-                const bookedRooms = state.bookedRooms.map(room => {
-                    if (room.id === roomIdMinusAdult) {
-                        return {
-                            ...room,
-                            adults: updatedAdultsCount[roomIdMinusAdult],
-                        };
-                    }
-                    return room;
-                });
-                return {
-                    ...state,
-                    adultsCount: updatedAdultsCount,
-                    guests: state.guests - 1,
-                    bookedRooms
-                }
-            }
-            return state;
-        case 'ADD_CHILDREN':
-            const roomIdAddChildren = action.payload;
-            const roomToAddChildren = state.rooms.find(r => r.id === roomIdAddChildren);
-            if (roomToAddChildren) {
-                if (state.childrenCount[roomIdAddChildren] === undefined || state.childrenCount[roomIdAddChildren] < roomToAddChildren.children) {
-                    const updatedChildrenCount = {
-                        ...state.childrenCount,
-                        [roomIdAddChildren]: (state.childrenCount[roomIdAddChildren] || 0) + 1
-                    };
-                    const bookedRooms = state.bookedRooms.map(room => {
-                        if (room.id === roomIdAddChildren) {
-                            return {
-                                ...room,
-                                children: updatedChildrenCount[roomIdAddChildren],
-                            };
-                        }
-                        return room;
-                    });
-
-                    return {
-                        ...state,
-                        childrenCount: updatedChildrenCount,
-                        guests: state.guests + 1,
-                        bookedRooms,
-                    }
-                }
-            }
-            return state;
-        case 'MINUS_CHILDREN':
-            const roomIdMinusChildren = action.payload;
-            if (state.childrenCount[roomIdMinusChildren] > 0) {
-                const updatedChildrenCount = {
-                    ...state.childrenCount,
-                    [roomIdMinusChildren]: state.childrenCount[roomIdMinusChildren] - 1
-                };
-                const bookedRooms = state.bookedRooms.map(room => {
-                    if (room.id === roomIdMinusChildren) {
-                        return {
-                            ...room,
-                            children: updatedChildrenCount[roomIdMinusChildren],
-                        };
-                    }
-                    return room;
-                });
-                return {
-                    ...state,
-                    childrenCount: updatedChildrenCount,
-                    guests: state.guests - 1,
-                    bookedRooms,
-                }
-            }
-            return state;
-        case 'ADD_ROOM':
-            if (state.rooms.length < initialRooms.length) {
-                const availableRooms = initialRooms.filter(room => !state.rooms.some(r => r.id === room.id));
-                if (availableRooms.length > 0) {
-                    const nextRoom = availableRooms[0];
-                    const newRooms = [...state.rooms, nextRoom];
-                    const bookedRooms = [...state.bookedRooms, { ...nextRoom, adults: 1, children: 0 }]
-                    return {
-                        ...state,
-                        rooms: newRooms,
-                        guests: state.guests + 1,
-                        bookedRooms,
-                    }
-                }
-            }
-            return state;
-        case 'REMOVE_ROOM':
-            const { roomToRemove } = action.payload;
-            const newRooms = state.rooms.filter(room => room.id !== roomToRemove.id);
-            const removedAdults = state.adultsCount[roomToRemove.id] || 1;
-            const removedChildren = state.childrenCount[roomToRemove.id] || 0;
-            const newBookedRooms = state.bookedRooms.filter(room => room.id !== roomToRemove.id);
-            return {
-                ...state,
-                rooms: newRooms,
-                bookedRooms: newBookedRooms,
-                adultsCount: {
-                    ...state.adultsCount,
-                    [roomToRemove.id]: undefined
-                },
-                childrenCount: {
-                    ...state.childrenCount,
-                    [roomToRemove.id]: undefined
-                },
-                guests: state.guests - removedAdults - removedChildren,
+                selectedFilters: updatedFilters,
+                filteredRooms: filteredRooms,
             };
         default:
             return state;
     }
 }
 
+const filterRooms = (rooms, selectedFilters) => {
+    if (selectedFilters.length === 0) {
+        return rooms;
+    }
+    return rooms.filter((room) => {
+        if (
+            selectedFilters.includes(room.roomtype) ||
+            selectedFilters.includes(room.bedtype) ||
+            selectedFilters.every((amenity) => room.amenities.includes(amenity))
+        ) {
+            return true;
+        }
+        return false;
+    });
+};
+
 const RoomsContext = createContext();
 
-export const useRooms = () => useContext(RoomsContext);
+export const useRooms = () => useContext(RoomsContext)
 
 export const RoomsProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <RoomsContext.Provider value={{ state, dispatch }} >
+        <RoomsContext.Provider value={{ state, dispatch }}>
             {children}
         </RoomsContext.Provider>
-    )
+    );
 }
+

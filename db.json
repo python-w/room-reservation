@@ -1,0 +1,384 @@
+{
+    "rooms": [
+        {
+            "id": 1,
+            "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+            "roomtype": "Standard Room",
+            "bedtype": "Single / Twin",
+            "amenities": [
+                "2 Double Beds",
+                "Dinner",
+                "Swimming Pool",
+                "Wifi",
+                "Free Parking",
+                "TV",
+                "Air Conditioning",
+                "Balcony",
+                "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
+            ],
+            "price": "$100.50",
+            "address": "1600 Northstar dr. Atlanta, GA 30012",
+            "description": "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-suite bathroom with a rejuvenating shower. Your perfect retreat awaits!",
+            "maxOccupancy": 8,
+            "available": true,
+            "reservations": [],
+            "images": {
+                "thumbs": [
+                    "https://lipsum.app/id/60/400x300",
+                    "https://lipsum.app/id/61/400x300",
+                    "https://lipsum.app/id/63/400x300"
+                ],
+                "large": [
+                    "https://lipsum.app/id/60/1920x1080",
+                    "https://lipsum.app/id/61/1920x1080",
+                    "https://lipsum.app/id/63/1920x1080"
+                ]
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "discount": 10
+        },
+        {
+            "id": 2,
+            "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+            "roomtype": "Deluxe Room",
+            "bedtype": "Double",
+            "amenities": [
+                "2 Double Beds",
+                "Dinner",
+                "Swimming Pool",
+                "Wifi",
+                "Free Parking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
+            ],
+            "price": "$200.50",
+            "address": "1400 Northstar dr. Atlanta, FL 30012",
+            "description": "Welcome to our cozy Standard Room, ideal for solo travelers or couples.",
+            "maxOccupancy": 6,
+            "available": true,
+            "reservations": [
+                {
+                    "startDate": "2024-03-25",
+                    "endDate": "2024-03-28"
+                }
+            ],
+            "images": {
+                "thumbs": [
+                    "https://lipsum.app/id/64/400x300",
+                    "https://lipsum.app/id/65/400x300",
+                    "https://lipsum.app/id/66/400x300"
+                ],
+                "large": [
+                    "https://lipsum.app/id/64/1920x1080",
+                    "https://lipsum.app/id/65/1920x1080",
+                    "https://lipsum.app/id/66/1920x1080"
+                ]
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "discount": 10
+        },
+        {
+            "id": 3,
+            "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+            "roomtype": "Executive Room",
+            "bedtype": "King",
+            "amenities": [
+                "Wifi",
+                "Free Parking",
+                "TV",
+                "Air Conditioning",
+                "Balcony",
+                "Heating",
+                "Bathtub",
+                "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
+            ],
+            "price": "$300.50",
+            "address": "1600 Northstar dr. Atlanta, CA 30012",
+            "description": "Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
+            "maxOccupancy": 4,
+            "available": true,
+            "reservations": [
+                {
+                    "startDate": "2024-03-25",
+                    "endDate": "2024-03-28"
+                }
+            ],
+            "images": {
+                "thumbs": [
+                    "https://lipsum.app/id/67/400x300",
+                    "https://lipsum.app/id/68/400x300",
+                    "https://lipsum.app/id/69/400x300"
+                ],
+                "large": [
+                    "https://lipsum.app/id/67/1920x1080",
+                    "https://lipsum.app/id/68/1920x1080",
+                    "https://lipsum.app/id/69/1920x1080"
+                ]
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "discount": 10
+        },
+        {
+            "id": 4,
+            "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+            "roomtype": "Superior Room",
+            "bedtype": "Queen",
+            "amenities": [
+                "2 Double Beds",
+                "Dinner",
+                "Swimming Pool",
+                "Wifi",
+                "Free Parking",
+                "TV",
+                "Air Conditioning",
+                "Balcony",
+                "Heating",
+                "Bathtub",
+                "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
+            ],
+            "price": "$400.50",
+            "address": "1700 Northstar dr. Atlanta, GA 30012",
+            "description": "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV.",
+            "maxOccupancy": 2,
+            "available": true,
+            "reservations": [
+                {
+                    "startDate": "2024-03-25",
+                    "endDate": "2024-03-28"
+                }
+            ],
+            "images": {
+                "thumbs": [
+                    "https://lipsum.app/id/70/400x300",
+                    "https://lipsum.app/id/71/400x300",
+                    "https://lipsum.app/id/72/400x300"
+                ],
+                "large": [
+                    "https://lipsum.app/id/70/1920x1080",
+                    "https://lipsum.app/id/71/1920x1080",
+                    "https://lipsum.app/id/72/1920x1080"
+                ]
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "discount": 10
+        },
+        {
+            "id": 5,
+            "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+            "roomtype": "Connecting Rooms",
+            "bedtype": "Bunk Bed",
+            "amenities": [
+                "2 Double Beds",
+                "Dinner",
+                "Swimming Pool",
+                "Balcony",
+                "Heating",
+                "Bathtub",
+                "Smoking"
+            ],
+            "restrictions": [
+                "No Pets Allowed",
+                "No Smoking",
+                "Guests Not Allowed"
+            ],
+            "roomFeatures": [
+                "2 Double beds",
+                "1 attached bathroom",
+                "1 attached Balcony",
+                "City View"
+            ],
+            "additionalDetails": [
+                "Check-In at 2 PM",
+                "Check-Out at 11 AM",
+                "Shuttle available on request"
+            ],
+            "price": "$500.50",
+            "address": "1600 Northstar dr. Atlanta, IL 30012",
+            "description": "Welcome to our cozy Standard Room, ideal for solo travelers or couples. Enjoy modern amenities, including free Wi-Fi and a flat-screen TV. Relax in the queen-sized bed and refresh in the en-sui",
+            "maxOccupancy": 6,
+            "available": false,
+            "reservations": [],
+            "images": {
+                "thumbs": [
+                    "https://lipsum.app/id/73/400x300",
+                    "https://lipsum.app/id/74/400x300",
+                    "https://lipsum.app/id/75/400x300"
+                ],
+                "large": [
+                    "https://lipsum.app/id/73/1920x1080",
+                    "https://lipsum.app/id/74/1920x1080",
+                    "https://lipsum.app/id/75/1920x1080"
+                ]
+            },
+            "rates": [
+                {
+                    "label": "Rate #1",
+                    "rate": 250
+                },
+                {
+                    "label": "Rate #2",
+                    "rate": 350
+                },
+                {
+                    "label": "Rate #3",
+                    "rate": 450
+                },
+                {
+                    "label": "Rate #4",
+                    "rate": 550
+                },
+                {
+                    "label": "Rate #5",
+                    "rate": 650
+                }
+            ],
+            "discount": 10
+        }
+    ]
+}

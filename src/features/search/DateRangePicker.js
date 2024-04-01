@@ -2,14 +2,19 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { Box, Button, Typography } from "@mui/material";
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 import { useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 export default function StyledDateRangePicker() {
+  const {isTabletSMScreen} = useWindowWidth();
   const refDateModal = useRef();
-  const { state, dispatch } = useRooms();
+  const { state, dispatch } = useSearch();
   const { selectedRange } = state;
+
+  const today = new Date();
+  const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
   const handleClose = () => {
     dispatch({ type: "CLOSE_MODAL" });
@@ -30,7 +35,7 @@ export default function StyledDateRangePicker() {
           Select Dates
         </Typography>
         <Box className="inline_modal_body">
-          <DateRangePicker staticRanges={[]} inputRanges={[]} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
+          <DateRangePicker staticRanges={[]} inputRanges={[]} minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={isTabletSMScreen ? 1 : 2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
         </Box>
         <Box className="inline_modal_footer">
           <Button onClick={handleClose}>Done</Button>

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import RoomCard from "./RoomCard";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import { useRooms } from "../../contexts/RoomsContext";
+import { useSearch } from "../../contexts/SearchContext";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useRef } from "react";
 
@@ -9,8 +9,8 @@ import { useRef } from "react";
 export default function AddRoomCard() {
 
     const refRoomModal = useRef();
-    const { state, dispatch } = useRooms();
-    const { initialRooms, rooms } = state;
+    const { state, dispatch } = useSearch();
+    const { roomsToSearch, roomsInSearch } = state;
 
     const addRoom = () => {
         dispatch({ type: 'ADD_ROOM' })
@@ -27,16 +27,16 @@ export default function AddRoomCard() {
     return (
         <Box ref={refRoomModal} className='inline_modal'>
             <Box className="inline_modal_body">
-                {rooms.map((room, index) => (
+                {roomsInSearch.map((room, index) => (
                     <RoomCard
                         key={index}
                         room={room}
                         index={index}
-                        showRemoveButton={rooms.length > 1}
+                        showRemoveButton={roomsInSearch.length > 1}
                     />
                 ))}
             </Box>
-            {rooms.length < initialRooms.length && (
+            {roomsInSearch.length < roomsToSearch.length && (
                 <Box className="add_room_btn" >
                     <button className="btn btn-wc-outlined" variant="outlined" color="primary" onClick={addRoom}>
                         <AddOutlinedIcon /> Add Another Room

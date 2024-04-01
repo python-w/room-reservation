@@ -1,20 +1,18 @@
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
-import { useRooms } from '../contexts/RoomsContext';
+import { useSearch } from '../contexts/SearchContext';
 import { format } from 'date-fns';
 import BookedRoom from '../features/reservation-summary/BookedRoom';
 import { Check, SearchOutlined } from '@material-ui/icons';
 
 
 export default function ReservationSummary() {
-    const { state } = useRooms();
-    const { startDate, endDate, bookedRooms } = state;
-    const toDay = format(new Date(), 'EEEE');
-    const todayDate = format(new Date(), 'MMM dd, yyyy');
-    const checkedInDay = startDate ? format(new Date(startDate), 'EEEE') : toDay;
-    const checkedInDate = startDate ? format(new Date(startDate), 'MMM dd, yyyy') : todayDate;
-    const checkedOutDay = startDate ? format(new Date(endDate), 'EEEE') : toDay;
-    const checkedOutDate = startDate ? format(new Date(endDate), 'MMM dd, yyyy') : todayDate;
+    const { state } = useSearch();
+    const { startDate, endDate, searchRooms } = state;
+    const checkedInDay = format(new Date(startDate), 'EEEE');
+    const checkedInDate = format(new Date(startDate), 'MMM dd, yyyy');
+    const checkedOutDay = format(new Date(endDate), 'EEEE');
+    const checkedOutDate = format(new Date(endDate), 'MMM dd, yyyy');
     return (
         <div className="res_sum">
             <h3>Reservation Summary</h3>
@@ -51,10 +49,10 @@ export default function ReservationSummary() {
                 </div>
             </div>
             <div className='room_count'>
-                <span>{bookedRooms.length}</span> rooms selected
+                <span>{searchRooms.length}</span> rooms selected
             </div>
             <div className='row'>
-                {bookedRooms.map((room, index) => <BookedRoom key={room.id} room={room} index={index + 1} />)}
+                {searchRooms.map((room, index) => <BookedRoom key={room.id} room={room} index={index + 1} />)}
             </div>
 
             <div className='comments_box'>
