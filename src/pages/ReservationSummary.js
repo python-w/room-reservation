@@ -69,7 +69,7 @@ export default function ReservationSummary() {
             </button>
             <h3>Reservation Summary</h3>
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-sm-6 mb-sm-0 mb-4">
                     <div className="res_date_card">
                         <div className="res_date_title">
                             <span>
@@ -84,7 +84,7 @@ export default function ReservationSummary() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-sm-6">
                     <div className="res_date_card">
                         <div className="res_date_title">
                             <span>
@@ -112,12 +112,12 @@ export default function ReservationSummary() {
                 <textarea placeholder='Write here...'></textarea>
             </div>
 
-            <form onSubmit={handleSubmit} className='d-flex justify-content-end'>
+            <form onSubmit={handleSubmit} className='d-flex summary-book-btn'>
                 <input type="hidden" name="bookedRoom" value={JSON.stringify(bookedRooms)} />
                 <button onClick={handleSearchAgain} className='btn btn-wc-outlined mr-3'><SearchOutlined className='mr-2' />Search Again</button>
                 <button type="submit" className='btn'><Check className='mr-2' />Book Now</button>
             </form>
-            {error && <div classNam="alert alert-danget" role="alert">{error}</div>}
+            {error && <div classNam="alert alert-danger" role="alert">{error}</div>}
         </div>
     )
 }

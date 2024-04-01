@@ -6,6 +6,7 @@ import Search from "./features/search/Search";
 import CustomTheme from "./customTheme";
 import RoomDetails from "../src/pages/RoomDetails";
 import Bookings from "../src/pages/Bookings";
+import Confirmation from "./pages/Confirmation";
 import { SearchProvider } from "./contexts/SearchContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { RoomsProvider } from "./contexts/RoomsContext";
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/bookings',
-    element: <Bookings />,
+    element: <Confirmation />,
   },
 ])
 function App() {

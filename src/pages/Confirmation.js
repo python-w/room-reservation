@@ -25,7 +25,7 @@ export default function Confirmation() {
         Your reservation has been confirmed. A confirmation email for your reservation has been sent to you at <a href="mailto:john@gmail.com">john@gmail.com</a>
       </p>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-sm-6 mb-4">
           <div className="res_date_card">
             <div className="res_date_title">
               <span>
@@ -40,7 +40,7 @@ export default function Confirmation() {
             </div>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <div className="res_date_card">
             <div className="res_date_title">
               <span>

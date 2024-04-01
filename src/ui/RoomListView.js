@@ -83,7 +83,6 @@ export default function RoomListView({ room, index }) {
                 <div className="col-xl-8 col-lg-7 col-md-8 col-12">
                     <div className="card-body">
                         <div className="status-badges">
-                            <span className="badge badge-pill badge-primary">{room.maxOccupancy}</span>
                             <span className="badge badge-pill badge-primary">{room.roomtype}</span>
                             {room.available ? <span className="badge badge-pill badge-success">Available</span> : <span className="badge badge-pill badge-danger">Not Available</span>}
                         </div>

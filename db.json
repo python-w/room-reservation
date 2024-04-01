@@ -381,5 +381,9 @@
       "discount": 10
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "id": "c73a"
+    }
+  ]
 }

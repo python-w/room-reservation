@@ -16,7 +16,7 @@ export default function BookedRoom({ room, index }) {
     return (
         <div className='col-md-6'>
             <div className='booked_room_card'>
-                <h2>Room {index}: {room.roomtype}</h2>
+                <h6>Room {index}: {room.roomtype}</h6>
                 <ul>
                     <li>Reservation for: <GuestsSelection roomId={room.id} />
                         {room.guests && room.guests.map((guest, index) =>

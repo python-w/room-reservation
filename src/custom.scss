@@ -526,6 +526,9 @@ body {
           padding: 0 get4k(32px);
           border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         }
+        @media #{$mq-tablet-sm} {
+          padding: 0 1rem;
+        }
         .res_date_title {
           display: flex;
           align-items: center;
@@ -567,6 +570,12 @@ body {
             font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
             margin: get4k(20px) 0;
           }
+          @media #{$mq-tablet-lg} {
+            font-size: calc((var(--wc-font-size) + 3) * 1px);
+          }
+          @media #{$mq-tablet-sm} {
+            font-size: calc(var(--wc-font-size) * 1px);
+          }
           span {
             display: inline-block;
             position: relative;
@@ -576,10 +585,33 @@ body {
             @media #{$mq-4k} {
               padding: 0 get4k(24px);
             }
+            @media #{$mq-tablet-md} {
+              width: 40%;
+            }
+            @media #{$mq-tablet-sm} {
+              padding: 0 0.75rem;
+            }
+            @media #{$mq-mobile-sm} {
+              width: auto;
+            }
+            @media (max-width: 380.98px) {
+              width: 40%;
+            }
             &:first-child {
               padding-left: 0;
               @media #{$mq-4k} {
                 padding-left: 0;
+              }
+            }
+            &:nth-child(2) {
+              @media #{$mq-tablet-md} {
+                width: 60%;
+              }
+              @media #{$mq-mobile-sm} {
+                width: auto;
+              }
+              @media (max-width: 380.98px) {
+                width: 60%;
               }
             }
             &:last-child {
@@ -588,15 +620,43 @@ body {
               @media #{$mq-4k} {
                 padding-right: 0;
               }
+              @media #{$mq-tablet-md} {
+                padding-left: 0;
+                margin-top: 1rem;
+                width: 100%;
+              }
+              @media #{$mq-mobile-sm} {
+                width: auto;
+                padding-left: 24px;
+              }
+              @media (max-width: 380.98px) {
+                width: 100%;
+                margin-top: 1rem;
+                padding-left: 0;
+              }
             }
           }
         }
       }
       .res_sum {
+        .summary-book-btn {
+          justify-content: flex-end;
+          @media #{$mq-mobile-sm} {
+            justify-content: center;
+          }
+          .btn {
+            display: flex;
+            align-items: center;
+            text-align: left;
+          }
+        }
         h3 {
           margin-bottom: 40px;
           @media #{$mq-4k} {
             margin-bottom: get4k(40px);
+          }
+          @media #{$mq-tablet-sm} {
+            margin-bottom: 1.5rem;
           }
         }
         .btn.btn-back {
@@ -615,6 +675,9 @@ body {
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 8) / var(--4k-ratio) * 1vw);
             margin: get4k(40px) 0;
+          }
+          @media #{$mq-tablet-sm} {
+            margin: 1.5rem 0 2rem;
           }
           span {
             font-weight: 800;
@@ -646,13 +709,13 @@ body {
             padding: get4k(24px);
             margin-bottom: get4k(24px);
           }
-          h2 {
-            font-size: calc((var(--wc-font-size) + 2) * 1px);
-            font-weight: 800;
+          h6 {
+            // font-size: calc((var(--wc-font-size) + 2) * 1px);
+            // font-weight: 800;
             color: var(--primary-color);
-            @media #{$mq-4k} {
-              font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
-            }
+            // @media #{$mq-4k} {
+            //   font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+            // }
           }
           ul {
             li {
@@ -689,6 +752,9 @@ body {
                   margin-left: get4k(10px);
                   border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
                 }
+                @media #{$mq-tablet-lg} {
+                  width: 200px;
+                }
                 input {
                   border: 0;
                   height: 40px;
@@ -724,6 +790,12 @@ body {
           @media #{$mq-4k} {
             margin-top: get4k(16px);
             margin-bottom: get4k(40px);
+          }
+          @media #{$mq-tablet-sm} {
+            margin-top: 0;
+          }
+          @media #{$mq-mobile-sm} {
+            margin-bottom: 2rem;
           }
           label {
             display: block;
@@ -1464,6 +1536,9 @@ body {
             font-weight: 600;
             margin-top: 0;
             margin-left: auto;
+            display: flex;
+            align-items: center;
+            text-align: left;
             @media #{$mq-4k} {
               margin-top: 0;
             }
@@ -1915,6 +1990,10 @@ body {
             height: get4k(70px);
             margin-bottom: get4k(16px);
           }
+          @media #{$mq-tablet-md}{
+            width: 50px;
+            height: 50px;
+          }
         }
         p {
           margin-bottom: 2rem;
@@ -1942,11 +2021,17 @@ body {
             margin-bottom: get4k(24px);
             margin-top: get4k(24px);
           }
+          @media #{$mq-tablet-sm} {
+            padding: 1rem;
+          }
           strong {
             font-size: calc((var(--wc-font-size) + 2) * 1px);
             font-weight: 800;
             @media #{$mq-4k} {
               font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+            }
+            @media #{$mq-tablet-md} {
+              font-size: calc(var(--wc-font-size) * 1px);
             }
           }
           .booked_card {
@@ -1954,6 +2039,12 @@ body {
             margin-top: 2rem;
             @media #{$mq-4k} {
               margin-top: get4k(32px);
+            }
+            @media #{$mq-laptop} {
+              flex-wrap: wrap;
+            }
+            @media #{$mq-tablet-sm} {
+              margin-top: 1.5rem;
             }
             .booked_card_list {
               display: flex;
@@ -1966,6 +2057,24 @@ body {
               @media #{$mq-4k} {
                 margin-right: get4k(16px);
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
+              }
+              @media #{$mq-laptop} {
+                width: 25%;
+              }
+              @media #{$mq-tablet-lg} {
+                width: 33.333%;
+              }
+              @media #{$mq-tablet-sm} {
+                width: 50%;
+              }
+              @media #{$mq-mobile-sm} {
+                width: 100%;
+                margin-bottom: 1.5rem;
+              }
+              &:last-child {
+                @media #{$mq-mobile-sm} {
+                  margin-bottom: 0;
+                } 
               }
               &::before {
                 content: "";
