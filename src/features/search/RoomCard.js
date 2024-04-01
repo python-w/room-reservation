@@ -9,20 +9,20 @@ export default function RoomCard({ index, room, showRemoveButton }) {
     const { state, dispatch } = useSearch();
     const { adultsCount, childrenCount } = state;
 
-    const handleAddAdults = (roomId) => {
+    const handleAddAdult = (roomId) => {
         dispatch({ type: 'ADD_ADULT', payload: roomId });
     };
 
-    const handleMinusAdults = (roomId) => {
+    const handleMinusAdult = (roomId) => {
         dispatch({ type: 'MINUS_ADULT', payload: roomId });
-    }
+    };
 
     const handleAddChildren = (roomId) => {
-        dispatch({ type: 'ADD_CHILDREN', payload: roomId })
+        dispatch({ type: 'ADD_CHILDREN', payload: roomId });
     };
 
     const handleMinusChildren = (roomId) => {
-        dispatch({ type: 'MINUS_CHILDREN', payload: roomId })
+        dispatch({ type: 'MINUS_CHILDREN', payload: roomId });
     };
 
     const removeRoom = (room) => {
@@ -50,9 +50,9 @@ export default function RoomCard({ index, room, showRemoveButton }) {
                 <Box className="room_row">
                     <Typography component="p">Adults</Typography>
                     <Box className="room_counter">
-                        <Button variant="outlined" disabled={!adultsCount[room.id] >= 1 || adultsCount[room.id] === 1} onClick={() => handleMinusAdults(room.id)}><RemoveOutlinedIcon /></Button>
+                        <Button variant="outlined" disabled={!adultsCount[room.id] >= 1 || adultsCount[room.id] === 1} onClick={() => handleMinusAdult(room.id)}><RemoveOutlinedIcon /></Button>
                         <Typography component='span'>{adultsCount[room.id] || 1}</Typography>
-                        <Button variant="outlined" disabled={adultsCount[room.id] === room.adults} onClick={() => handleAddAdults(room.id)}><AddOutlinedIcon /></Button>
+                        <Button variant="outlined" disabled={adultsCount[room.id] === room.adults} onClick={() => handleAddAdult(room.id)}><AddOutlinedIcon /></Button>
                     </Box>
                 </Box>
             }

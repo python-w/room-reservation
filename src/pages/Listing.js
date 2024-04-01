@@ -54,7 +54,7 @@ export default function RoomListing() {
           {
             availableRooms.length === 0 && isFilterShow &&
             <div className="col-lg-9 pl-lg-3">
-              <div class="alert alert-info" role="alert">No rooms match the selected filters.</div>
+              <div classNam="alert alert-info" role="alert">No rooms match the selected filters.</div>
             </div>
           }
         </div>

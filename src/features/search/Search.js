@@ -10,21 +10,31 @@ import { useSearch } from "../../contexts/SearchContext";
 import { format } from 'date-fns';
 import { getRooms } from "../../services/apiRooms";
 import Listing from "../../pages/Listing";
+import { useState } from "react";
 
 
 export default function Search() {
+
+    const [dateModalOpen, setDateModalOpen] = useState(false);
+    const [roomsModalOpen, setRoomsModalOpen] = useState(false);
+
     const { state, dispatch } = useSearch();
-    const { dateModalOpen, roomsModalOpen, isSearchActive, startDate, endDate, prevStartDate, prevEndDate, guests, roomsInSearch } = state;
+    const { isSearchActive, startDate, endDate, prevStartDate, prevEndDate, guests, roomsInSearch } = state;
 
     const checkInDate = format(startDate, 'E, d MMM');
     const checkOutDate = format(endDate, 'E, d MMM');
 
-
     const handleDateModalOpen = () => {
-        dispatch({ type: 'DATE_MODAL' })
+        setDateModalOpen((modal) => !modal);
+        setRoomsModalOpen(false)
     }
     const handleRoomsModalOpen = () => {
-        dispatch({ type: 'ROOMS_MODAL' })
+        setRoomsModalOpen((modal) => !modal)
+        setDateModalOpen(false)
+    };
+    const handleCloseModal = () => {
+        setDateModalOpen(false)
+        setRoomsModalOpen(false)
     };
 
     async function searchDispatch() {
@@ -65,7 +75,7 @@ export default function Search() {
                                 </div>
                             </div>
                             {dateModalOpen &&
-                                <StyledDateRangePicker />
+                                <StyledDateRangePicker handleCloseModal={handleCloseModal} />
                             }
                         </div>
                     </Grid>
@@ -81,7 +91,7 @@ export default function Search() {
                                     </div>
                                 </div>
                                 {roomsModalOpen &&
-                                    <AddRoomCard />
+                                    <AddRoomCard handleCloseModal={handleCloseModal} />
                                 }
                             </div>
                         </div>

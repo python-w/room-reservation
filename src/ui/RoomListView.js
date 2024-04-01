@@ -8,12 +8,14 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useSearch } from "../contexts/SearchContext";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../utils/FormatCurrency";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function RoomListView({ room, index }) {
     const amenitiesRef = useRef();
     const [amenitiesWidth, setAmenitiesWidth] = useState(0);
     const { state, dispatch } = useSearch();
-    const { bookedRooms, searchedRooms } = state;
+    const { bookedRooms, searchedRooms, bookingCount } = state;
+    console.log(bookingCount)
 
     useLayoutEffect(() => {
         if (amenitiesRef.current) {
@@ -21,19 +23,45 @@ export default function RoomListView({ room, index }) {
         }
     }, []);
 
-    const handleSelectRoom = (room) => {
-        dispatch({ type: 'SELECT_ROOM', payload: { ...room, bookedRoomCount: 1, adultsCount: 0, childrenCount: 0 } })
-    }
+    const currentRoom = state.availableRooms.find((r) => r.id === room.id);
 
-    const handleRoomAdd = (roomId) => {
-        dispatch({ type: 'SELECTROOM_ADD', payload: roomId })
-    }
+    const handleSelectRoom = (room) => {
+        const updatedBookedRooms = [...bookedRooms];
+        const roomIndex = updatedBookedRooms.findIndex((r) => r.id === room.id);
+        const newId = uuidv4();
+
+        if (roomIndex === -1) {
+            updatedBookedRooms.push({ id: room.id, bookingId: newId, roomtype: room.roomtype, selectedRate: room.rates[0], discount: room.discount, rates: room.rates, maxOccupancy: room.maxOccupancy, bookedRoomCount: 1 });
+        }
+        dispatch({ type: 'UPDATE_BOOKED_ROOMS', payload: updatedBookedRooms });
+        const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
+
+        dispatch({ type: 'UPDATE_BOOKED_ROOM_COUNT', payload: { roomId: room.id, count } });
+        dispatch({ type: 'BOOK_ROOM_ADD' })
+    };
+
+    const handleRoomAdd = (room) => {
+        const newId = uuidv4();
+        const updatedBookedRooms = [...bookedRooms, { id: room.id, bookingId: newId, roomtype: room.roomtype, selectedRate: 0, discount: room.discount, rates: room.rates, maxOccupancy: room.maxOccupancy, bookedRoomCount: Math.min(room.bookedRoomCount + 1) }]
+        dispatch({ type: 'UPDATE_BOOKED_ROOMS', payload: updatedBookedRooms });
+        const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
+
+        dispatch({ type: 'UPDATE_BOOKED_ROOM_COUNT', payload: { roomId: room.id, count } });
+        dispatch({ type: 'BOOK_ROOM_ADD', roomId: room.id });
+    };
 
     const handleRoomSub = (roomId) => {
-        if (state.bookedRooms.length >= 1) {
-            dispatch({ type: 'SELECTROOM_SUB', payload: roomId })
-        }
-    }
+        const updatedBookedRooms = bookedRooms
+            .map((room) =>
+                room.id === roomId ? { ...room, bookedRoomCount: Math.max(room.bookedRoomCount - 1, 0) } : room
+            )
+            .filter((room) => room.bookedRoomCount !== 0);
+        dispatch({ type: 'UPDATE_BOOKED_ROOMS', payload: updatedBookedRooms });
+
+        const count = currentRoom ? (currentRoom.bookedRoomCount || 0) - 1 : 1;
+        dispatch({ type: 'UPDATE_BOOKED_ROOM_COUNT', payload: { roomId: room.id, count } });
+        dispatch({ type: 'BOOK_ROOM_SUB', roomId: roomId });
+    };
 
     return (
         <div className="card" key={index}>
@@ -74,18 +102,19 @@ export default function RoomListView({ room, index }) {
                         <Link to={`/room/${room.id}`} className="btn btn-wc-transparent">
                             View More Details
                         </Link>
+
                         {room.isSelected ?
                             <div className="room_counter">
                                 <p>Rooms</p>
                                 <Button variant="outlined" onClick={() => handleRoomSub(room.id)}><RemoveOutlinedIcon /></Button>
                                 <span>{room.bookedRoomCount}</span>
-                                <Button variant="outlined" disabled={searchedRooms.length === bookedRooms.length} onClick={() => handleRoomAdd(room.id)}><AddOutlinedIcon /></Button>
-                            </div> :
-                            searchedRooms.length !== bookedRooms.length &&
+                                <Button variant="outlined" disabled={bookingCount === searchedRooms.length} onClick={() => handleRoomAdd(room)}><AddOutlinedIcon /></Button>
+                            </div>
+                            :
+                            bookingCount !== searchedRooms.length &&
                             <button className="btn btn-wc-outlined" onClick={() => handleSelectRoom(room)}>
                                 Select Room
                             </button>
-
                         }
                     </div>
                 </div>

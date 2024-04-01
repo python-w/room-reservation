@@ -6,7 +6,7 @@ import { useSearch } from "../../contexts/SearchContext";
 import { useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
-export default function StyledDateRangePicker() {
+export default function StyledDateRangePicker({ handleCloseModal }) {
   const refDateModal = useRef();
   const { state, dispatch } = useSearch();
   const { selectedRange } = state;
@@ -14,16 +14,12 @@ export default function StyledDateRangePicker() {
   const today = new Date();
   const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-  const handleClose = () => {
-    dispatch({ type: "CLOSE_MODAL" });
-  };
-
   const handleDateChange = (item) => {
     dispatch({ type: "DATE_RANGE", payload: item });
   };
 
   useOnClickOutside(refDateModal, () => {
-    dispatch({ type: "CLOSE_MODAL" });
+    handleCloseModal()
   });
 
   return (
@@ -36,7 +32,7 @@ export default function StyledDateRangePicker() {
           <DateRangePicker staticRanges={[]} inputRanges={[]} minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
         </Box>
         <Box className="inline_modal_footer">
-          <Button onClick={handleClose}>Done</Button>
+          <Button onClick={handleCloseModal}>Done</Button>
         </Box>
       </Box>
     </>

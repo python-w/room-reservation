@@ -2,9 +2,9 @@ import { createContext, useContext, useReducer } from "react";
 import { addDays } from 'date-fns';
 
 const roomsToSearch = [
-    { id: '1', 'adults': 4, 'children': 2 },
-    { id: '2', 'adults': 6, 'children': 2 },
-    { id: '3', 'adults': 8, 'children': 4 },
+    { id: 'b03e3d90-9d96-11ec-8c9b-5b266c1e6223', 'adults': 4, 'children': 2 },
+    { id: 'e7d5f294-9d96-11ec-9a02-5b266c1e6223', 'adults': 6, 'children': 2 },
+    { id: '0c2c7f98-9d97-11ec-b999-5b266c1e6223', 'adults': 8, 'children': 4 },
 ]
 
 const roomsfilterItems = [
@@ -39,8 +39,6 @@ const initialState = {
     endDate: null || tomorrow,
     prevStartDate: null || today,
     prevEndDate: null || tomorrow,
-    dateModalOpen: false,
-    roomsModalOpen: false,
     roomsToSearch: roomsToSearch,
     searchedRooms: [{ id: roomsToSearch[0].id, adults: 1, children: 0 }],
     roomsInSearch: [roomsToSearch[0]],
@@ -50,34 +48,18 @@ const initialState = {
     filterToggle: false,
     roomsfilterItems,
     selectedFilters: [],
-    adultsCount: 1,
-    childrenCount: 0,
+    adultsCount: {},
+    childrenCount: {},
     guests: 1,
     isLoading: false,
     bookedRooms: [],
     isDetailView: false,
+    bookingCount: 0
 }
+
 
 function reducer(state, action) {
     switch (action.type) {
-        case 'DATE_MODAL':
-            return {
-                ...state,
-                dateModalOpen: ((modal) => !modal),
-                roomsModalOpen: false,
-            }
-        case 'ROOMS_MODAL':
-            return {
-                ...state,
-                roomsModalOpen: ((modal) => !modal),
-                dateModalOpen: false,
-            }
-        case 'CLOSE_MODAL':
-            return {
-                ...state,
-                dateModalOpen: false,
-                roomsModalOpen: false,
-            }
         case 'DATE_RANGE':
             const item = action.payload;
             const start = item.selection.startDate;
@@ -89,79 +71,25 @@ function reducer(state, action) {
                 selectedRange: [item.selection],
             }
         case 'ADD_ADULT':
-            const roomIdAddAdult = action.payload;
-            const roomToAddAdult = state.roomsInSearch.find(r => r.id === roomIdAddAdult);
-
-            if (roomToAddAdult) {
-                const totalAdultsInRoom = state.adultsCount[roomIdAddAdult] || 1;
-
-                if (totalAdultsInRoom < roomToAddAdult.adults) {
-                    const updatedAdultsCount = {
-                        ...state.adultsCount,
-                        [roomIdAddAdult]: totalAdultsInRoom + 1,
-                    };
-
-                    const searchedRooms = state.searchedRooms.map(room => {
-                        if (room.id === roomIdAddAdult) {
-                            return {
-                                ...room,
-                                adults: updatedAdultsCount[roomIdAddAdult],
-                            };
-                        }
-                        return room;
-                    });
-
-                    return {
-                        ...state,
-                        adultsCount: updatedAdultsCount,
-                        guests: state.guests + 1,
-                        searchedRooms: searchedRooms,
-                        isSearchActive: false,
-                    };
-                }
-            }
-            return state;
-        case 'MINUS_ADULT':
-            const roomIdMinusAdult = action.payload;
-            if (state.adultsCount[roomIdMinusAdult] > 1) {
-
-                const updatedAdultsCount = {
-                    ...state.adultsCount,
-                    [roomIdMinusAdult]: state.adultsCount[roomIdMinusAdult] - 1
-                };
-
-                const searchedRooms = state.searchedRooms.map(room => {
-                    if (room.id === roomIdMinusAdult) {
-                        return {
-                            ...room,
-                            adults: updatedAdultsCount[roomIdMinusAdult],
-                        };
-                    }
-                    return room;
-                });
-                return {
-                    ...state,
-                    adultsCount: updatedAdultsCount,
-                    guests: state.guests - 1,
-                    searchedRooms,
-                    isSearchActive: false,
-                }
-            }
-            return state;
         case 'ADD_CHILDREN':
-            const roomIdAddChildren = action.payload;
-            const roomToAddChildren = state.roomsInSearch.find(r => r.id === roomIdAddChildren);
-            if (roomToAddChildren) {
-                if (state.childrenCount[roomIdAddChildren] === undefined || state.childrenCount[roomIdAddChildren] < roomToAddChildren.children) {
-                    const updatedChildrenCount = {
-                        ...state.childrenCount,
-                        [roomIdAddChildren]: (state.childrenCount[roomIdAddChildren] || 0) + 1
+            const roomIdToAdd = action.payload;
+            const roomToAdd = state.roomsInSearch.find(room => room.id === roomIdToAdd);
+
+            if (roomToAdd) {
+                const countKey = action.type === 'ADD_ADULT' ? 'adultsCount' : 'childrenCount';
+                const currentCount = state[countKey][roomIdToAdd] || (action.type === 'ADD_ADULT' ? 1 : 0);
+
+                if (currentCount < (action.type === 'ADD_ADULT' ? roomToAdd.adults : roomToAdd.children)) {
+                    const updatedCount = {
+                        ...state[countKey],
+                        [roomIdToAdd]: currentCount + 1
                     };
-                    const searchedRooms = state.searchedRooms.map(room => {
-                        if (room.id === roomIdAddChildren) {
+
+                    const updatedRooms = state.searchedRooms.map(room => {
+                        if (room.id === roomIdToAdd) {
                             return {
                                 ...room,
-                                children: updatedChildrenCount[roomIdAddChildren],
+                                [action.type === 'ADD_ADULT' ? 'adults' : 'children']: updatedCount[roomIdToAdd],
                             };
                         }
                         return room;
@@ -169,37 +97,43 @@ function reducer(state, action) {
 
                     return {
                         ...state,
-                        childrenCount: updatedChildrenCount,
+                        [countKey]: updatedCount,
                         guests: state.guests + 1,
-                        searchedRooms,
+                        searchedRooms: updatedRooms,
                         isSearchActive: false,
-                    }
+                    };
                 }
             }
             return state;
+
+        case 'MINUS_ADULT':
         case 'MINUS_CHILDREN':
-            const roomIdMinusChildren = action.payload;
-            if (state.childrenCount[roomIdMinusChildren] > 0) {
-                const updatedChildrenCount = {
-                    ...state.childrenCount,
-                    [roomIdMinusChildren]: state.childrenCount[roomIdMinusChildren] - 1
+            const roomIdToMinus = action.payload;
+            const countKeyToMinus = action.type === 'MINUS_ADULT' ? 'adultsCount' : 'childrenCount';
+
+            if (state[countKeyToMinus][roomIdToMinus] > 0) {
+                const updatedCount = {
+                    ...state[countKeyToMinus],
+                    [roomIdToMinus]: state[countKeyToMinus][roomIdToMinus] - 1
                 };
-                const searchedRooms = state.searchedRooms.map(room => {
-                    if (room.id === roomIdMinusChildren) {
+
+                const updatedRooms = state.searchedRooms.map(room => {
+                    if (room.id === roomIdToMinus) {
                         return {
                             ...room,
-                            children: updatedChildrenCount[roomIdMinusChildren],
+                            [action.type === 'MINUS_ADULT' ? 'adults' : 'children']: updatedCount[roomIdToMinus],
                         };
                     }
                     return room;
                 });
+
                 return {
                     ...state,
-                    childrenCount: updatedChildrenCount,
+                    [countKeyToMinus]: updatedCount,
                     guests: state.guests - 1,
-                    searchedRooms,
+                    searchedRooms: updatedRooms,
                     isSearchActive: false,
-                }
+                };
             }
             return state;
         case 'ADD_ROOM':
@@ -291,75 +225,27 @@ function reducer(state, action) {
             if (availableRooms.length === 0) {
                 availableRooms = [];
             }
-            console.log(availableRooms, state.roomListing, updatedFilters)
             return {
                 ...state,
                 selectedFilters: updatedFilters,
                 availableRooms: availableRooms,
             };
-        case 'SELECT_ROOM':
-            return {
-                ...state,
-                bookedRooms: [...state.bookedRooms, action.payload],
-                availableRooms: state.availableRooms.map(room => {
-                    if (room.id === action.payload.id) {
-                        return {
-                            ...room,
-                            isSelected: true,
-                            bookedRoomCount: 1
-                        };
-                    } else {
-                        return room;
-                    }
-                }),
-            };
-        case 'SELECTROOM_ADD':
-            const roomToAddId = action.payload;
-            if (state.bookedRooms.length < state.searchedRooms.length) {
-                const updatedBookedRooms = [...state.bookedRooms, roomToAddId];
-                return {
-                    ...state,
-                    bookedRooms: updatedBookedRooms,
-                    availableRooms: state.availableRooms.map(room => {
-                        if (room.id === roomToAddId) {
-                            return {
-                                ...room,
-                                bookedRoomCount: room.bookedRoomCount + 1
-                            };
-                        } else {
-                            return room;
-                        }
-                    })
-                };
-            } else {
-                return state;
-            }
-        case 'SELECTROOM_SUB':
-            const roomToSubId = action.payload;
-            return {
-                ...state,
-                bookedRooms: state.bookedRooms.filter(id => id !== roomToSubId),
-                availableRooms: state.availableRooms.map(room => {
-                    if (room.id === roomToSubId) {
-                        const updatedRoom = {
-                            ...room,
-                            bookedRoomCount: room.bookedRoomCount - 1
-                        };
-                        if (updatedRoom.bookedRoomCount === 0) {
-                            const { bookedRoomCount, ...updatedRoomWithoutCount } = updatedRoom;
-                            return { ...updatedRoomWithoutCount, isSelected: false };
-                        } else {
-                            return updatedRoom;
-                        }
-                    } else {
-                        return room;
-                    }
-                })
-            };
+        case 'UPDATE_BOOKED_ROOMS':
+            return { ...state, bookedRooms: action.payload };
+        case 'UPDATE_BOOKED_ROOM_COUNT':
+            const { roomId, count } = action.payload;
+            const updatedRooms = state.availableRooms.map(room =>
+                room.id === roomId ? { ...room, bookedRoomCount: count, isSelected: count > 0 } : room
+            );
+            return { ...state, availableRooms: updatedRooms };
+        case 'BOOK_ROOM_ADD':
+            return { ...state, bookingCount: state.bookingCount + 1 };
+        case 'BOOK_ROOM_SUB':
+            return { ...state, bookingCount: state.bookingCount - 1 };
         case 'SELECT_RATE':
             const { rateRoomId, value } = action.payload;
             const updatedBookedRooms = state.bookedRooms.map(room => {
-                if (room.id === rateRoomId) {
+                if (room.bookingId === rateRoomId) {
                     return {
                         ...room,
                         selectedRate: value
@@ -388,6 +274,8 @@ function reducer(state, action) {
                     }
                 })
             }
+        case 'SEARCH_AGAIN':
+            return initialState;
         default:
             return state;
     }

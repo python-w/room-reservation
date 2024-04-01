@@ -6,7 +6,7 @@ import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useRef } from "react";
 
 
-export default function AddRoomCard() {
+export default function AddRoomCard({ handleCloseModal }) {
 
     const refRoomModal = useRef();
     const { state, dispatch } = useSearch();
@@ -16,12 +16,9 @@ export default function AddRoomCard() {
         dispatch({ type: 'ADD_ROOM' })
     };
 
-    const handleClose = () => {
-        dispatch({ type: 'CLOSE_MODAL' })
-    };
 
     useOnClickOutside(refRoomModal, () => {
-        dispatch({ type: 'CLOSE_MODAL' })
+        handleCloseModal()
     })
 
     return (
@@ -44,7 +41,7 @@ export default function AddRoomCard() {
                 </Box>
             )}
             <Box className='inline_modal_footer'>
-                <button className="btn btn-wc-primary" onClick={handleClose}>Done</button>
+                <button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
             </Box>
         </Box>
     )

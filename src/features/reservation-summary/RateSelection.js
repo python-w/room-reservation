@@ -5,18 +5,18 @@ import { useSearch } from '../../contexts/SearchContext';
 import { useState } from 'react';
 import { Radio } from '@mui/material';
 
-export default function RateSelection({ roomId, roomRates }) {
+export default function RateSelection({ bookingId, roomRates }) {
+    console.log(bookingId)
     const { dispatch } = useSearch();
 
     const [open, setOpen] = useState(false);
 
     const handleRateSelect = (value) => {
         setOpen(false);
-        dispatch({ type: 'SELECT_RATE', payload: { rateRoomId: roomId, value } });
+        dispatch({ type: 'SELECT_RATE', payload: { rateRoomId: bookingId, value } });
     };
     return (
         <Autocomplete
-            id="rate_selection"
             options={roomRates}
             disableCloseOnSelect
             getOptionLabel={(option) => `${option.label} - ${option.rate}`}

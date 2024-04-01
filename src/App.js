@@ -5,9 +5,11 @@ import { CssBaseline } from "@mui/material";
 import Search from "./features/search/Search";
 import CustomTheme from "./customTheme";
 import RoomDetails from "../src/pages/RoomDetails";
+import Bookings from "../src/pages/Bookings";
 import { SearchProvider } from "./contexts/SearchContext";
-import ReservationSummary from "./pages/ReservationSummary";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RoomsProvider } from "./contexts/RoomsContext";
+import ReservationSummary from "./pages/ReservationSummary";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
   {
     path: '/reservation-summary',
     element: <ReservationSummary />
-  }
+  },
+  {
+    path: '/bookings',
+    element: <Bookings />,
+  },
 ])
 function App() {
   return (
@@ -29,7 +35,9 @@ function App() {
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <SearchProvider>
-          <RouterProvider router={router} />
+          <RoomsProvider>
+            <RouterProvider router={router} />
+          </RoomsProvider>
         </SearchProvider>
       </ThemeProvider>
     </div>
