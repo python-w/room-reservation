@@ -8,7 +8,6 @@ import RoomDetails from "../src/pages/RoomDetails";
 import Bookings from "../src/pages/Bookings";
 import { SearchProvider } from "./contexts/SearchContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { RoomsProvider } from "./contexts/RoomsContext";
 import ReservationSummary from "./pages/ReservationSummary";
 
 const router = createBrowserRouter([
@@ -35,9 +34,7 @@ function App() {
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <SearchProvider>
-          <RoomsProvider>
-            <RouterProvider router={router} />
-          </RoomsProvider>
+          <RouterProvider router={router} />
         </SearchProvider>
       </ThemeProvider>
     </div>
