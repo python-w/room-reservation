@@ -268,8 +268,12 @@
       "available": true,
       "reservations": [
         {
-          "startDate": "2024-03-25",
-          "endDate": "2024-03-28"
+          "startDate": "2024-04-01",
+          "endDate": "2024-04-28"
+        },
+        {
+          "startDate": "2024-05-01",
+          "endDate": "2024-05-10"
         }
       ],
       "images": {

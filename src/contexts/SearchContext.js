@@ -8,18 +8,18 @@ const roomsToSearch = [
 ]
 
 const roomsfilterItems = [
-  {
-    title: "Room Types",
-    options: ["Standard Room", "Deluxe Room", "Executive Room", "Superior Room", "Connecting Rooms"],
-  },
-  {
-    title: "Bed Type",
-    options: ["Single / Twin", "Double", "King", "Queen", "Bunk Bed"],
-  },
-  {
-    title: "Room Amenities",
-    options: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "Air Conditioning", "TV", "Balcony", "Heating", "Bathtub", "Smoking"],
-  },
+    {
+        title: "Room Types",
+        options: ["Standard Room", "Deluxe Room", "Executive Room", "Superior Room", "Connecting Rooms"],
+    },
+    {
+        title: "Bed Type",
+        options: ["Single / Twin", "Double", "King", "Queen", "Bunk Bed"],
+    },
+    {
+        title: "Room Amenities",
+        options: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "Air Conditioning", "TV", "Balcony", "Heating", "Bathtub", "Smoking"],
+    },
 ];
 
 const today = new Date();
@@ -192,33 +192,33 @@ function reducer(state, action) {
                     return (searchStartDate < resEndDate && searchEndDate > resStartDate);
                 });
 
-        return !overlappingReservations && room.available && room.maxOccupancy >= minOccupancy;
-      });
-      return {
-        ...state,
-        isLoading: false,
-        isFilterShow: true,
-        roomListing,
-        availableRooms: roomListing,
-        prevStartDate: state.startDate,
-        prevEndDate: state.endDate,
-        isSearchActive: true,
-        isSearchFixed: true,
-      };
-    case "SEARCH_ERROR":
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
-    case "FILTER_TOGGLE":
-      return {
-        ...state,
-        filterToggle: !state.filterToggle,
-      };
-    case "FILTER_UPDATE":
-      const filterValue = action.payload;
-      const updatedFilters = state.selectedFilters.includes(filterValue) ? state.selectedFilters.filter((filter) => filter !== filterValue) : [...state.selectedFilters, filterValue];
+                return !overlappingReservations && room.available && room.maxOccupancy >= minOccupancy;
+            });
+            return {
+                ...state,
+                isLoading: false,
+                isFilterShow: true,
+                roomListing,
+                availableRooms: roomListing,
+                prevStartDate: state.startDate,
+                prevEndDate: state.endDate,
+                isSearchActive: true,
+                isSearchFixed: true,
+            };
+        case "SEARCH_ERROR":
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            };
+        case "FILTER_TOGGLE":
+            return {
+                ...state,
+                filterToggle: !state.filterToggle,
+            };
+        case "FILTER_UPDATE":
+            const filterValue = action.payload;
+            const updatedFilters = state.selectedFilters.includes(filterValue) ? state.selectedFilters.filter((filter) => filter !== filterValue) : [...state.selectedFilters, filterValue];
 
             let availableRooms = filterRooms(state.roomListing, updatedFilters);
             if (availableRooms.length === 0) {
@@ -281,15 +281,15 @@ function reducer(state, action) {
 }
 
 const filterRooms = (roomListing, selectedFilters) => {
-  if (selectedFilters.length === 0) {
-    return roomListing;
-  }
-  return roomListing.filter((room) => {
-    if (selectedFilters.includes(room.roomtype) || selectedFilters.includes(room.bedtype) || selectedFilters.every((amenity) => room.amenities.includes(amenity))) {
-      return true;
+    if (selectedFilters.length === 0) {
+        return roomListing;
     }
-    return false;
-  });
+    return roomListing.filter((room) => {
+        if (selectedFilters.includes(room.roomtype) || selectedFilters.includes(room.bedtype) || selectedFilters.every((amenity) => room.amenities.includes(amenity))) {
+            return true;
+        }
+        return false;
+    });
 };
 
 const SearchContext = createContext();
@@ -297,7 +297,7 @@ const SearchContext = createContext();
 export const useSearch = () => useContext(SearchContext);
 
 export const SearchProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <SearchContext.Provider value={{ state, dispatch }}>{children}</SearchContext.Provider>;
+    return <SearchContext.Provider value={{ state, dispatch }}>{children}</SearchContext.Provider>;
 };

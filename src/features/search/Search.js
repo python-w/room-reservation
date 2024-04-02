@@ -11,12 +11,14 @@ import { format } from 'date-fns';
 import { getRooms } from "../../services/apiRooms";
 import Listing from "../../pages/Listing";
 import { useState } from "react";
+import CheckAvailability from "../check-availability/CheckAvailability";
 
 
 export default function Search() {
 
     const [dateModalOpen, setDateModalOpen] = useState(false);
     const [roomsModalOpen, setRoomsModalOpen] = useState(false);
+    const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
 
     const { state, dispatch } = useSearch();
     const { isSearchActive, startDate, endDate, prevStartDate, prevEndDate, guests, roomsInSearch, isSearchFixed } = state;
@@ -24,6 +26,7 @@ export default function Search() {
     const checkInDate = format(startDate, 'E, d MMM');
     const checkOutDate = format(endDate, 'E, d MMM');
 
+    //Handle Date and Rooms Modal
     const handleDateModalOpen = () => {
         setDateModalOpen((modal) => !modal);
         setRoomsModalOpen(false)
@@ -36,6 +39,10 @@ export default function Search() {
         setDateModalOpen(false)
         setRoomsModalOpen(false)
     };
+
+    //Handle Check Availability Modal
+    const handleOpenChkAvlModal = () => setOpenChkAvlModal(true);
+    const handleCloseChkAvlModal = () => setOpenChkAvlModal(false);
 
     async function searchDispatch() {
         dispatch({ type: 'SEARCH_LOADING' });
@@ -63,7 +70,7 @@ export default function Search() {
                     <Grid item className="search_field date_field">
                         <div className="label_group">
                             <label>Check In & Out Dates</label>
-                            <button className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
+                            <button onClick={handleOpenChkAvlModal} className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
                         </div>
                         <div className="custom_input_outer">
                             <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
@@ -103,6 +110,7 @@ export default function Search() {
                     </Grid>
                 </Grid>
             </div >
+            <CheckAvailability handleClose={handleCloseChkAvlModal} open={openChkAvlModal} />
             <Listing />
         </>
     )

@@ -8,7 +8,7 @@ import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import useWindowWidth from "../../hooks/useWindowWidth";
 
 export default function StyledDateRangePicker({ handleCloseModal }) {
-  const {isTabletSMScreen} = useWindowWidth();
+  const { isTabletSMScreen } = useWindowWidth();
   const refDateModal = useRef();
   const { state, dispatch } = useSearch();
   const { selectedRange } = state;

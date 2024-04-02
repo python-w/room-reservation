@@ -1,15 +1,15 @@
 import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
-import { useRooms } from "../contexts/RoomsContext";
 import { format } from "date-fns";
 import BookedRoom from "../features/reservation-summary/BookedRoom";
 import { Check, SearchOutlined } from "@material-ui/icons";
 import ConfirmedIcon from "../images/confirmed-icon.svg";
 import Room1Img from "../images/room-img-01.png";
 import Room2Img from "../images/room-img-02.png";
+import { useSearch } from "../contexts/SearchContext";
 
 export default function Confirmation() {
-  const { state } = useRooms();
+  const { state } = useSearch();
   const { startDate, endDate, bookedRooms } = state;
   const toDay = format(new Date(), "EEEE");
   const todayDate = format(new Date(), "MMM dd, yyyy");

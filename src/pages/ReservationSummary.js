@@ -43,8 +43,6 @@ export default function ReservationSummary() {
     // Adjust rooms
     adjustRooms(searchedRooms, bookedRooms);
 
-    console.log(bookedRooms);
-
     const handleSearchAgain = () => {
         navigate('/');
         dispatch({ type: "SEARCH_AGAIN" })
