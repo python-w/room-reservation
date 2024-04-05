@@ -26,6 +26,7 @@ const router = createBrowserRouter([
   {
     path: '/bookings',
     element: <Confirmation />,
+    element: <Confirmation />,
   },
 ])
 function App() {

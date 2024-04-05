@@ -73,12 +73,12 @@ export default function ReservationSummary() {
                 <textarea placeholder='Write here...'></textarea>
             </div>
 
-            <form onSubmit={handleSubmit} className='d-flex justify-content-end'>
+            <form onSubmit={handleSubmit} className='d-flex summary-book-btn'>
                 <input type="hidden" name="bookedRoom" value={JSON.stringify(bookedRooms)} />
                 <button onClick={handleSearchAgain} className='btn btn-wc-outlined mr-3'><SearchOutlined className='mr-2' />Search Again</button>
                 <button type="submit" className='btn'><Check className='mr-2' />Book Now</button>
             </form>
-            {error && <div classNam="alert alert-danget" role="alert">{error}</div>}
+            {error && <div classNam="alert alert-danger" role="alert">{error}</div>}
         </div>
     )
 }

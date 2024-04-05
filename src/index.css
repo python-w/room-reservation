@@ -144,6 +144,11 @@ body.wcprop-2 section.portlet .btn.btn-wc-transparent {
   font-size: calc((var(--wc-font-size) - 2) * 1px);
 }
 
+body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled).active, body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active {
+  background: transparent;
+  color: var(--primary-color);
+}
+
 body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled).active,
 body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active {
   border-color: var(--primary-color-hover);
