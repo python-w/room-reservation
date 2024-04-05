@@ -17,11 +17,11 @@ export default function RoomListView({ room, index }) {
     const { bookedRooms, searchedRooms, bookingCount } = state;
     console.log(bookingCount)
 
-  useLayoutEffect(() => {
-    if (amenitiesRef.current) {
-      setAmenitiesWidth(amenitiesRef.current.offsetWidth);
-    }
-  }, []);
+    useLayoutEffect(() => {
+        if (amenitiesRef.current) {
+            setAmenitiesWidth(amenitiesRef.current.offsetWidth);
+        }
+    }, []);
 
     const currentRoom = state.availableRooms.find((r) => r.id === room.id);
 
@@ -31,7 +31,7 @@ export default function RoomListView({ room, index }) {
         const newId = uuidv4();
 
         if (roomIndex === -1) {
-            updatedBookedRooms.push({ id: room.id, bookingId: newId, roomtype: room.roomtype, selectedRate: room.rates[0], discount: room.discount, rates: room.rates, maxOccupancy: room.maxOccupancy, bookedRoomCount: 1 });
+            updatedBookedRooms.push({ id: room.id, bookingId: newId, title: room.title, thumbnail: room.images.thumbs[0], roomtype: room.roomtype, selectedRate: room.rates[0], discount: room.discount, rates: room.rates, maxOccupancy: room.maxOccupancy, bookedRoomCount: 1 });
         }
         dispatch({ type: 'UPDATE_BOOKED_ROOMS', payload: updatedBookedRooms });
         const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
@@ -42,7 +42,7 @@ export default function RoomListView({ room, index }) {
 
     const handleRoomAdd = (room) => {
         const newId = uuidv4();
-        const updatedBookedRooms = [...bookedRooms, { id: room.id, bookingId: newId, roomtype: room.roomtype, selectedRate: 0, discount: room.discount, rates: room.rates, maxOccupancy: room.maxOccupancy, bookedRoomCount: Math.min(room.bookedRoomCount + 1) }]
+        const updatedBookedRooms = [...bookedRooms, { id: room.id, bookingId: newId, title: room.title, thumbnail: room.images.thumbs[0], roomtype: room.roomtype, selectedRate: 0, discount: room.discount, rates: room.rates, maxOccupancy: room.maxOccupancy, bookedRoomCount: Math.min(room.bookedRoomCount + 1) }]
         dispatch({ type: 'UPDATE_BOOKED_ROOMS', payload: updatedBookedRooms });
         const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
 

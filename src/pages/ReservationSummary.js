@@ -1,23 +1,17 @@
-import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
-import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import { useSearch } from '../contexts/SearchContext';
-import { format } from 'date-fns';
 import BookedRoom from '../features/reservation-summary/BookedRoom';
 import { Check, ChevronLeft, SearchOutlined } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { createBooking } from '../services/apiRooms';
 import { useState } from 'react';
+import CheckInOutCard from '../ui/CheckInOutCard';
 
 
 export default function ReservationSummary() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { state, dispatch } = useSearch();
-    const { startDate, endDate, bookedRooms, searchedRooms } = state;
-    const checkedInDay = format(new Date(startDate), 'EEEE');
-    const checkedInDate = format(new Date(startDate), 'MMM dd, yyyy');
-    const checkedOutDay = format(new Date(endDate), 'EEEE');
-    const checkedOutDate = format(new Date(endDate), 'MMM dd, yyyy');
+    const { bookedRooms, searchedRooms } = state;
 
     function adjustRooms(searchedRooms, bookedRooms) {
         for (let searchedRoom of searchedRooms) {
@@ -66,38 +60,7 @@ export default function ReservationSummary() {
                 Go Back
             </button>
             <h3>Reservation Summary</h3>
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="res_date_card">
-                        <div className="res_date_title">
-                            <span>
-                                <TodayOutlinedIcon />
-                            </span>
-                            <strong>Check in:</strong>
-                        </div>
-                        <div className='res_date_body'>
-                            <span>{checkedInDay}</span>
-                            <span>{checkedInDate}</span>
-                            <span>06:05 pm</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="res_date_card">
-                        <div className="res_date_title">
-                            <span>
-                                <InsertInvitationOutlinedIcon />
-                            </span>
-                            <strong>Check Out:</strong>
-                        </div>
-                        <div className='res_date_body'>
-                            <span>{checkedOutDay}</span>
-                            <span>{checkedOutDate}</span>
-                            <span>06:05 pm</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <CheckInOutCard />
             <div className='room_count'>
                 <span>{bookedRooms.length}</span> {bookedRooms.length > 1 ? 'Rooms' : 'Room'} selected
             </div>

@@ -17,16 +17,28 @@ body {
     section.portlet {
       .spinner {
         text-align: center;
+        position: relative;
+        z-index: 1;
 
         img {
           margin: 2rem auto;
         }
       }
 
-      //Search Component
-      .search_wrap {
-        border: 1px solid var(--wc-border-color
+      .full_page_spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.05
         );
+
+    }
+
+    //Search Component
+    .search_wrap {
+      border: 1px solid var(--wc-border-color);
       box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
       border-radius: calc(var(--borderRadius) * 1px);
       padding: 56px 40px;
@@ -2317,6 +2329,7 @@ body {
     /* Confirmation Page */
     .confirmation_summary {
       text-align: center;
+      margin: 2rem 0;
 
       .confirmed-icon {
         width: 70px;
@@ -2361,9 +2374,9 @@ body {
           margin-top: get4k(24px);
         }
 
-        strong {
+        p {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
-          font-weight: 800;
+          line-height: 1.5;
 
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
@@ -2372,69 +2385,59 @@ body {
 
         .booked_card {
           display: flex;
-          margin-top: 2rem;
+          flex-wrap: wrap;
+          margin: 1rem -12px 0 -12px;
 
           @media #{$mq-4k} {
-            margin-top: get4k(32px);
+            margin: get4k(16px) get4k(-12px) 0 get4k(-12px);
           }
 
-          .booked_card_list {
-            display: flex;
-            flex-direction: column;
-            margin-right: 1rem;
-            width: 20%;
+          .card {
+            width: 25%;
+            flex: 0 0 25%;
             background: white;
-            border-radius: calc(var(--borderRadius) * 1px);
+            border-radius: calc(var(--borderRadius)* 1px);
             position: relative;
+            padding: 12px;
 
             @media #{$mq-4k} {
               margin-right: get4k(16px);
               border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
 
-            &::before {
-              content: "";
-              background: black;
-              opacity: 0.25;
-              position: absolute;
-              bottom: -4px;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              border-radius: calc(var(--borderRadius) * 1px);
-
-              @media #{$mq-4k} {
-                bottom: get4k(-4px);
-                border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
-              }
-            }
-
             .card-body {
-              padding: 0;
+              padding: 12px;
               background: white;
               position: relative;
-              border-radius: calc(var(--borderRadius) * 1px);
+              border: 1px solid var(--wc-border-color);
+              border-radius: calc(var(--borderRadius)* 1px);
+              box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
+              height: 100%;
 
               @media #{$mq-4k} {
-                padding: 0;
+                padding: 12px;
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
 
-              strong {
-                display: block;
+              p {
                 padding: 1rem;
+                margin-bottom: 0;
 
                 @media #{$mq-4k} {
                   padding: get4k(16px);
+                  margin-bottom: 0;
                 }
               }
             }
 
             .card-img {
-              width: calc(100% - 1rem);
-              border-radius: calc(var(--borderRadius) * 1px);
+              width: 100%;
+              border-radius: calc(var(--borderRadius)* 1px);
               margin: 0 auto;
               display: flex;
+              aspect-ratio: 2 / 1.8;
+              object-fit: cover;
+              background: var(--wc-body-bg);
 
               @media #{$mq-4k} {
                 width: calc(100% - get4k(16px));

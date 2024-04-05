@@ -385,5 +385,249 @@
       "discount": 10
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "0": {
+        "id": "d0f3e9b2-7e05-4e80-a6a3-d7cb44d12b14",
+        "bookingId": "9005e065-7a30-4f07-a1f8-05d74a213fee",
+        "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+        "thumbnail": "https://lipsum.app/id/67/400x300",
+        "roomtype": "Executive Room",
+        "selectedRate": {
+          "label": "Rate #1",
+          "rate": 250
+        },
+        "discount": 10,
+        "rates": [
+          {
+            "label": "Rate #1",
+            "rate": 250
+          },
+          {
+            "label": "Rate #2",
+            "rate": 350
+          },
+          {
+            "label": "Rate #3",
+            "rate": 450
+          },
+          {
+            "label": "Rate #4",
+            "rate": 550
+          },
+          {
+            "label": "Rate #5",
+            "rate": 650
+          }
+        ],
+        "maxOccupancy": 4,
+        "bookedRoomCount": 1,
+        "adults": 1,
+        "children": 0
+      },
+      "id": "332c"
+    },
+    {
+      "0": {
+        "id": "d0f3e9b2-7e05-4e80-a6a3-d7cb44d12b14",
+        "bookingId": "8e94df25-4c1e-4d99-8cf5-e01923959c50",
+        "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+        "thumbnail": "https://lipsum.app/id/67/400x300",
+        "roomtype": "Executive Room",
+        "selectedRate": {
+          "label": "Rate #1",
+          "rate": 250
+        },
+        "discount": 10,
+        "rates": [
+          {
+            "label": "Rate #1",
+            "rate": 250
+          },
+          {
+            "label": "Rate #2",
+            "rate": 350
+          },
+          {
+            "label": "Rate #3",
+            "rate": 450
+          },
+          {
+            "label": "Rate #4",
+            "rate": 550
+          },
+          {
+            "label": "Rate #5",
+            "rate": 650
+          }
+        ],
+        "maxOccupancy": 4,
+        "bookedRoomCount": 1,
+        "adults": 1,
+        "children": 0
+      },
+      "id": "6774"
+    },
+    {
+      "0": {
+        "id": "d0f3e9b2-7e05-4e80-a6a3-d7cb44d12b14",
+        "bookingId": "8e94df25-4c1e-4d99-8cf5-e01923959c50",
+        "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+        "thumbnail": "https://lipsum.app/id/67/400x300",
+        "roomtype": "Executive Room",
+        "selectedRate": {
+          "label": "Rate #1",
+          "rate": 250
+        },
+        "discount": 10,
+        "rates": [
+          {
+            "label": "Rate #1",
+            "rate": 250
+          },
+          {
+            "label": "Rate #2",
+            "rate": 350
+          },
+          {
+            "label": "Rate #3",
+            "rate": 450
+          },
+          {
+            "label": "Rate #4",
+            "rate": 550
+          },
+          {
+            "label": "Rate #5",
+            "rate": 650
+          }
+        ],
+        "maxOccupancy": 4,
+        "bookedRoomCount": 1,
+        "adults": 1,
+        "children": 0
+      },
+      "id": "f896"
+    },
+    {
+      "0": {
+        "id": "d0f3e9b2-7e05-4e80-a6a3-d7cb44d12b14",
+        "bookingId": "b3b496dc-57e0-4b1e-8309-e18540ea991d",
+        "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+        "thumbnail": "https://lipsum.app/id/67/400x300",
+        "roomtype": "Executive Room",
+        "selectedRate": {
+          "label": "Rate #1",
+          "rate": 250
+        },
+        "discount": 10,
+        "rates": [
+          {
+            "label": "Rate #1",
+            "rate": 250
+          },
+          {
+            "label": "Rate #2",
+            "rate": 350
+          },
+          {
+            "label": "Rate #3",
+            "rate": 450
+          },
+          {
+            "label": "Rate #4",
+            "rate": 550
+          },
+          {
+            "label": "Rate #5",
+            "rate": 650
+          }
+        ],
+        "maxOccupancy": 4,
+        "bookedRoomCount": 1,
+        "adults": 1,
+        "children": 0
+      },
+      "id": "e4d0"
+    },
+    {
+      "0": {
+        "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "bookingId": "72323c15-c669-48b6-a16d-380a78df71f2",
+        "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+        "thumbnail": "https://lipsum.app/id/60/400x300",
+        "roomtype": "Standard Room",
+        "selectedRate": {
+          "label": "Rate #1",
+          "rate": 250
+        },
+        "discount": 10,
+        "rates": [
+          {
+            "label": "Rate #1",
+            "rate": 250
+          },
+          {
+            "label": "Rate #2",
+            "rate": 350
+          },
+          {
+            "label": "Rate #3",
+            "rate": 450
+          },
+          {
+            "label": "Rate #4",
+            "rate": 550
+          },
+          {
+            "label": "Rate #5",
+            "rate": 650
+          }
+        ],
+        "maxOccupancy": 8,
+        "bookedRoomCount": 1,
+        "adults": 1,
+        "children": 0
+      },
+      "1": {
+        "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "bookingId": "d8bb891e-cc81-4d9b-8d65-c842baa8607a",
+        "title": "Royal Suite, Executive lounge access, Suite, 1 King",
+        "thumbnail": "https://lipsum.app/id/60/400x300",
+        "roomtype": "Standard Room",
+        "selectedRate": {
+          "label": "Rate #2",
+          "rate": 350
+        },
+        "discount": 10,
+        "rates": [
+          {
+            "label": "Rate #1",
+            "rate": 250
+          },
+          {
+            "label": "Rate #2",
+            "rate": 350
+          },
+          {
+            "label": "Rate #3",
+            "rate": 450
+          },
+          {
+            "label": "Rate #4",
+            "rate": 550
+          },
+          {
+            "label": "Rate #5",
+            "rate": 650
+          }
+        ],
+        "maxOccupancy": 8,
+        "bookedRoomCount": 2,
+        "adults": 1,
+        "children": 0
+      },
+      "id": "f1e7"
+    }
+  ]
 }
