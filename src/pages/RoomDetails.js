@@ -17,7 +17,7 @@ export default function RoomDetails() {
   const room = availableRooms.filter(room => room.id === roomId)[0];
 
   return (
-    <>
+    <div className="container">
       {room &&
         <div className="detail_page">
           <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
@@ -60,8 +60,8 @@ export default function RoomDetails() {
                     <div className="damenities-card damenities-card-01">
                       <strong>Amenities Included</strong>
                       <ul>
-                        {room.amenities.map(el =>
-                          <li>
+                        {room.amenities.map((el, index) =>
+                          <li key={index}>
                             {el in amenityIcons && amenityIcons[el]}
                             {el}
                           </li>
@@ -73,10 +73,11 @@ export default function RoomDetails() {
                     <div className="damenities-card damenities-card-02">
                       <strong>Restrictions</strong>
                       <ul>
-                        {room.restrictions.map(el => <li>
-                          {el in restrictionIcons && restrictionIcons[el]}
-                          {el}
-                        </li>)}
+                        {room.restrictions.map((el, index) =>
+                          <li key={index}>
+                            {el in restrictionIcons && restrictionIcons[el]}
+                            {el}
+                          </li>)}
                       </ul>
                     </div>
                   }
@@ -84,8 +85,8 @@ export default function RoomDetails() {
                     <div className="damenities-card damenities-card-03">
                       <strong>Room Features</strong>
                       <ul>
-                        {room.roomFeatures.map(el =>
-                          <li>
+                        {room.roomFeatures.map((el, index) =>
+                          <li key={index}>
                             {el in featureIcons && featureIcons[el]}
                             {el}
                           </li>)}
@@ -96,10 +97,11 @@ export default function RoomDetails() {
                     <div className="damenities-card damenities-card-04">
                       <strong>Additional Details</strong>
                       <ul>
-                        {room.additionalDetails.map(el => <li>
-                          {el in additionalIcons && additionalIcons[el]}
-                          {el}
-                        </li>)}
+                        {room.additionalDetails.map((el, index) =>
+                          <li key={index}>
+                            {el in additionalIcons && additionalIcons[el]}
+                            {el}
+                          </li>)}
                       </ul>
                     </div>
                   }
@@ -114,6 +116,6 @@ export default function RoomDetails() {
           </div>
         </div>
       }
-    </>
+    </div>
   );
 }

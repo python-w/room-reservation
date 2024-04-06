@@ -6,7 +6,6 @@ export default function StyledSelect({ ...props }) {
 
     const handleChange = (event) => {
         const newSelectedOption = event.target.value;
-        console.log(props.selected)
         setSelectedOption(newSelectedOption);
     };
     return (

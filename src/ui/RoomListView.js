@@ -15,7 +15,6 @@ export default function RoomListView({ room, index }) {
     const [amenitiesWidth, setAmenitiesWidth] = useState(0);
     const { state, dispatch } = useSearch();
     const { bookedRooms, searchedRooms, bookingCount } = state;
-    console.log(bookingCount)
 
     useLayoutEffect(() => {
         if (amenitiesRef.current) {
@@ -71,7 +70,7 @@ export default function RoomListView({ room, index }) {
                 </div>
                 <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
                     <div className="roomThumb">
-                        <ListingCarousel showPageCount={false} options={{ infinite: false, Dots: false, Thumbs: false }}>
+                        <ListingCarousel showPageCount={false}>
                             {room.images.thumbs.map((img, i) => (
                                 <div className="f-carousel__slide" key={`img-${i}`}>
                                     <img className="lcard-img img-fluid" alt="" src={img} width="400" height="350" loading="lazy" />

@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { Radio } from '@mui/material';
 
 export default function RateSelection({ bookingId, roomRates }) {
-    console.log(bookingId)
     const { dispatch } = useSearch();
 
     const [open, setOpen] = useState(false);

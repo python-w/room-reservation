@@ -12,34 +12,36 @@ export default function CheckInOutCard() {
     const checkedOutDay = format(new Date(endDate), 'EEEE');
     const checkedOutDate = format(new Date(endDate), 'MMM dd, yyyy');
     return (
-        <div className="row">
-            <div className="col-md-6">
-                <div className="res_date_card">
-                    <div className="res_date_title">
-                        <span>
-                            <TodayOutlinedIcon />
-                        </span>
-                        <strong>Check in:</strong>
-                    </div>
-                    <div className='res_date_body'>
-                        <span>{checkedInDay}</span>
-                        <span>{checkedInDate}</span>
-                        <span>06:05 pm</span>
+        <div className='checkin_out_wrap'>
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="res_date_card">
+                        <div className="res_date_title">
+                            <span>
+                                <TodayOutlinedIcon />
+                            </span>
+                            <p><strong>Check in:</strong></p>
+                        </div>
+                        <div className='res_date_body'>
+                            <span>{checkedInDay}</span>
+                            <span>{checkedInDate}</span>
+                            <span>06:05 pm</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="col-md-6">
-                <div className="res_date_card">
-                    <div className="res_date_title">
-                        <span>
-                            <InsertInvitationOutlinedIcon />
-                        </span>
-                        <strong>Check Out:</strong>
-                    </div>
-                    <div className='res_date_body'>
-                        <span>{checkedOutDay}</span>
-                        <span>{checkedOutDate}</span>
-                        <span>06:05 pm</span>
+                <div className="col-md-6">
+                    <div className="res_date_card">
+                        <div className="res_date_title">
+                            <span>
+                                <InsertInvitationOutlinedIcon />
+                            </span>
+                            <p><strong>Check Out:</strong></p>
+                        </div>
+                        <div className='res_date_body'>
+                            <span>{checkedOutDay}</span>
+                            <span>{checkedOutDate}</span>
+                            <span>06:05 pm</span>
+                        </div>
                     </div>
                 </div>
             </div>

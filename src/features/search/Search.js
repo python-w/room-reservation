@@ -12,16 +12,20 @@ import { getRooms } from "../../services/apiRooms";
 import Listing from "../../pages/Listing";
 import { useState } from "react";
 import CheckAvailability from "../check-availability/CheckAvailability";
+import useScrollToTop from "../../hooks/useScrollToTop ";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 
 export default function Search() {
+    const isTop = useScrollToTop();
+    const { isLargeScreen } = useWindowWidth();
 
     const [dateModalOpen, setDateModalOpen] = useState(false);
     const [roomsModalOpen, setRoomsModalOpen] = useState(false);
     const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
 
     const { state, dispatch } = useSearch();
-    const { isSearchActive, startDate, endDate, prevStartDate, prevEndDate, guests, roomsInSearch, isSearchFixed } = state;
+    const { isSearchActive, startDate, endDate, prevStartDate, prevEndDate, guests, roomsInSearch } = state;
 
     const checkInDate = format(startDate, 'E, d MMM');
     const checkOutDate = format(endDate, 'E, d MMM');
@@ -56,62 +60,70 @@ export default function Search() {
         const endDateFormat = format(endDate, 'MMM dd, yyyy');
         const prevEndDateFormat = format(prevEndDate, 'MMM dd, yyyy');
         try {
-            !isSearchActive && searchDispatch();
-            (startDateFormat !== prevStartDateFormat || endDateFormat !== prevEndDateFormat) && searchDispatch();
+            !isSearchActive && await searchDispatch();
+            (startDateFormat !== prevStartDateFormat || endDateFormat !== prevEndDateFormat) && await searchDispatch();
         } catch (error) {
-            dispatch({ type: 'SEARCH_ERROR', payload: error.message });
+            dispatch({ type: 'SEARCH_ERROR', payload: error });
         }
     }
 
+
+
     return (
         <>
-            <div className={`${isSearchFixed ? "search_wrap_fixed" : ""} search_wrap`}>
-                <Grid container spacing={2} alignItems={"flex-end"}>
-                    <Grid item className="search_field date_field">
-                        <div className="label_group">
-                            <label>Check In & Out Dates</label>
-                            <button onClick={handleOpenChkAvlModal} className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
-                        </div>
-                        <div className="custom_input_outer">
-                            <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
-                                <div>
-                                    <TodayOutlinedIcon /> <Typography component="span">{checkInDate}</Typography>
+            <div className={`${isTop && isLargeScreen ? "search_wrap_fixed" : ""} search_wrap`}>
+                <div className="container">
+                    <div className="search_wrap_inner">
+                        <Grid container spacing={2} alignItems={"flex-end"}>
+                            <Grid item className="search_field date_field">
+                                <div className="label_group">
+                                    <label>Check In & Out Dates</label>
+                                    <button onClick={handleOpenChkAvlModal} className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
                                 </div>
-                                <div>
-                                    <InsertInvitationOutlinedIcon /> <Typography component="span">{checkOutDate}</Typography>
+                                <div className="custom_input_outer">
+                                    <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
+                                        <div>
+                                            <TodayOutlinedIcon /> <Typography component="span">{checkInDate}</Typography>
+                                        </div>
+                                        <div>
+                                            <InsertInvitationOutlinedIcon /> <Typography component="span">{checkOutDate}</Typography>
+                                        </div>
+                                    </div>
+                                    {dateModalOpen &&
+                                        <StyledDateRangePicker handleCloseModal={handleCloseModal} />
+                                    }
                                 </div>
-                            </div>
-                            {dateModalOpen &&
-                                <StyledDateRangePicker handleCloseModal={handleCloseModal} />
-                            }
-                        </div>
-                    </Grid>
-                    <Grid item className="search_field room_field">
-                        <div>
-                            <div className="label_group">
-                                <label>Guests & Rooms</label>
-                            </div>
-                            <div className="custom_input_outer">
-                                <div role="button" onClick={handleRoomsModalOpen} className="customInputBox">
-                                    <div>
-                                        <PersonOutlineOutlinedIcon /> <Typography component="span">{guests || 1} {guests > 1 ? 'Guests' : 'Guest'}, {roomsInSearch.length} {roomsInSearch.length > 1 ? 'Rooms' : 'Room'}</Typography>
+                            </Grid>
+                            <Grid item className="search_field room_field">
+                                <div>
+                                    <div className="label_group">
+                                        <label>Guests & Rooms</label>
+                                    </div>
+                                    <div className="custom_input_outer">
+                                        <div role="button" onClick={handleRoomsModalOpen} className="customInputBox">
+                                            <div>
+                                                <PersonOutlineOutlinedIcon /> <Typography component="span">{guests || 1} {guests > 1 ? 'Guests' : 'Guest'}, {roomsInSearch.length} {roomsInSearch.length > 1 ? 'Rooms' : 'Room'}</Typography>
+                                            </div>
+                                        </div>
+                                        {roomsModalOpen &&
+                                            <AddRoomCard handleCloseModal={handleCloseModal} />
+                                        }
                                     </div>
                                 </div>
-                                {roomsModalOpen &&
-                                    <AddRoomCard handleCloseModal={handleCloseModal} />
-                                }
-                            </div>
-                        </div>
-                    </Grid>
-                    <Grid item>
-                        <div className="search_btn_wrap">
-                            <button onClick={handleSearch} className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
-                        </div>
-                    </Grid>
-                </Grid>
-            </div >
-            <CheckAvailability handleClose={handleCloseChkAvlModal} open={openChkAvlModal} />
-            <Listing />
+                            </Grid>
+                            <Grid item>
+                                <div className="search_btn_wrap">
+                                    <button onClick={handleSearch} className="btn btn-wc-primary">Search <EastOutlinedIcon /></button>
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </div >
+            </div>
+            <div className="container">
+                <CheckAvailability handleClose={handleCloseChkAvlModal} open={openChkAvlModal} />
+                <Listing />
+            </div>
         </>
     )
 }

@@ -19,10 +19,7 @@ body {
         text-align: center;
         position: relative;
         z-index: 1;
-
-        img {
-          margin: 2rem auto;
-        }
+        margin: 3rem auto;
       }
 
       .full_page_spinner {
@@ -37,29 +34,25 @@ body {
     }
 
     //Search Component
-    .search_wrap {
+    .search_wrap_inner {
       border: 1px solid var(--wc-border-color);
       box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
       border-radius: calc(var(--borderRadius) * 1px);
       padding: 56px 40px;
-      margin: 56px 0;
+      margin-top: 56px;
 
       @media #{$mq-4k} {
         border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         padding: get4k(56px) get4k(40px);
-        margin: get4k(56px) 0;
+        margin-top: get4k(56px);
       }
 
       @media #{$mq-tablet-md} {
-        padding: 2.5rem;
-      }
-
-      @media #{$mq-mobile-sm} {
         padding: 1.5rem;
       }
 
-      @media (max-width: 359.98px) {
-        padding: 1rem;
+      @media #{$mq-mobile-sm} {
+        padding: 10px;
       }
 
       .search_field {
@@ -79,16 +72,19 @@ body {
     }
 
     .search_wrap_fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9;
+      background: var(--primary-color);
 
-      /* search */
-      &.search_wrap {
+      .search_wrap_inner {
         margin-top: 0;
         box-shadow: none;
-        margin-bottom: 2rem;
+        margin-bottom: 0;
         position: relative;
-        z-index: 1;
-        background: white;
-        padding: 30px 0;
+        padding: 15px 0;
         z-index: 9;
         border: 0;
         border-radius: 0;
@@ -104,18 +100,9 @@ body {
           margin-bottom: 1rem;
         }
 
-        &::before {
-          content: "";
-          background: var(--primary-color);
-          width: calc(100% + (var(--container-padding) * 2));
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: calc(var(--container-padding) * -1);
-        }
-
         .label_group {
           position: relative;
+          margin-bottom: 0;
 
           label {
             font-size: calc((var(--wc-font-size) - 2) * 1px);
@@ -352,6 +339,7 @@ body {
         display: inline-flex;
         align-items: center;
         margin-top: 0;
+        transition: none;
 
         @media #{$mq-4k} {
           font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
@@ -639,106 +627,195 @@ body {
       }
     }
 
-    //Reservation Summary
-    .res_date_card {
-      background: #f6fafe;
-      border: 1px solid var(--wc-border-color);
-      border-radius: calc(var(--borderRadius) * 1px);
-      box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
-      padding: 0 32px;
-
-      @media #{$mq-4k} {
-        padding: 0 get4k(32px);
-        border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
-      }
-
-      .res_date_title {
-        display: flex;
-        align-items: center;
-
-        strong {
-          display: inline-block;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          margin-top: 14px;
-
-          @media #{$mq-4k} {
-            letter-spacing: get4k(2px);
-            margin-top: get4k(14px);
-          }
-        }
-
-        span {
-          background: var(--primary-color);
-          display: inline-block;
-          padding: 18px 8px 8px;
-          border-radius: 0 0 8px 8px;
-          margin-right: 16px;
-
-          @media #{$mq-4k} {
-            padding: get4k(18px) get4k(8px) get4k(8px);
-            margin-right: get4k(16px);
-          }
-
-          svg {
-            color: #fff;
-            font-size: 32px;
-
-            @media #{$mq-4k} {
-              font-size: get4k(32px);
-            }
-          }
-        }
-      }
-
-      .res_date_body {
-        font-size: calc((var(--wc-font-size) + 4) * 1px);
-        color: var(--primary-color);
-        margin: 20px 0;
+    //Check In Out Card
+    .checkin_out_wrap {
+      .res_date_card {
+        background: #f6fafe;
+        border: 1px solid var(--wc-border-color);
+        border-radius: calc(var(--borderRadius) * 1px);
+        box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
+        padding: 0 32px;
 
         @media #{$mq-4k} {
-          font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
-          margin: get4k(20px) 0;
+          padding: 0 get4k(32px);
+          border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         }
 
-        span {
-          display: inline-block;
-          position: relative;
-          border-right: 1px solid var(--wc-border-color);
-          line-height: 1;
-          padding: 0 24px;
+        @media #{$mq-tablet-lg} {
+          padding: 0 20px;
+        }
 
-          @media #{$mq-4k} {
-            padding: 0 get4k(24px);
-          }
+        @media #{$mq-tablet-md} {
+          padding: 0 1rem;
+        }
 
-          &:first-child {
-            padding-left: 0;
+        @media #{$mq-mobile-sm} {
+          padding: 0 10px;
+        }
+
+        .res_date_title {
+          display: flex;
+          align-items: center;
+
+          strong {
+            display: inline-block;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 14px;
 
             @media #{$mq-4k} {
-              padding-left: 0;
+              letter-spacing: get4k(2px);
+              margin-top: get4k(14px);
+            }
+
+            @media #{$mq-mobile-sm} {
+              letter-spacing: 1px;
             }
           }
 
-          &:last-child {
-            padding-right: 0;
-            border: 0;
+          span {
+            background: var(--primary-color);
+            display: inline-block;
+            padding: 18px 8px 8px;
+            border-radius: 0 0 8px 8px;
+            margin-right: 16px;
 
             @media #{$mq-4k} {
+              padding: get4k(18px) get4k(8px) get4k(8px);
+              margin-right: get4k(16px);
+            }
+
+            @media #{$mq-tablet-lg} {
+              padding: 12px 4px 4px;
+            }
+
+            @media #{$mq-tablet-sm} {
+              margin-right: 10px;
+            }
+
+            svg {
+              color: #fff;
+              font-size: 32px;
+
+              @media #{$mq-4k} {
+                font-size: get4k(32px);
+              }
+
+              @media #{$mq-tablet-sm} {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+
+        .res_date_body {
+          font-size: calc((var(--wc-font-size) + 4) * 1px);
+          color: var(--primary-color);
+          margin: 20px 0;
+
+          @media #{$mq-4k} {
+            font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
+            margin: get4k(20px) 0;
+          }
+
+          @media #{$mq-tablet-lg} {
+            font-size: calc((var(--wc-font-size) + 3) * 1px);
+          }
+
+          @media #{$mq-tablet-md} {
+            font-size: calc((var(--wc-font-size) + 1) * 1px);
+          }
+
+          @media #{$mq-tablet-sm} {
+            font-size: calc(var(--wc-font-size) * 1px);
+          }
+
+          @media #{$mq-mobile-sm} {
+            font-size: calc((var(--wc-font-size) - 1)* 1px);
+            margin: 12px 0;
+          }
+
+          span {
+            display: inline-block;
+            position: relative;
+            border-right: 1px solid var(--wc-border-color);
+            line-height: 1;
+            padding: 0 24px;
+
+            @media #{$mq-4k} {
+              padding: 0 get4k(24px);
+            }
+
+            @media #{$mq-tablet-md} {
+              padding: 0 15px;
+            }
+
+            @media #{$mq-tablet-sm} {
+              padding: 0 0.75rem;
+            }
+
+            @media #{$mq-mobile-sm} {
+              width: auto;
+            }
+
+            &:first-child {
+              padding-left: 0;
+
+              @media #{$mq-4k} {
+                padding-left: 0;
+              }
+            }
+
+            &:last-child {
               padding-right: 0;
+              border: 0;
+
+              @media #{$mq-4k} {
+                padding-right: 0;
+              }
             }
           }
         }
       }
     }
 
-    .res_sum {
+    //Reservation Summary
+    .res_sum,
+    .checkin_out_wrap {
+      @media #{$mq-tablet-lg} {
+        .row>div {
+          margin-bottom: 15px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .summary-book-btn {
+        justify-content: flex-end;
+
+        @media #{$mq-mobile-sm} {
+          justify-content: center;
+        }
+
+        .btn {
+          display: flex;
+          align-items: center;
+          text-align: left;
+        }
+      }
+
       h3 {
         margin-bottom: 40px;
 
         @media #{$mq-4k} {
           margin-bottom: get4k(40px);
+        }
+
+        @media #{$mq-tablet-sm} {
+          margin-bottom: 1.5rem;
         }
       }
 
@@ -762,6 +839,15 @@ body {
           margin: get4k(40px) 0;
         }
 
+        @media #{$mq-tablet-md} {
+          font-size: calc((var(--wc-font-size) + 2) * 1px);
+          margin: 1.5rem 0;
+        }
+
+        @media #{$mq-tablet-sm} {
+          font-size: calc((var(--wc-font-size)) * 1px);
+        }
+
         span {
           font-weight: 800;
           font-size: calc((var(--wc-font-size) + 6) * 1px);
@@ -780,6 +866,21 @@ body {
             height: get4k(32px);
             border-radius: get4k(100px);
             margin-right: get4k(15px);
+          }
+
+          @media #{$mq-tablet-md} {
+            font-size: calc((var(--wc-font-size) + 4)* 1px);
+            min-width: 28px;
+            height: 28px;
+            line-height: 28px;
+            margin-right: 8px;
+          }
+
+          @media #{$mq-tablet-sm} {
+            font-size: calc((var(--wc-font-size) + 2)* 1px);
+            min-width: 24px;
+            height: 24px;
+            line-height: 24px;
           }
         }
       }
@@ -848,6 +949,10 @@ body {
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
 
+              @media #{$mq-tablet-lg} {
+                width: 200px;
+              }
+
               input {
                 border: 0;
                 height: 40px;
@@ -889,6 +994,14 @@ body {
         @media #{$mq-4k} {
           margin-top: get4k(16px);
           margin-bottom: get4k(40px);
+        }
+
+        @media #{$mq-tablet-sm} {
+          margin-top: 0;
+        }
+
+        @media #{$mq-mobile-sm} {
+          margin-bottom: 1rem;
         }
 
         label {
@@ -1441,8 +1554,27 @@ body {
       }
     }
 
+    /* Listing Skeleton */
+    .listing_skeleton {
+      margin-bottom: 2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .img_skl {
+        height: 300px;
+      }
+    }
+
     /* Listing */
     .room_listing {
+      margin-top: 56px;
+      padding-top: 0;
+
+      &.has_pt {
+        padding-top: 256px;
+      }
 
       /* filter */
       .lfilter-heading {
@@ -1794,61 +1926,6 @@ body {
             margin-top: 1rem;
           }
         }
-
-        .customSelectRoom {
-          margin-left: auto;
-
-          label {
-            margin-bottom: 0;
-
-            @media #{$mq-4k} {
-              margin-bottom: 0;
-            }
-          }
-
-          .MuiCheckbox-root {
-            display: none;
-
-            &~span {
-              margin: 0;
-              background: transparent;
-              font-size: calc(var(--wc-font-size) * 1px);
-              padding: 10px 20px;
-              color: var(--primary-color);
-              border-radius: calc(var(--BtnborderRadius) * 1px);
-              font-family: var(--wc-font-family);
-              box-shadow: none;
-              border: 1px solid var(--primary-color);
-              font-weight: 600;
-              -webkit-transition: 0.5s background-color;
-              transition: 0.5s background-color;
-              will-change: background-color;
-              line-height: 1.5;
-              text-align: center;
-              line-height: normal;
-
-              @media #{$mq-4k} {
-                margin: 0;
-                font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
-                padding: get4k(10px) get4k(20px);
-              }
-
-              &:hover {
-                background: var(--primary-color);
-                border-color: transparent;
-                color: var(--btn-text-hover);
-              }
-            }
-
-            &.Mui-checked {
-              &~span {
-                background: var(--primary-color);
-                border-color: transparent;
-                color: var(--btn-text-hover);
-              }
-            }
-          }
-        }
       }
 
       /* search */
@@ -1920,10 +1997,19 @@ body {
 
       .rl_btn_wrap {
         border-top: 1px solid var(--wc-border-color);
-        padding: 12px 12px 0 0;
+        padding: 12px 12px 12px 0;
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        z-index: 9;
+
+        @media #{$mq-4k} {
+          padding: get4k(12px) get4k(12px) get4k(12px) 0;
+        }
 
         a {
           text-decoration: none;
+          margin: 0;
         }
       }
     }
@@ -2328,32 +2414,35 @@ body {
 
     /* Confirmation Page */
     .confirmation_summary {
-      text-align: center;
       margin: 2rem 0;
 
-      .confirmed-icon {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 1rem;
 
-        @media #{$mq-4k} {
-          width: get4k(70px);
-          height: get4k(70px);
-          margin-bottom: get4k(16px);
+      .confirmation_msg {
+        text-align: center;
+
+        .confirmed-icon {
+          width: 70px;
+          height: 70px;
+          margin-bottom: 1rem;
+
+          @media #{$mq-4k} {
+            width: get4k(70px);
+            height: get4k(70px);
+            margin-bottom: get4k(16px);
+          }
+
+          @media #{$mq-tablet-md} {
+            width: 50px;
+            height: 50px;
+          }
         }
-      }
 
-      p {
-        margin-bottom: 2rem;
+        p {
+          margin-bottom: 2rem;
 
-        @media #{$mq-4k} {
-          margin-bottom: get4k(32px);
-        }
-      }
-
-      .res_date_card {
-        .res_date_body {
-          text-align: left;
+          @media #{$mq-4k} {
+            margin-bottom: get4k(32px);
+          }
         }
       }
 
@@ -2374,12 +2463,29 @@ body {
           margin-top: get4k(24px);
         }
 
-        p {
+        @media #{$mq-tablet-md} {
+          padding: 1rem;
+        }
+
+        @media #{$mq-mobile-sm} {
+          padding: 10px;
+        }
+
+        &>p {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
-          line-height: 1.5;
+          font-weight: 800;
 
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+          }
+
+          @media #{$mq-tablet-lg} {
+            font-size: calc(var(--wc-font-size) * 1px);
+          }
+
+          @media #{$mq-mobile-sm} {
+            font-size: calc((var(--wc-font-size) - 2) * 1px);
+            margin-bottom: 0;
           }
         }
 
@@ -2392,10 +2498,13 @@ body {
             margin: get4k(16px) get4k(-12px) 0 get4k(-12px);
           }
 
+          @media #{$mq-tablet-md} {
+            margin-top: 0;
+          }
+
           .card {
             width: 25%;
             flex: 0 0 25%;
-            background: white;
             border-radius: calc(var(--borderRadius)* 1px);
             position: relative;
             padding: 12px;
@@ -2403,6 +2512,16 @@ body {
             @media #{$mq-4k} {
               margin-right: get4k(16px);
               border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
+            }
+
+            @media #{$mq-tablet-md} {
+              width: 33.33%;
+              flex: 0 0 33.33%;
+            }
+
+            @media #{$mq-mobile-sm} {
+              width: 50%;
+              flex: 0 0 50%;
             }
 
             .card-body {
@@ -2419,20 +2538,34 @@ body {
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
 
+              @media #{$mq-mobile-sm} {
+                padding: 6px;
+              }
+
               p {
                 padding: 1rem;
                 margin-bottom: 0;
+                line-height: 1.25;
 
                 @media #{$mq-4k} {
                   padding: get4k(16px);
                   margin-bottom: 0;
+                }
+
+                @media #{$mq-tablet-lg} {
+                  font-size: calc((var(--wc-font-size) - 2) * 1px);
+                  padding: 0.5rem;
+                }
+
+                @media #{$mq-mobile-sm} {
+                  font-size: calc((var(--wc-font-size) - 4) * 1px);
                 }
               }
             }
 
             .card-img {
               width: 100%;
-              border-radius: calc(var(--borderRadius)* 1px);
+              border-radius: calc((var(--borderRadius) - 4) * 1px);
               margin: 0 auto;
               display: flex;
               aspect-ratio: 2 / 1.8;
@@ -2460,6 +2593,17 @@ body {
   }
 
   //MUI Customizations
+  .MuiSkeleton-root {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .MuiPaper-rounded {
+    border-radius: calc(var(--borderRadius) * 1px);
+  }
+
   .MuiAutocomplete-popper {
     .MuiPaper-root {
       border-radius: calc(var(--borderRadius) * 1px);

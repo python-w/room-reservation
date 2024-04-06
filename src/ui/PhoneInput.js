@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const CustomPhoneInput = ({ value, onChange, defaultCountry }) => {
     const [phone, setPhone] = useState("");
-    console.log(phone)
 
     return (
         <div>

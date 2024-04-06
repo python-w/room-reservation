@@ -11,7 +11,7 @@ const defaults = {
   transition: "slide"
 };
 
-function Carousel(props) {
+function Carousel({ children, showPageCount }) {
   const containerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -20,7 +20,9 @@ function Carousel(props) {
     const container = containerRef.current;
     const options = {
       ...defaults,
-      ...(props.options || {}),
+      infinite: false,
+      Dots: false,
+      Thumbs: false,
       on: {
         ready: (instance) => {
           setCurrentPage(instance.page + 1);
@@ -29,7 +31,6 @@ function Carousel(props) {
         change: (instance) => {
           setCurrentPage(instance.page + 1);
           setTotalPages(instance.pages.length);
-          // console.log(page+'/'+pages)
         }
       },
     };
@@ -38,12 +39,12 @@ function Carousel(props) {
     return () => {
       instance.destroy();
     };
-  }, [props.options]);
+  }, []);
 
   return (
     <div className="f-carousel" ref={containerRef}>
-      {props.children}
-      {props.showPageCount && <PageCountDisplay currentPage={currentPage} totalPages={totalPages} />}
+      {children}
+      {showPageCount && <PageCountDisplay currentPage={currentPage} totalPages={totalPages} />}
     </div>
   );
 }

@@ -46,6 +46,7 @@ const initialState = {
     isFilterShow: false,
     availableRooms: [],
     filterToggle: false,
+    isFilterNoMatch: false,
     roomsfilterItems,
     selectedFilters: [],
     adultsCount: {},
@@ -178,6 +179,7 @@ function reducer(state, action) {
             return {
                 ...state,
                 isLoading: true,
+                isFilterShow: true,
                 error: null
             };
         case 'SEARCH_ROOMS':
@@ -197,13 +199,11 @@ function reducer(state, action) {
             return {
                 ...state,
                 isLoading: false,
-                isFilterShow: true,
                 roomListing,
                 availableRooms: roomListing,
                 prevStartDate: state.startDate,
                 prevEndDate: state.endDate,
                 isSearchActive: true,
-                isSearchFixed: true,
             };
         case "SEARCH_ERROR":
             return {
@@ -219,10 +219,10 @@ function reducer(state, action) {
         case "FILTER_UPDATE":
             const filterValue = action.payload;
             const updatedFilters = state.selectedFilters.includes(filterValue) ? state.selectedFilters.filter((filter) => filter !== filterValue) : [...state.selectedFilters, filterValue];
-
             let availableRooms = filterRooms(state.roomListing, updatedFilters);
             if (availableRooms.length === 0) {
                 availableRooms = [];
+                state.isFilterNoMatch = true;
             }
             return {
                 ...state,
@@ -263,7 +263,6 @@ function reducer(state, action) {
                 bookedRooms: state.bookedRooms.map(room => {
                     if (room.id === guestRoomId) {
                         const updatedGuests = Array.isArray(room.guests) ? room.guests : [];
-                        console.log(room)
                         return {
                             ...room,
                             guests: [...updatedGuests, formData]

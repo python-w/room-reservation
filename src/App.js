@@ -8,7 +8,7 @@ import RoomDetails from "../src/pages/RoomDetails";
 import Confirmation from "../src/pages/Confirmation";
 import { SearchProvider } from "./contexts/SearchContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import ReservationSummary from "./pages/ReservationSummary";
+import ReservationSummary, { action as bookingAction } from "./pages/ReservationSummary";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,8 @@ const router = createBrowserRouter([
   },
   {
     path: '/reservation-summary',
-    element: <ReservationSummary />
+    element: <ReservationSummary />,
+    action: bookingAction
   },
   {
     path: '/bookings',
