@@ -7,21 +7,6 @@ const roomsToSearch = [
     { id: '0c2c7f98-9d97-11ec-b999-5b266c1e6223', 'adults': 8, 'children': 4 },
 ]
 
-const roomsfilterItems = [
-    {
-        title: "Room Types",
-        options: ["Standard Room", "Deluxe Room", "Executive Room", "Superior Room", "Connecting Rooms"],
-    },
-    {
-        title: "Bed Type",
-        options: ["Single / Twin", "Double", "King", "Queen", "Bunk Bed"],
-    },
-    {
-        title: "Room Amenities",
-        options: ["2 Double Beds", "Dinner", "Swimming Pool", "Wifi", "Free Parking", "Air Conditioning", "TV", "Balcony", "Heating", "Bathtub", "Smoking"],
-    },
-];
-
 const today = new Date();
 const tomorrow = new Date(today);
 tomorrow.setDate(today.getDate() + 1);
@@ -47,7 +32,6 @@ const initialState = {
     availableRooms: [],
     filterToggle: false,
     isFilterNoMatch: false,
-    roomsfilterItems,
     selectedFilters: [],
     adultsCount: {},
     childrenCount: {},
@@ -184,23 +168,11 @@ function reducer(state, action) {
             };
         case 'SEARCH_ROOMS':
             const searchrooms = action.payload;
-            const minOccupancy = Math.min(...state.searchedRooms.map(room => room.adults + room.children));
-            const roomListing = searchrooms.filter(room => {
-                const overlappingReservations = room.reservations.some(reservation => {
-                    const resStartDate = new Date(reservation.startDate);
-                    const resEndDate = new Date(reservation.endDate);
-                    const searchStartDate = new Date(state.startDate);
-                    const searchEndDate = new Date(state.endDate);
-                    return (searchStartDate < resEndDate && searchEndDate > resStartDate);
-                });
-
-                return !overlappingReservations && room.available && room.maxOccupancy >= minOccupancy;
-            });
             return {
                 ...state,
                 isLoading: false,
-                roomListing,
-                availableRooms: roomListing,
+                roomListing: searchrooms,
+                availableRooms: searchrooms,
                 prevStartDate: state.startDate,
                 prevEndDate: state.endDate,
                 isSearchActive: true,
@@ -216,25 +188,12 @@ function reducer(state, action) {
                 ...state,
                 filterToggle: !state.filterToggle,
             };
-        case "FILTER_UPDATE":
-            const filterValue = action.payload;
-            const updatedFilters = state.selectedFilters.includes(filterValue) ? state.selectedFilters.filter((filter) => filter !== filterValue) : [...state.selectedFilters, filterValue];
-            let availableRooms = filterRooms(state.roomListing, updatedFilters);
-            if (availableRooms.length === 0) {
-                availableRooms = [];
-                state.isFilterNoMatch = true;
-            }
-            return {
-                ...state,
-                selectedFilters: updatedFilters,
-                availableRooms: availableRooms,
-            };
         case 'UPDATE_BOOKED_ROOMS':
             return { ...state, bookedRooms: action.payload };
         case 'UPDATE_BOOKED_ROOM_COUNT':
             const { roomId, count } = action.payload;
             const updatedRooms = state.availableRooms.map(room =>
-                room.id === roomId ? { ...room, bookedRoomCount: count, isSelected: count > 0 } : room
+                room.roomId === roomId ? { ...room, bookedRoomCount: count, isSelected: count > 0 } : room
             );
             return { ...state, availableRooms: updatedRooms };
         case 'BOOK_ROOM_ADD':
@@ -279,17 +238,6 @@ function reducer(state, action) {
     }
 }
 
-const filterRooms = (roomListing, selectedFilters) => {
-    if (selectedFilters.length === 0) {
-        return roomListing;
-    }
-    return roomListing.filter((room) => {
-        if (selectedFilters.includes(room.roomtype) || selectedFilters.includes(room.bedtype) || selectedFilters.every((amenity) => room.amenities.includes(amenity))) {
-            return true;
-        }
-        return false;
-    });
-};
 
 const SearchContext = createContext();
 

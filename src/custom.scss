@@ -33,18 +33,97 @@ body {
 
     }
 
+    //Porlet Banner
+    .room_reservation_banner {
+      background-size: cover !important;
+      padding: 5% 0 9% 0;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      position: relative;
+      overflow: hidden;
+
+      @media #{$mq-4k} {
+        border-bottom-left-radius: get4k(30px);
+        border-bottom-right-radius: get4k(30px);
+      }
+
+      &::before {
+        content: '';
+        background: var(--primary-color);
+        content: "";
+        background: var(--primary-color);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+      }
+
+      .room_reservation_title {
+        position: relative;
+
+        h2,
+        p {
+          color: #fff;
+          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+
+        }
+
+        h2 {
+          margin-bottom: 10px;
+
+          @media #{$mq-4k} {
+            margin-bottom: get4k(10px);
+          }
+        }
+
+        p {
+          font-size: calc(var(--wc-fs-heading4) * 1px);
+          margin-bottom: 0;
+          line-height: 1.25;
+
+          @media #{$mq-tablet-lg} {
+            font-size: calc((var(--wc-fs-heading4) - 2) * 1px);
+          }
+
+          @media #{$mq-tablet-md} {
+            font-size: calc((var(--wc-fs-heading4) - 4) * 1px);
+          }
+
+          @media #{$mq-tablet-sm} {
+            font-size: calc((var(--wc-fs-heading4) - 6) * 1px);
+          }
+
+          @media #{$mq-mobile-sm} {
+            font-size: calc((var(--wc-fs-heading4) - 8) * 1px);
+          }
+        }
+      }
+    }
+
     //Search Component
+    .portlet_has_banner {
+      .search_wrap {
+        margin-top: -5%;
+      }
+
+      &.search_wrap_fixed {
+        margin-top: 0;
+      }
+    }
+
     .search_wrap_inner {
       border: 1px solid var(--wc-border-color);
       box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
       border-radius: calc(var(--borderRadius) * 1px);
       padding: 56px 40px;
-      margin-top: 56px;
+      background: #fff;
+      position: relative;
 
       @media #{$mq-4k} {
         border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         padding: get4k(56px) get4k(40px);
-        margin-top: get4k(56px);
       }
 
       @media #{$mq-tablet-md} {
@@ -80,7 +159,6 @@ body {
       background: var(--primary-color);
 
       .search_wrap_inner {
-        margin-top: 0;
         box-shadow: none;
         margin-bottom: 0;
         position: relative;
@@ -88,12 +166,12 @@ body {
         z-index: 9;
         border: 0;
         border-radius: 0;
+        background: transparent;
 
         @media #{$mq-4k} {
           padding: get4k(30px) 0;
           margin-bottom: get4k(32px);
           border-radius: 0;
-          margin-top: 0;
         }
 
         @media #{$mq-tablet-md} {
@@ -1162,31 +1240,10 @@ body {
 
       .rdrMonth {
         position: relative;
-        padding: 10px 0;
         flex: 1;
-
-        @media #{$mq-4k} {
-          padding: get4k(10px) 0;
-        }
 
         @media #{$mq-mobile-sm} {
           width: 100%;
-        }
-
-        &:first-of-type {
-          padding-right: 10px;
-
-          @media #{$mq-4k} {
-            padding-right: get4k(10px);
-          }
-        }
-
-        &:last-of-type {
-          padding-left: 10px;
-
-          @media #{$mq-4k} {
-            padding-left: get4k(10px);
-          }
         }
       }
 
@@ -1264,6 +1321,21 @@ body {
               @media #{$mq-4k} {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
+              }
+            }
+          }
+
+
+          &.rdrDayToday {
+
+            .rdrInRange,
+            .rdrEndEdge {
+              border-top-left-radius: calc(var(--borderRadius) * 1px);
+              border-bottom-left-radius: calc(var(--borderRadius) * 1px);
+
+              @media #{$mq-4k} {
+                border-top-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
+                border-bottom-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
             }
           }
@@ -1417,7 +1489,7 @@ body {
     .roomThumb {
       display: flex;
       height: 100%;
-      border-radius: calc(var(--borderRadius) * 1px);
+      border-radius: calc((var(--borderRadius) - 2) * 1px);
       overflow: hidden;
       background: var(--wc-body-bg);
 
@@ -1572,8 +1644,23 @@ body {
       margin-top: 56px;
       padding-top: 0;
 
-      &.has_pt {
-        padding-top: 256px;
+      // &.has_pt {
+      //   padding-top: 256px;
+      // }
+      @media #{$mq-4k} {
+        margin-top: get4k(56px);
+      }
+
+      @media #{$mq-tablet-lg} {
+        margin-top: 40px;
+      }
+
+      @media #{$mq-tablet-md} {
+        margin-top: 30px;
+      }
+
+      @media #{$mq-tablet-sm} {
+        margin-top: 20px;
       }
 
       /* filter */
@@ -1585,6 +1672,10 @@ body {
         @media #{$mq-4k} {
           margin-bottom: get4k(32px);
           padding-bottom: get4k(12px);
+        }
+
+        @media #{$mq-tablet-sm} {
+          margin-bottom: 1rem;
         }
       }
 
@@ -1611,6 +1702,22 @@ body {
 
           @media #{$mq-4k} {
             margin-bottom: 0;
+          }
+        }
+
+        label {
+          margin-bottom: 1rem;
+
+          @media #{$mq-4k} {
+            margin-bottom: get4k(16px);
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+
+            @media #{$mq-4k} {
+              margin-bottom: 0;
+            }
           }
         }
       }
@@ -1750,8 +1857,10 @@ body {
           }
         }
 
-        .card-text {
+        .card-address {
           margin-bottom: 20px;
+          text-decoration: none;
+          color: inherit;
         }
 
         .lcard-desc {
@@ -1916,14 +2025,24 @@ body {
           font-weight: 600;
           margin-top: 0;
           margin-left: auto;
+          display: inline-flex;
+          align-items: center;
+          height: 40px;
 
           @media #{$mq-4k} {
             margin-top: 0;
+            height: get4k(40px);
           }
 
           @media #{$mq-mobile-sm} {
             margin-left: 0;
             margin-top: 1rem;
+          }
+
+          &.btn-selected {
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: normal;
           }
         }
       }
@@ -2074,6 +2193,11 @@ body {
           @media #{$mq-4k} {
             margin-bottom: get4k(12.8px);
           }
+        }
+
+        .card-address {
+          text-decoration: none;
+          color: inherit;
         }
       }
 

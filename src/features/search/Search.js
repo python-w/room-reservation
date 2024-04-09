@@ -14,12 +14,15 @@ import { useState } from "react";
 import CheckAvailability from "../check-availability/CheckAvailability";
 import useScrollToTop from "../../hooks/useScrollToTop ";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import useInfiniteScroll from "../../hooks/useInfiniteScroll";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Search() {
+    const navigate = useNavigate();
     const isTop = useScrollToTop();
+    const isBottom = useInfiniteScroll();
     const { isLargeScreen } = useWindowWidth();
-
     const [dateModalOpen, setDateModalOpen] = useState(false);
     const [roomsModalOpen, setRoomsModalOpen] = useState(false);
     const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
@@ -60,14 +63,15 @@ export default function Search() {
         const endDateFormat = format(endDate, 'MMM dd, yyyy');
         const prevEndDateFormat = format(prevEndDate, 'MMM dd, yyyy');
         try {
-            !isSearchActive && await searchDispatch();
+            if (!isSearchActive) {
+                navigate('/searchresults')
+                await searchDispatch();
+            }
             (startDateFormat !== prevStartDateFormat || endDateFormat !== prevEndDateFormat) && await searchDispatch();
         } catch (error) {
             dispatch({ type: 'SEARCH_ERROR', payload: error });
         }
     }
-
-
 
     return (
         <>
@@ -78,7 +82,7 @@ export default function Search() {
                             <Grid item className="search_field date_field">
                                 <div className="label_group">
                                     <label>Check In & Out Dates</label>
-                                    <button onClick={handleOpenChkAvlModal} className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon />Check Availability</button>
+                                    <button onClick={handleOpenChkAvlModal} className="btn btn-wc-transparent btn-checkavail"><DateRangeOutlinedIcon /><span className="d-none d-sm-inline-block">Check Availability</span></button>
                                 </div>
                                 <div className="custom_input_outer">
                                     <div role="button" className="customInputBox customInputBoxCal" onClick={handleDateModalOpen}>
@@ -122,7 +126,6 @@ export default function Search() {
             </div>
             <div className="container">
                 <CheckAvailability handleClose={handleCloseChkAvlModal} open={openChkAvlModal} />
-                <Listing />
             </div>
         </>
     )

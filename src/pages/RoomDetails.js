@@ -1,20 +1,27 @@
-import { styled } from "@mui/material/styles";
-import { Typography, FormControlLabel, FormControl, Radio, RadioGroup } from "@mui/material";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Fancybox from "../ui/ListingFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
 import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '../utils/Icons'
 import RateDetails from "../features/room-details/RateDetails";
+import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
+import extractAmenities from "../utils/extractAmenities";
 
 export default function RoomDetails() {
   const navigate = useNavigate();
   const { roomId } = useParams();
   const { state } = useSearch();
   const { availableRooms } = state;
-  const room = availableRooms.filter(room => room.id === roomId)[0];
+  const room = availableRooms.filter(room => room.roomId === roomId)[0];
+
+  //Google Maps
+  const googleMapsUrl = generateGoogleMapsUrl(room.address);
+
+  //Amenities
+  const amenities = extractAmenities(room);
+
 
   return (
     <div className="container">
@@ -37,13 +44,13 @@ export default function RoomDetails() {
           </div>
           <div className="room-bio">
             <h3 className="card-title">
-              {room.title}
+              {room.name}
             </h3>
-            {room.address &&
-              <p className="card-text" style={{ alignItems: "center", display: "flex" }}>
+            {room.address?.addressLine1 &&
+              <Link to={googleMapsUrl} target="_blank" className="card-address" style={{ alignItems: "center", display: "flex" }}>
                 <LocationOnOutlinedIcon />
-                {room.address}
-              </p>
+                {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
+              </Link>
             }
           </div>
           <div className="row">
@@ -56,11 +63,11 @@ export default function RoomDetails() {
                   <div className="card-description">
                     <p>{room.description}</p>
                   </div>
-                  {room.amenities &&
+                  {amenities &&
                     <div className="damenities-card damenities-card-01">
                       <strong>Amenities Included</strong>
                       <ul>
-                        {room.amenities.map((el, index) =>
+                        {amenities.map((el, index) =>
                           <li key={index}>
                             {el in amenityIcons && amenityIcons[el]}
                             {el}
@@ -110,7 +117,7 @@ export default function RoomDetails() {
             </div>
             <div className="col-lg-4 rateDMain">
               <div className="card rate-details">
-                <RateDetails room={room} key={room.id} />
+                {/* <RateDetails room={room} key={room.roomId} /> */}
               </div>
             </div>
           </div>

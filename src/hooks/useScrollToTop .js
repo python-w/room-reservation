@@ -5,12 +5,22 @@ const useScrollToTop = (threshold = 100) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollTop = window.pageYOffset;
-
-            if (scrollTop > threshold) {
-                setIsTop(true);
+            if (document.querySelector('.room_reservation_banner')) {
+                const bannerHeight = document.querySelector('.room_reservation_banner').clientHeight;
+                const scrollTop = window.scrollY;
+                if (scrollTop >= bannerHeight) {
+                    setIsTop(true);
+                } else {
+                    setIsTop(false);
+                }
             } else {
-                setIsTop(false);
+                const scrollTop = window.scrollY;
+
+                if (scrollTop > threshold) {
+                    setIsTop(true);
+                } else {
+                    setIsTop(false);
+                }
             }
         };
 

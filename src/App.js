@@ -2,18 +2,23 @@ import "./index.css";
 import "./custom.scss";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import Search from "./features/search/Search";
 import CustomTheme from "./customTheme";
 import RoomDetails from "../src/pages/RoomDetails";
 import Confirmation from "../src/pages/Confirmation";
 import { SearchProvider } from "./contexts/SearchContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ReservationSummary, { action as bookingAction } from "./pages/ReservationSummary";
+import RoomListing from "./pages/Listing";
+import Index from "./pages/Index";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Search />
+    element: <Index />
+  },
+  {
+    path: '/searchresults',
+    element: <RoomListing />
   },
   {
     path: '/room/:roomId',

@@ -5,19 +5,19 @@ const useInfiniteScroll = () => {
 
     const handleInfiniteScroll = () => {
         const roomListing = document.querySelector('.room_listing');
+        if (!roomListing) return;
         const roomListingRect = roomListing.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        const isBottom = roomListingRect.bottom <= windowHeight;
+        const bottom = roomListingRect.bottom <= windowHeight;
 
-        setIsBottom(isBottom);
-    }
+        setIsBottom(bottom);
+    };
 
     useEffect(() => {
         window.addEventListener("scroll", handleInfiniteScroll);
         return () => window.removeEventListener("scroll", handleInfiniteScroll);
     }, []);
-
 
     return isBottom;
 };
