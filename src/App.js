@@ -1,39 +1,41 @@
 import "./index.css";
 import "./custom.scss";
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { Alert, CssBaseline } from "@mui/material";
 import CustomTheme from "./customTheme";
 import RoomDetails from "../src/pages/RoomDetails";
 import Confirmation from "../src/pages/Confirmation";
 import { SearchProvider } from "./contexts/SearchContext";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import ReservationSummary, { action as bookingAction } from "./pages/ReservationSummary";
+import ReservationSummary, {
+  action as bookingAction,
+} from "./pages/ReservationSummary";
 import RoomListing from "./pages/Listing";
 import Index from "./pages/Index";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Index />
+    path: "/",
+    element: <Index />,
   },
   {
-    path: '/searchresults',
-    element: <RoomListing />
+    path: "/searchresults",
+    element: <RoomListing />,
   },
   {
-    path: '/room/:roomId',
-    element: <RoomDetails />
+    path: "/room/:roomId",
+    element: <RoomDetails />,
   },
   {
-    path: '/reservation-summary',
+    path: "/reservation-summary",
     element: <ReservationSummary />,
-    action: bookingAction
+    action: bookingAction,
   },
   {
-    path: '/bookings',
+    path: "/bookings",
     element: <Confirmation />,
   },
-])
+]);
 function App() {
   return (
     <div className="webc-container">

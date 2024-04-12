@@ -56,7 +56,7 @@
   "rooms": [
     {
       "roomTypeId": 1,
-      "roomId": "0",
+      "roomId": "1",
       "companyId": 1,
       "siteId": 1,
       "name": "VIP Suite",
@@ -188,7 +188,7 @@
     },
     {
       "roomTypeId": 2,
-      "roomId": "1",
+      "roomId": "2",
       "companyId": 1,
       "siteId": 1,
       "name": "King",
@@ -321,7 +321,7 @@
     },
     {
       "roomTypeId": 6,
-      "roomId": "42",
+      "roomId": "3",
       "companyId": 1,
       "siteId": 1,
       "name": "523",
@@ -423,7 +423,2887 @@
     },
     {
       "roomTypeId": 6,
-      "roomId": "75",
+      "roomId": "4",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "533",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/66/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/66/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        }
+      ],
+      "id": "8ac7"
+    },
+    {
+      "roomTypeId": 1,
+      "roomId": "5",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "VIP Suite",
+      "description": "1 queen bed - sofa-bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [],
+      "noOfAvailableRooms": 2,
+      "defaultRate": 200,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5551,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/67/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/67/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 81,
+              "filterName": "Breakfast"
+            },
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "5529"
+    },
+    {
+      "roomTypeId": 2,
+      "roomId": "6",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "King",
+      "description": "1 king bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [
+        "1_3",
+        "2_3",
+        "3_3",
+        "5_3"
+      ],
+      "noOfAvailableRooms": 9,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 0,
+        "addressLine1": "",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 0,
+        "country": "",
+        "state_id": 0,
+        "state": "",
+        "city": "",
+        "postalCode": ""
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/64/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/64/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "83f5"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "7",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "523",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/65/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/65/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": null,
+      "id": "6be3"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "8",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "533",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/66/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/66/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        }
+      ],
+      "id": "8ac7"
+    },
+    {
+      "roomTypeId": 1,
+      "roomId": "9",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "VIP Suite",
+      "description": "1 queen bed - sofa-bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [],
+      "noOfAvailableRooms": 2,
+      "defaultRate": 200,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5551,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/67/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/67/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 81,
+              "filterName": "Breakfast"
+            },
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "5529"
+    },
+    {
+      "roomTypeId": 2,
+      "roomId": "10",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "King",
+      "description": "1 king bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [
+        "1_3",
+        "2_3",
+        "3_3",
+        "5_3"
+      ],
+      "noOfAvailableRooms": 9,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 0,
+        "addressLine1": "",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 0,
+        "country": "",
+        "state_id": 0,
+        "state": "",
+        "city": "",
+        "postalCode": ""
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/64/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/64/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "83f5"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "11",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "523",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/65/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/65/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": null,
+      "id": "6be3"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "12",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "533",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/66/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/66/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        }
+      ],
+      "id": "8ac7"
+    },
+    {
+      "roomTypeId": 1,
+      "roomId": "13",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "VIP Suite",
+      "description": "1 queen bed - sofa-bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [],
+      "noOfAvailableRooms": 2,
+      "defaultRate": 200,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5551,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/67/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/67/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 81,
+              "filterName": "Breakfast"
+            },
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "5529"
+    },
+    {
+      "roomTypeId": 2,
+      "roomId": "14",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "King",
+      "description": "1 king bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [
+        "1_3",
+        "2_3",
+        "3_3",
+        "5_3"
+      ],
+      "noOfAvailableRooms": 9,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 0,
+        "addressLine1": "",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 0,
+        "country": "",
+        "state_id": 0,
+        "state": "",
+        "city": "",
+        "postalCode": ""
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/64/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/64/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "83f5"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "15",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "523",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/65/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/65/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": null,
+      "id": "6be3"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "16",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "533",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/66/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/66/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        }
+      ],
+      "id": "8ac7"
+    },
+    {
+      "roomTypeId": 1,
+      "roomId": "17",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "VIP Suite",
+      "description": "1 queen bed - sofa-bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [],
+      "noOfAvailableRooms": 2,
+      "defaultRate": 200,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5551,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/67/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/67/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 81,
+              "filterName": "Breakfast"
+            },
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "5529"
+    },
+    {
+      "roomTypeId": 2,
+      "roomId": "18",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "King",
+      "description": "1 king bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [
+        "1_3",
+        "2_3",
+        "3_3",
+        "5_3"
+      ],
+      "noOfAvailableRooms": 9,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 0,
+        "addressLine1": "",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 0,
+        "country": "",
+        "state_id": 0,
+        "state": "",
+        "city": "",
+        "postalCode": ""
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/64/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/64/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "83f5"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "19",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "523",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/65/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/65/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": null,
+      "id": "6be3"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "20",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "533",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/66/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/66/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        }
+      ],
+      "id": "8ac7"
+    },
+    {
+      "roomTypeId": 1,
+      "roomId": "21",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "VIP Suite",
+      "description": "1 queen bed - sofa-bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [],
+      "noOfAvailableRooms": 2,
+      "defaultRate": 200,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5551,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/67/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/67/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 81,
+              "filterName": "Breakfast"
+            },
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "5529"
+    },
+    {
+      "roomTypeId": 2,
+      "roomId": "22",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "King",
+      "description": "1 king bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [
+        "1_3",
+        "2_3",
+        "3_3",
+        "5_3"
+      ],
+      "noOfAvailableRooms": 9,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 0,
+        "addressLine1": "",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 0,
+        "country": "",
+        "state_id": 0,
+        "state": "",
+        "city": "",
+        "postalCode": ""
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/64/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/64/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "83f5"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "23",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "523",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/65/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/65/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": null,
+      "id": "6be3"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "24",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "533",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/66/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/66/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        }
+      ],
+      "id": "8ac7"
+    },
+    {
+      "roomTypeId": 1,
+      "roomId": "25",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "VIP Suite",
+      "description": "1 queen bed - sofa-bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [],
+      "noOfAvailableRooms": 2,
+      "defaultRate": 200,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5551,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/67/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/67/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 81,
+              "filterName": "Breakfast"
+            },
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "5529"
+    },
+    {
+      "roomTypeId": 2,
+      "roomId": "26",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "King",
+      "description": "1 king bed with bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 0,
+      "ageGroupPersons": [
+        "1_3",
+        "2_3",
+        "3_3",
+        "5_3"
+      ],
+      "noOfAvailableRooms": 9,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 0,
+        "addressLine1": "",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 0,
+        "country": "",
+        "state_id": 0,
+        "state": "",
+        "city": "",
+        "postalCode": ""
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/64/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/64/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": [
+        {
+          "categoryId": 78,
+          "categoryName": "Amenities",
+          "filters": [
+            {
+              "filterId": 85,
+              "filterName": "Lunch"
+            }
+          ]
+        },
+        {
+          "categoryId": 79,
+          "categoryName": "Bedroom",
+          "filters": [
+            {
+              "filterId": 80,
+              "filterName": "1 Bed"
+            }
+          ]
+        },
+        {
+          "categoryId": 87,
+          "categoryName": "Smoking",
+          "filters": [
+            {
+              "filterId": 88,
+              "filterName": "Yes"
+            }
+          ]
+        }
+      ],
+      "id": "83f5"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "27",
+      "companyId": 1,
+      "siteId": 1,
+      "name": "523",
+      "description": "1 queen bed no bath",
+      "roomSize": "",
+      "bedsize": "",
+      "noOfBeds": 1,
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:30 AM",
+      "websiteView": 1,
+      "ageGroupPersons": [
+        "1_1",
+        "2_1",
+        "3_1",
+        "5_1"
+      ],
+      "noOfAvailableRooms": 1,
+      "defaultRate": null,
+      "rateMap": {
+        "1": 129,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 249,
+        "6": 200,
+        "7": 50,
+        "8": 50,
+        "9": 50,
+        "10": 50,
+        "11": 50,
+        "12": 50,
+        "13": 50,
+        "14": 50,
+        "15": 50,
+        "16": 50,
+        "17": 50,
+        "18": 50,
+        "19": 50,
+        "20": 50,
+        "21": 50,
+        "22": 50,
+        "23": 50,
+        "24": 50,
+        "25": 50,
+        "26": 50,
+        "27": 50,
+        "28": 50,
+        "29": 50,
+        "30": 50,
+        "31": 50,
+        "32": 50,
+        "33": 50,
+        "34": 50,
+        "35": 50,
+        "36": 50,
+        "37": 50,
+        "38": 50,
+        "39": 50,
+        "40": 50,
+        "41": 50,
+        "42": 50,
+        "43": 50,
+        "44": 50,
+        "45": 50,
+        "46": 50,
+        "47": 50,
+        "48": 50,
+        "49": 50,
+        "50": 50
+      },
+      "smoking": false,
+      "onlineDescription": "Hello,<br /><em>This </em>is <strong>smart</strong> <u>text</u>.",
+      "address": {
+        "addressId": 5552,
+        "addressLine1": "1600 Northstar",
+        "addressLine2": "",
+        "addressLine3": "",
+        "country_Id": 2,
+        "country": "United States",
+        "state_id": 3,
+        "state": "New York",
+        "city": "New York City",
+        "postalCode": "12345"
+      },
+      "images": {
+        "thumbs": [
+          "https://lipsum.app/id/65/400x300",
+          "https://lipsum.app/id/61/400x300",
+          "https://lipsum.app/id/63/400x300"
+        ],
+        "large": [
+          "https://lipsum.app/id/65/1920x1080",
+          "https://lipsum.app/id/61/1920x1080",
+          "https://lipsum.app/id/63/1920x1080"
+        ]
+      },
+      "roomFilters": null,
+      "id": "6be3"
+    },
+    {
+      "roomTypeId": 6,
+      "roomId": "28",
       "companyId": 1,
       "siteId": 1,
       "name": "533",
@@ -583,7 +3463,7 @@
       "id": "5f6a",
       "bookedRoom": [
         {
-          "roomId": "0",
+          "roomId": "29",
           "bookingId": "e8391e11-1afd-4a45-acaf-174f5bc50498",
           "title": "VIP Suite",
           "thumbnail": "https://lipsum.app/id/67/400x300",
