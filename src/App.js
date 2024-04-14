@@ -12,6 +12,7 @@ import ReservationSummary, {
 } from "./pages/ReservationSummary";
 import RoomListing from "./pages/Listing";
 import Index from "./pages/Index";
+import SearchComponent from "./pages/Test";
 
 const router = createBrowserRouter([
   {

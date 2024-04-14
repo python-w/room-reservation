@@ -10,23 +10,25 @@ import { useSearch } from "../../contexts/SearchContext";
 import { format } from "date-fns";
 import { getRooms } from "../../services/apiRooms";
 import Listing from "../../pages/Listing";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckAvailability from "../check-availability/CheckAvailability";
 import useScrollToTop from "../../hooks/useScrollToTop ";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Search() {
   const navigate = useNavigate();
-  const isTop = useScrollToTop();
   const { isLargeScreen } = useWindowWidth();
+  const isBottom = useInfiniteScroll();
+
   const [dateModalOpen, setDateModalOpen] = useState(false);
   const [roomsModalOpen, setRoomsModalOpen] = useState(false);
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
 
   const { state, dispatch } = useSearch();
-  const { startDate, endDate, guests, roomsInSearch, error } = state;
+  const { startDate, endDate, guests, roomsInSearch, error, isLoading } = state;
 
   const checkInDate = format(startDate, "E, d MMM");
   const checkOutDate = format(endDate, "E, d MMM");
@@ -49,22 +51,57 @@ export default function Search() {
   const handleOpenChkAvlModal = () => setOpenChkAvlModal(true);
   const handleCloseChkAvlModal = () => setOpenChkAvlModal(false);
 
-  const handleSearch = async () => {
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [allPagesFetched, setAllPagesFetched] = useState(false);
+  const fetchData = async () => {
+    dispatch({ type: "SEARCH_LOADING" });
     try {
-      navigate("/searchresults");
-      await getRooms(dispatch);
+      const response = await axios.get(
+        `http://localhost:5000/rooms?websiteView=0&noOfBeds=1&_page=${page}`
+      );
+      const totalPages = response.data.pages;
+      setTotalPages(totalPages);
+
+      dispatch({ type: "SEARCH_ROOMS", payload: response.data.data });
+      if (page >= totalPages) {
+        setAllPagesFetched(true);
+      }
     } catch (error) {
-      dispatch({ type: "SEARCH_ERROR", payload: error.message });
+      console.error("Error fetching data:", error);
     }
+  };
+  useEffect(() => {
+    if (allPagesFetched) return;
+    const handleScroll = async () => {
+      if (isBottom && page < totalPages && !allPagesFetched && !isLoading) {
+        dispatch({ type: "LOADING_ROOMS" });
+        const newPage = page + 1;
+        setPage(newPage);
+        const response = await axios.get(
+          `http://localhost:5000/rooms?websiteView=0&noOfBeds=1&_page=${newPage}`
+        );
+        if (newPage > page) {
+          dispatch({ type: "LOADMORE_ROOMS", payload: response.data.data });
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [page, isBottom, allPagesFetched]);
+
+  const handleSearch = async () => {
+    navigate("/searchresults");
+    await fetchData();
   };
 
   return (
     <>
-      <div
-        className={`${
-          isTop && isLargeScreen ? "search_wrap_fixed" : ""
-        } search_wrap`}
-      >
+      <div className="search_wrap">
         <div className="container">
           <div className="search_wrap_inner">
             <Grid container spacing={2} alignItems={"flex-end"}>

@@ -34,6 +34,7 @@ const initialState = {
   childrenCount: {},
   guests: 1,
   isLoading: false,
+  isLoadingMore: false,
   bookedRooms: [],
   isDetailView: false,
   bookingCount: 0,
@@ -182,14 +183,31 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        roomListing: searchrooms,
         availableRooms: searchrooms,
+      };
+    case "LOADING_ROOMS":
+      return {
+        ...state,
+        isLoadingMore: true,
+        error: null,
+      };
+    case "LOADMORE_ROOMS":
+      const morerooms = action.payload;
+      return {
+        ...state,
+        isLoadingMore: false,
+        availableRooms: [...state.availableRooms, ...morerooms],
       };
     case "SEARCH_ERROR":
       return {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case "INFINITE_SCROLL":
+      console.log(state.availableRooms);
+      return {
+        ...state,
       };
     case "FILTER_TOGGLE":
       return {

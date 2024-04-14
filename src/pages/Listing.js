@@ -4,14 +4,19 @@ import FilterButton from "../ui/FilterButton";
 import RoomListView from "../ui/RoomListView";
 import useWindowWidth from "../hooks/useWindowWidth";
 import { useSearch } from "../contexts/SearchContext";
-import { Link, useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useScrollToTop from "../hooks/useScrollToTop ";
 import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
+import useInfiniteScroll from "../hooks/useInfiniteScroll";
+import React, { useEffect, useRef, useState } from "react";
+import { getRooms } from "../services/apiRooms";
+import axios from "axios";
 
-export default function RoomListing() {
-  const { state } = useSearch();
+export function RoomListing() {
+  const { state, dispatch } = useSearch();
   const isTop = useScrollToTop();
+  const isBottom = useInfiniteScroll();
   const { isLargeScreen } = useWindowWidth();
 
   const {
@@ -20,6 +25,7 @@ export default function RoomListing() {
     isFilterShow,
     isFilterNoMatch,
     isLoading,
+    isLoadingMore,
     error,
     isSearchActive,
     bookedRooms,
@@ -27,7 +33,13 @@ export default function RoomListing() {
 
   return (
     <>
-      <Search />
+      <div
+        className={`${
+          isTop && isLargeScreen ? "search_wrap_fixed" : ""
+        } search_listing`}
+      >
+        <Search />
+      </div>
       <div className="container">
         {error && (
           <Alert severity="error" className="mt-5">
@@ -85,6 +97,10 @@ export default function RoomListing() {
                   </>
                 )
               )}
+              {isLoadingMore &&
+                Array.from({ length: 4 }, (_, index) => (
+                  <ListingSkeleton key={index} />
+                ))}
             </div>
           </div>
         </div>
@@ -92,3 +108,5 @@ export default function RoomListing() {
     </>
   );
 }
+
+export default React.memo(RoomListing);

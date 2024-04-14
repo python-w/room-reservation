@@ -107,10 +107,6 @@ body {
       .search_wrap {
         margin-top: -5%;
       }
-
-      &.search_wrap_fixed {
-        margin-top: 0;
-      }
     }
 
     .search_wrap_inner {
@@ -1174,7 +1170,9 @@ body {
       @media #{$mq-mobile-sm} {
         width: 100%;
       }
-
+      .rdrDayDisabled{
+        cursor: not-allowed !important;
+      }
       .rdrDayToday {
         .rdrDayNumber {
           span {
@@ -1935,6 +1933,13 @@ body {
             font-size: get4k(14px);
           }
         }
+      }
+
+      .room_desc{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100%;
       }
 
       .card-body {
