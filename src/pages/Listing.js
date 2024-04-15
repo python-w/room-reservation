@@ -1,3 +1,4 @@
+import React from "react";
 import Alert from "@mui/material/Alert";
 import Filters from "../features/filter/Filters";
 import FilterButton from "../ui/FilterButton";
@@ -8,15 +9,9 @@ import { Link } from "react-router-dom";
 import useScrollToTop from "../hooks/useScrollToTop ";
 import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
-import useInfiniteScroll from "../hooks/useInfiniteScroll";
-import React, { useEffect, useRef, useState } from "react";
-import { getRooms } from "../services/apiRooms";
-import axios from "axios";
-
 export function RoomListing() {
-  const { state, dispatch } = useSearch();
+  const { state } = useSearch();
   const isTop = useScrollToTop();
-  const isBottom = useInfiniteScroll();
   const { isLargeScreen } = useWindowWidth();
 
   const {
@@ -34,9 +29,8 @@ export function RoomListing() {
   return (
     <>
       <div
-        className={`${
-          isTop && isLargeScreen ? "search_wrap_fixed" : ""
-        } search_listing`}
+        className={`${isTop && isLargeScreen ? "search_wrap_fixed" : ""
+          } search_listing`}
       >
         <Search />
       </div>
@@ -97,6 +91,11 @@ export function RoomListing() {
                   </>
                 )
               )}
+              {error && isLoadingMore &&
+                <Alert severity="error" className="my-5">
+                  {error}
+                </Alert>
+              }
               {isLoadingMore &&
                 Array.from({ length: 4 }, (_, index) => (
                   <ListingSkeleton key={index} />

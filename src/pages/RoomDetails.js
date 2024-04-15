@@ -17,7 +17,7 @@ export default function RoomDetails() {
   const room = availableRooms.filter(room => room.roomId === roomId)[0];
 
   //Google Maps
-  const googleMapsUrl = generateGoogleMapsUrl(room.address);
+  const googleMapsUrl = generateGoogleMapsUrl(room?.address);
 
   //Amenities
   const amenities = extractAmenities(room);
@@ -46,10 +46,10 @@ export default function RoomDetails() {
             <h3 className="card-title">
               {room.name}
             </h3>
-            {room.address?.addressLine1 &&
+            {room?.address?.addressLine1 &&
               <Link to={googleMapsUrl} target="_blank" className="card-address" style={{ alignItems: "center", display: "flex" }}>
                 <LocationOnOutlinedIcon />
-                {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
+                {`${room?.address?.addressLine1}, ${room?.address?.state}, ${room?.address?.postalCode}`}
               </Link>
             }
           </div>

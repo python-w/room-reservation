@@ -162,9 +162,6 @@ export default function RoomListView({ room, index }) {
             <div className="card-body">
               <div className="status-badges">
                 <span className="badge badge-pill badge-primary">
-                  {room.roomId}
-                </span>
-                <span className="badge badge-pill badge-primary">
                   Executive Room
                 </span>
                 <span className="badge badge-pill badge-success">

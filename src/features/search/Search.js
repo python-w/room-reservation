@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
@@ -8,19 +9,13 @@ import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
 import { format } from "date-fns";
-import { getRooms } from "../../services/apiRooms";
-import Listing from "../../pages/Listing";
-import { useEffect, useState } from "react";
 import CheckAvailability from "../check-availability/CheckAvailability";
-import useScrollToTop from "../../hooks/useScrollToTop ";
-import useWindowWidth from "../../hooks/useWindowWidth";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Search() {
   const navigate = useNavigate();
-  const { isLargeScreen } = useWindowWidth();
   const isBottom = useInfiniteScroll();
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
@@ -28,7 +23,7 @@ export default function Search() {
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
 
   const { state, dispatch } = useSearch();
-  const { startDate, endDate, guests, roomsInSearch, error, isLoading } = state;
+  const { startDate, endDate, guests, roomsInSearch, isLoading, availableRooms } = state;
 
   const checkInDate = format(startDate, "E, d MMM");
   const checkOutDate = format(endDate, "E, d MMM");
@@ -51,39 +46,69 @@ export default function Search() {
   const handleOpenChkAvlModal = () => setOpenChkAvlModal(true);
   const handleCloseChkAvlModal = () => setOpenChkAvlModal(false);
 
+
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [allPagesFetched, setAllPagesFetched] = useState(false);
+
   const fetchData = async () => {
     dispatch({ type: "SEARCH_LOADING" });
     try {
       const response = await axios.get(
         `http://localhost:5000/rooms?websiteView=0&noOfBeds=1&_page=${page}`
       );
+
       const totalPages = response.data.pages;
       setTotalPages(totalPages);
 
       dispatch({ type: "SEARCH_ROOMS", payload: response.data.data });
+
       if (page >= totalPages) {
         setAllPagesFetched(true);
       }
+
     } catch (error) {
-      console.error("Error fetching data:", error);
+      let errorMessage;
+
+      if (error.response) {
+        if (error.response.status === 404) {
+          errorMessage = "Something went wrong. Please try again";
+        }
+      } else if (error.message === "Network Error") {
+        errorMessage =
+          "You are offline. Please check your internet connection and try again.";
+      }
+      dispatch({ type: "SEARCH_ERROR", payload: errorMessage });
     }
   };
+
   useEffect(() => {
     if (allPagesFetched) return;
     const handleScroll = async () => {
-      if (isBottom && page < totalPages && !allPagesFetched && !isLoading) {
-        dispatch({ type: "LOADING_ROOMS" });
-        const newPage = page + 1;
-        setPage(newPage);
-        const response = await axios.get(
-          `http://localhost:5000/rooms?websiteView=0&noOfBeds=1&_page=${newPage}`
-        );
-        if (newPage > page) {
-          dispatch({ type: "LOADMORE_ROOMS", payload: response.data.data });
+      try {
+        if (isBottom && page < totalPages && !allPagesFetched && !isLoading) {
+          dispatch({ type: "LOADING_ROOMS" });
+          const newPage = page + 1;
+          setPage(newPage);
+          const response = await axios.get(
+            `http://localhost:5000/rooms?websiteView=0&noOfBeds=1&_page=${newPage}`
+          );
+          if (newPage > page) {
+            dispatch({ type: "LOADMORE_ROOMS", payload: response.data.data });
+          }
         }
+      } catch (error) {
+        let errorMessage;
+
+        if (error.response) {
+          if (error.response.status === 404) {
+            errorMessage = "Something went wrong. Please try again";
+          }
+        } else if (error.message === "Network Error") {
+          errorMessage =
+            "You are offline. Please check your internet connection and try again.";
+        }
+        dispatch({ type: "SEARCH_ERROR", payload: errorMessage });
       }
     };
 
@@ -92,7 +117,7 @@ export default function Search() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [page, isBottom, allPagesFetched]);
+  }, [page, isBottom, allPagesFetched, isLoading, totalPages, dispatch]);
 
   const handleSearch = async () => {
     navigate("/searchresults");

@@ -1,11 +1,14 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import StyledSelect from "../../ui/StyledSelect";
 import { useSearch } from "../../contexts/SearchContext";
+import { useEffect, useState } from "react";
+import { getAllAgeGroup } from "../../services/apiAgeGroup";
 
 export default function RoomCard({ index, room, showRemoveButton }) {
 
+    const [ageGroup, setAgeGroup] = useState([]);
+    const [error, setError] = useState(null);
     const { state, dispatch } = useSearch();
     const { adultsCount, childrenCount } = state;
 
@@ -29,11 +32,22 @@ export default function RoomCard({ index, room, showRemoveButton }) {
         dispatch({ type: 'REMOVE_ROOM', payload: { roomToRemove: room } });
     };
 
-    const options = [
-        { value: 'Under 1', label: 'Under 1' },
-        { value: 'Under 2', label: 'Under 2' },
-        { value: 'Under 3', label: 'Under 3' }
-    ];
+
+
+    useEffect(() => {
+        async function getAgeGroup() {
+            try {
+                const roomFilters = await getAllAgeGroup();
+                setAgeGroup(roomFilters);
+            } catch (err) {
+                setError(err.message);
+            }
+        }
+        getAgeGroup();
+    }, []);
+
+    console.log(ageGroup)
+
     return (
         <Box className="add_room_card">
             <Box className="room_card_header">
@@ -46,17 +60,17 @@ export default function RoomCard({ index, room, showRemoveButton }) {
                     </button>
                 )}
             </Box>
-            {room.adults !== 0 &&
+            {ageGroup[0].ageGroupName === "Adult" &&
                 <Box className="room_row">
                     <Typography component="p">Adults</Typography>
                     <Box className="room_counter">
-                        <Button variant="outlined" disabled={!adultsCount[room.id] >= 1 || adultsCount[room.id] === 1} onClick={() => handleMinusAdult(room.id)}><RemoveOutlinedIcon /></Button>
-                        <Typography component='span'>{adultsCount[room.id] || 1}</Typography>
-                        <Button variant="outlined" disabled={adultsCount[room.id] === room.adults} onClick={() => handleAddAdult(room.id)}><AddOutlinedIcon /></Button>
+                        {/* <Button variant="outlined" disabled={!adultsCount[room.id] >= 1 || adultsCount[room.id] === 1} onClick={() => handleMinusAdult(room.id)}><RemoveOutlinedIcon /></Button> */}
+                        {/* <Typography component='span'>{adultsCount[room.id] || 1}</Typography> */}
+                        {/* <Button variant="outlined" disabled={adultsCount[room.id] === room.adults} onClick={() => handleAddAdult(room.id)}><AddOutlinedIcon /></Button> */}
                     </Box>
                 </Box>
             }
-            {room.children !== 0 &&
+            {/* {room.children !== 0 &&
                 <>
                     <Box className="room_row">
                         <Box>
@@ -69,24 +83,7 @@ export default function RoomCard({ index, room, showRemoveButton }) {
                             <Button variant="outlined" disabled={childrenCount[room.id] === room.children} onClick={() => handleAddChildren(room.id)}><AddOutlinedIcon /></Button>
                         </Box>
                     </Box>
-                    <Grid container>
-                        {[...Array(childrenCount[room.id])].map((_, index) => (
-                            childrenCount[room.id] &&
-                            <Grid item key={index} sm={6}>
-                                <Box className="room_row child_age_row">
-                                    <Box>
-                                        <Typography component="p">Child #{index + 1} Age <span className="required">*</span></Typography>
-                                        <StyledSelect
-                                            name={`childAge${index}`}
-                                            options={options}
-                                            selected='Under 1'
-                                        />
-                                    </Box>
-                                </Box>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </>}
+                </>} */}
         </Box>
     )
 }

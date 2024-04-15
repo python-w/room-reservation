@@ -1,6 +1,6 @@
 export default function extractAmenities(room) {
     let amenities = [];
-    if (room.roomFilters) {
+    if (room && room.roomFilters) {
         room.roomFilters.forEach(roomFilter => {
             if (roomFilter.categoryName === "Amenities") {
                 roomFilter.filters.forEach(filter => {

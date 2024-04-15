@@ -1,4 +1,38 @@
 {
+  "getAllAgeGroup": [
+    {
+      "ageGroupId": 1,
+      "ageGroupName": "Adult",
+      "ageGroupCode": "adult",
+      "ageGroupType": 1,
+      "maxOccupants": 0,
+      "selectedValue": 0
+    },
+    {
+      "ageGroupId": 2,
+      "ageGroupName": "Child",
+      "ageGroupCode": "child",
+      "ageGroupType": 2,
+      "maxOccupants": 0,
+      "selectedValue": 0
+    },
+    {
+      "ageGroupId": 3,
+      "ageGroupName": "Infant",
+      "ageGroupCode": "Infant",
+      "ageGroupType": 3,
+      "maxOccupants": 0,
+      "selectedValue": 0
+    },
+    {
+      "ageGroupId": 5,
+      "ageGroupName": "Child 2",
+      "ageGroupCode": "Child 2",
+      "ageGroupType": 2,
+      "maxOccupants": 0,
+      "selectedValue": 0
+    }
+  ],
   "roomFilters": [
     {
       "categoryId": 78,
@@ -138,14 +172,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/67/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -275,14 +309,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/64/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -408,14 +442,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -510,14 +544,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -618,14 +652,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/68/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -755,14 +789,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -888,14 +922,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -990,14 +1024,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -1098,14 +1132,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/69/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -1235,14 +1269,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -1368,14 +1402,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -1470,14 +1504,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -1578,14 +1612,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/610/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -1715,14 +1749,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/67/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -1848,14 +1882,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -1950,14 +1984,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -2058,14 +2092,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/611/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -2195,14 +2229,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/68/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -2328,14 +2362,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -2430,14 +2464,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -2538,14 +2572,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/612/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -2675,14 +2709,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/69/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -2808,14 +2842,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -2910,14 +2944,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -3018,14 +3052,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/67/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/613/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/67/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/67/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -3155,14 +3189,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/64/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/610/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/64/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/64/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -3288,14 +3322,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/65/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/65/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/65/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/65/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": null,
@@ -3390,14 +3424,14 @@
       },
       "images": {
         "thumbs": [
-          "https://lipsum.app/id/66/400x300",
-          "https://lipsum.app/id/61/400x300",
-          "https://lipsum.app/id/63/400x300"
+          "https://lipsum.app/id/66/400x360",
+          "https://lipsum.app/id/61/400x360",
+          "https://lipsum.app/id/63/400x360"
         ],
         "large": [
-          "https://lipsum.app/id/66/1920x1080",
-          "https://lipsum.app/id/61/1920x1080",
-          "https://lipsum.app/id/63/1920x1080"
+          "https://lipsum.app/id/66/1600x1080",
+          "https://lipsum.app/id/61/1600x1080",
+          "https://lipsum.app/id/63/1600x1080"
         ]
       },
       "roomFilters": [
@@ -3423,7 +3457,7 @@
           "id": "1",
           "bookingId": "b8f00860-37c4-48c1-a5c3-876078e79c3e",
           "title": "Royal Suite, Executive lounge access, Suite, 1 King",
-          "thumbnail": "https://lipsum.app/id/60/400x300",
+          "thumbnail": "https://lipsum.app/id/60/400x360",
           "roomtype": "Standard Room",
           "selectedRate": {
             "label": "Rate #1",
@@ -3466,7 +3500,7 @@
           "roomId": "29",
           "bookingId": "e8391e11-1afd-4a45-acaf-174f5bc50498",
           "title": "VIP Suite",
-          "thumbnail": "https://lipsum.app/id/67/400x300",
+          "thumbnail": "https://lipsum.app/id/614/400x360",
           "rates": {
             "1": 129,
             "2": 0,
@@ -3530,7 +3564,7 @@
           "roomId": "1",
           "bookingId": "1a02565e-9b30-4086-ae96-1c977b7686d7",
           "title": "VIP Suite",
-          "thumbnail": "https://lipsum.app/id/67/400x300",
+          "thumbnail": "https://lipsum.app/id/615/400x360",
           "rates": {
             "1": 129,
             "2": 0,

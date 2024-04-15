@@ -1,11 +1,41 @@
 import { createContext, useContext, useReducer } from "react";
 import { addDays } from "date-fns";
+import { v4 as uuidv4 } from "uuid";
 
 const roomsToSearch = [
-  { id: "b03e3d90-9d96-11ec-8c9b-5b266c1e6223", adults: 4, children: 2 },
-  { id: "e7d5f294-9d96-11ec-9a02-5b266c1e6223", adults: 6, children: 2 },
-  { id: "0c2c7f98-9d97-11ec-b999-5b266c1e6223", adults: 8, children: 4 },
-];
+  {
+    "ageGroupId": 1,
+    "ageGroupName": "Adult",
+    "ageGroupCode": "adult",
+    "ageGroupType": 1,
+    "maxOccupants": 4,
+    "selectedValue": 0
+  },
+  {
+    "ageGroupId": 2,
+    "ageGroupName": "Child",
+    "ageGroupCode": "child",
+    "ageGroupType": 2,
+    "maxOccupants": 2,
+    "selectedValue": 0
+  },
+  {
+    "ageGroupId": 3,
+    "ageGroupName": "Infant",
+    "ageGroupCode": "Infant",
+    "ageGroupType": 3,
+    "maxOccupants": 0,
+    "selectedValue": 0
+  },
+  {
+    "ageGroupId": 5,
+    "ageGroupName": "Child 2",
+    "ageGroupCode": "Child 2",
+    "ageGroupType": 2,
+    "maxOccupants": 0,
+    "selectedValue": 0
+  }
+]
 
 const today = new Date();
 const tomorrow = new Date(today);
@@ -21,9 +51,8 @@ const initialState = {
   ],
   startDate: null || today,
   endDate: null || tomorrow,
-  roomsToSearch: roomsToSearch,
-  searchedRooms: [{ id: roomsToSearch[0].id, adults: 1, children: 0 }],
-  roomsInSearch: [roomsToSearch[0]],
+  searchedRooms: [{ id: uuidv4(), adults: 1, children: 0 }],
+  roomsInSearch: [{ id: uuidv4(), adults: 1, children: 0 }],
   roomListing: [],
   isFilterShow: false,
   availableRooms: [],
@@ -127,24 +156,20 @@ function reducer(state, action) {
       }
       return state;
     case "ADD_ROOM":
-      if (state.roomsInSearch.length < roomsToSearch.length) {
-        const roomListing = roomsToSearch.filter(
-          (room) => !state.roomsInSearch.some((r) => r.id === room.id)
-        );
-        if (roomListing.length > 0) {
-          const nextRoom = roomListing[0];
-          const newRooms = [...state.roomsInSearch, nextRoom];
-          const searchedRooms = [
-            ...state.searchedRooms,
-            { ...nextRoom, adults: 1, children: 0 },
-          ];
-          return {
-            ...state,
-            roomsInSearch: newRooms,
-            guests: state.guests + 1,
-            searchedRooms,
-          };
-        }
+      const roomListing = roomsToSearch;
+      if (roomListing.length > 0) {
+        const nextRoom = roomListing[0];
+        const newRooms = [...state.roomsInSearch, nextRoom];
+        const searchedRooms = [
+          ...state.searchedRooms,
+          { ...nextRoom, adults: 1, children: 0 },
+        ];
+        return {
+          ...state,
+          roomsInSearch: newRooms,
+          guests: state.guests + 1,
+          searchedRooms,
+        };
       }
       return state;
     case "REMOVE_ROOM":
@@ -179,11 +204,10 @@ function reducer(state, action) {
         error: null,
       };
     case "SEARCH_ROOMS":
-      const searchrooms = action.payload;
       return {
         ...state,
         isLoading: false,
-        availableRooms: searchrooms,
+        availableRooms: action.payload,
       };
     case "LOADING_ROOMS":
       return {
@@ -203,11 +227,6 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         error: action.payload,
-      };
-    case "INFINITE_SCROLL":
-      console.log(state.availableRooms);
-      return {
-        ...state,
       };
     case "FILTER_TOGGLE":
       return {
