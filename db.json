@@ -5,7 +5,7 @@
       "ageGroupName": "Adult",
       "ageGroupCode": "adult",
       "ageGroupType": 1,
-      "maxOccupants": 0,
+      "maxOccupants": 4,
       "selectedValue": 0
     },
     {
@@ -13,7 +13,7 @@
       "ageGroupName": "Child",
       "ageGroupCode": "child",
       "ageGroupType": 2,
-      "maxOccupants": 0,
+      "maxOccupants": 2,
       "selectedValue": 0
     },
     {

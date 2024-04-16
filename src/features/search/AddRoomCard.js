@@ -1,38 +1,66 @@
+import { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import RoomCard from "./RoomCard";
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { useSearch } from "../../contexts/SearchContext";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { useRef } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
+export default function AddRoomCard({
+  handleCloseModal,
+  ageGroup,
+  ageGroupLoading,
+  ageGroupError,
+}) {
+  const refRoomModal = useRef();
+  const { state, dispatch } = useSearch();
+  const { roomsInSearch } = state;
 
-export default function AddRoomCard({ handleCloseModal }) {
+  const addRoom = () => {
+    dispatch({ type: "ADD_ROOM" });
+  };
 
-    const refRoomModal = useRef();
-    const { dispatch } = useSearch();
+  useOnClickOutside(refRoomModal, () => {
+    handleCloseModal();
+  });
 
-    const addRoom = () => {
-        dispatch({ type: 'ADD_ROOM' })
-    };
+  //   console.log(ageGroup);
 
-
-    useOnClickOutside(refRoomModal, () => {
-        handleCloseModal()
-    })
-
-    return (
-        <Box ref={refRoomModal} className='inline_modal'>
-            <Box className="inline_modal_body">
-                <RoomCard />
-            </Box>
-            <Box className="add_room_btn" >
-                <button className="btn btn-wc-outlined" variant="outlined" color="primary" onClick={addRoom}>
-                    <AddOutlinedIcon /> Add Another Room
-                </button>
-            </Box>
-            <Box className='inline_modal_footer'>
-                <button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
-            </Box>
-        </Box>
-    )
+  return (
+    <Box ref={refRoomModal} className="inline_modal">
+      {ageGroupLoading ? (
+        <div className="circularProgress_wrap">
+          <CircularProgress />
+        </div>
+      ) : (
+        <>
+          <Box className="inline_modal_body">
+            {roomsInSearch.map((room, index) => (
+              <RoomCard
+                key={index}
+                room={room}
+                index={index}
+                showRemoveButton={roomsInSearch.length > 1}
+              />
+            ))}
+          </Box>
+          <Box className="add_room_btn">
+            <button
+              className="btn btn-wc-outlined"
+              variant="outlined"
+              color="primary"
+              onClick={addRoom}
+            >
+              <AddOutlinedIcon /> Add Another Room
+            </button>
+          </Box>
+          <Box className="inline_modal_footer">
+            <button className="btn btn-wc-primary" onClick={handleCloseModal}>
+              Done
+            </button>
+          </Box>
+        </>
+      )}
+    </Box>
+  );
 }

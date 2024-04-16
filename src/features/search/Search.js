@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Grid, Typography } from "@mui/material";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined";
@@ -12,7 +13,8 @@ import { format } from "date-fns";
 import CheckAvailability from "../check-availability/CheckAvailability";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { getAllAgeGroup } from "../../services/apiAgeGroup";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Search() {
   const navigate = useNavigate();
@@ -23,10 +25,34 @@ export default function Search() {
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
 
   const { state, dispatch } = useSearch();
-  const { startDate, endDate, guests, roomsInSearch, isLoading, availableRooms } = state;
+  const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
 
   const checkInDate = format(startDate, "E, d MMM");
   const checkOutDate = format(endDate, "E, d MMM");
+
+  //Fetch AgeGroup
+  const [ageGroup, setAgeGroup] = useState([]);
+  const [ageGroupLoading, setAgeGroupLoading] = useState(false);
+  const [ageGroupError, setAgeGroupError] = useState(null);
+  useEffect(() => {
+    async function getAgeGroup() {
+      setAgeGroupLoading(true);
+      try {
+        const data = await getAllAgeGroup();
+        setAgeGroup(data);
+        setAgeGroupLoading(false);
+        const occupants = data.reduce((acc, curr) => {
+          acc[curr.ageGroupName.toLowerCase().replace(" ", "")] =
+            curr.maxOccupants;
+          return acc;
+        }, {});
+        dispatch({ type: "ADD_ROOM", payload: { id: uuidv4(), ...occupants } });
+      } catch (err) {
+        setAgeGroupError(err.message);
+      }
+    }
+    getAgeGroup();
+  }, []);
 
   //Handle Date and Rooms Modal
   const handleDateModalOpen = () => {
@@ -46,7 +72,7 @@ export default function Search() {
   const handleOpenChkAvlModal = () => setOpenChkAvlModal(true);
   const handleCloseChkAvlModal = () => setOpenChkAvlModal(false);
 
-
+  //Fetch search rooms
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [allPagesFetched, setAllPagesFetched] = useState(false);
@@ -66,7 +92,6 @@ export default function Search() {
       if (page >= totalPages) {
         setAllPagesFetched(true);
       }
-
     } catch (error) {
       let errorMessage;
 
@@ -180,13 +205,18 @@ export default function Search() {
                         <PersonOutlineOutlinedIcon />{" "}
                         <Typography component="span">
                           {guests || 1} {guests > 1 ? "Guests" : "Guest"},{" "}
-                          {roomsInSearch.length}{" "}
+                          {roomsInSearch.length || 1}{" "}
                           {roomsInSearch.length > 1 ? "Rooms" : "Room"}
                         </Typography>
                       </div>
                     </div>
                     {roomsModalOpen && (
-                      <AddRoomCard handleCloseModal={handleCloseModal} />
+                      <AddRoomCard
+                        ageGroupLoading={ageGroupLoading}
+                        ageGroup={ageGroup}
+                        ageGroupError={ageGroupError}
+                        handleCloseModal={handleCloseModal}
+                      />
                     )}
                   </div>
                 </div>

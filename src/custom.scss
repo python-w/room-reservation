@@ -30,7 +30,21 @@ body {
         height: 100vh;
         background: rgba(0, 0, 0, 0.05
         );
+    }
 
+    .circularProgress_wrap {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+
+      @media #{$mq-4k} {
+        padding: get4k(20px);
+      }
+
+      .MuiCircularProgress-root {
+        width: 32px !important;
+        height: 32px !important;
+      }
     }
 
     //Porlet Banner
@@ -466,6 +480,15 @@ body {
 
       @media #{$mq-mobile-sm} {
         width: 100%;
+      }
+
+      .circularProgress_wrap {
+        width: 500px;
+        max-width: 100%;
+
+        @media #{$mq-4k} {
+          width: get4k(500px);
+        }
       }
 
       .room_card_header {
@@ -1170,9 +1193,11 @@ body {
       @media #{$mq-mobile-sm} {
         width: 100%;
       }
-      .rdrDayDisabled{
+
+      .rdrDayDisabled {
         cursor: not-allowed !important;
       }
+
       .rdrDayToday {
         .rdrDayNumber {
           span {
@@ -1646,6 +1671,7 @@ body {
       &.has_pt {
         padding-top: 101px;
       }
+
       @media #{$mq-4k} {
         margin-top: get4k(56px);
       }
@@ -1935,7 +1961,7 @@ body {
         }
       }
 
-      .room_desc{
+      .room_desc {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
