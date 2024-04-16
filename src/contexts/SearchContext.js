@@ -45,17 +45,8 @@ function reducer(state, action) {
         endDate: end,
         selectedRange: [item.selection],
       };
-    case "INITIAL_ROOM": {
-      const initRoom = action.payload;
-      console.log(initRoom);
-      return {
-        ...state,
-        roomsToSearch: initRoom,
-      };
-    }
     case "ADD_ROOM":
-      console.log(action.payload);
-      const nextRoom = { id: uuidv4(), adults: 1 };
+      const nextRoom = action.payload;
       const newRoom = [...state.roomsInSearch, nextRoom];
       return {
         ...state,

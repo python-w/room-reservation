@@ -34,18 +34,20 @@ export default function Search() {
   const [ageGroup, setAgeGroup] = useState([]);
   const [ageGroupLoading, setAgeGroupLoading] = useState(false);
   const [ageGroupError, setAgeGroupError] = useState(null);
+  const [occoccupants, setAcccupants] = useState([])
   useEffect(() => {
     async function getAgeGroup() {
       setAgeGroupLoading(true);
       try {
         const data = await getAllAgeGroup();
-        setAgeGroup(data);
         setAgeGroupLoading(false);
+        setAgeGroup(data);
         const occupants = data.reduce((acc, curr) => {
           acc[curr.ageGroupName.toLowerCase().replace(" ", "")] =
             curr.maxOccupants;
           return acc;
         }, {});
+        setAcccupants(occupants)
         dispatch({ type: "ADD_ROOM", payload: { id: uuidv4(), ...occupants } });
       } catch (err) {
         setAgeGroupError(err.message);
@@ -212,6 +214,7 @@ export default function Search() {
                     </div>
                     {roomsModalOpen && (
                       <AddRoomCard
+                        occoccupants={occoccupants}
                         ageGroupLoading={ageGroupLoading}
                         ageGroup={ageGroup}
                         ageGroupError={ageGroupError}

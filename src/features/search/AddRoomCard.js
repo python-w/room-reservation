@@ -5,26 +5,28 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { useSearch } from "../../contexts/SearchContext";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import CircularProgress from "@mui/material/CircularProgress";
+import { v4 as uuidv4 } from "uuid";
 
 export default function AddRoomCard({
   handleCloseModal,
   ageGroup,
   ageGroupLoading,
   ageGroupError,
+  occoccupants
 }) {
   const refRoomModal = useRef();
   const { state, dispatch } = useSearch();
   const { roomsInSearch } = state;
 
   const addRoom = () => {
-    dispatch({ type: "ADD_ROOM" });
+    dispatch({ type: "ADD_ROOM", payload: { id: uuidv4(), ...occoccupants } });
   };
 
   useOnClickOutside(refRoomModal, () => {
     handleCloseModal();
   });
 
-  //   console.log(ageGroup);
+  console.log(roomsInSearch);
 
   return (
     <Box ref={refRoomModal} className="inline_modal">

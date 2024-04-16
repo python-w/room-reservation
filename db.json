@@ -21,7 +21,7 @@
       "ageGroupName": "Infant",
       "ageGroupCode": "Infant",
       "ageGroupType": 3,
-      "maxOccupants": 0,
+      "maxOccupants": 1,
       "selectedValue": 0
     },
     {
@@ -29,7 +29,7 @@
       "ageGroupName": "Child 2",
       "ageGroupCode": "Child 2",
       "ageGroupType": 2,
-      "maxOccupants": 0,
+      "maxOccupants": 1,
       "selectedValue": 0
     }
   ],

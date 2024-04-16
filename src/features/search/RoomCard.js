@@ -76,7 +76,6 @@ export default function RoomCard({ index, room, showRemoveButton }) {
           <Box className="room_row">
             <Box>
               <Typography component="p">Children</Typography>
-              <Typography component="small">Age 0 to 17</Typography>
             </Box>
             <Box className="room_counter">
               <Button
