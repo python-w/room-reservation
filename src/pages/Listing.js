@@ -1,5 +1,4 @@
 import React from "react";
-import Alert from "@mui/material/Alert";
 import Filters from "../features/filter/Filters";
 import FilterButton from "../ui/FilterButton";
 import RoomListView from "../ui/RoomListView";
@@ -9,6 +8,7 @@ import { Link } from "react-router-dom";
 import useScrollToTop from "../hooks/useScrollToTop ";
 import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
+import { Alert } from "@material-ui/lab";
 export function RoomListing() {
   const { state } = useSearch();
   const isTop = useScrollToTop();

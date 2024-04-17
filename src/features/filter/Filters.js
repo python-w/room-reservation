@@ -1,9 +1,8 @@
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 import { getRoomFilters } from "../../services/apiRoomFilters";
 import { useEffect, useState } from "react";
-import { Alert } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup } from '@material-ui/core';
+import { Alert } from "@material-ui/lab";
 
 export default function Filters() {
   const [roomFilters, setRoomFilters] = useState([]);

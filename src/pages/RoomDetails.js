@@ -1,5 +1,5 @@
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Fancybox from "../ui/ListingFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
 import { Link, useNavigate, useParams } from "react-router-dom";

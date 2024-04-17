@@ -1,11 +1,11 @@
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Check } from "@material-ui/icons";
 import ListWithSummary from "./AmenitiesList";
 import ListingCarousel from "../ui/ListingCarousel";
 import { useLayoutEffect, useRef, useState } from "react";
-import { Button } from "@mui/material";
-import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import { Button } from "@material-ui/core";
+import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
+import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 import { useSearch } from "../contexts/SearchContext";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../utils/FormatCurrency";

@@ -1,5 +1,5 @@
-import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
-import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+import InsertInvitationOutlinedIcon from '@material-ui/icons/InsertInvitationOutlined';
 import { format } from 'date-fns';
 import { useSearch } from '../contexts/SearchContext';
 

@@ -1,4 +1,4 @@
-import { MenuItem, Select } from '@mui/material'
+import { MenuItem, Select } from '@material-ui/core'
 import React, { useState } from 'react'
 
 export default function StyledSelect({ ...props }) {

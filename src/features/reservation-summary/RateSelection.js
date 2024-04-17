@@ -1,9 +1,8 @@
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { useSearch } from '../../contexts/SearchContext';
 import { useState } from 'react';
-import { Radio } from '@mui/material';
+import { Autocomplete } from '@material-ui/lab';
+import { Radio, TextField } from '@material-ui/core';
 
 export default function RateSelection({ bookingId, roomRates }) {
     const { dispatch } = useSearch();

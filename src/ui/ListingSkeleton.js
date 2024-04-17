@@ -1,5 +1,5 @@
+import { Skeleton } from '@material-ui/lab'
 import React from 'react'
-import Skeleton from '@mui/material/Skeleton';
 
 export default function ListingSkeleton() {
     return (

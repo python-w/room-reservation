@@ -1,31 +1,26 @@
-import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
-import DiningOutlinedIcon from '@mui/icons-material/DiningOutlined';
-import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
-import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";
-import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
-import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
-import HvacOutlinedIcon from '@mui/icons-material/HvacOutlined';
-import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
-import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';
-import TvOutlinedIcon from '@mui/icons-material/TvOutlined';
-import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
-import SmokeFreeOutlinedIcon from '@mui/icons-material/SmokeFreeOutlined';
-import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
-import PersonOffOutlinedIcon from '@mui/icons-material/PersonOffOutlined';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import AirportShuttleOutlinedIcon from '@mui/icons-material/AirportShuttleOutlined';
+import HotelIcon from "@material-ui/icons/Hotel";
+import LocalDiningIcon from '@material-ui/icons/LocalDining';
+import PoolOutlinedIcon from "@material-ui/icons/PoolOutlined";
+import WifiOutlinedIcon from "@material-ui/icons/WifiOutlined";
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
+import AcUnitOutlinedIcon from '@material-ui/icons/AcUnitOutlined';
+import BathtubOutlinedIcon from '@material-ui/icons/BathtubOutlined';
+import SmokingRoomsOutlinedIcon from '@material-ui/icons/SmokingRoomsOutlined';
+import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
+import SmokeFreeOutlinedIcon from '@material-ui/icons/SmokeFreeOutlined';
+import PetsOutlinedIcon from '@material-ui/icons/PetsOutlined';
+import RemoveRedEyeOutlinedIcon from '@material-ui/icons/RemoveRedEyeOutlined';
+import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
+import AirportShuttleOutlinedIcon from '@material-ui/icons/AirportShuttleOutlined';
 
 export const amenityIcons = {
-    "2 Double Beds": <BedOutlinedIcon />,
-    "Dinner": <DiningOutlinedIcon />,
+    "2 Double Beds": <HotelIcon />,
+    "Dinner": <LocalDiningIcon />,
     "Swimming Pool": <PoolOutlinedIcon />,
     "Wifi": <WifiOutlinedIcon />,
-    "Free Parking": <DirectionsCarFilledOutlinedIcon />,
+    "Free Parking": <DriveEtaIcon />,
     "TV": <TvOutlinedIcon />,
     "Air Conditioning": <AcUnitOutlinedIcon />,
-    "Balcony": <BalconyOutlinedIcon />,
-    "Heating": <HvacOutlinedIcon />,
     "Bathtub": <BathtubOutlinedIcon />,
     "Smoking": <SmokingRoomsOutlinedIcon />
 };
@@ -33,13 +28,11 @@ export const amenityIcons = {
 export const restrictionIcons = {
     "No Pets Allowed": <PetsOutlinedIcon />,
     "No Smoking": <SmokeFreeOutlinedIcon />,
-    "Guests Not Allowed": <PersonOffOutlinedIcon />,
 }
 
 export const featureIcons = {
-    "2 Double beds": <BedOutlinedIcon />,
+    "2 Double beds": <HotelIcon />,
     "1 attached bathroom": <BathtubOutlinedIcon />,
-    "1 attached Balcony": <BalconyOutlinedIcon />,
     "City View": <RemoveRedEyeOutlinedIcon />,
 }
 

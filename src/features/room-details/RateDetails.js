@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { calculateDiscountedAmount } from '../../utils/CalculateDiscountedAmount';
@@ -73,7 +73,7 @@ export default function RateDetails({ room }) {
                     <span className="rateTDLabel">
                         Total
                     </span>
-                    <Typography className="rateTDPrice" variant="p" component="span">
+                    <Typography className="rateTDPrice" component="span">
                         {totalAmount}
                     </Typography>
                 </div>

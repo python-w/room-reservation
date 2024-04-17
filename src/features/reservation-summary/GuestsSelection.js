@@ -1,8 +1,7 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import { Paper } from '@mui/material';
 import AddGuestModal from './AddGuestModal';
+import { Autocomplete } from '@material-ui/lab';
+import { Paper, TextField } from '@material-ui/core';
+import { useState } from 'react';
 
 const memberlist = [
     { id: 8405409, name: 'Bob Smith', type: 'Dependents' },
@@ -25,7 +24,7 @@ const memberlist = [
 
 export default function GuestsSelection({ roomId }) {
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 

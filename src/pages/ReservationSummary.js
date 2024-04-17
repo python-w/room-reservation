@@ -4,7 +4,7 @@ import { Check, ChevronLeft, SearchOutlined } from "@material-ui/icons";
 import { Form, useNavigate, redirect, useNavigation } from "react-router-dom";
 import { createBooking } from "../services/apiCreateBooking";
 import CheckInOutCard from "../ui/CheckInOutCard";
-import CircularProgress from "@mui/material/CircularProgress";
+import { CircularProgress } from "@material-ui/core";
 
 export default function ReservationSummary() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function ReservationSummary() {
           !bookedRooms[i].adults &&
           !bookedRooms[i].children &&
           searchedRoom.adults + searchedRoom.children <=
-            bookedRooms[i].maxOccupancy
+          bookedRooms[i].maxOccupancy
         ) {
           if (bookedRooms[i].maxOccupancy > maxOccupancy) {
             maxOccupancy = bookedRooms[i].maxOccupancy;

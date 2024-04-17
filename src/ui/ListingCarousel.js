@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 
 import { Carousel as NativeCarousel } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/carousel/carousel.css';

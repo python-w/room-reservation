@@ -1,8 +1,9 @@
-import { Modal } from "@mui/material";
+
 import { useEffect, useState } from "react";
 import { format, isWithinInterval } from 'date-fns';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { Modal } from "@material-ui/core";
 export default function CheckAvailability({ open, handleClose }) {
     const [currentDate, setCurrentDate] = useState(new Date());
 

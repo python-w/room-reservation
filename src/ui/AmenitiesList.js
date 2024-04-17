@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import Icon from "@mui/material/Icon";
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import { amenityIcons } from '../utils/Icons'
+import { Icon } from "@material-ui/core";
 
 export default function ListWithSummary({ items, maxWidth }) {
   const listRef = useRef(null);

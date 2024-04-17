@@ -1,9 +1,9 @@
-import Modal from '@mui/material/Modal';
-import CheckIcon from '@mui/icons-material/Check';
+import CheckIcon from '@material-ui/icons/Check';
 import { useState } from 'react';
 import { useSearch } from '../../contexts/SearchContext';
 import "react-international-phone/style.css";
 import { PhoneInput } from 'react-international-phone';
+import { Modal } from '@material-ui/core';
 
 export default function AddGuestModal({ open, handleClose, roomId }) {
 

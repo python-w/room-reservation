@@ -1,6 +1,6 @@
-import { Button } from '@mui/material'
+import { Button } from '@material-ui/core'
 import React from 'react'
-import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
+import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
 import { useSearch } from '../contexts/SearchContext';
 
 export default function FilterButton() {

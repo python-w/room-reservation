@@ -1,6 +1,4 @@
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+import { Checkbox, FormControlLabel, FormGroup } from "@material-ui/core";
 import { useSearch } from "../../contexts/SearchContext";
 
 

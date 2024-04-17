@@ -449,6 +449,7 @@ body {
 
         svg {
           margin-left: 10px;
+          color: #fff;
 
           @media #{$mq-4k} {
             margin-left: get4k(10px);
@@ -492,7 +493,7 @@ body {
       }
 
       .room_card_header {
-        strong {
+        p {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           padding: 1rem;
           line-height: normal;
@@ -502,6 +503,7 @@ body {
             padding: get4k(16px);
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
             margin: 0;
+
           }
         }
       }
@@ -525,6 +527,10 @@ body {
 
         @media #{$mq-4k} {
           margin: 0 get4k(16px);
+        }
+
+        .rdrDefinedRangesWrapper {
+          display: none;
         }
       }
 
@@ -690,10 +696,11 @@ body {
 
       button {
         padding: 0;
-        min-width: 32px;
+        width: 32px;
         height: 32px;
         color: var(--body-text-color);
         border-color: var(--wc-border-color);
+        border-radius: 100px;
 
         @media #{$mq-4k} {
           min-width: get4k(32px);
@@ -1209,7 +1216,7 @@ body {
       }
 
       .rdrMonthAndYearPickers {
-        display: none;
+        display: none !important;
       }
 
       .rdrMonthAndYearWrapper {
@@ -2749,6 +2756,32 @@ body {
   }
 
   //MUI Customizations
+  .MuiButton-root {
+    min-width: unset;
+  }
+
+  .MuiSvgIcon-root {
+    color: var(--wc-font-color);
+  }
+
+  .MuiCheckbox-root {
+    .MuiSvgIcon-root {
+      color: #CBCBCB;
+    }
+
+    &.Mui-checked {
+      .MuiSvgIcon-root {
+        color: var(--primary-color);
+      }
+    }
+
+    .MuiIconButton-label {
+      input {
+        display: none;
+      }
+    }
+  }
+
   .MuiSkeleton-root {
     -webkit-transform: none;
     -moz-transform: none;
