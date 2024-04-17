@@ -22,7 +22,7 @@ export default function ReservationSummary() {
           !bookedRooms[i].adults &&
           !bookedRooms[i].children &&
           searchedRoom.adults + searchedRoom.children <=
-          bookedRooms[i].maxOccupancy
+            bookedRooms[i].maxOccupancy
         ) {
           if (bookedRooms[i].maxOccupancy > maxOccupancy) {
             maxOccupancy = bookedRooms[i].maxOccupancy;
@@ -86,7 +86,7 @@ export default function ReservationSummary() {
             <SearchOutlined className="mr-2" />
             Search Again
           </button>
-          <button type="submit" className="btn">
+          <button type="submit" className="btn btn-wc-primary">
             {isSubmitting ? (
               <CircularProgress
                 sx={{ color: "#fff" }}

@@ -138,6 +138,7 @@ export default function CheckAvailability({ open, handleClose }) {
     return (
         <Modal
             container={document.querySelector('section.portlet')}
+            className="mui_modal"
             open={open}
             onClose={handleClose}
             aria-labelledby="check-availability"
