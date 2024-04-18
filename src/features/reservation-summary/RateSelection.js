@@ -17,17 +17,15 @@ export default function RateSelection({ bookingId, roomRates }) {
     });
   };
 
-  console.log(roomRates);
-
   return (
     <Autocomplete
+      id="rate_selection"
       options={Object.entries(roomRates).map(([key, value]) => ({
         key,
         value,
       }))}
       disableCloseOnSelect
       getOptionLabel={(option) => `${option.key} - $${option.value}`}
-      value={undefined}
       onChange={(event, value) => handleRateSelect(value)}
       open={open}
       onOpen={() => setOpen(true)}
@@ -36,13 +34,13 @@ export default function RateSelection({ bookingId, roomRates }) {
         <TextField {...params} placeholder="Select an option" />
       )}
       renderOption={(option, { selected }) => (
-        <li>
+        <>
           <Radio style={{ marginRight: 12 }} checked={selected} />
-          <div>
-            {option.key}
-            <strong>{formatCurrency(option.value)}</strong>
+          <div className="rate_selection-listbox">
+            <span>{option.key}</span>
+            <span>{formatCurrency(option.value)}</span>
           </div>
-        </li>
+        </>
       )}
     />
   );
