@@ -7,12 +7,8 @@ import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
 import { format } from "date-fns";
-import { getRooms } from "../../services/apiRooms";
-import Listing from "../../pages/Listing";
 import { useEffect, useState } from "react";
 import CheckAvailability from "../check-availability/CheckAvailability";
-import useScrollToTop from "../../hooks/useScrollToTop ";
-import useWindowWidth from "../../hooks/useWindowWidth";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -20,7 +16,6 @@ import { Grid, Typography } from "@material-ui/core";
 
 export default function Search() {
   const navigate = useNavigate();
-  const { isLargeScreen } = useWindowWidth();
   const isBottom = useInfiniteScroll();
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
@@ -28,7 +23,7 @@ export default function Search() {
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
 
   const { state, dispatch } = useSearch();
-  const { startDate, endDate, guests, roomsInSearch, error, isLoading } = state;
+  const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
 
   const checkInDate = format(startDate, "E, d MMM");
   const checkOutDate = format(endDate, "E, d MMM");
@@ -60,15 +55,10 @@ export default function Search() {
       const response = await axios.get(
         `http://localhost:5000/rooms?noOfBeds=1&_page=${page}`
       );
-      const totalPages = response.data.pages;
-      setTotalPages(totalPages);
 
       dispatch({ type: "SEARCH_ROOMS", payload: response.data.data });
-      if (page >= totalPages) {
-        setAllPagesFetched(true);
-      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      dispatch({ type: "SEARCH_ERROR", payload: error.message });
     }
   };
   useEffect(() => {
@@ -81,7 +71,10 @@ export default function Search() {
         const response = await axios.get(
           `http://localhost:5000/rooms?noOfBeds=1&_page=${newPage}`
         );
+        const totalPages = response.data.pages;
+        setTotalPages(totalPages);
         if (newPage > page) {
+          setAllPagesFetched(true);
           dispatch({ type: "LOADMORE_ROOMS", payload: response.data.data });
         }
       }
@@ -92,7 +85,7 @@ export default function Search() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [page, isBottom, allPagesFetched]);
+  }, [isLoading, totalPages, dispatch, page, isBottom, allPagesFetched]);
 
   const handleSearch = async () => {
     navigate("/searchresults");

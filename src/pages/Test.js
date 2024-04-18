@@ -25,7 +25,7 @@ const SearchComponent = () => {
       if (
         containerRef.current &&
         containerRef.current.scrollHeight - containerRef.current.scrollTop ===
-          containerRef.current.clientHeight
+        containerRef.current.clientHeight
       ) {
         setPage((prevPage) => prevPage + 1);
       }

@@ -237,6 +237,10 @@ body {
           @media #{$mq-4k} {
             padding: 0 0 get4k(4px);
           }
+
+          .MuiSvgIcon-root {
+            color: #fff;
+          }
         }
       }
     }
@@ -280,6 +284,7 @@ body {
       svg {
         font-size: 18px;
         margin-right: 8px;
+        color: var(--primary-color);
 
         @media #{$mq-4k} {
           font-size: get4k(18px);
@@ -1755,18 +1760,10 @@ body {
         }
 
         label {
-          margin-bottom: 1rem;
+          margin-bottom: 0;
 
           @media #{$mq-4k} {
-            margin-bottom: get4k(16px);
-          }
-
-          &:last-child {
             margin-bottom: 0;
-
-            @media #{$mq-4k} {
-              margin-bottom: 0;
-            }
           }
         }
       }
@@ -2099,6 +2096,11 @@ body {
             background: var(--primary-color);
             color: #fff;
             font-weight: normal;
+
+            .MuiSvgIcon-root {
+              color: #fff;
+            }
+
           }
         }
       }
@@ -2782,22 +2784,22 @@ body {
   }
 
   .MuiSvgIcon-root {
-    color: var(--wc-font-color);
+    color: var(--primary-color);
   }
 
   .MuiCheckbox-root {
-    padding-top: 0;
-    padding-bottom: 0;
 
     .MuiSvgIcon-root {
+      color: var(--primary-color);
       color: #cbcbcb;
-      margin-top: -1px;
+      margin-top: -2px;
     }
 
     &.Mui-checked {
       .MuiSvgIcon-root {
         color: var(--primary-color);
       }
+
     }
 
     .MuiIconButton-label {
@@ -2812,6 +2814,15 @@ body {
     padding: 0;
     margin-top: -1px;
   }
+
+  .MuiTouchRipple-root {
+    color: var(--primary-color);
+  }
+
+  .MuiIconButton-colorSecondary:hover {
+    background: rgba(0, 0, 0, 0.025);
+  }
+
 
   .MuiSkeleton-root {
     -webkit-transform: none;
@@ -2923,8 +2934,9 @@ body {
 
     span {
       &:last-child {
-        color: var(--primary-color);
+        font-size: 110%;
         font-weight: bold;
+        color: var(--primary-color);
       }
     }
   }
@@ -2945,12 +2957,24 @@ body {
       &>li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);
         padding: 10px 16px;
+        font-size: calc((var(--wc-font-size) - 2) * 1px);
+        letter-spacing: 0;
 
         &:last-child {
           border-bottom: 0;
         }
       }
     }
+  }
+
+  .MuiAutocomplete-endAdornment {
+
+    padding-right: 6px;
+
+    @media #{$mq-4k} {
+      padding-right: get4k(6px);
+    }
+
   }
 
   .MuiModal-root {
