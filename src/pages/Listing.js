@@ -9,10 +9,12 @@ import useScrollToTop from "../hooks/useScrollToTop ";
 import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
 import { Alert } from "@material-ui/lab";
+import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export function RoomListing() {
   const { state } = useSearch();
   const isTop = useScrollToTop();
   const { isLargeScreen } = useWindowWidth();
+  const isBottom = useInfiniteScroll();
 
   const {
     availableRooms,
@@ -29,8 +31,9 @@ export function RoomListing() {
   return (
     <>
       <div
-        className={`${isTop && isLargeScreen ? "search_wrap_fixed" : ""
-          } search_listing`}
+        className={`${
+          isTop && isLargeScreen ? "search_wrap_fixed" : ""
+        } search_listing`}
       >
         <Search />
       </div>
@@ -91,11 +94,11 @@ export function RoomListing() {
                   </>
                 )
               )}
-              {error && isLoadingMore &&
+              {error && isLoadingMore && (
                 <Alert severity="error" className="my-5">
                   {error}
                 </Alert>
-              }
+              )}
               {isLoadingMore &&
                 Array.from({ length: 4 }, (_, index) => (
                   <ListingSkeleton key={index} />

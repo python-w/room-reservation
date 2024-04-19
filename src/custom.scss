@@ -732,6 +732,7 @@ body {
 
         svg {
           font-size: 20px;
+          color: var(--body-text-color);
 
           @media #{$mq-4k} {
             font-size: get4k(20px);
@@ -2927,14 +2928,13 @@ body {
   }
 
   //Rate Selection
-  .rate_selection-listbox {
+  .rate_selection_listbox {
     display: flex;
     justify-content: space-between;
     flex: 1;
 
     span {
       &:last-child {
-        font-size: 110%;
         font-weight: bold;
         color: var(--primary-color);
       }
@@ -2957,7 +2957,7 @@ body {
       &>li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);
         padding: 10px 16px;
-        font-size: calc((var(--wc-font-size) - 2) * 1px);
+        font-size: calc((var(--wc-font-size) - 1) * 1px);
         letter-spacing: 0;
 
         &:last-child {
@@ -2973,6 +2973,10 @@ body {
 
     @media #{$mq-4k} {
       padding-right: get4k(6px);
+    }
+
+    .MuiSvgIcon-root {
+      color: var(--body-text-color);
     }
 
   }

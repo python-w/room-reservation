@@ -52,13 +52,20 @@ export default function Search() {
   const fetchData = async () => {
     dispatch({ type: "SEARCH_LOADING" });
     try {
+      navigate("/searchresults");
       const response = await axios.get(
         `http://localhost:5000/rooms?noOfBeds=1&_page=${page}`
       );
+      const totalPages = response.data.pages;
+      setTotalPages(totalPages);
 
       dispatch({ type: "SEARCH_ROOMS", payload: response.data.data });
+      if (page >= totalPages) {
+        setAllPagesFetched(true);
+      }
     } catch (error) {
       dispatch({ type: "SEARCH_ERROR", payload: error.message });
+      console.error("Error fetching data:", error);
     }
   };
   useEffect(() => {
@@ -71,10 +78,7 @@ export default function Search() {
         const response = await axios.get(
           `http://localhost:5000/rooms?noOfBeds=1&_page=${newPage}`
         );
-        const totalPages = response.data.pages;
-        setTotalPages(totalPages);
         if (newPage > page) {
-          setAllPagesFetched(true);
           dispatch({ type: "LOADMORE_ROOMS", payload: response.data.data });
         }
       }
@@ -85,7 +89,7 @@ export default function Search() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isLoading, totalPages, dispatch, page, isBottom, allPagesFetched]);
+  }, [page, isBottom]);
 
   const handleSearch = async () => {
     navigate("/searchresults");
