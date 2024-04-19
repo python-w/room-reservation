@@ -13,8 +13,11 @@ import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
+import { searchRooms } from "../../services/apiGetRooms";
 
 export default function Search() {
+
+  searchRooms();
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
 
@@ -65,7 +68,6 @@ export default function Search() {
       }
     } catch (error) {
       dispatch({ type: "SEARCH_ERROR", payload: error.message });
-      console.error("Error fetching data:", error);
     }
   };
   useEffect(() => {

@@ -4,7 +4,6 @@ import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import { Carousel as NativeCarousel } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/carousel/carousel.css';
 
-import { Thumbs } from '@fancyapps/ui/dist/carousel/carousel.thumbs.esm.js';
 import '@fancyapps/ui/dist/carousel/carousel.thumbs.css';
 
 const defaults = {
@@ -35,7 +34,7 @@ function Carousel({ children, showPageCount }) {
       },
     };
 
-    const instance = new NativeCarousel(container, options, { Thumbs });
+    const instance = new NativeCarousel(container, options);
     return () => {
       instance.destroy();
     };
