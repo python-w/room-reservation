@@ -98,79 +98,77 @@ export default function Search() {
   return (
     <>
       <div className="search_wrap">
-        <div className="container">
-          <div className="search_wrap_inner">
-            <Grid container spacing={2} alignItems={"flex-end"}>
-              <Grid item className="search_field date_field">
+        <div className="search_wrap_inner">
+          <Grid container spacing={2} alignItems={"flex-end"}>
+            <Grid item className="search_field date_field">
+              <div className="label_group">
+                <label>Check In & Out Dates</label>
+                <button
+                  onClick={handleOpenChkAvlModal}
+                  className="btn btn-wc-transparent btn-checkavail"
+                >
+                  <DateRangeOutlinedIcon />
+                  <span className="d-none d-sm-inline-block">
+                    Check Availability
+                  </span>
+                </button>
+              </div>
+              <div className="custom_input_outer">
+                <div
+                  role="button"
+                  className="customInputBox customInputBoxCal"
+                  onClick={handleDateModalOpen}
+                >
+                  <div>
+                    <TodayOutlinedIcon />{" "}
+                    <Typography component="span">{checkInDate}</Typography>
+                  </div>
+                  <div>
+                    <InsertInvitationOutlinedIcon />{" "}
+                    <Typography component="span">{checkOutDate}</Typography>
+                  </div>
+                </div>
+                {dateModalOpen && (
+                  <StyledDateRangePicker
+                    handleCloseModal={handleCloseModal}
+                  />
+                )}
+              </div>
+            </Grid>
+            <Grid item className="search_field room_field">
+              <div>
                 <div className="label_group">
-                  <label>Check In & Out Dates</label>
-                  <button
-                    onClick={handleOpenChkAvlModal}
-                    className="btn btn-wc-transparent btn-checkavail"
-                  >
-                    <DateRangeOutlinedIcon />
-                    <span className="d-none d-sm-inline-block">
-                      Check Availability
-                    </span>
-                  </button>
+                  <label>Guests & Rooms</label>
                 </div>
                 <div className="custom_input_outer">
                   <div
                     role="button"
-                    className="customInputBox customInputBoxCal"
-                    onClick={handleDateModalOpen}
+                    onClick={handleRoomsModalOpen}
+                    className="customInputBox"
                   >
                     <div>
-                      <TodayOutlinedIcon />{" "}
-                      <Typography component="span">{checkInDate}</Typography>
-                    </div>
-                    <div>
-                      <InsertInvitationOutlinedIcon />{" "}
-                      <Typography component="span">{checkOutDate}</Typography>
+                      <PermIdentityIcon />{" "}
+                      <Typography component="span">
+                        {guests || 1} {guests > 1 ? "Guests" : "Guest"},{" "}
+                        {roomsInSearch.length}{" "}
+                        {roomsInSearch.length > 1 ? "Rooms" : "Room"}
+                      </Typography>
                     </div>
                   </div>
-                  {dateModalOpen && (
-                    <StyledDateRangePicker
-                      handleCloseModal={handleCloseModal}
-                    />
+                  {roomsModalOpen && (
+                    <AddRoomCard handleCloseModal={handleCloseModal} />
                   )}
                 </div>
-              </Grid>
-              <Grid item className="search_field room_field">
-                <div>
-                  <div className="label_group">
-                    <label>Guests & Rooms</label>
-                  </div>
-                  <div className="custom_input_outer">
-                    <div
-                      role="button"
-                      onClick={handleRoomsModalOpen}
-                      className="customInputBox"
-                    >
-                      <div>
-                        <PermIdentityIcon />{" "}
-                        <Typography component="span">
-                          {guests || 1} {guests > 1 ? "Guests" : "Guest"},{" "}
-                          {roomsInSearch.length}{" "}
-                          {roomsInSearch.length > 1 ? "Rooms" : "Room"}
-                        </Typography>
-                      </div>
-                    </div>
-                    {roomsModalOpen && (
-                      <AddRoomCard handleCloseModal={handleCloseModal} />
-                    )}
-                  </div>
-                </div>
-              </Grid>
-              <Grid item>
-                <div className="search_btn_wrap">
-                  <button onClick={handleSearch} className="btn btn-wc-primary">
-                    Search <SearchIcon />
-                  </button>
-                </div>
-              </Grid>
+              </div>
             </Grid>
-          </div>
+            <Grid item>
+              <div className="search_btn_wrap">
+                <button onClick={handleSearch} className="btn btn-wc-primary">
+                  Search <SearchIcon />
+                </button>
+              </div>
+            </Grid>
+          </Grid>
         </div>
       </div>
       <div className="container">

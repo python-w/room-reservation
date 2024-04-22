@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useScrollToTop = (threshold = 100) => {
+const useScrollToTop = () => {
   const [isTop, setIsTop] = useState(false);
 
   useEffect(() => {
     const target = document.querySelector(".search_wrap");
-    const targetTop = target.offsetTop;
     const handleScroll = () => {
+      const targetTop = target.offsetTop;
       const scrollTop = window.scrollY;
       if (scrollTop > targetTop) {
         setIsTop(true);
@@ -20,7 +20,7 @@ const useScrollToTop = (threshold = 100) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [threshold]);
+  }, []);
 
   return isTop;
 };

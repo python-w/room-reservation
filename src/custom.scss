@@ -88,6 +88,7 @@ body {
 
       .room_reservation_title {
         position: relative;
+        padding: 0 var(--container-padding);
 
         h2,
         p {
@@ -129,8 +130,12 @@ body {
 
     //Search Component
     .portlet_has_banner {
+      margin-left: calc(-1* var(--container-padding));
+      margin-right: calc(-1* var(--container-padding));
+
       .search_wrap {
         margin-top: -5%;
+        padding: 0 var(--container-padding);
       }
     }
 
@@ -179,6 +184,7 @@ body {
       width: 100%;
       z-index: 9;
       background: var(--primary-color);
+      padding: 0 var(--container-padding);
 
       .search_wrap_inner {
         box-shadow: none;

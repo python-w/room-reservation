@@ -26,9 +26,11 @@ const router = (
 function App() {
   return (
     <div className="webc-container">
-      <SearchProvider>
-        {router}
-      </SearchProvider>
+      <div className="container">
+        <SearchProvider>
+          {router}
+        </SearchProvider>
+      </div>
     </div>
   );
 }
