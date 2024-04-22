@@ -1,16 +1,16 @@
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import InsertInvitationOutlinedIcon from '@material-ui/icons/InsertInvitationOutlined';
-import { format } from 'date-fns';
 import { useSearch } from '../contexts/SearchContext';
+import dayjs from 'dayjs';
 
 
 export default function CheckInOutCard() {
     const { state } = useSearch();
     const { startDate, endDate } = state;
-    const checkedInDay = format(new Date(startDate), 'EEEE');
-    const checkedInDate = format(new Date(startDate), 'MMM dd, yyyy');
-    const checkedOutDay = format(new Date(endDate), 'EEEE');
-    const checkedOutDate = format(new Date(endDate), 'MMM dd, yyyy');
+    const checkedInDay = dayjs(startDate).format('dddd');
+    const checkedInDate = dayjs(startDate).format('MMM DD, YYYY');
+    const checkedOutDay = dayjs(endDate).format('dddd');
+    const checkedOutDate = dayjs(endDate).format('MMM DD, YYYY');
     return (
         <div className='checkin_out_wrap'>
             <div className="row">

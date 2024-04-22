@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { addDays } from "date-fns";
+import dayjs from "dayjs";
 
 const roomsToSearch = [
   { id: "b03e3d90-9d96-11ec-8c9b-5b266c1e6223", adults: 4, children: 2 },
@@ -15,7 +15,7 @@ const initialState = {
   selectedRange: [
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 0),
+      endDate: dayjs().add(0, 'day'),
       key: "selection",
     },
   ],

@@ -6,18 +6,15 @@ import SearchIcon from "@material-ui/icons/Search";
 import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
-import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import CheckAvailability from "../check-availability/CheckAvailability";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
-import { searchRooms } from "../../services/apiGetRooms";
+import dayjs from 'dayjs';
 
 export default function Search() {
-
-  searchRooms();
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
 
@@ -28,8 +25,8 @@ export default function Search() {
   const { state, dispatch } = useSearch();
   const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
 
-  const checkInDate = format(startDate, "E, d MMM");
-  const checkOutDate = format(endDate, "E, d MMM");
+  const checkInDate = dayjs(startDate).format("ddd, D MMM");
+  const checkOutDate = dayjs(endDate).format("ddd, D MMM");
 
   //Handle Date and Rooms Modal
   const handleDateModalOpen = () => {
