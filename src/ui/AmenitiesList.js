@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import { CheckCircleOutlineOutlined } from '@material-ui/icons';
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import { amenityIcons } from '../utils/Icons'
 import { Icon } from "@material-ui/core";
@@ -77,7 +78,7 @@ export default function ListWithSummary({ items, maxWidth }) {
           </span>
           :
           <span key={index} data-index={index} className="badge badge-pill badge-light lbadge-light">
-            {summarizeitem in amenityIcons && amenityIcons[summarizeitem]}
+            {amenityIcons[summarizeitem] ? amenityIcons[summarizeitem] : <CheckCircleOutlineOutlined />}
             {summarizeitem}
           </span>
       ))}

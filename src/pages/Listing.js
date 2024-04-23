@@ -10,6 +10,7 @@ import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
 import { Alert } from "@material-ui/lab";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
+
 export function RoomListing() {
   const { state } = useSearch();
   const isTop = useScrollToTop();
@@ -26,6 +27,7 @@ export function RoomListing() {
     error,
     isSearchActive,
     bookedRooms,
+    searchedRooms
   } = state;
 
   return (
@@ -79,7 +81,7 @@ export function RoomListing() {
                   {availableRooms.map((room, index) => (
                     <RoomListView room={room} index={index} key={index} />
                   ))}
-                  {bookedRooms.length > 0 && (
+                  {bookedRooms.length === searchedRooms.length && (
                     <div className="d-flex justify-content-end rl_btn_wrap">
                       <Link
                         to="/reservation-summary"

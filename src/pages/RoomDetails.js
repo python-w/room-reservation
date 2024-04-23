@@ -4,7 +4,8 @@ import Fancybox from "../ui/ListingFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
-import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '../utils/Icons'
+import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '../utils/Icons';
+import { CheckCircleOutlineOutlined } from '@material-ui/icons';
 import RateDetails from "../features/room-details/RateDetails";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 import extractAmenities from "../utils/extractAmenities";
@@ -65,11 +66,11 @@ export default function RoomDetails() {
                   </div>
                   {amenities &&
                     <div className="damenities-card damenities-card-01">
-                      <strong>Amenities Included</strong>
+                      <p><strong>Amenities Included</strong></p>
                       <ul>
                         {amenities.map((el, index) =>
                           <li key={index}>
-                            {el in amenityIcons && amenityIcons[el]}
+                            {el in amenityIcons ? amenityIcons[el] : <CheckCircleOutlineOutlined />}
                             {el}
                           </li>
                         )}
@@ -94,7 +95,7 @@ export default function RoomDetails() {
                       <ul>
                         {room.roomFeatures.map((el, index) =>
                           <li key={index}>
-                            {el in featureIcons && featureIcons[el]}
+                            {el in featureIcons ? featureIcons[el] : <CheckCircleOutlineOutlined />}
                             {el}
                           </li>)}
                       </ul>
@@ -106,7 +107,7 @@ export default function RoomDetails() {
                       <ul>
                         {room.additionalDetails.map((el, index) =>
                           <li key={index}>
-                            {el in additionalIcons && additionalIcons[el]}
+                            {el in additionalIcons ? additionalIcons[el] : <CheckCircleOutlineOutlined />}
                             {el}
                           </li>)}
                       </ul>

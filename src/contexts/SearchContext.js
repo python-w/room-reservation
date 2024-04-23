@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import dayjs from "dayjs";
 
 const roomsToSearch = [
@@ -157,10 +157,17 @@ function reducer(state, action) {
       const newsearchedRooms = state.searchedRooms.filter(
         (room) => room.id !== roomToRemove.id
       );
+      const updateAvailableRooms = state.availableRooms.map(room => ({
+        ...room,
+        isSelected: false,
+        bookedRoomCount: 0
+      }));
       return {
         ...state,
         roomsInSearch: newRooms,
         searchedRooms: newsearchedRooms,
+        availableRooms: updateAvailableRooms,
+        bookedRooms: [],
         adultsCount: {
           ...state.adultsCount,
           [roomToRemove.id]: undefined,

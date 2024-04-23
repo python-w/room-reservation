@@ -12,7 +12,7 @@ import PetsOutlinedIcon from '@material-ui/icons/PetsOutlined';
 import RemoveRedEyeOutlinedIcon from '@material-ui/icons/RemoveRedEyeOutlined';
 import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import AirportShuttleOutlinedIcon from '@material-ui/icons/AirportShuttleOutlined';
-
+import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined';
 export const amenityIcons = {
     "2 Double Beds": <HotelIcon />,
     "Dinner": <LocalDiningIcon />,
@@ -22,7 +22,9 @@ export const amenityIcons = {
     "TV": <TvOutlinedIcon />,
     "Air Conditioning": <AcUnitOutlinedIcon />,
     "Bathtub": <BathtubOutlinedIcon />,
-    "Smoking": <SmokingRoomsOutlinedIcon />
+    "Smoking": <SmokingRoomsOutlinedIcon />,
+    "Breakfast": <FreeBreakfastOutlinedIcon />,
+
 };
 
 export const restrictionIcons = {
