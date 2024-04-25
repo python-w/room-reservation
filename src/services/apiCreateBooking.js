@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export async function createBooking(bookedRooms) {
+export async function createBooking(selectedRooms) {
   try {
     const res = await axios.post(
       "http://localhost:5000/bookings",
-      bookedRooms,
+      selectedRooms,
       {
         headers: {
           "Content-Type": "application/json",

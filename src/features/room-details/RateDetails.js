@@ -1,25 +1,33 @@
-import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core'
+import { FormControl, FormControlLabel, Radio, RadioGroup, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { calculateDiscountedAmount } from '../../utils/CalculateDiscountedAmount';
 import { calculateVATOnDiscountedRate } from '../../utils/CalculateVATOnDiscountedRate';
 import { calculateDiscountedRoomRate } from '../../utils/CalculateDiscountedRoomRate';
 import { taxRate } from '../../utils/TaxRate';
+import { Autocomplete } from '@material-ui/lab';
 
 export default function RateDetails({ room }) {
-    const rateArray = Object.entries(room.rateMap);
-    const defaultRate = rateArray[0][1];
 
-    const [selectedRate, setSelectedRate] = useState(defaultRate);
-    const formattedRate = formatCurrency(selectedRate);
-    const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
-    const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount || 0)
-    const vat = calculateVATOnDiscountedRate(selectedRate, room.discount || 0, taxRate || 0);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedOption?.value || 0, room.discount || 0));
+    const discountedRate = calculateDiscountedRoomRate(selectedOption?.value || 0, room.discount || 0)
+    const vat = calculateVATOnDiscountedRate(selectedOption?.value || 0, room.discount || 0, taxRate || 0);
     const formattedVAT = formatCurrency(vat);
     const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
 
-    const handleChange = (event) => {
-        setSelectedRate(event.target.value);
+
+
+    const options = Object.entries(room.rateMap).map(([key, value], index) => ({
+        label: `Rate # ${index + 1} - ${formatCurrency(value)}`,
+        value,
+        index,
+    }));
+
+    const handleChange = (event, value) => {
+        setSelectedOption(value)
+        console.log(value)
     };
 
     return (
@@ -28,24 +36,29 @@ export default function RateDetails({ room }) {
                 <h6 className="card-heading">
                     Rate Details
                 </h6>
-                <FormControl className="rateFormControl">
-                    <RadioGroup name="rate-selection-radio" defaultValue={selectedRate}>
-                        {room.rateMap && Object.entries(room.rateMap).map(([key, value], index) => (
-                            <FormControlLabel
-                                key={index}
-                                value={value}
-                                control={<Radio />}
-                                onChange={handleChange}
-                                label={
-                                    <div className="rate_selection_listbox">
-                                        <span>Rate # {index + 1}</span>
-                                        <span>{formatCurrency(value)}</span>
-                                    </div>
-                                }
+                <Autocomplete
+                    options={options}
+                    getOptionLabel={(option) => option.label}
+                    renderInput={(params) => (
+                        <TextField {...params} placeholder="Select an option" />
+                    )}
+                    onChange={handleChange}
+                    value={selectedOption}
+                    getOptionSelected={(option, value) => option.label === value.label}
+                    renderOption={(option) => (
+                        <>
+                            <Radio
+                                style={{ marginRight: 12 }}
+                                checked={selectedOption && selectedOption.label === option.label}
+                                inputProps={{ "aria-label": `Rate ${option.label}` }}
                             />
-                        ))}
-                    </RadioGroup>
-                </FormControl>
+                            <div className="rate_selection_listbox">
+                                <span>Rate # {option.index + 1}</span>
+                                <span>{formatCurrency(option.value)}</span>
+                            </div>
+                        </>
+                    )}
+                />
             </div>
             <div className="breakDMain">
                 <div className="drateBreakDown">
@@ -55,7 +68,7 @@ export default function RateDetails({ room }) {
                     <ul className="dRateBD">
                         <li>
                             <span>Rate:</span>
-                            <span>{formattedRate}</span>
+                            <span>{formatCurrency(selectedOption?.value || 0)}</span>
                         </li>
                         <li>
                             <span>Discount:</span>

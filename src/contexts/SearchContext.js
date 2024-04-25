@@ -35,7 +35,7 @@ const initialState = {
   guests: 1,
   isLoading: false,
   isLoadingMore: false,
-  bookedRooms: [],
+  selectedRooms: [],
   isDetailView: false,
   bookingCount: 0,
 };
@@ -167,7 +167,7 @@ function reducer(state, action) {
         roomsInSearch: newRooms,
         searchedRooms: newsearchedRooms,
         availableRooms: updateAvailableRooms,
-        bookedRooms: [],
+        selectedRooms: [],
         adultsCount: {
           ...state.adultsCount,
           [roomToRemove.id]: undefined,
@@ -218,7 +218,7 @@ function reducer(state, action) {
       };
     case "UPDATE_BOOKED_ROOMS":
       const removeActiveRoom = state.availableRooms.map((room) => ({ ...room, isRoomViewed: false }));
-      return { ...state, availableRooms: removeActiveRoom, bookedRooms: action.payload };
+      return { ...state, availableRooms: removeActiveRoom, selectedRooms: action.payload };
     case "UPDATE_BOOKED_ROOM_COUNT":
       const { roomId, count } = action.payload;
       const updatedRooms = state.availableRooms.map((room) =>
@@ -241,7 +241,7 @@ function reducer(state, action) {
       return { ...state, availableRooms: updateViewedRoom };
     case "SELECT_RATE":
       const { rateRoomId, value } = action.payload;
-      const updatedBookedRooms = state.bookedRooms.map((room) => {
+      const updatedselectedRooms = state.selectedRooms.map((room) => {
         if (room.bookingId === rateRoomId) {
           return {
             ...room,
@@ -252,13 +252,13 @@ function reducer(state, action) {
       });
       return {
         ...state,
-        bookedRooms: updatedBookedRooms,
+        selectedRooms: updatedselectedRooms,
       };
     case "ADD_GUEST":
       const { guestRoomId, formData } = action.payload;
       return {
         ...state,
-        bookedRooms: state.bookedRooms.map((room) => {
+        selectedRooms: state.selectedRooms.map((room) => {
           if (room.id === guestRoomId) {
             const updatedGuests = Array.isArray(room.guests) ? room.guests : [];
             return {

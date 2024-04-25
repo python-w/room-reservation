@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Check } from "@material-ui/icons";
 import ListWithSummary from "./AmenitiesList";
-import ListingCarousel from "../ui/ListingCarousel";
+import ListingCarousel from "./ListingCarousel";
 import { Button } from "@material-ui/core";
 import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
@@ -13,11 +13,11 @@ import { v4 as uuidv4 } from "uuid";
 import extractAmenities from "../utils/extractAmenities";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 
-export default function RoomListView({ room, index }) {
+export default function RoomListTile({ room, index }) {
   const amenitiesRef = useRef();
   const [amenitiesWidth, setAmenitiesWidth] = useState(0);
   const { state: searchState, dispatch } = useSearch();
-  const { bookedRooms, searchedRooms, bookingCount } = searchState;
+  const { selectedRooms, searchedRooms, bookingCount } = searchState;
   useLayoutEffect(() => {
     if (amenitiesRef.current) {
       setAmenitiesWidth(amenitiesRef.current.offsetWidth);
@@ -29,14 +29,14 @@ export default function RoomListView({ room, index }) {
   );
 
   const handleSelectProperty = (room) => {
-    const updatedBookedRooms = [...bookedRooms];
-    const roomIndex = updatedBookedRooms.findIndex(
+    const updatedselectedRooms = [...selectedRooms];
+    const roomIndex = updatedselectedRooms.findIndex(
       (r) => r.roomId === room.roomId
     );
     const newId = uuidv4();
 
     if (roomIndex === -1) {
-      updatedBookedRooms.push({
+      updatedselectedRooms.push({
         roomId: room.roomId,
         bookingId: newId,
         title: room?.name,
@@ -44,7 +44,7 @@ export default function RoomListView({ room, index }) {
         rates: room.rateMap,
         bookedRoomCount: 1,
       });
-      dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedBookedRooms });
+      dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedselectedRooms });
       const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
       dispatch({
         type: "UPDATE_BOOKED_ROOM_COUNT",
@@ -59,8 +59,8 @@ export default function RoomListView({ room, index }) {
 
   const handleRoomAdd = (room) => {
     const newId = uuidv4();
-    const updatedBookedRooms = [
-      ...bookedRooms,
+    const updatedselectedRooms = [
+      ...selectedRooms,
       {
         roomId: room.roomId,
         bookingId: newId,
@@ -71,7 +71,7 @@ export default function RoomListView({ room, index }) {
         isSelected: true
       },
     ];
-    dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedBookedRooms });
+    dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedselectedRooms });
     const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
 
     dispatch({
@@ -83,14 +83,14 @@ export default function RoomListView({ room, index }) {
   };
 
   const handleRoomSub = (roomId) => {
-    const updatedBookedRooms = bookedRooms
+    const updatedselectedRooms = selectedRooms
       .map((room) =>
         room.roomId === roomId
           ? { ...room, bookedRoomCount: Math.max(room.bookedRoomCount - 1, 0) }
           : room
       )
       .filter((room) => room.bookedRoomCount > 0);
-    dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedBookedRooms });
+    dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedselectedRooms });
 
     const count = currentRoom ? (currentRoom.bookedRoomCount || 0) - 1 : 1;
     dispatch({

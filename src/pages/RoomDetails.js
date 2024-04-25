@@ -2,7 +2,7 @@
 import React from "react";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-import Fancybox from "../ui/ListingFancyBox";
+import RoomDetailsFancybox from "../ui/RoomDetailsFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
@@ -36,7 +36,7 @@ export default function RoomDetails() {
             See Other Options
           </button>
           <div className="roomThumb">
-            <Fancybox>
+            <RoomDetailsFancybox>
               <ListingCarousel showPageCount={true} options={{ infinite: false, Thumbs: false }}>
                 {room.images.thumbs.map((thumb, i) => (
                   <div className="f-carousel__slide" data-fancybox="gallery" data-src={room.images.large[i]} key={i}>
@@ -44,7 +44,7 @@ export default function RoomDetails() {
                   </div>
                 ))}
               </ListingCarousel>
-            </Fancybox>
+            </RoomDetailsFancybox>
           </div>
           <div className="room-bio">
             <h3 className="card-title">

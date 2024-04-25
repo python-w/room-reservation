@@ -24,11 +24,11 @@ export async function getRooms(dispatch) {
   }
 }
 
-export async function createBooking(bookedRooms) {
+export async function createBooking(selectedRooms) {
   try {
     const res = await fetch('http://localhost:5000/bookings', {
       method: "POST",
-      body: JSON.stringify(bookedRooms),
+      body: JSON.stringify(selectedRooms),
       headers: {
         "Content-Type": "application/json",
       },

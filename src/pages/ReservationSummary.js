@@ -10,36 +10,36 @@ export default function ReservationSummary() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
-  const { bookedRooms, searchedRooms } = state;
+  const { selectedRooms, searchedRooms } = state;
 
-  function adjustRooms(searchedRooms, bookedRooms) {
+  function adjustRooms(searchedRooms, selectedRooms) {
     for (let searchedRoom of searchedRooms) {
       let maxOccupancy = -1;
       let targetRoomIndex = -1;
 
-      for (let i = 0; i < bookedRooms.length; i++) {
+      for (let i = 0; i < selectedRooms.length; i++) {
         if (
-          !bookedRooms[i].adults &&
-          !bookedRooms[i].children &&
+          !selectedRooms[i].adults &&
+          !selectedRooms[i].children &&
           searchedRoom.adults + searchedRoom.children <=
-          bookedRooms[i].maxOccupancy
+          selectedRooms[i].maxOccupancy
         ) {
-          if (bookedRooms[i].maxOccupancy > maxOccupancy) {
-            maxOccupancy = bookedRooms[i].maxOccupancy;
+          if (selectedRooms[i].maxOccupancy > maxOccupancy) {
+            maxOccupancy = selectedRooms[i].maxOccupancy;
             targetRoomIndex = i;
           }
         }
       }
 
       if (targetRoomIndex !== -1) {
-        bookedRooms[targetRoomIndex].adults = searchedRoom.adults;
-        bookedRooms[targetRoomIndex].children = searchedRoom.children;
+        selectedRooms[targetRoomIndex].adults = searchedRoom.adults;
+        selectedRooms[targetRoomIndex].children = searchedRoom.children;
       }
     }
   }
 
   // Adjust rooms
-  adjustRooms(searchedRooms, bookedRooms);
+  adjustRooms(searchedRooms, selectedRooms);
 
   const handleSearchAgain = () => {
     navigate("/");
@@ -50,7 +50,7 @@ export default function ReservationSummary() {
     event.preventDefault();
 
     try {
-      await createBooking(bookedRooms);
+      await createBooking(selectedRooms);
       navigate("/bookings");
     } catch (error) {
       setError(error);
@@ -69,11 +69,11 @@ export default function ReservationSummary() {
       <h3>Reservation Summary</h3>
       <CheckInOutCard />
       <div className="room_count">
-        <span>{bookedRooms.length}</span>{" "}
-        {bookedRooms.length > 1 ? "Rooms" : "Room"} selected
+        <span>{selectedRooms.length}</span>{" "}
+        {selectedRooms.length > 1 ? "Rooms" : "Room"} selected
       </div>
       <div className="row">
-        {bookedRooms.map((room, index) => (
+        {selectedRooms.map((room, index) => (
           <RoomSummary key={index} room={room} index={index + 1} />
         ))}
       </div>
@@ -87,7 +87,7 @@ export default function ReservationSummary() {
         <input
           type="hidden"
           name="bookedRoom"
-          value={JSON.stringify(bookedRooms)}
+          value={JSON.stringify(selectedRooms)}
         />
         <button
           onClick={handleSearchAgain}

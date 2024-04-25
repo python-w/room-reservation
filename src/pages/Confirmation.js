@@ -6,7 +6,7 @@ import CheckInOutCard from "../ui/CheckInOutCard";
 export default function Confirmation() {
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
-  const { bookedRooms } = state;
+  const { selectedRooms } = state;
 
   const handleSearchAgain = () => {
     navigate('/');
@@ -26,7 +26,7 @@ export default function Confirmation() {
       <div className="confirmation_card">
         <p>Confirmation Code: 254624</p>
         <div className="booked_card">
-          {bookedRooms.map((room, index) => (
+          {selectedRooms.map((room, index) => (
             <div key={index} className="card">
               <div className="card-body">
                 <img src={room.thumbnail} alt="" className="card-img img-fluid" />

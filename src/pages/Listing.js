@@ -1,7 +1,7 @@
 import React from "react";
 import Filters from "../features/filter/Filters";
 import FilterButton from "../ui/FilterButton";
-import RoomListView from "../ui/RoomListView";
+import RoomListTile from "../ui/RoomListTile";
 import useWindowWidth from "../hooks/useWindowWidth";
 import { useSearch } from "../contexts/SearchContext";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ export function RoomListing() {
     isLoadingMore,
     error,
     isSearchActive,
-    bookedRooms,
+    selectedRooms,
     searchedRooms
   } = state;
 
@@ -79,9 +79,9 @@ export function RoomListing() {
               availableRooms.length > 0 && (
                 <>
                   {availableRooms.map((room, index) => (
-                    <RoomListView room={room} index={index} key={index} />
+                    <RoomListTile room={room} index={index} key={index} />
                   ))}
-                  {bookedRooms.length === searchedRooms.length && (
+                  {selectedRooms.length === searchedRooms.length && (
                     <div className="d-flex justify-content-end rl_btn_wrap">
                       <Link
                         to="/reservation-summary"

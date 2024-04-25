@@ -13,7 +13,6 @@ export default function RateSelection({ bookingId, roomRates }) {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
-
   const options = Object.entries(roomRates).map(([key, value], index) => ({
     label: `Rate # ${index + 1} - ${formatCurrency(value)}`,
     value,
@@ -26,7 +25,6 @@ export default function RateSelection({ bookingId, roomRates }) {
       type: "SELECT_RATE",
       payload: { rateRoomId: bookingId, value },
     });
-    console.log("Selected value:", value);
   };
 
   return (
@@ -46,7 +44,6 @@ export default function RateSelection({ bookingId, roomRates }) {
               <Radio
                 style={{ marginRight: 12 }}
                 checked={selectedOption && selectedOption.label === option.label}
-                onChange={() => setSelectedOption(option)}
                 inputProps={{ "aria-label": `Rate ${option.label}` }}
               />
               <div className="rate_selection_listbox">
