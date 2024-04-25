@@ -7,13 +7,20 @@ import { calculateDiscountedRoomRate } from '../../utils/CalculateDiscountedRoom
 import { taxRate } from '../../utils/TaxRate';
 
 export default function RateDetails({ room }) {
-    const [selectedRate, setSelectedRate] = useState(room.rates[0].rate);
+    const rateArray = Object.entries(room.rateMap);
+    const defaultRate = rateArray[0][1];
+
+    const [selectedRate, setSelectedRate] = useState(defaultRate);
     const formattedRate = formatCurrency(selectedRate);
-    const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount));
-    const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount)
-    const vat = calculateVATOnDiscountedRate(selectedRate, room.discount, taxRate);
+    const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
+    const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount || 0)
+    const vat = calculateVATOnDiscountedRate(selectedRate, room.discount || 0, taxRate || 0);
     const formattedVAT = formatCurrency(vat);
     const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
+
+    const handleChange = (event) => {
+        setSelectedRate(event.target.value);
+    };
 
     return (
         <div className="card-body">
@@ -22,26 +29,21 @@ export default function RateDetails({ room }) {
                     Rate Details
                 </h6>
                 <FormControl className="rateFormControl">
-                    <RadioGroup defaultValue={room.rate} name="rate-selection-radio">
-                        {room.rates.map((room, index) =>
+                    <RadioGroup name="rate-selection-radio" defaultValue={selectedRate}>
+                        {room.rateMap && Object.entries(room.rateMap).map(([key, value], index) => (
                             <FormControlLabel
                                 key={index}
-                                value={room.rate}
+                                value={value}
                                 control={<Radio />}
-                                onChange={(e) => setSelectedRate(e.target.value)}
+                                onChange={handleChange}
                                 label={
-                                    <span className="rateSelectionLabel">
-                                        <span>
-                                            {room.label}
-                                        </span>
-                                        <span>
-                                            {formatCurrency(room.rate)}
-                                        </span>
-                                    </span>
+                                    <div className="rate_selection_listbox">
+                                        <span>Rate # {index + 1}</span>
+                                        <span>{formatCurrency(value)}</span>
+                                    </div>
                                 }
-                                className="rateFormLabel"
                             />
-                        )}
+                        ))}
                     </RadioGroup>
                 </FormControl>
             </div>

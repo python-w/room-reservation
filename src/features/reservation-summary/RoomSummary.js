@@ -7,21 +7,14 @@ import { calculateVATOnDiscountedRate } from "../../utils/CalculateVATOnDiscount
 import { taxRate } from "../../utils/TaxRate";
 
 export default function BookedRoom({ room, index }) {
-  const selectedRate = room.selectedRate ? room.selectedRate.rate : 0;
-  const discountedAmount = formatCurrency(
-    calculateDiscountedAmount(selectedRate, room.discount)
-  );
-  const discountedRate = calculateDiscountedRoomRate(
-    selectedRate,
-    room.discount
-  );
-  const vat = calculateVATOnDiscountedRate(
-    selectedRate,
-    room.discount,
-    taxRate
-  );
+
+  const selectedRate = room.selectedRate?.value || 0;
+  const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
+  const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount || 0)
+  const vat = calculateVATOnDiscountedRate(selectedRate, room.discount || 0, taxRate || 0);
   const formattedVAT = formatCurrency(vat);
   const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
+
   return (
     <div className="col-md-6">
       <div className="booked_room_card">

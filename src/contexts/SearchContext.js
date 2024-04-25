@@ -217,7 +217,8 @@ function reducer(state, action) {
         filterToggle: !state.filterToggle,
       };
     case "UPDATE_BOOKED_ROOMS":
-      return { ...state, bookedRooms: action.payload };
+      const removeActiveRoom = state.availableRooms.map((room) => ({ ...room, isRoomViewed: false }));
+      return { ...state, availableRooms: removeActiveRoom, bookedRooms: action.payload };
     case "UPDATE_BOOKED_ROOM_COUNT":
       const { roomId, count } = action.payload;
       const updatedRooms = state.availableRooms.map((room) =>
@@ -230,6 +231,14 @@ function reducer(state, action) {
       return { ...state, bookingCount: state.bookingCount + 1 };
     case "BOOK_ROOM_SUB":
       return { ...state, bookingCount: state.bookingCount - 1 };
+    case "VIEWED_ROOM":
+      const viewedRoomId = action.payload;
+      const updateViewedRoom = state.availableRooms.map((room) =>
+        room.roomId === viewedRoomId
+          ? { ...room, isRoomViewed: true, }
+          : { ...room, isRoomViewed: false }
+      );
+      return { ...state, availableRooms: updateViewedRoom };
     case "SELECT_RATE":
       const { rateRoomId, value } = action.payload;
       const updatedBookedRooms = state.bookedRooms.map((room) => {

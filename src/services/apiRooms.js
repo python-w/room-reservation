@@ -38,6 +38,6 @@ export async function createBooking(bookedRooms) {
     const { data } = await res.json();
     return data;
   } catch {
-    throw Error("Failed creating your order");
+    throw Error("Failed booking your room.");
   }
 }

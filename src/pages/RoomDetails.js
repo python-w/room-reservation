@@ -1,3 +1,5 @@
+
+import React from "react";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Fancybox from "../ui/ListingFancyBox";
@@ -9,6 +11,7 @@ import { CheckCircleOutlineOutlined } from '@material-ui/icons';
 import RateDetails from "../features/room-details/RateDetails";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 import extractAmenities from "../utils/extractAmenities";
+
 
 export default function RoomDetails() {
   const navigate = useNavigate();
@@ -25,7 +28,7 @@ export default function RoomDetails() {
 
 
   return (
-    <div className="container">
+    <>
       {room &&
         <div className="detail_page">
           <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
@@ -48,10 +51,10 @@ export default function RoomDetails() {
               {room.name}
             </h3>
             {room?.address?.addressLine1 &&
-              <Link to={googleMapsUrl} target="_blank" className="card-address" style={{ alignItems: "center", display: "flex" }}>
+              <a href={googleMapsUrl} target="_blank" rel="noreferrer" className="card-address" style={{ alignItems: "center", display: "flex" }}>
                 <LocationOnOutlinedIcon />
                 {`${room?.address?.addressLine1}, ${room?.address?.state}, ${room?.address?.postalCode}`}
-              </Link>
+              </a>
             }
           </div>
           <div className="row">
@@ -61,9 +64,7 @@ export default function RoomDetails() {
                   <h5 className="card-heading">
                     Room Details
                   </h5>
-                  <div className="card-description">
-                    <p>{room.description}</p>
-                  </div>
+                  <div className="card-description" dangerouslySetInnerHTML={{ __html: room.onlineDescription }}></div>
                   {amenities &&
                     <div className="damenities-card damenities-card-01">
                       <p><strong>Amenities Included</strong></p>
@@ -118,12 +119,12 @@ export default function RoomDetails() {
             </div>
             <div className="col-lg-4 rateDMain">
               <div className="card rate-details">
-                {/* <RateDetails room={room} key={room.roomId} /> */}
+                <RateDetails room={room} key={room.roomId} />
               </div>
             </div>
           </div>
         </div>
       }
-    </div>
+    </>
   );
 }

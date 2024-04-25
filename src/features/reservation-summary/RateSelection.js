@@ -1,37 +1,31 @@
 import { formatCurrency } from "../../utils/FormatCurrency";
 import { useSearch } from "../../contexts/SearchContext";
-import { useState } from "react";
 import { Autocomplete } from "@material-ui/lab";
 import {
   FormControl,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
   Radio,
-  RadioGroup,
   TextField,
 } from "@material-ui/core";
+import { useState } from "react";
 
 export default function RateSelection({ bookingId, roomRates }) {
   const { dispatch } = useSearch();
 
-  const [open, setOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
 
   const options = Object.entries(roomRates).map(([key, value], index) => ({
-    label: `Rate # ${index + 1} - ${value}`,
+    label: `Rate # ${index + 1} - ${formatCurrency(value)}`,
     value,
     index,
   }));
 
-  const handleRateSelect = (value) => {
-    setOpen(false);
+  const handleChange = (event, value) => {
+    setSelectedOption(value)
     dispatch({
       type: "SELECT_RATE",
       payload: { rateRoomId: bookingId, value },
     });
-  };
-
-  const handleChange = (event, value) => {
     console.log("Selected value:", value);
   };
 
@@ -45,11 +39,14 @@ export default function RateSelection({ bookingId, roomRates }) {
             <TextField {...params} placeholder="Select an option" />
           )}
           onChange={handleChange}
-          renderOption={(option, { selected }) => (
+          value={selectedOption}
+          getOptionSelected={(option, value) => option.label === value.label}
+          renderOption={(option) => (
             <>
               <Radio
                 style={{ marginRight: 12 }}
-                checked={selected}
+                checked={selectedOption && selectedOption.label === option.label}
+                onChange={() => setSelectedOption(option)}
                 inputProps={{ "aria-label": `Rate ${option.label}` }}
               />
               <div className="rate_selection_listbox">

@@ -1,8 +1,8 @@
+import React, { useLayoutEffect, useRef, useState } from "react";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Check } from "@material-ui/icons";
 import ListWithSummary from "./AmenitiesList";
 import ListingCarousel from "../ui/ListingCarousel";
-import { useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@material-ui/core";
 import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
@@ -106,10 +106,20 @@ export default function RoomListView({ room, index }) {
   //Amenities
   const amenities = extractAmenities(room);
 
+  //Detail page URL
+  const formattedRoomName = room.name.toLowerCase().replace(/\s+/g, '-');
 
+  const updatedUrl = `/room/${room.roomId}/${encodeURIComponent(formattedRoomName)}`;
+
+  // State to track whether the card is active
+  const handleDetailLinkClick = (roomId) => {
+    dispatch({ type: "VIEWED_ROOM", payload: roomId })
+  };
+
+  const cardClass = room.isRoomViewed ? 'card active' : 'card';
 
   return (
-    <div className="card" key={index}>
+    <div className={cardClass} key={index}>
       <div className="row">
         {room.defaultRate !== null && (
           <div className="price-container">
@@ -147,15 +157,16 @@ export default function RoomListView({ room, index }) {
               </div>
               <h6 className="card-title">{room?.name}</h6>
               {room.address?.addressLine1 && (
-                <Link
-                  to={googleMapsUrl}
+                <a
+                  href={googleMapsUrl}
+                  rel="noreferrer"
                   target="_blank"
                   className="card-address"
                   style={{ alignItems: "center", display: "flex" }}
                 >
                   <LocationOnOutlinedIcon />
                   {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
-                </Link>
+                </a>
               )}
               {room.description && (
                 <p className="card-desc lcard-desc">{room?.description}</p>
@@ -174,31 +185,12 @@ export default function RoomListView({ room, index }) {
             </div>
             <div className="card-footer">
               <Link
-                to={`/room/${room.roomId}`}
+                onClick={() => handleDetailLinkClick(room.roomId)}
+                to={updatedUrl}
                 className="btn btn-wc-transparent"
               >
                 View More Details
               </Link>
-              {/* {room.websiteView === 0 && (
-                <div className="room_counter">
-                  <p>Rooms</p>
-                  <Button
-                    variant="outlined"
-                    disabled={room.bookedRoomCount === undefined || room.bookedRoomCount === 0}
-                    onClick={() => handleRoomSub(room.roomId)}
-                  >
-                    <RemoveOutlinedIcon />
-                  </Button>
-                  <span>{room.bookedRoomCount || 0}</span>
-                  <Button
-                    variant="outlined"
-                    disabled={bookingCount === searchedRooms.length}
-                    onClick={() => handleRoomAdd(room)}
-                  >
-                    <AddOutlinedIcon />
-                  </Button>
-                </div>
-              )} */}
 
               {room.websiteView === 0 && room.isSelected ? (
                 <div className="room_counter">
