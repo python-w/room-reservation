@@ -15,10 +15,18 @@ $mq-mobile-sm: "(max-width: 575.98px)";
 body {
   &.wcprop-2 {
     section.portlet {
+      ul{
+        padding: 0;
+        margin: 0;
+      }
       .btn {
+        .svg-inline--fa {
+          color: inherit
+        }
+
         &:hover {
-          .MuiSvgIcon-root {
-            color: var(--btn-text-hover)
+          .svg-inline--fa {
+            color: inherit
           }
         }
       }
@@ -56,21 +64,22 @@ body {
     }
 
     .btn-wc-primary {
-      .MuiSvgIcon-root {
+      .svg-inline--fa {
         color: #fff;
       }
     }
 
     .btn-wc-outlined {
-      .MuiSvgIcon-root {
+      .svg-inline--fa {
         color: var(--primary-color);
       }
 
       &:hover {
-        background: var(--primary-color);
-        color: #fff;
+        background: var(--primary-color-hover);
+        color: var(--btn-text-hover);
+        border-color: transparent;
 
-        .MuiSvgIcon-root {
+        .svg-inline--fa {
           color: #fff;
         }
       }
@@ -79,7 +88,7 @@ body {
     //Porlet Banner
     .room_reservation_banner {
       background-size: cover !important;
-      padding: 5% 0 9% 0;
+      padding: 6% 0 10% 0;
       border-bottom-left-radius: 30px;
       border-bottom-right-radius: 30px;
       position: relative;
@@ -91,8 +100,6 @@ body {
       }
 
       &::before {
-        content: "";
-        background: var(--primary-color);
         content: "";
         background: var(--primary-color);
         position: absolute;
@@ -268,7 +275,7 @@ body {
             padding: 0 0 get4k(4px);
           }
 
-          .MuiSvgIcon-root {
+          .svg-inline--fa {
             color: #fff;
           }
         }
@@ -324,12 +331,14 @@ body {
 
       .btn.btn-checkavail {
         padding: 0;
-        display: inline-flex;
-        align-items: center;
         margin: 0;
 
         &:hover {
           color: inherit;
+
+          .svg-inline--fa {
+            color: inherit;
+          }
         }
 
         @media #{$mq-4k} {
@@ -375,8 +384,6 @@ body {
       }
 
       div {
-        display: inline-flex;
-        align-items: center;
         flex: 1;
 
         svg {
@@ -765,12 +772,7 @@ body {
         }
 
         svg {
-          font-size: 20px;
           color: var(--body-text-color);
-
-          @media #{$mq-4k} {
-            font-size: get4k(20px);
-          }
         }
       }
 
@@ -1673,8 +1675,6 @@ body {
           background: rgba(0, 0, 0, 0.25);
           border-radius: 100px;
           font-size: 14px;
-          display: flex;
-          align-items: center;
 
           @media #{$mq-4k} {
             bottom: get4k(24px);
@@ -1685,12 +1685,10 @@ body {
           }
 
           svg {
-            font-size: 18px;
             margin-right: 0.25rem;
             color: inherit;
 
             @media #{$mq-4k} {
-              font-size: get4k(18px);
               margin-right: get4k(4px);
             }
           }
@@ -1816,7 +1814,7 @@ body {
       .amenitiesList-inner {
         display: flex;
 
-        .MuiSvgIcon-root {
+        .svg-inline--fa {
           color: inherit;
           opacity: 0.8;
         }
@@ -1850,7 +1848,7 @@ body {
           }
 
           svg {
-            font-size: calc((var(--wc-font-size) + 4) * 1px);
+            font-size: calc(var(--wc-font-size) * 1px);
             margin-right: 5px;
           }
         }
@@ -1939,11 +1937,10 @@ body {
         }
 
         .card-address {
-          margin-bottom: 20px;
           text-decoration: none;
           color: inherit;
 
-          .MuiSvgIcon-root {
+          .svg-inline--fa {
             color: var(--wc-font-color);
             opacity: 0.8;
           }
@@ -2115,7 +2112,7 @@ body {
 
         .btn-wc-outlined {
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 500;
           margin-top: 0;
           margin-left: auto;
           display: inline-flex;
@@ -2137,7 +2134,7 @@ body {
             color: #fff;
             font-weight: normal;
 
-            .MuiSvgIcon-root {
+            .svg-inline--fa {
               color: #fff;
             }
 
@@ -2297,7 +2294,7 @@ body {
           text-decoration: none;
           color: inherit;
 
-          .MuiSvgIcon-root {
+          .svg-inline--fa {
             color: var(--wc-font-color);
             opacity: 0.8;
           }
@@ -2411,15 +2408,12 @@ body {
                 svg {
                   margin-right: 12px;
                   font-size: 20px;
+                  opacity: 0.8;
                 }
               }
             }
           }
         }
-      }
-
-      .rateDMain {
-        display: flex;
       }
 
       .rate-details {
@@ -3149,10 +3143,14 @@ body {
 
           h3 {
             font-size: 14px;
-            margin-bottom: -2px;
             text-transform: uppercase;
             color: var(--primary-color);
+            margin-bottom: 0;
             line-height: 1;
+
+            @media #{$mq-4k} {
+              margin-bottom: 0;
+            }
           }
 
           button {

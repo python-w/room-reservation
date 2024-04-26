@@ -1,8 +1,6 @@
-import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
-import TodayOutlinedIcon from "@material-ui/icons/TodayOutlined";
-import InsertInvitationOutlinedIcon from "@material-ui/icons/InsertInvitationOutlined";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import SearchIcon from "@material-ui/icons/Search";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck, faCalendar, faUser } from '@fortawesome/free-regular-svg-icons';
 import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
@@ -107,7 +105,7 @@ export default function Search() {
                   onClick={handleOpenChkAvlModal}
                   className="btn btn-wc-transparent btn-checkavail"
                 >
-                  <DateRangeOutlinedIcon />
+                  <FontAwesomeIcon icon={faCalendarCheck} />
                   <span className="d-none d-sm-inline-block">
                     Check Availability
                   </span>
@@ -120,11 +118,11 @@ export default function Search() {
                   onClick={handleDateModalOpen}
                 >
                   <div>
-                    <TodayOutlinedIcon />{" "}
+                    <FontAwesomeIcon icon={faCalendar} />{" "}
                     <Typography component="span">{checkInDate}</Typography>
                   </div>
                   <div>
-                    <InsertInvitationOutlinedIcon />{" "}
+                    <FontAwesomeIcon icon={faCalendar} />{" "}
                     <Typography component="span">{checkOutDate}</Typography>
                   </div>
                 </div>
@@ -147,7 +145,7 @@ export default function Search() {
                     className="customInputBox"
                   >
                     <div>
-                      <PermIdentityIcon />{" "}
+                      <FontAwesomeIcon icon={faUser} />{" "}
                       <Typography component="span">
                         {guests || 1} {guests > 1 ? "Guests" : "Guest"},{" "}
                         {roomsInSearch.length}{" "}
@@ -164,7 +162,7 @@ export default function Search() {
             <Grid item>
               <div className="search_btn_wrap">
                 <button onClick={handleSearch} className="btn btn-wc-primary">
-                  Search <SearchIcon />
+                  Search  <FontAwesomeIcon icon={faSearch} />
                 </button>
               </div>
             </Grid>

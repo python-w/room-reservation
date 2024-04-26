@@ -1,5 +1,6 @@
 import RoomCard from "./RoomCard";
-import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useSearch } from "../../contexts/SearchContext";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useRef } from "react";
@@ -36,7 +37,8 @@ export default function AddRoomCard({ handleCloseModal }) {
             {roomsInSearch.length < roomsToSearch.length && (
                 <Box className="add_room_btn" >
                     <button className="btn btn-wc-outlined" variant="outlined" color="primary" onClick={addRoom}>
-                        <AddOutlinedIcon /> Add Another Room
+                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                        Add Another Room
                     </button>
                 </Box>
             )}

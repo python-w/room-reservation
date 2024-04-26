@@ -1,11 +1,9 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-import { Check } from "@material-ui/icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faCheck, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import ListWithSummary from "./AmenitiesList";
 import ListingCarousel from "./ListingCarousel";
 import { Button } from "@material-ui/core";
-import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
-import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 import { useSearch } from "../contexts/SearchContext";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../utils/FormatCurrency";
@@ -157,16 +155,17 @@ export default function RoomListTile({ room, index }) {
               </div>
               <h6 className="card-title">{room?.name}</h6>
               {room.address?.addressLine1 && (
-                <a
-                  href={googleMapsUrl}
-                  rel="noreferrer"
-                  target="_blank"
-                  className="card-address"
-                  style={{ alignItems: "center", display: "flex" }}
-                >
-                  <LocationOnOutlinedIcon />
-                  {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
-                </a>
+                <p>
+                  <a
+                    href={googleMapsUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                    className="card-address"
+                  >
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+                    {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
+                  </a>
+                </p>
               )}
               {room.description && (
                 <p className="card-desc lcard-desc">{room?.description}</p>
@@ -200,7 +199,7 @@ export default function RoomListTile({ room, index }) {
                     disabled={room.bookedRoomCount === undefined || room.bookedRoomCount === 0}
                     onClick={() => handleRoomSub(room.roomId)}
                   >
-                    <RemoveOutlinedIcon />
+                    <FontAwesomeIcon icon={faMinus} />
                   </Button>
                   <span>{room.bookedRoomCount || 0}</span>
                   <Button
@@ -208,7 +207,7 @@ export default function RoomListTile({ room, index }) {
                     disabled={bookingCount === searchedRooms.length}
                     onClick={() => handleRoomAdd(room)}
                   >
-                    <AddOutlinedIcon />
+                    <FontAwesomeIcon icon={faPlus} />
                   </Button>
                 </div>
               ) : (
@@ -221,7 +220,7 @@ export default function RoomListTile({ room, index }) {
                       disabled={room.bookedRoomCount === undefined || room.bookedRoomCount === 0}
                       onClick={() => handleRoomSub(room.roomId)}
                     >
-                      <RemoveOutlinedIcon />
+                      <FontAwesomeIcon icon={faMinus} />
                     </Button>
                     <span>{room.bookedRoomCount || 0}</span>
                     <Button
@@ -229,7 +228,7 @@ export default function RoomListTile({ room, index }) {
                       disabled={bookingCount === searchedRooms.length}
                       onClick={() => handleRoomAdd(room)}
                     >
-                      <AddOutlinedIcon />
+                      <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </div>
                 )
@@ -240,7 +239,7 @@ export default function RoomListTile({ room, index }) {
                   className="btn-selected btn btn-wc-outlined"
                   onClick={() => handleSelectProperty(room)}
                 >
-                  <Check className="mr-2" /> Selected
+                  <FontAwesomeIcon icon={faCheck} className="mr-2" /> Selected
                 </button>
               ) : (
                 room.websiteView === 1 &&

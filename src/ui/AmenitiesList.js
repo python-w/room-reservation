@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-import { CheckCircleOutlineOutlined } from '@material-ui/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import { amenityIcons } from '../utils/Icons'
 import { Icon } from "@material-ui/core";
@@ -45,7 +46,7 @@ export default function ListWithSummary({ items, maxWidth }) {
           }
         }
         const remainingCount = items.length - summarized.length;
-        summarized.push({ label: `${remainingCount} more...`, icon: <AddOutlinedIcon />, lastSpan: true });
+        summarized.push({ label: `${remainingCount} more...`, icon: <FontAwesomeIcon icon={faPlus} />, lastSpan: true });
         setSummarizedList(summarized);
         setIsSummarized(true);
       }
@@ -78,7 +79,7 @@ export default function ListWithSummary({ items, maxWidth }) {
           </span>
           :
           <span key={index} data-index={index} className="badge badge-pill badge-light lbadge-light">
-            {amenityIcons[summarizeitem] ? amenityIcons[summarizeitem] : <CheckCircleOutlineOutlined />}
+            {amenityIcons[summarizeitem] ? amenityIcons[summarizeitem] : <FontAwesomeIcon icon={faCheckCircle} />}
             {summarizeitem}
           </span>
       ))}

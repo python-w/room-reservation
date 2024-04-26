@@ -1,5 +1,6 @@
-import CheckIcon from "@material-ui/icons/Check";
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useSearch } from "../../contexts/SearchContext";
 import "react-international-phone/style.css";
 import { PhoneInput } from "react-international-phone";
@@ -75,7 +76,8 @@ export default function AddGuestModal({ open, handleClose, roomId }) {
             />
             <div className="d-flex justify-content-end">
               <button className="btn btn-wc-primary">
-                <CheckIcon /> Add Guest
+                <FontAwesomeIcon icon={faCheck} />
+                Add Guest
               </button>
             </div>
           </form>

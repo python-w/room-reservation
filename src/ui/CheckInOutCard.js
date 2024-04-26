@@ -1,5 +1,5 @@
-import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
-import InsertInvitationOutlinedIcon from '@material-ui/icons/InsertInvitationOutlined';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarCheck } from '@fortawesome/free-regular-svg-icons';
 import { useSearch } from '../contexts/SearchContext';
 import dayjs from 'dayjs';
 
@@ -18,7 +18,7 @@ export default function CheckInOutCard() {
                     <div className="res_date_card">
                         <div className="res_date_title">
                             <span>
-                                <TodayOutlinedIcon />
+                                <FontAwesomeIcon icon={faCalendarCheck} />
                             </span>
                             <p><strong>Check in:</strong></p>
                         </div>
@@ -33,7 +33,7 @@ export default function CheckInOutCard() {
                     <div className="res_date_card">
                         <div className="res_date_title">
                             <span>
-                                <InsertInvitationOutlinedIcon />
+                                <FontAwesomeIcon icon={faCalendarCheck} />
                             </span>
                             <p><strong>Check Out:</strong></p>
                         </div>

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 import { Carousel as NativeCarousel } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/carousel/carousel.css';
@@ -51,7 +52,7 @@ function Carousel({ children, showPageCount }) {
 function PageCountDisplay({ currentPage, totalPages }) {
   return (
     <div className='total-slides-count'>
-      <ImageOutlinedIcon /> {currentPage} of {totalPages}
+      <FontAwesomeIcon icon={faImage} /> {currentPage} of {totalPages}
     </div>
   );
 }

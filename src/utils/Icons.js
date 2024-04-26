@@ -1,45 +1,18 @@
-import HotelIcon from "@material-ui/icons/Hotel";
-import LocalDiningIcon from '@material-ui/icons/LocalDining';
-import PoolOutlinedIcon from "@material-ui/icons/PoolOutlined";
-import WifiOutlinedIcon from "@material-ui/icons/WifiOutlined";
-import DriveEtaIcon from "@material-ui/icons/DriveEta";
-import AcUnitOutlinedIcon from '@material-ui/icons/AcUnitOutlined';
-import BathtubOutlinedIcon from '@material-ui/icons/BathtubOutlined';
-import SmokingRoomsOutlinedIcon from '@material-ui/icons/SmokingRoomsOutlined';
-import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
-import SmokeFreeOutlinedIcon from '@material-ui/icons/SmokeFreeOutlined';
-import PetsOutlinedIcon from '@material-ui/icons/PetsOutlined';
-import RemoveRedEyeOutlinedIcon from '@material-ui/icons/RemoveRedEyeOutlined';
-import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
-import AirportShuttleOutlinedIcon from '@material-ui/icons/AirportShuttleOutlined';
-import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined';
-export const amenityIcons = {
-    "2 Double Beds": <HotelIcon />,
-    "Dinner": <LocalDiningIcon />,
-    "Swimming Pool": <PoolOutlinedIcon />,
-    "Wifi": <WifiOutlinedIcon />,
-    "Free Parking": <DriveEtaIcon />,
-    "TV": <TvOutlinedIcon />,
-    "Air Conditioning": <AcUnitOutlinedIcon />,
-    "Bathtub": <BathtubOutlinedIcon />,
-    "Smoking": <SmokingRoomsOutlinedIcon />,
-    "Breakfast": <FreeBreakfastOutlinedIcon />,
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBed, faPaw, faClock } from '@fortawesome/free-solid-svg-icons';
 
+export const amenityIcons = {
+    "2 Double Beds": <FontAwesomeIcon icon={faBed} />,
 };
 
 export const restrictionIcons = {
-    "No Pets Allowed": <PetsOutlinedIcon />,
-    "No Smoking": <SmokeFreeOutlinedIcon />,
+    "No Pets Allowed": <FontAwesomeIcon icon={faPaw} />,
 }
 
 export const featureIcons = {
-    "2 Double beds": <HotelIcon />,
-    "1 attached bathroom": <BathtubOutlinedIcon />,
-    "City View": <RemoveRedEyeOutlinedIcon />,
+    "2 Double beds": <FontAwesomeIcon icon={faBed} />,
 }
 
 export const additionalIcons = {
-    "Check-In at 2 PM": <AccessTimeOutlinedIcon />,
-    "Check-Out at 11 AM": <AccessTimeOutlinedIcon />,
-    "Shuttle available on request": <AirportShuttleOutlinedIcon />,
+    "Check-In at 2 PM": <FontAwesomeIcon icon={faClock} />,
 }

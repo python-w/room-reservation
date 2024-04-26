@@ -1,13 +1,13 @@
 
 import React from "react";
-import ChevronLeft from "@material-ui/icons/ChevronLeft";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import RoomDetailsFancybox from "../ui/RoomDetailsFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
 import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '../utils/Icons';
-import { CheckCircleOutlineOutlined } from '@material-ui/icons';
 import RateDetails from "../features/room-details/RateDetails";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 import extractAmenities from "../utils/extractAmenities";
@@ -32,7 +32,7 @@ export default function RoomDetails() {
       {room &&
         <div className="detail_page">
           <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
-            <ChevronLeft />
+            <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
             See Other Options
           </button>
           <div className="roomThumb">
@@ -51,8 +51,8 @@ export default function RoomDetails() {
               {room.name}
             </h3>
             {room?.address?.addressLine1 &&
-              <a href={googleMapsUrl} target="_blank" rel="noreferrer" className="card-address" style={{ alignItems: "center", display: "flex" }}>
-                <LocationOnOutlinedIcon />
+              <a href={googleMapsUrl} target="_blank" rel="noreferrer" className="card-address">
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
                 {`${room?.address?.addressLine1}, ${room?.address?.state}, ${room?.address?.postalCode}`}
               </a>
             }
@@ -65,13 +65,13 @@ export default function RoomDetails() {
                     Room Details
                   </h5>
                   <div className="card-description" dangerouslySetInnerHTML={{ __html: room.onlineDescription }}></div>
-                  {amenities &&
+                  {amenities.length > 0 &&
                     <div className="damenities-card damenities-card-01">
                       <p><strong>Amenities Included</strong></p>
                       <ul>
                         {amenities.map((el, index) =>
                           <li key={index}>
-                            {el in amenityIcons ? amenityIcons[el] : <CheckCircleOutlineOutlined />}
+                            {el in amenityIcons ? amenityIcons[el] : <FontAwesomeIcon icon={faCheckCircle} />}
                             {el}
                           </li>
                         )}
@@ -96,7 +96,7 @@ export default function RoomDetails() {
                       <ul>
                         {room.roomFeatures.map((el, index) =>
                           <li key={index}>
-                            {el in featureIcons ? featureIcons[el] : <CheckCircleOutlineOutlined />}
+                            {el in featureIcons ? featureIcons[el] : <FontAwesomeIcon icon={faCheckCircle} />}
                             {el}
                           </li>)}
                       </ul>
@@ -108,7 +108,7 @@ export default function RoomDetails() {
                       <ul>
                         {room.additionalDetails.map((el, index) =>
                           <li key={index}>
-                            {el in additionalIcons ? additionalIcons[el] : <CheckCircleOutlineOutlined />}
+                            {el in additionalIcons ? additionalIcons[el] : <FontAwesomeIcon icon={faCheckCircle} />}
                             {el}
                           </li>)}
                       </ul>
@@ -117,7 +117,7 @@ export default function RoomDetails() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 rateDMain">
+            <div className="col-lg-4">
               <div className="card rate-details">
                 <RateDetails room={room} key={room.roomId} />
               </div>

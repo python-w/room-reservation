@@ -1,8 +1,8 @@
 
 import { useState } from "react";
 import dayjs from 'dayjs';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from "@material-ui/core";
 export default function CheckAvailability({ open, handleClose }) {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -21,9 +21,9 @@ export default function CheckAvailability({ open, handleClose }) {
 
         return (
             <div className="month_title">
-                {!isFirstMonth && <button onClick={handlePrevMonth}><ChevronLeftIcon /></button>}
+                {!isFirstMonth && <button onClick={handlePrevMonth}><FontAwesomeIcon icon={faChevronLeft} /></button>}
                 <h3>{dayjs(currentDate).format('MMMM YYYY')}</h3>
-                <button onClick={handleNextMonth}><ChevronRightIcon /></button>
+                <button onClick={handleNextMonth}><FontAwesomeIcon icon={faChevronRight} /></button>
             </div>
         );
     };

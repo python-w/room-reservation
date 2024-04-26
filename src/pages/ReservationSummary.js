@@ -1,6 +1,7 @@
 import { useSearch } from "../contexts/SearchContext";
 import RoomSummary from "../features/reservation-summary/RoomSummary";
-import { Check, ChevronLeft, SearchOutlined } from "@material-ui/icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../services/apiRooms";
 import { useState } from "react";
@@ -63,7 +64,7 @@ export default function ReservationSummary() {
         onClick={() => navigate("/searchresults")}
         className="btn btn-wc-transparent btn-back"
       >
-        <ChevronLeft />
+        <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
         Go Back
       </button>
       <h3>Reservation Summary</h3>
@@ -93,11 +94,11 @@ export default function ReservationSummary() {
           onClick={handleSearchAgain}
           className="btn btn-wc-outlined mr-3"
         >
-          <SearchOutlined className="mr-2" />
+          <FontAwesomeIcon icon={faSearch} className="mr-2" />
           Search Again
         </button>
         <button type="submit" className="btn">
-          <Check className="mr-2" />
+          <FontAwesomeIcon icon={faCheck} className="mr-2" />
           Book Now
         </button>
       </form>

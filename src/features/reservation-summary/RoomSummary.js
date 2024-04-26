@@ -6,7 +6,7 @@ import { calculateDiscountedRoomRate } from "../../utils/CalculateDiscountedRoom
 import { calculateVATOnDiscountedRate } from "../../utils/CalculateVATOnDiscountedRate";
 import { taxRate } from "../../utils/TaxRate";
 
-export default function BookedRoom({ room, index }) {
+export default function RoomSummary({ room, index }) {
 
   const selectedRate = room.selectedRate?.value || 0;
   const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
