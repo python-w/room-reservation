@@ -89,7 +89,9 @@ body {
         }
         &::before {
           content: "";
-          background: var(--primary-color);
+          --primary-color-darker: color-mix(in srgb, var(--primary-color), #000 20%);
+          --primary-color-darkest: color-mix(in srgb, var(--primary-color), #000 35%);
+          background: linear-gradient(to left, var(--primary-color) 33%,var(--primary-color-darker) 66%, var(--primary-color-darkest) 85%);
           position: absolute;
           top: 0;
           left: 0;
