@@ -309,7 +309,7 @@ body {
       .customInputBox {
         display: flex;
         align-items: center;
-        height: 56px;
+        height: calc((var(--field-height) + 10) * 1px);
         border: 1px solid var(--wc-border-color);
         box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
         border-radius: calc(var(--BtnborderRadius) * 1px);
@@ -319,7 +319,7 @@ body {
         user-select: none;
         @media #{$mq-4k} {
           padding: 0 get4k(20px);
-          height: get4k(56px);
+          height: calc((var(--field-height) + 10) / var(--4k-ratio) * 1vw);
           border-radius: calc(var(--BtnborderRadius) / var(--4k-ratio) * 1vw);
         }
         @media #{$mq-tablet-md} {
@@ -410,7 +410,7 @@ body {
         }
         .btn.btn-wc-primary {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
-          height: 56px;
+          height: calc((var(--field-height) + 10) * 1px);
           padding: 0 30px;
           display: inline-flex;
           align-items: center;
@@ -418,7 +418,7 @@ body {
           transition: none;
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
-            height: get4k(56px);
+            height: calc((var(--field-height) + 10) / var(--4k-ratio) * 1vw);
             padding: 0 get4k(30px);
             margin-top: 0;
           }
