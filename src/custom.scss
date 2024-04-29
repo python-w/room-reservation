@@ -1681,7 +1681,6 @@ body {
         }
         .price-container {
           border-radius: 0px 0px calc(var(--borderRadius) * 1px) calc(var(--borderRadius) * 1px);
-          background: linear-gradient(180deg, #f0f7ff 0%, #cce3ff 100%);
           font-size: 20px;
           font-weight: bold;
           color: var(--primary-color);
@@ -1697,6 +1696,7 @@ body {
           top: 0;
           line-height: var(--wc-base-lineHeight);
           z-index: 1;
+          overflow: hidden;
           @media #{$mq-4k} {
             border-radius: 0 0 calc(var(--borderRadius) / var(--4k-ratio) * 1vw) calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             font-size: get4k(20px);
@@ -1708,6 +1708,17 @@ body {
           }
           @media #{$mq-tablet-sm} {
             right: 1rem;
+          }
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            --primary-color-darker: color-mix(in srgb, var(--primary-color), #000 20%);
+            background: linear-gradient(to left, var(--primary-color) 33%,var(--primary-color-darker) 66%);
+            opacity: 0.1;
           }
           small {
             font-size: 14px;
