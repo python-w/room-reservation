@@ -5,13 +5,11 @@ $mq-tablet-lg: "(max-width: 1199.98px)";
 $mq-tablet-md: "(max-width: 991.98px)";
 $mq-tablet-sm: "(max-width: 767.98px)";
 $mq-mobile-sm: "(max-width: 575.98px)";
-
 @function get4k($target) {
   $vw-context: (
     2201 * 0.01) * 1px;
   @return ($target / $vw-context) * 1vw;
 }
-
 body {
   &.wcprop-2 {
     section.portlet {
@@ -37,7 +35,6 @@ body {
         z-index: 1;
         margin: 3rem auto;
       }
-
       .full_page_spinner {
         position: fixed;
         top: 0;
@@ -47,28 +44,23 @@ body {
         background: rgba(0, 0, 0, 0.05
         );
     }
-
     .circularProgress_wrap {
       display: flex;
       justify-content: center;
       padding: 20px;
-
       @media #{$mq-4k} {
         padding: get4k(20px);
       }
-
       .MuiCircularProgress-root {
         width: 32px !important;
         height: 32px !important;
       }
     }
-
     .btn-wc-primary {
       .svg-inline--fa {
         color: #fff;
       }
     }
-
     .btn-wc-outlined {
       .svg-inline--fa {
         color: var(--primary-color);
@@ -84,7 +76,6 @@ body {
         }
       }
     }
-
     //Porlet Banner
     .room_reservation_banner {
       background-size: cover !important;
@@ -93,12 +84,10 @@ body {
       border-bottom-right-radius: 30px;
       position: relative;
       overflow: hidden;
-
       @media #{$mq-4k} {
         border-bottom-left-radius: get4k(30px);
         border-bottom-right-radius: get4k(30px);
       }
-
       &::before {
         content: "";
         background: var(--primary-color);
@@ -109,60 +98,48 @@ body {
         height: 100%;
         opacity: 0.9;
       }
-
       .room_reservation_title {
         position: relative;
         padding: 0 var(--container-padding);
-
         h2,
         p {
           color: #fff;
           text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
         }
-
         h2 {
           margin-bottom: 10px;
-
           @media #{$mq-4k} {
             margin-bottom: get4k(10px);
           }
         }
-
         p {
           font-size: calc(var(--wc-fs-heading4) * 1px);
           margin-bottom: 0;
           line-height: 1.25;
-
           @media #{$mq-tablet-lg} {
             font-size: calc((var(--wc-fs-heading4) - 2) * 1px);
           }
-
           @media #{$mq-tablet-md} {
             font-size: calc((var(--wc-fs-heading4) - 4) * 1px);
           }
-
           @media #{$mq-tablet-sm} {
             font-size: calc((var(--wc-fs-heading4) - 6) * 1px);
           }
-
           @media #{$mq-mobile-sm} {
             font-size: calc((var(--wc-fs-heading4) - 8) * 1px);
           }
         }
       }
     }
-
     //Search Component
     .portlet_has_banner {
       margin-left: calc(-1* var(--container-padding));
       margin-right: calc(-1* var(--container-padding));
-
       .search_wrap {
         margin-top: -5%;
         padding: 0 var(--container-padding);
       }
     }
-
     .search_wrap_inner {
       border: 1px solid var(--wc-border-color);
       box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
@@ -171,28 +148,22 @@ body {
       background: #fff;
       position: relative;
       transition: padding 0.35s cubic-bezier(0.34, 0.51, 0, 1.01);
-
       @media #{$mq-4k} {
         border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         padding: get4k(56px) get4k(40px);
       }
-
       @media #{$mq-tablet-md} {
         padding: 1.5rem;
       }
-
       @media #{$mq-mobile-sm} {
         padding: 10px;
       }
-
       .search_field {
         flex: 1;
-
         @media #{$mq-tablet-md} {
           width: 100%;
           flex: 0 0 auto;
         }
-
         &.date_field {
           @media #{$mq-tablet-lg} {
             flex: 2;
@@ -216,7 +187,6 @@ body {
       z-index: 999;
       background: var(--primary-color);
       padding: 0 var(--container-padding);
-
       .search_wrap_inner {
         box-shadow: none;
         margin-bottom: 0;
@@ -226,51 +196,42 @@ body {
         border: 0;
         border-radius: 0;
         background: transparent;
-
         @media #{$mq-4k} {
           padding: get4k(30px) 0;
           margin-bottom: get4k(32px);
           border-radius: 0;
         }
-
         @media #{$mq-tablet-md} {
           margin-bottom: 1rem;
         }
-
         .label_group {
           position: relative;
           margin-bottom: 0;
-
           label {
             font-size: calc((var(--wc-font-size) - 2) * 1px);
             color: var(--white-color);
             margin-bottom: 0.25rem;
-
             @media #{$mq-4k} {
               font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
               margin-bottom: get4k(4px);
             }
           }
         }
-
         .customInputBox {
           background: var(--white-color);
           border-color: transparent;
           height: calc(var(--field-height) * 1px);
         }
-
         .search_btn_wrap {
           .btn.btn-wc-primary {
             background: #03b0fa;
             height: calc(var(--field-height) * 1px);
           }
         }
-
         .btn.btn-checkavail {
           position: relative;
           color: var(--white-color);
           padding: 0 0 0.25rem;
-
           @media #{$mq-4k} {
             padding: 0 0 get4k(4px);
           }
@@ -281,54 +242,44 @@ body {
         }
       }
     }
-
     .label_group {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 20px;
       margin-bottom: 0.5rem;
-
       @media #{$mq-4k} {
         padding: 0 get4k(20px);
         margin-bottom: get4k(8px);
       }
-
       @media #{$mq-mobile-sm} {
         padding: 0 10px;
       }
-
       label {
         margin-bottom: 0;
-
         @media #{$mq-4k} {
           margin-bottom: 0;
         }
       }
-
       button {
         padding: 0;
         color: var(--primary-color);
         text-decoration: underline;
         background: transparent !important;
         height: auto;
-
         @media #{$mq-4k} {
           padding: 0;
         }
       }
-
       svg {
         font-size: 18px;
         margin-right: 8px;
         color: var(--primary-color);
-
         @media #{$mq-4k} {
           font-size: get4k(18px);
           margin-right: get4k(8px);
         }
       }
-
       .btn.btn-checkavail {
         padding: 0;
         margin: 0;
@@ -345,14 +296,12 @@ body {
           padding: 0;
           margin: 0;
         }
-
         @media #{$mq-mobile-sm} {
           align-items: flex-end;
           text-align: right;
         }
       }
     }
-
     .customInputBox {
       display: flex;
       align-items: center;
@@ -364,50 +313,39 @@ body {
       cursor: pointer;
       position: relative;
       user-select: none;
-
       @media #{$mq-4k} {
         padding: 0 get4k(20px);
         height: get4k(56px);
         border-radius: calc(var(--BtnborderRadius) / var(--4k-ratio) * 1vw);
       }
-
       @media #{$mq-tablet-md} {
         height: calc(var(--field-height) * 1px);
       }
-
       @media #{$mq-mobile-sm} {
         padding: 0 1rem;
       }
-
       @media (max-width: 359.98px) {
         padding: 0 0.75rem;
       }
-
       div {
         flex: 1;
-
         svg {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           color: var(--primary-color);
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
           }
         }
-
         span {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           padding-left: 10px;
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
             padding-left: get4k(10px);
           }
-
           @media #{$mq-tablet-lg} {
             font-size: calc(var(--wc-font-size) * 1px);
           }
-
           @media #{$mq-mobile-sm} {
             font-size: calc((var(--wc-font-size) - 2) * 1px);
             padding-left: 0.25rem;
@@ -415,24 +353,19 @@ body {
         }
       }
     }
-
     .customInputBoxCal {
       div:last-of-type {
         position: relative;
         padding-left: 20px;
-
         @media #{$mq-4k} {
           padding-left: get4k(20px);
         }
-
         @media #{$mq-mobile-sm} {
           padding-left: 0.75rem;
         }
-
         @media (max-width: 359.98px) {
           padding-left: 0.5rem;
         }
-
         &:before {
           content: "";
           position: absolute;
@@ -445,19 +378,15 @@ body {
         }
       }
     }
-
     .search_btn_wrap {
       position: relative;
       padding-left: 40px;
-
       @media #{$mq-4k} {
         padding-left: get4k(40px);
       }
-
       @media #{$mq-tablet-md} {
         padding-left: 0;
       }
-
       &:before {
         content: "";
         position: absolute;
@@ -467,17 +396,14 @@ body {
         height: calc((var(--field-height) / 1.5) * 1px);
         width: 1px;
         background: var(--wc-border-color);
-
         @media #{$mq-4k} {
           left: get4k(10px);
           height: calc((var(--field-height) / 1.5) / var(--4k-ratio) * 1vw);
         }
-
         @media #{$mq-tablet-md} {
           display: none;
         }
       }
-
       .btn.btn-wc-primary {
         font-size: calc((var(--wc-font-size) + 2) * 1px);
         height: 56px;
@@ -486,39 +412,32 @@ body {
         align-items: center;
         margin-top: 0;
         transition: none;
-
         @media #{$mq-4k} {
           font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
           height: get4k(56px);
           padding: 0 get4k(30px);
           margin-top: 0;
         }
-
         @media #{$mq-tablet-md} {
           font-size: calc(var(--wc-font-size) * 1px);
           height: auto;
           padding: 10px 24px;
         }
-
         @media #{$mq-mobile-sm} {
           font-size: calc((var(--wc-font-size) - 2) * 1px);
         }
-
         svg {
           margin-left: 10px;
           color: #fff;
-
           @media #{$mq-4k} {
             margin-left: get4k(10px);
           }
         }
       }
     }
-
     .custom_input_outer {
       position: relative;
     }
-
     .inline_modal {
       position: absolute;
       top: 100%;
@@ -529,33 +448,27 @@ body {
       border-radius: calc(var(--borderRadius) * 1px);
       background: var(--white-color);
       z-index: 9;
-
       @media #{$mq-4k} {
         margin-top: get4k(8px);
         left: 0;
         border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
       }
-
       @media #{$mq-mobile-sm} {
         width: 100%;
       }
-
       .circularProgress_wrap {
         width: 500px;
         max-width: 100%;
-
         @media #{$mq-4k} {
           width: get4k(500px);
         }
       }
-
       .room_card_header {
         p {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           padding: 1rem;
           line-height: normal;
           margin: 0;
-
           @media #{$mq-4k} {
             padding: get4k(16px);
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
@@ -563,33 +476,27 @@ body {
           }
         }
       }
-
       .rdrcalendar-header {
         font-size: calc((var(--wc-font-size) + 2) * 1px);
         padding: 20px;
         line-height: normal;
         margin: 0;
         display: flex;
-
         @media #{$mq-4k} {
           font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
           padding: get4k(20px);
           margin: 0;
         }
       }
-
       .inline_modal_body {
         margin: 0 1rem;
-
         @media #{$mq-4k} {
           margin: 0 get4k(16px);
         }
-
         .rdrDefinedRangesWrapper {
           display: none;
         }
       }
-
       .inline_modal_footer {
         display: flex;
         justify-content: flex-end;
@@ -597,25 +504,20 @@ body {
         margin-top: 1rem;
         border-top: 1px solid var(--wc-border-color);
         gap: 10;
-
         @media #{$mq-4k} {
           padding: get4k(16px);
           margin-top: get4k(16px);
         }
-
         .btn {
           margin-top: 0;
           font-size: calc((var(--wc-font-size) - 2) * 1px);
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
             margin-top: 0;
           }
-
           svg {
             font-size: 20px;
             margin-right: 10px;
-
             @media #{$mq-4k} {
               font-size: get4k(20px);
               margin-right: get4k(10px);
@@ -623,7 +525,6 @@ body {
           }
         }
       }
-
       //Add Room Card
       .add_room_card {
         background: var(--wc-body-bg);
@@ -633,24 +534,20 @@ body {
         width: 500px;
         max-width: 100%;
         user-select: none;
-
         @media #{$mq-4k} {
           margin-top: get4k(16px);
           width: get4k(500px);
           border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         }
-
         .room_card_header {
           display: flex;
           align-items: center;
           justify-content: space-between;
           border-bottom: 1px solid var(--wc-border-color);
           margin-bottom: 1rem;
-
           @media #{$mq-4k} {
             margin-bottom: get4k(16px);
           }
-
           button {
             background: transparent;
             height: auto;
@@ -658,79 +555,63 @@ body {
             text-decoration: underline;
           }
         }
-
         .room_row {
           display: flex;
           align-items: center;
           justify-content: space-between;
           padding: 5px 16px 16px;
           line-height: normal;
-
           @media #{$mq-4k} {
             padding: get4k(5px) get4k(16px) get4k(16px);
           }
-
           small {
             font-size: 80%;
             color: #898989;
           }
-
           span {
             padding: 0 10px;
-
             @media #{$mq-4k} {
               padding: 0 get4k(10px);
             }
-
             &.required {
               padding: 0;
               color: #c72d2d;
-
               @media #{$mq-4k} {
                 padding: 0;
               }
             }
           }
         }
-
         .child_age_row {
           &>div {
             width: 100%;
           }
-
           p {
             font-size: 14px;
-
             @media #{$mq-4k} {
               font-size: get4k(14px);
             }
           }
         }
       }
-
       .add_room_btn {
         display: flex;
         justify-content: flex-end;
         padding: 15px 15px 0 15px;
-
         @media #{$mq-4k} {
           padding: get4k(15px) get4k(15px) 0 get4k(15px);
         }
-
         .btn {
           margin: 0;
           font-size: calc((var(--wc-font-size) - 2) * 1px);
           font-weight: 500;
-
           @media #{$mq-4k} {
             margin: 0;
             font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
           }
-
           svg {
             width: 1rem;
             height: 1rem;
-
             @media #{$mq-4k} {
               width: get4k(16px);
               height: get4k(16px);
@@ -739,17 +620,14 @@ body {
         }
       }
     }
-
     //Room Counter
     .room_counter {
       display: flex;
       align-items: center;
-
       p {
         margin: 0 12px 0 0;
         font-weight: 500;
       }
-
       button {
         padding: 0;
         width: 32px;
@@ -757,25 +635,21 @@ body {
         color: var(--body-text-color);
         border-color: var(--wc-border-color);
         border-radius: 100px;
-
         @media #{$mq-4k} {
           min-width: get4k(32px);
           height: get4k(32px);
           padding: 0;
         }
-
         &.disabled,
         &:disabled {
           opacity: 0.4;
           cursor: not-allowed;
           pointer-events: auto;
         }
-
         svg {
           color: var(--body-text-color);
         }
       }
-
       &>span {
         display: inline-block;
         min-width: 36px;
@@ -783,7 +657,6 @@ body {
         padding: 0;
       }
     }
-
     //Check In Out Card
     .checkin_out_wrap {
       .res_date_card {
@@ -792,142 +665,112 @@ body {
         border-radius: calc(var(--borderRadius) * 1px);
         box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
         padding: 0 32px;
-
         @media #{$mq-4k} {
           padding: 0 get4k(32px);
           border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
         }
-
         @media #{$mq-tablet-lg} {
           padding: 0 20px;
         }
-
         @media #{$mq-tablet-md} {
           padding: 0 1rem;
         }
-
         @media #{$mq-mobile-sm} {
           padding: 0 10px;
         }
-
         .res_date_title {
           display: flex;
           align-items: center;
-
           strong {
             display: inline-block;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 14px;
-
             @media #{$mq-4k} {
               letter-spacing: get4k(2px);
               margin-top: get4k(14px);
             }
-
             @media #{$mq-mobile-sm} {
               letter-spacing: 1px;
             }
           }
-
           span {
             background: var(--primary-color);
             display: inline-block;
             padding: 18px 8px 8px;
             border-radius: 0 0 8px 8px;
             margin-right: 16px;
-
             @media #{$mq-4k} {
               padding: get4k(18px) get4k(8px) get4k(8px);
               margin-right: get4k(16px);
             }
-
             @media #{$mq-tablet-lg} {
               padding: 12px 4px 4px;
             }
-
             @media #{$mq-tablet-sm} {
               margin-right: 10px;
             }
-
             svg {
               color: #fff;
               font-size: 32px;
-
               @media #{$mq-4k} {
                 font-size: get4k(32px);
               }
-
               @media #{$mq-tablet-sm} {
                 font-size: 24px;
               }
             }
           }
         }
-
         .res_date_body {
           font-size: calc((var(--wc-font-size) + 4) * 1px);
           color: var(--primary-color);
           margin: 20px 0;
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
             margin: get4k(20px) 0;
           }
-
           @media #{$mq-tablet-lg} {
             font-size: calc((var(--wc-font-size) + 3) * 1px);
           }
-
           @media #{$mq-tablet-md} {
             font-size: calc((var(--wc-font-size) + 1) * 1px);
           }
-
           @media #{$mq-tablet-sm} {
             font-size: calc(var(--wc-font-size) * 1px);
           }
-
           @media #{$mq-mobile-sm} {
             font-size: calc((var(--wc-font-size) - 1) * 1px);
             margin: 12px 0;
           }
-
           span {
             display: inline-block;
             position: relative;
             border-right: 1px solid var(--wc-border-color);
             line-height: 1;
             padding: 0 24px;
-
             @media #{$mq-4k} {
               padding: 0 get4k(24px);
             }
-
             @media #{$mq-tablet-md} {
               padding: 0 15px;
             }
-
             @media #{$mq-tablet-sm} {
               padding: 0 0.75rem;
             }
-
             @media #{$mq-mobile-sm} {
               width: auto;
             }
-
             &:first-child {
               padding-left: 0;
-
               @media #{$mq-4k} {
                 padding-left: 0;
               }
             }
-
             &:last-child {
               padding-right: 0;
               border: 0;
-
               @media #{$mq-4k} {
                 padding-right: 0;
               }
@@ -936,46 +779,37 @@ body {
         }
       }
     }
-
     //Reservation Summary
     .res_sum,
     .checkin_out_wrap {
       @media #{$mq-tablet-lg} {
         .row>div {
           margin-bottom: 15px;
-
           &:last-child {
             margin-bottom: 0;
           }
         }
       }
-
       .summary-book-btn {
         justify-content: flex-end;
-
         @media #{$mq-mobile-sm} {
           justify-content: center;
         }
-
         .btn {
           display: flex;
           align-items: center;
           text-align: left;
         }
       }
-
       h3 {
         margin-bottom: 40px;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(40px);
         }
-
         @media #{$mq-tablet-sm} {
           margin-bottom: 1.5rem;
         }
       }
-
       .btn.btn-back {
         display: flex;
         align-items: center;
@@ -983,28 +817,23 @@ body {
         font-size: calc(var(--wc-font-size) * 1px);
         margin: 2rem 0;
       }
-
       .room_count {
         display: flex;
         align-items: center;
         text-transform: capitalize;
         font-size: calc((var(--wc-font-size) + 8) * 1px);
         margin: 40px 0;
-
         @media #{$mq-4k} {
           font-size: calc((var(--wc-font-size) + 8) / var(--4k-ratio) * 1vw);
           margin: get4k(40px) 0;
         }
-
         @media #{$mq-tablet-md} {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           margin: 1.5rem 0;
         }
-
         @media #{$mq-tablet-sm} {
           font-size: calc((var(--wc-font-size)) * 1px);
         }
-
         span {
           font-weight: 800;
           font-size: calc((var(--wc-font-size) + 6) * 1px);
@@ -1016,15 +845,14 @@ body {
           color: #ffff;
           border-radius: 100px;
           margin-right: 15px;
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 6) / var(--4k-ratio) * 1vw);
             min-width: get4k(32px);
             height: get4k(32px);
             border-radius: get4k(100px);
             margin-right: get4k(15px);
+            line-height: get4k(32px);
           }
-
           @media #{$mq-tablet-md} {
             font-size: calc((var(--wc-font-size) + 4) * 1px);
             min-width: 28px;
@@ -1032,7 +860,6 @@ body {
             line-height: 28px;
             margin-right: 8px;
           }
-
           @media #{$mq-tablet-sm} {
             font-size: calc((var(--wc-font-size) + 2) * 1px);
             min-width: 24px;
@@ -1041,29 +868,24 @@ body {
           }
         }
       }
-
       .booked_room_card {
         border: 1px solid var(--wc-border-color);
         border-radius: calc(var(--borderRadius) * 1px);
         box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
         padding: 24px;
         margin-bottom: 24px;
-
         @media #{$mq-4k} {
           padding: get4k(24px);
           margin-bottom: get4k(24px);
         }
-
         h2 {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           font-weight: 800;
           color: var(--primary-color);
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
           }
         }
-
         ul {
           li {
             margin: 0 0 20px 0;
@@ -1071,26 +893,21 @@ body {
             align-items: center;
             flex-wrap: wrap;
             padding: 0;
-
             @media #{$mq-4k} {
               margin: 0 0 get4k(20px) 0;
               padding: 0;
             }
-
             &::before {
               display: none;
             }
-
             strong {
               display: inline-block;
               margin-left: 10px;
               color: var(--primary-color);
-
               @media #{$mq-4k} {
                 margin-left: get4k(10px);
               }
             }
-
             .MuiAutocomplete-inputRoot {
               width: 250px;
               margin-left: 10px;
@@ -1099,7 +916,6 @@ body {
                 width: get4k(250px);
                 margin-left: get4k(10px);
               }
-
               @media #{$mq-tablet-lg} {
                 width: 200px;
               }
@@ -1112,7 +928,6 @@ body {
                 }
               }
             }
-
             &>ul {
               flex: 0 0 100%;
               width: 100%;
@@ -1120,12 +935,10 @@ body {
               border-radius: calc(var(--borderRadius) * 1px);
               padding: 1rem;
               margin-top: 20px;
-
               &>li {
                 strong {
                   color: var(--wc-font-color);
                 }
-
                 &:last-child {
                   margin-bottom: 0;
                 }
@@ -1134,28 +947,22 @@ body {
           }
         }
       }
-
       .comments_box {
         margin-top: 16px;
         margin-bottom: 40px;
-
         @media #{$mq-4k} {
           margin-top: get4k(16px);
           margin-bottom: get4k(40px);
         }
-
         @media #{$mq-tablet-sm} {
           margin-top: 0;
         }
-
         @media #{$mq-mobile-sm} {
           margin-bottom: 1rem;
         }
-
         label {
           display: block;
         }
-
         textarea {
           display: block;
           width: 100%;
@@ -1163,54 +970,44 @@ body {
           border-radius: calc(var(--borderRadius) * 1px);
           box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
           padding: 1.5rem;
-
           @media #{$mq-4k} {
             padding: get4k(24px);
           }
         }
       }
     }
-
     //Add Guest Modal
     .add_guest_form {
       h4 {
         margin-bottom: 32px;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(32px);
         }
       }
-
       input {
         width: 100%;
         box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
         margin-bottom: 20px;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(20px);
         }
       }
-
       button {
         display: inline-flex;
         align-items: center;
-
         svg {
           margin-right: 10px;
-
           @media #{$mq-4k} {
             margin-right: get4k(10px);
           }
         }
       }
     }
-
     //Phone Input
     .react-international-phone-input-container {
       .react-international-phone-country-selector {
         position: absolute;
         z-index: 1;
-
         &>button {
           height: calc(var(--field-height) * 1px);
           padding-left: 5px;
@@ -1218,36 +1015,29 @@ body {
           background: transparent;
         }
       }
-
       .react-international-phone-input {
         padding-left: 55px;
       }
     }
-
     //Customize Calendar
     .rdrDateRangePickerWrapper {
       @media #{$mq-mobile-sm} {
         width: 100%;
       }
     }
-
     .rdrCalendarWrapper {
       border: 1px solid var(--wc-border-color);
       border-radius: calc(var(--borderRadius) * 1px);
       background: var(--wc-body-bg);
-
       @media #{$mq-4k} {
         border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
       }
-
       @media #{$mq-mobile-sm} {
         width: 100%;
       }
-
       .rdrDayDisabled {
         cursor: not-allowed !important;
       }
-
       .rdrDayToday {
         .rdrDayNumber {
           span {
@@ -1257,44 +1047,35 @@ body {
           }
         }
       }
-
       .rdrMonthAndYearPickers {
         display: none !important;
       }
-
       .rdrMonthAndYearWrapper {
         border-bottom: 1px solid var(--wc-border-color);
         padding-top: 0;
         height: 56px;
         position: relative;
         z-index: 9;
-
         @media #{$mq-4k} {
           height: get4k(56px);
           padding-top: 0;
         }
       }
-
       .rdrMonths {
         width: 650px;
         max-width: 100%;
-
         @media #{$mq-4k} {
           width: get4k(650px);
         }
-
         @media #{$mq-tablet-md} {
           width: 100%;
         }
-
         @media #{$mq-tablet-sm} {
           width: auto;
         }
-
         @media (#{$mq-mobile-sm}) {
           width: 100%;
         }
-
         .rdrMonthName {
           font-size: calc(var(--wc-font-size) * 1px);
           text-align: center;
@@ -1303,7 +1084,6 @@ body {
           top: -52px;
           color: inherit;
           left: 0;
-
           @media #{$mq-4k} {
             font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
             top: get4k(-52px);
@@ -1311,43 +1091,34 @@ body {
           }
         }
       }
-
       .rdrMonth {
         position: relative;
         flex: 1;
-
         @media #{$mq-mobile-sm} {
           width: 100%;
         }
       }
-
       .rdrWeekDay {
         font-size: calc(var(--wc-font-size) * 1px);
         color: var(--wc-font-color);
         font-weight: 500;
-
         @media #{$mq-4k} {
           font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
         }
-
         @media #{$mq-mobile-sm} {
           font-size: calc(var(--wc-mobile-font-size) * 1px);
         }
       }
-
       .rdrDays {
         .rdrDay {
           font-size: calc((var(--wc-font-size) - 2) * 1px);
           color: var(--wc-font-color);
-
           @media #{$mq-4k} {
-            font-size: calc((var(--wc-font-size) - 2) * 1vw);
+            font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
           }
-
           @media #{$mq-mobile-sm} {
             font-size: calc(var(--wc-mobile-font-size) * 1px);
           }
-
           .rdrDayStartPreview,
           .rdrDayInPreview,
           .rdrDayEndPreview {
@@ -1356,134 +1127,107 @@ body {
             color: var(--primary-color) !important;
             // width: 90%;
             margin: 0 auto;
-
             @media #{$mq-4k} {
               top: 0;
               bottom: get4k(5px);
               margin: 0 auto;
             }
           }
-
           .rdrDayStartPreview {
             border-top-left-radius: calc(var(--borderRadius) * 1px);
             border-bottom-left-radius: calc(var(--borderRadius) * 1px);
-
             @media #{$mq-4k} {
               border-top-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               border-bottom-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
           }
-
           .rdrDayEndPreview {
             border-top-right-radius: calc(var(--borderRadius) * 1px);
             border-bottom-right-radius: calc(var(--borderRadius) * 1px);
-
             @media #{$mq-4k} {
               border-top-right-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               border-bottom-right-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
           }
-
           &.rdrDayStartOfMonth,
           &.rdrDayStartOfWeek {
-
             .rdrInRange,
             .rdrEndEdge {
               border-top-left-radius: 0;
               border-bottom-left-radius: 0;
-
               @media #{$mq-4k} {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
               }
             }
           }
-
           &.rdrDayToday {
-
             .rdrInRange,
             .rdrEndEdge {
               border-top-left-radius: calc(var(--borderRadius) * 1px);
               border-bottom-left-radius: calc(var(--borderRadius) * 1px);
-
               @media #{$mq-4k} {
                 border-top-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
                 border-bottom-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
             }
           }
-
           &.rdrDayEndOfMonth,
           &.rdrDayEndOfWeek {
-
             .rdrInRange,
             .rdrStartEdge {
               border-top-right-radius: 0;
               border-bottom-right-radius: 0;
-
               @media #{$mq-4k} {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
               }
             }
           }
-
           &.rdrDayEndOfMonth,
           &.rdrDayEndOfWeek {
-
             .rdrDayInPreview,
             .rdrDayStartPreview {
               border-top-right-radius: calc(var(--borderRadius) * 1px);
               border-bottom-right-radius: calc(var(--borderRadius) * 1px);
-
               @media #{$mq-4k} {
                 border-top-right-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
                 border-bottom-right-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
             }
           }
-
           &.rdrDayStartOfMonth,
           &.rdrDayStartOfWeek {
-
             .rdrDayInPreview,
             .rdrDayStartPreview {
               border-top-left-radius: calc(var(--borderRadius) * 1px);
               border-bottom-left-radius: calc(var(--borderRadius) * 1px);
-
               @media #{$mq-4k} {
                 border-top-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
                 border-bottom-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
             }
           }
-
           .rdrInRange {
             color: #cadff9 !important;
           }
-
           .rdrStartEdge {
             border-top-left-radius: calc(var(--borderRadius) * 1px);
             border-bottom-left-radius: calc(var(--borderRadius) * 1px);
-
             @media #{$mq-4k} {
               border-top-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               border-bottom-left-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
           }
-
           .rdrEndEdge {
             border-top-right-radius: calc(var(--borderRadius) * 1px);
             border-bottom-right-radius: calc(var(--borderRadius) * 1px);
-
             @media #{$mq-4k} {
               border-top-right-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               border-bottom-right-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
           }
-
           &:not(.rdrDayPassive) {
-
             .rdrStartEdge,
             .rdrEndEdge {
               &~.rdrDayNumber {
@@ -1492,7 +1236,6 @@ body {
                 }
               }
             }
-
             .rdrInRange {
               &~.rdrDayNumber {
                 span {
@@ -1501,7 +1244,6 @@ body {
               }
             }
           }
-
           .rdrSelected,
           .rdrInRange,
           .rdrStartEdge,
@@ -1509,18 +1251,15 @@ body {
             top: 0;
             left: 0;
             right: 0;
-
             @media #{$mq-4k} {
               top: 0;
               left: 0;
               right: 0;
             }
           }
-
           .rdrStartEdge,
           .rdrEndEdge {
             color: #cadff9 !important;
-
             &::after {
               content: "";
               background: var(--primary-color) !important;
@@ -1531,7 +1270,6 @@ body {
               width: 100%;
               height: 100%;
               border-radius: calc(var(--borderRadius) * 1px);
-
               @media #{$mq-4k} {
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
                 top: 0;
@@ -1539,7 +1277,6 @@ body {
               }
             }
           }
-
           .rdrDayNumber {
             // width: 90%;
             height: 90%;
@@ -1547,7 +1284,6 @@ body {
             top: 0;
             bottom: 0;
             margin: 0 auto;
-
             @media #{$mq-4k} {
               top: 0;
               bottom: 0;
@@ -1557,7 +1293,6 @@ body {
         }
       }
     }
-
     /* FancyBox */
     .roomThumb {
       display: flex;
@@ -1565,42 +1300,34 @@ body {
       border-radius: calc((var(--borderRadius) - 2) * 1px);
       overflow: hidden;
       background: var(--wc-body-bg);
-
       @media #{$mq-4k} {
         border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
       }
-
       &>div {
         width: 100%;
       }
-
       .f-button {
         background: rgba(0, 0, 0, 0.4);
         border-radius: 100px;
         color: white;
         --f-button-width: 32px;
         --f-button-height: 32px;
-
         &:disabled {
           visibility: hidden;
         }
-
         @media #{$mq-4k} {
           border-radius: get4k(100px);
-          --f-button-width: get4k(32px);
-          --f-button-height: get4k(32px);
+          --f-button-width: #{get4k(32px)};
+          --f-button-height: #{get4k(32px)};
         }
       }
-
       .f-carousel {
         &.has-dots {
           margin-bottom: 0;
-
           @media #{$mq-4k} {
             margin-bottom: 0;
           }
         }
-
         .f-carousel__dots {
           position: absolute;
           bottom: 1.5rem;
@@ -1608,50 +1335,41 @@ body {
           width: max-content;
           border-radius: 100px;
           padding: 6px 12px;
-
           @media #{$mq-4k} {
             bottom: get4k(24px);
             border-radius: get4k(100px);
             padding: get4k(6px) get4k(12px);
           }
-
           li {
             margin: 0;
             padding-bottom: 0;
-
             @media #{$mq-4k} {
               margin: 0;
               padding-bottom: 0;
             }
-
             button {
               --f-carousel-dots-width: 20px;
               --f-carousel-dots-height: 8px;
-
               @media #{$mq-4k} {
                 --f-carousel-dots-width: get4k(20px);
                 --f-carousel-dots-height: get4k(8px);
               }
-
               span {
                 --f-carousel-dot-width: 6px;
                 --f-carousel-dot-height: 6px;
                 color: white;
-
                 @media #{$mq-4k} {
                   --f-carousel-dot-width: get4k(6px);
                   --f-carousel-dot-height: get4k(6px);
                 }
               }
             }
-
             &.is-current {
               button {
                 span {
                   --f-carousel-dot-width: 8px;
                   --f-carousel-dot-height: 8px;
                   color: white;
-
                   @media #{$mq-4k} {
                     --f-carousel-dot-width: get4k(8px);
                     --f-carousel-dot-height: get4k(8px);
@@ -1659,13 +1377,11 @@ body {
                 }
               }
             }
-
             &::before {
               display: none;
             }
           }
         }
-
         .total-slides-count {
           color: white;
           position: absolute;
@@ -1683,11 +1399,9 @@ body {
             border-radius: get4k(100px);
             font-size: get4k(14px);
           }
-
           svg {
             margin-right: 0.25rem;
             color: inherit;
-
             @media #{$mq-4k} {
               margin-right: get4k(4px);
             }
@@ -1695,20 +1409,16 @@ body {
         }
       }
     }
-
     /* Listing Skeleton */
     .listing_skeleton {
       margin-bottom: 2rem;
-
       &:last-child {
         margin-bottom: 0;
       }
-
       .img_skl {
         height: 300px;
       }
     }
-
     /* Listing */
     .room_listing {
       margin-top: 56px;
@@ -1719,98 +1429,79 @@ body {
         border-bottom: 1px solid var(--wc-border-color);
         padding-bottom: 0.75rem;
         margin-bottom: 2rem;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(32px);
           padding-bottom: get4k(12px);
         }
-
         @media #{$mq-tablet-sm} {
           margin-bottom: 1rem;
         }
       }
-
       .filter {
         margin-bottom: 1.5rem;
         border-bottom: 1px solid var(--wc-border-color);
         padding-bottom: 1.5rem;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(24px);
           border-bottom: get4k(24px);
         }
-
         .MuiFormGroup-root {
           margin-left: -12px;
-
           @media #{$mq-4k} {
             margin-left: get4k(-12px);
           }
         }
-
         p {
           strong {
             color: var(--heading-color6);
             font-weight: 600;
           }
         }
-
         &:last-child {
           border-bottom: none;
           margin-bottom: 0;
-
           @media #{$mq-4k} {
             margin-bottom: 0;
           }
         }
-
         label {
           margin-bottom: 0;
-
           @media #{$mq-4k} {
             margin-bottom: 0;
           }
         }
       }
-
       /* filter */
       .status-badges {
         margin-bottom: 1rem;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(16px);
         }
       }
-
       .badge {
         border-radius: calc(var(--BtnborderRadius) * 1px);
         padding: 8px 10px;
         font-size: calc((var(--wc-font-size) - 4) * 1px);
         font-weight: normal;
         margin-right: 0.5rem;
-
         @media #{$mq-4k} {
           border-radius: calc(var(--BtnborderRadius) / var(--4k-ratio) * 1vw);
           padding: get4k(8px) get4k(10px);
           margin-right: get4k(8px);
         }
       }
-
       .badge-primary {
         background-color: #e5f1ff;
         color: #0e53a8;
       }
-
       .badge-success {
         background-color: #ddf1da;
         color: #2f8d20;
       }
-
       .badge-danger {
         background-color: #f7bdbd;
         color: #da1414;
       }
-
       .amenitiesList-inner {
         display: flex;
 
@@ -1819,7 +1510,6 @@ body {
           opacity: 0.8;
         }
       }
-
       .badge-light {
         background-color: var(--wc-body-bg);
         color: rgba(110, 110, 110, 1);
@@ -1828,46 +1518,37 @@ body {
         position: relative;
         margin-top: 0;
         margin-bottom: 0;
-
         @media #{$mq-4k} {
           font-size: calc((var(--wc-font-size) - 3) / var(--4k-ratio) * 1vw);
         }
-
         &.lbadge-light {
           align-items: center;
           height: 30px;
-
           .material-icons {
             display: flex;
             align-items: center;
             margin-right: 5px;
-
             @media #{$mq-4k} {
               margin-right: get4k(8px);
             }
           }
-
           svg {
             font-size: calc(var(--wc-font-size) * 1px);
             margin-right: 5px;
           }
         }
       }
-
       .more_amenities_outer {
         position: relative;
         display: inline-block;
-
         button.badge-light.lbadge-light {
           span {
             margin: 0;
           }
-
           svg {
             margin: 0;
           }
         }
-
         ul.more_amenities {
           position: absolute;
           top: calc(100% + 2px);
@@ -1879,25 +1560,21 @@ body {
           border: 1px solid var(--wc-border-color);
           text-align: left;
           min-width: 150px;
-
           li {
             font-size: calc((var(--wc-font-size) - 3) * 1px);
             color: rgba(110, 110, 110, 1);
             margin: 0;
             padding: 8px 16px;
             border-bottom: 1px solid var(--wc-border-color);
-
             &::before {
               display: none;
             }
-
             &:last-child {
               border-bottom: 0;
             }
           }
         }
       }
-
       .card {
         border: 1px solid var(--wc-border-color);
         padding: 1rem;
@@ -1909,10 +1586,8 @@ body {
           padding: get4k(16px);
           margin-bottom: get4k(24px);
         }
-
         &:last-child {
           margin-bottom: 0;
-
           @media #{$mq-4k} {
             margin-bottom: 0;
           }
@@ -1945,7 +1620,6 @@ body {
             opacity: 0.8;
           }
         }
-
         .lcard-desc {
           display: -webkit-box;
           -webkit-line-clamp: 2;
@@ -1954,27 +1628,23 @@ body {
           overflow: hidden;
         }
       }
-
       .lcard-img {
         height: 100%;
         aspect-ratio: 320/280;
         object-fit: cover;
-
         @media #{$mq-4k} {
+          width: 100%;
           max-height: get4k(300px);
         }
-
         @media #{$mq-tablet-sm} {
           width: 100%;
           aspect-ratio: 320/260;
         }
-
         @media #{$mq-mobile-sm} {
           width: 100%;
           aspect-ratio: 320/200;
         }
       }
-
       .price-container {
         border-radius: 0px 0px calc(var(--borderRadius) * 1px) calc(var(--borderRadius) * 1px);
         background: linear-gradient(180deg, #f0f7ff 0%, #cce3ff 100%);
@@ -1993,7 +1663,6 @@ body {
         top: 0;
         line-height: var(--wc-base-lineHeight);
         z-index: 1;
-
         @media #{$mq-4k} {
           border-radius: 0 0 calc(var(--borderRadius) / var(--4k-ratio) * 1vw) calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
           font-size: get4k(20px);
@@ -2003,36 +1672,29 @@ body {
           right: get4k(16px);
           top: 0;
         }
-
         @media #{$mq-tablet-sm} {
           right: 1rem;
         }
-
         small {
           font-size: 14px;
           display: block;
           font-weight: 500;
-
           @media #{$mq-4k} {
             font-size: get4k(14px);
           }
         }
       }
-
       .room_desc {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-height: 100%;
       }
-
       .card-body {
         padding: 0;
-
         @media #{$mq-4k} {
           padding: 0;
         }
-
         .price-container {
           position: relative;
           right: 0;
@@ -2043,7 +1705,6 @@ body {
           margin-top: 1rem;
           padding: 0.5rem 1rem;
           font-size: calc(var(--wc-font-size) * 1px);
-
           @media #{$mq-4k} {
             right: 0;
             border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
@@ -2052,34 +1713,28 @@ body {
             padding: get4k(8px) get4k(16px);
             font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
           }
-
           small {
             display: inline-block;
           }
         }
       }
-
       .card-title {
         margin-bottom: 0.5rem;
         padding-right: 100px;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(8px);
           padding-right: get4k(100px);
         }
-
         @media #{$mq-tablet-sm} {
           margin-bottom: 1rem;
           padding-right: 0;
         }
       }
-
       .small-card-title {
         font-weight: 500;
         color: var(--heading-color6);
         margin-bottom: 8px;
       }
-
       .card-footer {
         background: transparent;
         padding: 0;
@@ -2088,28 +1743,23 @@ body {
         align-items: center;
         justify-content: space-between;
         height: 41px;
-
         @media #{$mq-4k} {
           padding: 0;
           margin-top: get4k(16px);
         }
-
         @media #{$mq-mobile-sm} {
           flex-direction: column;
           align-items: flex-start;
           height: auto;
         }
-
         .btn-wc-transparent {
           padding: 0;
           margin: 0;
-
           @media #{$mq-4k} {
             padding: 0;
             margin: 0;
           }
         }
-
         .btn-wc-outlined {
           text-decoration: none;
           font-weight: 500;
@@ -2118,17 +1768,14 @@ body {
           display: inline-flex;
           align-items: center;
           height: 40px;
-
           @media #{$mq-4k} {
             margin-top: 0;
             height: get4k(40px);
           }
-
           @media #{$mq-mobile-sm} {
             margin-left: 0;
             margin-top: 1rem;
           }
-
           &.btn-selected {
             background: var(--primary-color);
             color: #fff;
@@ -2137,11 +1784,9 @@ body {
             .svg-inline--fa {
               color: #fff;
             }
-
           }
         }
       }
-
       /* search */
       .search_wrap {
         margin-top: 0;
@@ -2154,14 +1799,12 @@ body {
         z-index: 9;
         border: 0;
         border-radius: 0;
-
         @media #{$mq-4k} {
           padding: get4k(30px) 0;
           margin-bottom: get4k(32px);
           border-radius: 0;
           margin-top: 0;
         }
-
         &::before {
           content: "";
           background: var(--primary-color);
@@ -2171,44 +1814,37 @@ body {
           top: 0;
           left: calc(var(--container-padding) * -1);
         }
-
         .label_group {
           label {
             font-size: calc((var(--wc-font-size) - 2) * 1px);
             color: var(--white-color);
             margin-bottom: 0.25rem;
-
             @media #{$mq-4k} {
               font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
               margin-bottom: get4k(4px);
             }
           }
         }
-
         .customInputBox {
           background: var(--white-color);
           border-color: transparent;
           height: calc(var(--field-height) * 1px);
         }
-
         .search_btn_wrap {
           .btn.btn-wc-primary {
             background: #03b0fa;
             height: calc(var(--field-height) * 1px);
           }
         }
-
         .btn.btn-checkavail {
           position: relative;
           color: var(--white-color);
           padding: 0 0 0.25rem;
-
           @media #{$mq-4k} {
             padding: 0 0 get4k(4px);
           }
         }
       }
-
       .rl_btn_wrap {
         border-top: 1px solid var(--wc-border-color);
         padding: 12px 12px 12px 0;
@@ -2216,18 +1852,15 @@ body {
         bottom: 0;
         background: #fff;
         z-index: 9;
-
         @media #{$mq-4k} {
           padding: get4k(12px) get4k(12px) get4k(12px) 0;
         }
-
         a {
           text-decoration: none;
           margin: 0;
         }
       }
     }
-
     /* Detail */
     .detail_page {
       .btn.btn-back {
@@ -2236,60 +1869,47 @@ body {
         padding: 0;
         font-size: calc(var(--wc-font-size) * 1px);
         margin: 2rem 0;
-
         @media #{$mq-4k} {
           margin: get4k(32px) 0;
           padding: 0;
           font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
         }
       }
-
       .roomThumb {
         height: auto;
         margin-bottom: 2rem;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(32px);
         }
-
         @media #{$mq-mobile-sm} {
           margin-bottom: 1.5rem;
         }
-
         .dcard-img {
           width: 100%;
           object-fit: cover;
           aspect-ratio: 4 / 1;
-
           @media #{$mq-4k} {
             max-height: get4k(400px);
           }
-
           @media #{$mq-tablet-lg} {
             aspect-ratio: 8/3;
           }
         }
       }
-
       .room-bio {
         margin-bottom: 2rem;
-
         @media #{$mq-4k} {
           margin-bottom: get4k(32px);
         }
-
         @media #{$mq-mobile-sm} {
           margin-bottom: 1.5rem;
         }
-
         .card-title {
           margin-bottom: 0.8rem;
-
           @media #{$mq-4k} {
             margin-bottom: get4k(12.8px);
           }
         }
-
         .card-address {
           text-decoration: none;
           color: inherit;
@@ -2300,7 +1920,6 @@ body {
           }
         }
       }
-
       .room-details {
         border: 1px solid var(--wc-border-color);
         min-height: 100%;
@@ -2308,75 +1927,58 @@ body {
         @media #{$mq-tablet-md} {
           margin-bottom: 2rem;
         }
-
         @media #{$mq-mobile-sm} {
           margin-bottom: 1.5rem;
         }
-
         .card-body {
           padding: 2rem;
-
           @media #{$mq-4k} {
             padding: get4k(32px);
           }
-
           @media #{$mq-mobile-sm} {
             padding: 1rem;
           }
-
           .card-heading {
             font-weight: 400;
           }
-
           .card-description {
             margin-bottom: 1.5rem;
-
             @media #{$mq-4k} {
               margin-bottom: get4k(24px);
             }
           }
-
           .damenities-card {
             background-color: #f6fafe;
             margin-bottom: 1.5rem;
             border: 1px solid #e5f1ff;
             padding: 1rem;
             border-radius: calc(var(--borderRadius) * 1px);
-
             @media #{$mq-4k} {
               padding: get4k(16px);
               border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               margin-bottom: get4k(24px);
             }
-
             @media #{$mq-mobile-sm} {
               margin-bottom: 1rem;
             }
-
             &:last-child {
               margin-bottom: 0;
-
               @media #{$mq-4k} {
                 margin-bottom: 0;
               }
             }
-
             p {
               text-transform: uppercase;
               letter-spacing: 1.5px;
               font-size: calc((var(--wc-font-size) - 2) * 1px);
-
               @media #{$mq-4k} {
                 letter-spacing: get4k(0.8px);
                 font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
-
               }
             }
-
             ul {
               display: flex;
               flex-wrap: wrap;
-
               li {
                 margin: 0 0 1rem;
                 padding-bottom: 0;
@@ -2385,26 +1987,21 @@ body {
                 flex: 0 0 33.33%;
                 width: 33.33%;
                 opacity: 0.95;
-
                 @media #{$mq-4k} {
                   margin: 0 0 get4k(16px);
                   padding-bottom: 0;
                 }
-
                 @media #{$mq-tablet-lg} {
                   width: 50%;
                   flex: 0 0 50%;
                 }
-
                 @media #{$mq-mobile-sm} {
                   width: 100%;
                   flex: 0 0 100%;
                 }
-
                 &::before {
                   display: none;
                 }
-
                 svg {
                   margin-right: 12px;
                   font-size: 20px;
@@ -2418,45 +2015,35 @@ body {
 
       .rate-details {
         border: 1px solid var(--wc-border-color);
-
         .card-body {
           padding: 0;
           height: 100%;
           display: flex;
           flex-direction: column;
-
           @media #{$mq-4k} {
             padding: 0;
           }
-
           .rate-dInner {
             padding: 2rem;
-
             @media #{$mq-4k} {
               padding: get4k(32px);
             }
-
             @media #{$mq-mobile-sm} {
               padding: 1rem;
             }
           }
-
           .card-heading {
             margin-bottom: 1.5rem;
-
             @media #{$mq-4k} {
               margin-bottom: get4k(24px);
             }
-
             @media #{$mq-tablet-md} {
               margin-bottom: calc(var(--wc-h-margin) * 1px);
             }
           }
-
           .rateFormControl {
             width: 100%;
           }
-
           .rateFormLabel {
             display: flex;
             width: 100%;
@@ -2464,19 +2051,16 @@ body {
             padding: 13px 16px;
             border-radius: calc(var(--borderRadius) * 1px);
             margin-bottom: 0.75rem;
-
             @media #{$mq-4k} {
               margin-bottom: get4k(12px);
               padding: get4k(13px) get4k(16px);
               border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
-
             .MuiFormControlLabel-label {
               display: block;
               width: 100%;
               padding-left: 0;
             }
-
             .rateSelectionLabel {
               display: flex;
               font-weight: normal;
@@ -2484,95 +2068,75 @@ body {
               width: 100%;
               align-items: center;
               justify-content: space-between;
-
               @media #{$mq-4k} {
                 font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
               }
-
               span {
                 padding-left: 0.75rem;
-
                 @media #{$mq-4k} {
                   padding-left: get4k(12px);
                 }
-
                 @media #{$mq-mobile-sm} {
                   padding-left: 0.5rem;
                 }
-
                 &:last-child {
                   font-size: calc((var(--wc-font-size)) * 1px);
                   font-weight: bold;
                   color: var(--primary-color);
-
                   @media #{$mq-4k} {
                     font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
                   }
                 }
               }
-
               .rateSPrice {
                 font-weight: 600;
                 color: var(--primary-color);
                 font-size: calc(var(--wc-font-size) * 1px);
                 margin-left: auto;
-
                 @media #{$mq-4k} {
                   font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
                 }
               }
             }
           }
-
           .breakDMain {
             margin-top: auto;
           }
-
           .drateBreakDown {
             border-top: 1px solid var(--wc-border-color);
             padding: 1rem 2rem;
-
             @media #{$mq-4k} {
               padding: get4k(16px) get4k(32px);
             }
-
             @media #{$mq-mobile-sm} {
               padding: 1rem;
             }
-
             .card-heading-small {
               font-weight: 800;
               margin-bottom: 0.5rem;
-
               @media #{$mq-4k} {
                 margin-bottom: get4k(8px);
               }
             }
-
             .dRateBD {
               display: flex;
               flex-wrap: wrap;
-
               li {
                 width: 100%;
                 display: flex;
                 align-items: center;
                 margin-bottom: 0.5rem;
                 margin-left: 0;
-
                 @media #{$mq-4k} {
                   margin-bottom: get4k(8px);
                   margin-left: 0;
                 }
-
                 &:last-child {
                   margin-bottom: 0;
                 }
-
                 &::before {
                   display: none;
                 }
-
                 span {
                   &:last-child {
                     margin-left: auto;
@@ -2582,42 +2146,33 @@ body {
               }
             }
           }
-
           .drateTotalPrice {
             border-top: 1px solid var(--wc-border-color);
             padding: 1.25rem 2rem;
             display: flex;
-
             @media #{$mq-4k} {
               padding: get4k(24px) get4k(32px);
             }
-
             @media #{$mq-mobile-sm} {
               padding: 1rem;
             }
-
             .rateTDLabel {
               font-size: calc((var(--wc-font-size) + 4) * 1px);
-
               @media #{$mq-4k} {
                 font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
               }
-
               @media #{$mq-tablet-lg} {
                 font-size: calc((var(--wc-font-size) + 2) * 1px);
               }
             }
-
             .rateTDPrice {
               font-size: calc((var(--wc-font-size) + 4) * 1px);
               color: var(--primary-color);
               font-weight: 600;
               margin-left: auto;
-
               @media #{$mq-4k} {
                 font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
               }
-
               @media #{$mq-tablet-lg} {
                 font-size: calc((var(--wc-font-size) + 2) * 1px);
               }
@@ -2626,40 +2181,32 @@ body {
         }
       }
     }
-
     /* Confirmation Page */
     .confirmation_summary {
       margin: 2rem 0;
-
       .confirmation_msg {
         text-align: center;
-
         .confirmed-icon {
           width: 70px;
           height: 70px;
           margin-bottom: 1rem;
-
           @media #{$mq-4k} {
             width: get4k(70px);
             height: get4k(70px);
             margin-bottom: get4k(16px);
           }
-
           @media #{$mq-tablet-md} {
             width: 50px;
             height: 50px;
           }
         }
-
         p {
           margin-bottom: 2rem;
-
           @media #{$mq-4k} {
             margin-bottom: get4k(32px);
           }
         }
       }
-
       .confirmation_card {
         border: 1px solid var(--wc-border-color);
         border-radius: calc(var(--borderRadius) * 1px);
@@ -2669,53 +2216,42 @@ body {
         width: 100%;
         margin-top: 1.5rem;
         text-align: left;
-
         @media #{$mq-4k} {
           border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
           padding: get4k(24px);
           margin-bottom: get4k(24px);
           margin-top: get4k(24px);
         }
-
         @media #{$mq-tablet-md} {
           padding: 1rem;
         }
-
         @media #{$mq-mobile-sm} {
           padding: 10px;
         }
-
         &>p {
           font-size: calc((var(--wc-font-size) + 2) * 1px);
           font-weight: 800;
-
           @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
           }
-
           @media #{$mq-tablet-lg} {
             font-size: calc(var(--wc-font-size) * 1px);
           }
-
           @media #{$mq-mobile-sm} {
             font-size: calc((var(--wc-font-size) - 2) * 1px);
             margin-bottom: 0;
           }
         }
-
         .booked_card {
           display: flex;
           flex-wrap: wrap;
           margin: 1rem -12px 0 -12px;
-
           @media #{$mq-4k} {
             margin: get4k(16px) get4k(-12px) 0 get4k(-12px);
           }
-
           @media #{$mq-tablet-md} {
             margin-top: 0;
           }
-
           .card {
             width: 25%;
             flex: 0 0 25%;
@@ -2729,17 +2265,14 @@ body {
               margin-right: get4k(16px);
               border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
             }
-
             @media #{$mq-tablet-md} {
               width: 33.33%;
               flex: 0 0 33.33%;
             }
-
             @media #{$mq-mobile-sm} {
               width: 50%;
               flex: 0 0 50%;
             }
-
             .card-body {
               padding: 12px;
               background: white;
@@ -2748,37 +2281,30 @@ body {
               border-radius: calc(var(--borderRadius) * 1px);
               box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
               height: 100%;
-
               @media #{$mq-4k} {
                 padding: 12px;
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
               }
-
               @media #{$mq-mobile-sm} {
                 padding: 6px;
               }
-
               p {
                 padding: 1rem;
                 margin-bottom: 0;
                 line-height: 1.25;
-
                 @media #{$mq-4k} {
                   padding: get4k(16px);
                   margin-bottom: 0;
                 }
-
                 @media #{$mq-tablet-lg} {
                   font-size: calc((var(--wc-font-size) - 2) * 1px);
                   padding: 0.5rem;
                 }
-
                 @media #{$mq-mobile-sm} {
                   font-size: calc((var(--wc-font-size) - 4) * 1px);
                 }
               }
             }
-
             .card-img {
               width: 100%;
               border-radius: calc((var(--borderRadius) - 4) * 1px);
@@ -2787,7 +2313,6 @@ body {
               aspect-ratio: 2 / 1.8;
               object-fit: cover;
               background: var(--wc-body-bg);
-
               @media #{$mq-4k} {
                 width: calc(100% - get4k(16px));
                 border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw);
@@ -2797,82 +2322,64 @@ body {
           }
         }
       }
-
       button {
         margin-top: 0;
-
         @media #{$mq-4k} {
           margin-top: 0;
         }
       }
     }
   }
-
   //MUI Customizations
   .MuiButton-root {
     min-width: unset;
   }
-
   .MuiInput-underline:before,
   .MuiInput-underline:after {
     display: none;
   }
-
   .MuiSvgIcon-root {
     color: var(--primary-color);
   }
-
   .MuiAlert-icon {
-
     .MuiSvgIcon-root {
       color: inherit;
     }
   }
-
   .MuiCheckbox-root {
-
     .MuiSvgIcon-root {
       color: var(--primary-color);
       color: #cbcbcb;
       margin-top: -2px;
     }
-
     &.Mui-checked {
       .MuiSvgIcon-root {
         color: var(--primary-color);
       }
-
     }
-
     .MuiIconButton-label {
       input {
         display: none;
       }
     }
   }
-
   .MuiRadio-root {
     color: var(--primary-color);
     padding: 0;
     margin-top: -1px;
   }
-
   .MuiTouchRipple-root {
     color: var(--primary-color);
   }
-
   .MuiIconButton-colorSecondary:hover {
     background: rgba(0, 0, 0, 0.025);
   }
-
-
   .MuiSkeleton-root {
     -webkit-transform: none;
     -moz-transform: none;
     -ms-transform: none;
     transform: none;
   }
-
   .MuiPaper-rounded {
     border-radius: calc(var(--borderRadius) * 1px);
   }
@@ -2914,25 +2421,20 @@ body {
       margin-top: 3px;
       box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
     }
-
     ul.MuiAutocomplete-listbox {
       padding-bottom: 0;
-
       &>li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);
         padding: 10px 16px;
-
         &:last-child {
           border-bottom: 0;
         }
       }
     }
   }
-
   //Modal
   .mui_modal {
     margin: 15px;
-
     .modal_dialog {
       position: absolute;
       top: 50%;
@@ -2947,19 +2449,16 @@ body {
       padding: 32px;
     }
   }
-
   //Guests Selection
   .guests_selection_outer {
     .add_guest_btn {
       padding: 12px 16px 0 16px;
-
       button {
         font-size: calc((var(--wc-font-size) - 2) * 1px);
         width: 100%;
         border-radius: 100px;
       }
     }
-
     .guest_group_title {
       position: sticky;
       top: -8px;
@@ -2968,25 +2467,20 @@ body {
       font-weight: 800;
       color: #000;
     }
-
     .guest_group_members {
       padding: 0;
-
       li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);
         padding: 10px 16px;
       }
     }
-
     ul.MuiAutocomplete-listbox {
       padding-bottom: 0;
-
       &>li:first-child {
         &>div {
           display: none;
         }
       }
-
       &>li:last-child {
         ul {
           li:last-child {
@@ -2996,13 +2490,11 @@ body {
       }
     }
   }
-
   //Rate Selection
   .rate_selection_listbox {
     display: flex;
     justify-content: space-between;
     flex: 1;
-
     span {
       &:last-child {
         font-weight: bold;
@@ -3010,7 +2502,6 @@ body {
       }
     }
   }
-
   //MUI Customizations
   .MuiAutocomplete-popper {
     .MuiPaper-root {
@@ -3020,40 +2511,30 @@ body {
       margin-top: 3px;
       box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
     }
-
     ul.MuiAutocomplete-listbox {
       padding-bottom: 0;
-
       &>li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);
         padding: 10px 16px;
         font-size: calc((var(--wc-font-size) - 1) * 1px);
         letter-spacing: 0;
-
         &:last-child {
           border-bottom: 0;
         }
       }
     }
   }
-
   .MuiAutocomplete-endAdornment {
-
     padding-right: 6px;
-
     @media #{$mq-4k} {
       padding-right: get4k(6px);
     }
-
     .MuiSvgIcon-root {
       color: var(--body-text-color);
     }
-
   }
-
   .MuiModal-root {
     margin: 15px;
-
     .modal_dialog {
       position: absolute;
       top: 50%;
@@ -3068,19 +2549,16 @@ body {
       padding: 32px;
     }
   }
-
   //Guests Selection
   .guests_selection_outer {
     .add_guest_btn {
       padding: 12px 16px 0 16px;
-
       button {
         font-size: calc((var(--wc-font-size) - 2) * 1px);
         width: 100%;
         border-radius: 100px;
       }
     }
-
     .guest_group_title {
       position: sticky;
       top: -8px;
@@ -3089,25 +2567,20 @@ body {
       font-weight: 800;
       color: #000;
     }
-
     .guest_group_members {
       padding: 0;
-
       li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);
         padding: 10px 16px;
       }
     }
-
     ul.MuiAutocomplete-listbox {
       padding-bottom: 0;
-
       &>li:first-child {
         &>div {
           display: none;
         }
       }
-
       &>li:last-child {
         ul {
           li:last-child {
@@ -3117,30 +2590,24 @@ body {
       }
     }
   }
-
-
   //Check Availability
   .check_availability {
     .modal_dialog {
       width: 1200px;
       padding: 0;
-
       .modal_header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 12px 30px;
         border-bottom: 1px solid var(--wc-border-color);
-
         h2 {
           font-size: 18px;
           margin: 0;
         }
-
         .month_title {
           display: inline-flex;
           align-items: center;
-
           h3 {
             font-size: 14px;
             text-transform: uppercase;
@@ -3161,11 +2628,9 @@ body {
           }
         }
       }
-
       .modal_body {
         display: flex;
         padding: 0 0 16px 32px;
-
         .room_sidebar {
           h3 {
             font-size: 18px;
@@ -3174,7 +2639,6 @@ body {
             align-items: center;
             margin: 0;
           }
-
           .room_listing {
             flex: 0 0 214px;
             width: 214px;
@@ -3183,32 +2647,26 @@ body {
             border: 1px solid var(--wc-border-color);
             border-top-left-radius: calc(var(--borderRadius) * 1px);
             border-bottom-left-radius: calc(var(--borderRadius) * 1px);
-
             @media #{$mq-4k} {
               flex: 0 0 get4k(214px);
               width: get4k(214px);
               padding: get4k(16px);
               margin-top: 0;
             }
-
             ul {
               list-style: none;
               padding: 0;
               margin: 0;
-
               li {
                 margin: 0 0 15px 0;
                 display: flex;
                 align-items: center;
-
                 &::before {
                   display: none;
                 }
-
                 img {
                   border-radius: calc(var(--borderRadius) * 1px);
                 }
-
                 span {
                   display: inline-block;
                   padding: 10px 16px;
@@ -3217,12 +2675,10 @@ body {
             }
           }
         }
-
         .room_aside {
           overflow-x: auto;
           position: relative;
         }
-
         .check_availability_calendar {
           display: flex;
           white-space: nowrap;
@@ -3230,13 +2686,11 @@ body {
           height: 60px;
           align-items: center;
           padding: 0;
-
           &.month_calendar {
             position: absolute;
             height: 65px;
             border-bottom: 1px solid var(--wc-border-color);
           }
-
           .day {
             display: flex;
             flex-direction: column;
@@ -3245,10 +2699,8 @@ body {
             flex: 0 0 122px;
             align-items: center;
             font-size: 14px;
-
             span {
               display: inline-block;
-
               &:first-child {
                 line-height: 1;
                 border-radius: 4px;
@@ -3259,20 +2711,16 @@ body {
             }
           }
         }
-
         .calendar_outer {
           margin-top: 120px;
-
           .check_availability_calendar {
             &:first-child {
               border-top: 1px solid var(--wc-border-color);
             }
-
             .day {
               height: 46px;
               justify-content: center;
             }
-
             .available-days {
               span {
                 display: inline-flex;
@@ -3281,7 +2729,6 @@ body {
                 color: #00a167;
               }
             }
-
             .notavailable-days {
               span {
                 display: inline-flex;
