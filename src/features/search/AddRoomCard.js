@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { Box } from "@material-ui/core";
 
 
-export default function AddRoomCard({ handleCloseModal }) {
+export default function AddRoomCard({ handleCloseModal, roomCardRef }) {
 
     const refRoomModal = useRef();
     const { state, dispatch } = useSearch();
@@ -23,7 +23,7 @@ export default function AddRoomCard({ handleCloseModal }) {
     })
 
     return (
-        <Box ref={refRoomModal} className='inline_modal'>
+        <Box ref={(refRoomModal, roomCardRef)} className='inline_modal'>
             <Box className="inline_modal_body">
                 {roomsInSearch.map((room, index) => (
                     <RoomCard

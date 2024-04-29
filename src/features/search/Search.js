@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -11,11 +12,14 @@ import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
+import useScrollToRef from "../../hooks/ScrolltoRef";
 
 
 export default function Search() {
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
+  const calendarRef = useRef(null);
+  const roomCardRef = useRef(null);
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
   const [roomsModalOpen, setRoomsModalOpen] = useState(false);
@@ -26,6 +30,9 @@ export default function Search() {
 
   const checkInDate = format(startDate, 'E, d MMM');
   const checkOutDate = format(endDate, 'E, d MMM');
+
+  useScrollToRef(dateModalOpen, calendarRef);
+  useScrollToRef(roomsModalOpen, roomCardRef);
 
   //Handle Date and Rooms Modal
   const handleDateModalOpen = () => {
@@ -83,11 +90,12 @@ export default function Search() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
+    
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [page, isBottom]);
+
+  }, [page, isBottom, dateModalOpen]);
 
   const handleSearch = async () => {
     navigate("/searchresults");
@@ -128,8 +136,8 @@ export default function Search() {
                   </div>
                 </div>
                 {dateModalOpen && (
-                  <StyledDateRangePicker
-                    handleCloseModal={handleCloseModal}
+                  <StyledDateRangePicker calendarRef={calendarRef}
+                    handleCloseModal={handleCloseModal} 
                   />
                 )}
               </div>
@@ -155,7 +163,7 @@ export default function Search() {
                     </div>
                   </div>
                   {roomsModalOpen && (
-                    <AddRoomCard handleCloseModal={handleCloseModal} />
+                    <AddRoomCard handleCloseModal={handleCloseModal} roomCardRef={roomCardRef} />
                   )}
                 </div>
               </div>
