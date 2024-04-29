@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import dayjs from 'dayjs';
+import { format, isWithinInterval } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from "@material-ui/core";
@@ -22,7 +22,7 @@ export default function CheckAvailability({ open, handleClose }) {
         return (
             <div className="month_title">
                 {!isFirstMonth && <button onClick={handlePrevMonth}><FontAwesomeIcon icon={faChevronLeft} /></button>}
-                <h3>{dayjs(currentDate).format('MMMM YYYY')}</h3>
+                <h3>{format(currentDate, 'MMMM yyyy')}</h3>
                 <button onClick={handleNextMonth}><FontAwesomeIcon icon={faChevronRight} /></button>
             </div>
         );
@@ -39,7 +39,7 @@ export default function CheckAvailability({ open, handleClose }) {
             const currentDate = new Date(monthStart.getFullYear(), monthStart.getMonth(), monthStart.getDate() + i);
             calendarDays.push(
                 <div key={i} className='day'>
-                    <span>{dayjs(currentDate).format('ddd')}</span> <span>{dayjs(currentDate).format('MMM DD')}</span>
+                    <span>{format(currentDate, 'EEE')}</span> <span>{format(currentDate, 'MMM dd')}</span>
                 </div>
             );
         }
@@ -74,7 +74,7 @@ export default function CheckAvailability({ open, handleClose }) {
             reservations[room].forEach(({ startDate, endDate }) => {
                 const start = new Date(startDate);
                 const end = new Date(endDate);
-                if (currentDate.getTime() >= start.getTime() && currentDate.getTime() <= end.getTime()) {
+                if (isWithinInterval(currentDate, { start, end })) {
                     available = false;
                 }
             });

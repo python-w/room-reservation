@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck, faCalendar, faUser } from '@fortawesome/free-regular-svg-icons';
@@ -10,7 +11,7 @@ import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
-import dayjs from 'dayjs';
+
 
 export default function Search() {
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ export default function Search() {
   const { state, dispatch } = useSearch();
   const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
 
-  const checkInDate = dayjs(startDate).format("ddd, D MMM");
-  const checkOutDate = dayjs(endDate).format("ddd, D MMM");
+  const checkInDate = format(startDate, 'E, d MMM');
+  const checkOutDate = format(endDate, 'E, d MMM');
 
   //Handle Date and Rooms Modal
   const handleDateModalOpen = () => {
