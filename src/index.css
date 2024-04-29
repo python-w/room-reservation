@@ -149,13 +149,13 @@ body.wcprop-2 section.portlet .btn.btn-wc-transparent {
 }
 
 body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled).active,
-body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active {
+body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active, body.wcprop-2 section.portlet .btn.btn-wc-transparent:hover {
   background: transparent;
   color: var(--primary-color);
 }
 
 body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled).active,
-body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active {
+body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active, body.wcprop-2 section.portlet .btn.btn-wc-outlined:hover {
   border-color: var(--primary-color-hover);
 }
 
