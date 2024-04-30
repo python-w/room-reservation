@@ -1804,6 +1804,27 @@ body {
             --primary-color-darker: color-mix(in srgb, var(--primary-color), #000 20%);
             background: linear-gradient(to left, var(--primary-color) 33%,var(--primary-color-darker) 66%);
             opacity: 0.1;
+            z-index: 2;
+          }
+          &::after {
+            @media #{$mq-tablet-sm} {
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              background: white;
+              z-index: 1;
+            }
+          }
+          .price-text {
+            position: relative;
+            z-index: 3;
+            justify-content: flex-end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
           }
           small {
             font-size: 14px;

@@ -121,7 +121,7 @@ export default function RoomListTile({ room, index }) {
       <div className="row">
         {room.defaultRate !== null && (
           <div className="price-container">
-            {formatCurrency(room.defaultRate)} <small>/ night</small>
+            <div className="price-text"><span>{formatCurrency(room.defaultRate)}</span> <small>/ night</small></div>
           </div>
         )}
         <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
