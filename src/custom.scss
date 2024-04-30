@@ -75,6 +75,71 @@ body {
           }
         }
       }
+      //Index Placeholder
+      .index-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem;
+        @media #{$mq-4k} {
+          padding: get4k(128px);
+        }
+        @media #{$mq-tablet-md} {
+          padding: 5rem;
+        }
+        @media #{$mq-mobile-sm} {
+          padding: 4rem 2rem;
+        }
+        .indexp-icon {
+          position: relative;
+          margin-bottom: 2.5rem;
+          @media #{$mq-4k} {
+            margin-bottom: get4k(40px);
+          }
+          @media #{$mq-mobile-sm} {
+            margin-bottom: 1.5rem;
+          }
+          .index-placeholder-bg {
+            width: 232px;
+            @media #{$mq-4k} {
+              width: get4k(232px);
+            }
+            @media #{$mq-tablet-md} {
+              width: 200px;
+            }
+            @media #{$mq-mobile-sm} {
+              width: 165px;
+            }
+          }
+          .index-placeholder-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 140px;
+            @media #{$mq-4k} {
+              width: get4k(140px);
+            }
+            @media #{$mq-tablet-md} {
+              width: 100px;
+            }
+            @media #{$mq-mobile-sm} {
+              width: 80px;
+            }
+          }
+        }
+        .indexp-text {
+          color: var(--wc-font-color);
+          text-align: center;
+          & > br {
+            @media #{$mq-mobile-sm} {
+              display: none;
+            }
+          }
+        }
+      }
       //Porlet Banner
       .room_reservation_banner {
         background-size: cover !important;
@@ -86,6 +151,15 @@ body {
         @media #{$mq-4k} {
           border-bottom-left-radius: calc((var(--borderRadius) * 2) / var(--4k-ratio) * 1px);
           border-bottom-right-radius: calc((var(--borderRadius) * 2) / var(--4k-ratio) * 1px);
+        }
+        @media #{$mq-tablet-md} {
+          padding: 10% 0;
+        }
+        @media #{$mq-tablet-sm} {
+          padding: 12% 0;
+        }
+        @media #{$mq-mobile-sm} {
+          padding: 14% 0;
         }
         &::before {
           content: "";
@@ -139,6 +213,9 @@ body {
         .search_wrap {
           margin-top: -5%;
           padding: 0 var(--container-padding);
+          @media #{$mq-mobile-sm} {
+            margin-top: -8%;
+          }
         }
       }
       .search_wrap_inner {
@@ -242,6 +319,9 @@ body {
             }
             .svg-inline--fa {
               color: #fff;
+              @media #{$mq-mobile-sm} {
+                margin-right: 0;
+              }
             }
           }
         }
@@ -287,6 +367,19 @@ body {
         .btn.btn-checkavail {
           padding: 0;
           margin: 0;
+          @media #{$mq-4k} {
+            padding: 0;
+            margin: 0;
+          }
+          @media #{$mq-mobile-sm} {
+            align-items: flex-end;
+            text-align: right;
+          }
+          .svg-inline--fa {
+            @media #{$mq-mobile-sm} {
+              margin-right: 0;
+            }
+          }
           span {
             @media #{$mq-4k} {
               font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
@@ -297,14 +390,6 @@ body {
             .svg-inline--fa {
               color: inherit;
             }
-          }
-          @media #{$mq-4k} {
-            padding: 0;
-            margin: 0;
-          }
-          @media #{$mq-mobile-sm} {
-            align-items: flex-end;
-            text-align: right;
           }
         }
       }
