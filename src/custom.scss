@@ -544,10 +544,6 @@ body {
           align-items: center;
           justify-content: space-between;
           border-bottom: 1px solid var(--wc-border-color);
-          margin-bottom: 1rem;
-          @media #{$mq-4k} {
-            margin-bottom: get4k(16px);
-          }
           button {
             background: transparent;
             height: auto;
@@ -555,14 +551,26 @@ body {
             text-decoration: underline;
           }
         }
+        .room_card_body{
+          padding: 1rem;
+          @media #{$mq-4k} {
+            padding: get4k(16px);
+          }
+        }
         .room_row {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 5px 16px 16px;
+          padding-bottom: 16px;
           line-height: normal;
           @media #{$mq-4k} {
-            padding: get4k(5px) get4k(16px) get4k(16px);
+            padding-bottom: get4k(16px);
+          }
+          &:last-child{
+            padding-bottom: 0;
+            @media #{$mq-4k} {
+              padding-bottom: 0;
+            }
           }
           small {
             font-size: 80%;
