@@ -16,7 +16,6 @@ const router = (
       <Route path="/room/:roomId/:roomName" element={<RoomDetails />} />
       <Route path="/reservation-summary" element={<ReservationSummary />} />
       <Route path="/bookings" element={<Confirmation />} />
-      {/* Define other routes here */}
     </Routes>
   </Router>
 );

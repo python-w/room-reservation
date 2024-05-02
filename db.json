@@ -5,36 +5,32 @@
       "ageGroupName": "Adult",
       "ageGroupCode": "adult",
       "ageGroupType": 1,
-      "maxOccupants": 4,
-      "selectedValue": 0,
-      "id": "b15e"
+      "maxOccupants": 0,
+      "selectedValue": 0
     },
     {
       "ageGroupId": 2,
       "ageGroupName": "Child",
       "ageGroupCode": "child",
       "ageGroupType": 2,
-      "maxOccupants": 2,
-      "selectedValue": 0,
-      "id": "08d8"
+      "maxOccupants": 0,
+      "selectedValue": 0
     },
     {
       "ageGroupId": 3,
       "ageGroupName": "Infant",
       "ageGroupCode": "Infant",
       "ageGroupType": 3,
-      "maxOccupants": 1,
-      "selectedValue": 0,
-      "id": "449e"
+      "maxOccupants": 0,
+      "selectedValue": 0
     },
     {
       "ageGroupId": 5,
       "ageGroupName": "Child 2",
       "ageGroupCode": "Child 2",
       "ageGroupType": 2,
-      "maxOccupants": 1,
-      "selectedValue": 0,
-      "id": "14e3"
+      "maxOccupants": 0,
+      "selectedValue": 0
     }
   ],
   "roomFilters": [

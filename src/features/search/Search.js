@@ -12,6 +12,8 @@ import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
+import useHttp from '../../hooks/useHttp';
+import { v4 as uuidv4 } from "uuid";
 import useScrollToRef from "../../hooks/ScrolltoRef";
 
 
@@ -20,10 +22,13 @@ export default function Search() {
   const isBottom = useInfiniteScroll();
   const calendarRef = useRef(null);
   const roomCardRef = useRef(null);
+  
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
   const [roomsModalOpen, setRoomsModalOpen] = useState(false);
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
+  useScrollToRef(dateModalOpen, calendarRef);
+  useScrollToRef(roomsModalOpen, roomCardRef);
 
   const { state, dispatch } = useSearch();
   const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
@@ -31,8 +36,52 @@ export default function Search() {
   const checkInDate = format(startDate, 'E, d MMM');
   const checkOutDate = format(endDate, 'E, d MMM');
 
-  useScrollToRef(dateModalOpen, calendarRef);
-  useScrollToRef(roomsModalOpen, roomCardRef);
+  //Fetch Age Group List
+  const { loading: ageGroupLoading, sendRequest } = useHttp();
+  const [checkAgeGroupEnabled, setCheckAgeGroupEnabled] = useState(true);
+  const [allAgeGroupsList, setAllAgeGroupsList] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // const isAgeGroupEnabled = async () => {
+    //     try {
+    //         const res = await sendRequest({
+    //             url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
+    //         });
+    //         setCheckAgeGroupEnabled(res)
+    //     } catch (error) {
+    //         setError(error.message)
+    //     }
+    // };
+    // isAgeGroupEnabled();
+
+    const getAllAgeGroup = async () => {
+      try {
+        const res = await sendRequest({
+          // url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
+          url: "http://localhost:5000/getAllAgeGroup",
+        });
+        const data = await res.json();
+        const initialRoom = {
+          id: uuidv4(),
+          name: "Room # 1",
+          ageGroups: data.map((ageGroup, index) => ({
+            name: ageGroup.ageGroupName,
+            ageGroupId: ageGroup.ageGroupId,
+            count: index === 0 ? 1 : 0
+          }))
+        };
+        dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom })
+        setAllAgeGroupsList(data);
+        // setAllAgeGroupsList(data.response);
+      } catch (error) {
+        setError(error.message)
+
+      }
+    };
+    getAllAgeGroup();
+  }, [sendRequest, dispatch]);
+
 
   //Handle Date and Rooms Modal
   const handleDateModalOpen = () => {
@@ -90,7 +139,7 @@ export default function Search() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -137,7 +186,7 @@ export default function Search() {
                 </div>
                 {dateModalOpen && (
                   <StyledDateRangePicker calendarRef={calendarRef}
-                    handleCloseModal={handleCloseModal} 
+                    handleCloseModal={handleCloseModal}
                   />
                 )}
               </div>
@@ -157,13 +206,20 @@ export default function Search() {
                       <FontAwesomeIcon icon={faUser} />{" "}
                       <Typography component="span">
                         {guests || 1} {guests > 1 ? "Guests" : "Guest"},{" "}
-                        {roomsInSearch.length}{" "}
+                        {roomsInSearch.length || 1}{" "}
                         {roomsInSearch.length > 1 ? "Rooms" : "Room"}
                       </Typography>
                     </div>
                   </div>
                   {roomsModalOpen && (
-                    <AddRoomCard handleCloseModal={handleCloseModal} roomCardRef={roomCardRef} />
+                    <AddRoomCard
+                      roomCardRef={roomCardRef}
+                      handleCloseModal={handleCloseModal}
+                      checkAgeGroupEnabled={checkAgeGroupEnabled}
+                      allAgeGroupsList={allAgeGroupsList}
+                      ageGroupLoading={ageGroupLoading}
+                      error={error}
+                    />
                   )}
                 </div>
               </div>
