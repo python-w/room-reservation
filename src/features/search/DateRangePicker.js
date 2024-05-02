@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import useWindowWidth from "../../hooks/useWindowWidth";
 
-export default function StyledDateRangePicker({ handleCloseModal, calendarRef, dateModalOpen }) {
+export default function StyledDateRangePicker({ handleCloseModal, calendarRef }) {
   const { isTabletSMScreen } = useWindowWidth();
   const refDateModal = useRef();
   const { state, dispatch } = useSearch();

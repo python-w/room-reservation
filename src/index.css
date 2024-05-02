@@ -1,7 +1,7 @@
 :root {
   --container-padding: 9.7rem;
   --section-padding: 100px;
-
+  --headerHeight: 200px;
 
   --logo-bg-color: rgba(0, 0, 0, 0);
   --header-bg-color: rgba(44, 69, 130, 1);
@@ -65,7 +65,7 @@
   --primary-color-hover: #42566C;
   --secondary-color: #42566C;
   --secondary-color-hover: #0E53A8;
-  --wc-body-bg: #eff6ff;
+  --wc-body-bg: rgba(250, 250, 250, 1);
   --wc-overlay-bg: rgba(56, 108, 141, 1);
   --bg-text-color: rgba(255, 255, 255, 1);
   --borderRadius: 12;

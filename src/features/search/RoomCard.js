@@ -2,9 +2,9 @@ import { Box, Button } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useSearch } from "../../contexts/SearchContext";
-import { useEffect } from "react";
 import { CircularProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
+import { useEffect } from "react";
 
 
 export default function RoomCard({
@@ -17,7 +17,6 @@ export default function RoomCard({
 
 	const { state, dispatch } = useSearch();
 	const { roomsInSearch } = state;
-
 	const handleAddRoom = () => {
 		const newRoomNumber = roomsInSearch.length + 1;
 		const newRoom = {
@@ -32,9 +31,9 @@ export default function RoomCard({
 		dispatch({ type: "UPDATE_GUESTS" })
 	};
 
-	const handleRemoveRoom = (id) => {		
-		dispatch({ type: "REMOVE_ROOM_IN_SEARCH", payload: id });	
-		dispatch({ type: "UPDATE_GUESTS" })		
+	const handleRemoveRoom = (id) => {
+		dispatch({ type: "REMOVE_ROOM_IN_SEARCH", payload: id });
+		dispatch({ type: "UPDATE_GUESTS" })
 	};
 
 	const handleIncrement = (roomIndex, ageGroupIndex) => {
@@ -57,26 +56,27 @@ export default function RoomCard({
 		}
 	};
 
-	useEffect(() => {
-		const handleRoomSearchData = (roomSearchData) => {
-			console.log(roomSearchData);
-			dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: roomSearchData })
-		};
+	// useEffect(() => {
+	// 	const handleRoomSearchData = (roomSearchData) => {
+	// 		console.log(roomSearchData);
+	// 		dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: roomSearchData })
+	// 	};
 
-		const collectRoomSearchData = () => {
-			const roomSearchData = roomsInSearch.map((room) => {
-				const roomData = {};
-				room.ageGroups.forEach((ageGroup) => {
-					roomData[ageGroup.ageGroupId] = ageGroup.count;
-				});
-				return roomData;
-			});
-			return roomSearchData;
-		};
+	// 	const collectRoomSearchData = () => {
+	// 		const roomSearchData = roomsInSearch.map((room) => {
+	// 			const roomData = {};
+	// 			room.ageGroups.forEach((ageGroup) => {
+	// 				roomData[ageGroup.ageGroupId] = ageGroup.count;
+	// 			});
+	// 			return roomData;
+	// 		});
+	// 		return roomSearchData;
+	// 	};
 
-		const roomSearchData = collectRoomSearchData();
-		handleRoomSearchData(roomSearchData);
-	}, [roomsInSearch, dispatch]);
+	// 	const roomSearchData = collectRoomSearchData();
+	// 	handleRoomSearchData(roomSearchData);
+	// }, [roomsInSearch, dispatch]);
+
 
 	return (
 		<>
@@ -107,19 +107,15 @@ export default function RoomCard({
 					</div>
 				))}
 			</div>
-			{!ageGroupLoading && !error &&
-				<>
-					<Box className="add_room_btn" >
-						<button className="btn btn-wc-outlined" onClick={handleAddRoom}>
-							<FontAwesomeIcon icon={faPlus} className="mr-2" />
-							Add Another Room
-						</button>
-					</Box>
-					<Box className='inline_modal_footer'>
-						<button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
-					</Box>
-				</>
-			}
+			<Box className="add_room_btn" >
+				<button className="btn btn-wc-outlined" onClick={handleAddRoom}>
+					<FontAwesomeIcon icon={faPlus} className="mr-2" />
+					Add Another Room
+				</button>
+			</Box>
+			<Box className='inline_modal_footer'>
+				<button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
+			</Box>
 		</>
 	)
 }

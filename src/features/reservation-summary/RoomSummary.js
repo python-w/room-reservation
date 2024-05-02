@@ -19,12 +19,12 @@ export default function RoomSummary({ room, index }) {
     <div className="col-md-6">
       <div className="booked_room_card">
         <h6>
-          Room {index}: {room.roomtype}
+          Room {index}: {room.title}
         </h6>
         <ul>
           <li>
-            Reservation for: <GuestsSelection roomId={room.id} />
-            {room.guests &&
+            Reservation for: {!room.guests ? <GuestsSelection roomId={room.id} /> : <p className="mb-0"><strong>Guest</strong></p>}
+            {room.guests && room.guests.guestname &&
               room.guests.map((guest, index) => (
                 <ul key={index}>
                   <li>

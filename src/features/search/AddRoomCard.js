@@ -1,6 +1,6 @@
 import RoomCard from "./RoomCard";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { Box } from "@material-ui/core";
 
 export default function AddRoomCard({ handleCloseModal, roomCardRef, ageGroupLoading, checkAgeGroupEnabled, allAgeGroupsList, error }) {
@@ -8,8 +8,16 @@ export default function AddRoomCard({ handleCloseModal, roomCardRef, ageGroupLoa
     useOnClickOutside(refRoomModal, () => {
         handleCloseModal()
     })
+
+    const combinedRef = useCallback(node => {
+        if (node !== null) {
+            refRoomModal.current = node;
+            roomCardRef.current = node;
+        }
+    }, []);
+    
     return (
-        <Box ref={(refRoomModal, roomCardRef)} className='inline_modal'>
+        <Box ref={combinedRef} className='inline_modal'>
             <RoomCard
                 checkAgeGroupEnabled={checkAgeGroupEnabled}
                 allAgeGroupsList={allAgeGroupsList}

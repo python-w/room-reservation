@@ -26,7 +26,7 @@ export default function Filters() {
   }, []);
 
   return (
-    <>
+    <div className="filter_outer">
       <h4 className="lfilter-heading">Filter results by</h4>
       {error && <Alert severity="error">{error}</Alert>}
       {roomFilters.map((item, index) => (
@@ -50,6 +50,6 @@ export default function Filters() {
           </FormGroup>
         </div>
       ))}
-    </>
+    </div>
   );
 }

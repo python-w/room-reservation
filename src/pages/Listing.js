@@ -5,18 +5,15 @@ import RoomListTile from "../ui/RoomListTile";
 import useWindowWidth from "../hooks/useWindowWidth";
 import { useSearch } from "../contexts/SearchContext";
 import { Link } from "react-router-dom";
-import useScrollToTop from "../hooks/useScrollToTop ";
 import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
 import { Alert } from "@material-ui/lab";
-import useInfiniteScroll from "../hooks/useInfiniteScroll";
+import useScrollToTop from "../hooks/useScrollToTop ";
 
 export function RoomListing() {
   const { state } = useSearch();
-  const isTop = useScrollToTop();
   const { isLargeScreen } = useWindowWidth();
-  const isBottom = useInfiniteScroll();
-
+  const isTop = useScrollToTop();
   const {
     availableRooms,
     filterToggle,
@@ -27,15 +24,15 @@ export function RoomListing() {
     error,
     isSearchActive,
     selectedRooms,
-    searchedRooms
+    searchedRooms,
+    isSearchFixed
   } = state;
 
   return (
     <>
       <div
-        className={`${isTop && isLargeScreen ? "search_wrap_fixed" : ""
-          } search_listing`}
-      >
+        className={`${isSearchFixed && isLargeScreen ? (isTop ? "search_wrap_fixed" : "") : ""
+      } search_listing`}>
         <Search />
       </div>
       {error && (
@@ -44,7 +41,7 @@ export function RoomListing() {
         </Alert>
       )}
       <div
-        className={`${isTop && isLargeScreen ? "has_pt" : ""} room_listing`}
+        className="room_listing"
       >
         <div className="row">
           <div className="col-lg-3 pr-lg-4">
@@ -110,4 +107,4 @@ export function RoomListing() {
   );
 }
 
-export default React.memo(RoomListing);
+export default RoomListing;

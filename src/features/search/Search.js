@@ -14,15 +14,13 @@ import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
 import useHttp from '../../hooks/useHttp';
 import { v4 as uuidv4 } from "uuid";
-import useScrollToRef from "../../hooks/ScrolltoRef";
-
+import useScrollToRef from "../../hooks/ScrollToRef";
 
 export default function Search() {
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
   const calendarRef = useRef(null);
-  const roomCardRef = useRef(null);
-  
+  const roomCardRef = useRef(null);  
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
   const [roomsModalOpen, setRoomsModalOpen] = useState(false);
@@ -31,7 +29,7 @@ export default function Search() {
   useScrollToRef(roomsModalOpen, roomCardRef);
 
   const { state, dispatch } = useSearch();
-  const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
+  const { startDate, endDate, totalGuests, roomsInSearch, isLoading } = state;
 
   const checkInDate = format(startDate, 'E, d MMM');
   const checkOutDate = format(endDate, 'E, d MMM');
@@ -43,25 +41,25 @@ export default function Search() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // const isAgeGroupEnabled = async () => {
-    //     try {
-    //         const res = await sendRequest({
-    //             url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
-    //         });
-    //         setCheckAgeGroupEnabled(res)
-    //     } catch (error) {
-    //         setError(error.message)
-    //     }
-    // };
-    // isAgeGroupEnabled();
+    const isAgeGroupEnabled = async () => {
+        try {
+            const res = await sendRequest({
+                url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
+            });
+            setCheckAgeGroupEnabled(res)
+        } catch (error) {
+            setError(error.message)
+        }
+    };
+    isAgeGroupEnabled();
 
     const getAllAgeGroup = async () => {
       try {
-        const res = await sendRequest({
-          // url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
-          url: "http://localhost:5000/getAllAgeGroup",
+        const req = await sendRequest({
+          url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
         });
-        const data = await res.json();
+        const res = await req.json();
+        const data = res.response;
         const initialRoom = {
           id: uuidv4(),
           name: "Room # 1",
@@ -73,14 +71,14 @@ export default function Search() {
         };
         dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom })
         setAllAgeGroupsList(data);
-        // setAllAgeGroupsList(data.response);
       } catch (error) {
         setError(error.message)
-
       }
     };
-    getAllAgeGroup();
-  }, [sendRequest, dispatch]);
+    if (ageGroupLoading && roomsInSearch.length === 0) {
+      getAllAgeGroup();
+    }
+  }, []);
 
 
   //Handle Date and Rooms Modal
@@ -106,8 +104,8 @@ export default function Search() {
   const [allPagesFetched, setAllPagesFetched] = useState(false);
   const fetchData = async () => {
     dispatch({ type: "SEARCH_LOADING" });
+    navigate("/searchresults");
     try {
-      navigate("/searchresults");
       const response = await axios.get(
         `http://localhost:5000/rooms?noOfBeds=1&_page=${page}`
       );
@@ -144,10 +142,9 @@ export default function Search() {
       window.removeEventListener("scroll", handleScroll);
     };
 
-  }, [page, isBottom, dateModalOpen]);
+  }, [page, isBottom, dateModalOpen, allPagesFetched, dispatch, isLoading, totalPages]);
 
   const handleSearch = async () => {
-    navigate("/searchresults");
     await fetchData();
   };
 
@@ -205,7 +202,7 @@ export default function Search() {
                     <div>
                       <FontAwesomeIcon icon={faUser} />{" "}
                       <Typography component="span">
-                        {guests || 1} {guests > 1 ? "Guests" : "Guest"},{" "}
+                        {totalGuests || 1} {totalGuests > 1 ? "Guests" : "Guest"},{" "}
                         {roomsInSearch.length || 1}{" "}
                         {roomsInSearch.length > 1 ? "Rooms" : "Room"}
                       </Typography>

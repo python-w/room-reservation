@@ -2,6 +2,7 @@ import AddGuestModal from './AddGuestModal';
 import { Autocomplete } from '@material-ui/lab';
 import { Paper, TextField } from '@material-ui/core';
 import { useState } from 'react';
+import { useSearch } from '../../contexts/SearchContext';
 
 const memberlist = [
     { id: 8405409, name: 'Bob Smith', type: 'Dependents' },
@@ -24,6 +25,8 @@ const memberlist = [
 
 export default function GuestsSelection({ roomId }) {
 
+    const { dispatch } = useSearch();
+    const [selectedOption, setSelectedOption] = useState(null);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -39,14 +42,26 @@ export default function GuestsSelection({ roomId }) {
         })
     ]
 
+    const handleChange = (event, value) => {
+        dispatch({ type: "ADD_GUEST", payload: { guestRoomId: roomId,  value } });
+
+        console.log(value)
+        // setSelectedOption(value)
+        // dispatch({
+        //   type: "SELECT_RATE",
+        //   payload: { rateRoomId: bookingId, value },
+        // });
+      };
+
     return (
         <>
             <Autocomplete
-                id="guests_selection"
+                id="guest_selection"
                 options={options.sort((a, b) => -b + a)}
                 groupBy={(option) => option.groupTitle}
                 getOptionLabel={(option) => option.id === 1234567 ? option.name : `${option.id} - ${option.name}`}
                 renderInput={(params) => <TextField {...params} placeholder="Search and select member" />}
+                onChange={handleChange}
                 renderGroup={(params) => (
                     <li key={params.key}>
                         <div className='guest_group_title'>{params.group}</div>
@@ -55,7 +70,7 @@ export default function GuestsSelection({ roomId }) {
                 )}
                 PaperComponent={({ children }) => {
                     return (
-                        <Paper className='guests_selection_outer'>
+                        <Paper className='guest_selection_outer'>
                             <div className='add_guest_btn'>
                                 <button className='btn btn-wc-outlined'
                                     onMouseDown={() => {

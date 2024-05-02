@@ -26,7 +26,7 @@ const initialState = {
   selectedFilters: [],
   adultsCount: {},
   childrenCount: {},
-  guests: 1,
+  totalGuests: 1,
   isLoading: false,
   isLoadingMore: false,
   selectedRooms: [],
@@ -46,21 +46,30 @@ function reducer(state, action) {
         endDate: end,
         selectedRange: [item.selection],
       };
-    case "UPDATE_ROOM_IN_SEARCH":    
+    case "UPDATE_ROOM_IN_SEARCH":
       const roomspayload = action.payload;
-        return {
-          ...state,          
-          roomsInSearch: [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }],          
-        };
-    case "REMOVE_ROOM_IN_SEARCH":    
-    const removedRoomId = action.payload;
-    const removeRooms = state.roomsInSearch.filter((room) => room.id !== removedRoomId);
-    return {
-      ...state,
-      roomsInSearch: removeRooms
-    };
+      const updatedRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }];
+      const roomSearchData = updatedRoomsInSearch.map((room) => {
+        const roomData = {};
+        room.ageGroups.forEach((ageGroup) => {
+          roomData[ageGroup.ageGroupId] = ageGroup.count;
+        });
+        return roomData;
+      });
+      return {
+        ...state,
+        roomsInSearch: updatedRoomsInSearch,
+        searchedRooms: roomSearchData,
+      };
+    case "REMOVE_ROOM_IN_SEARCH":
+      const removedRoomId = action.payload;
+      const removeRooms = state.roomsInSearch.filter((room) => room.id !== removedRoomId);
+      return {
+        ...state,
+        roomsInSearch: removeRooms
+      };
     case "UPDATE_SEARCHED_ROOM":
-      const searchRoomsArray = action.payload;     
+      const searchRoomsArray = action.payload;
       return {
         ...state,
         searchedRooms: searchRoomsArray,
@@ -68,15 +77,15 @@ function reducer(state, action) {
     case "UPDATE_GUESTS":
       const totalGuests = state.roomsInSearch.reduce((total, room) => {
         if (room.ageGroups) {
-            const roomTotal = room.ageGroups.reduce((acc, ageGroup) => acc + ageGroup.count, 0);
-            return total + roomTotal;
+          const roomTotal = room.ageGroups.reduce((acc, ageGroup) => acc + ageGroup.count, 0);
+          return total + roomTotal;
         } else {
-            return total;
+          return total;
         }
       }, 0);
       return {
         ...state,
-        guests: totalGuests,
+        totalGuests: totalGuests,
       }
     case "SEARCH_LOADING":
       return {
@@ -91,6 +100,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         availableRooms: searchrooms,
+        isSearchFixed: true,
       };
     case "LOADING_ROOMS":
       return {
