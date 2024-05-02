@@ -65,7 +65,7 @@
   --primary-color-hover: #42566C;
   --secondary-color: #42566C;
   --secondary-color-hover: #0E53A8;
-  --wc-body-bg: #fafafa;
+  --wc-body-bg: #eff6ff;
   --wc-overlay-bg: rgba(56, 108, 141, 1);
   --bg-text-color: rgba(255, 255, 255, 1);
   --borderRadius: 12;
@@ -149,13 +149,13 @@ body.wcprop-2 section.portlet .btn.btn-wc-transparent {
 }
 
 body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled).active,
-body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active {
+body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active, body.wcprop-2 section.portlet .btn.btn-wc-transparent:hover {
   background: transparent;
   color: var(--primary-color);
 }
 
 body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled).active,
-body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active {
+body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active, body.wcprop-2 section.portlet .btn.btn-wc-outlined:hover {
   border-color: var(--primary-color-hover);
 }
 

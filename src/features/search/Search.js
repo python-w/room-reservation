@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -13,16 +14,21 @@ import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
 import useHttp from '../../hooks/useHttp';
 import { v4 as uuidv4 } from "uuid";
-
+import useScrollToRef from "../../hooks/ScrolltoRef";
 
 
 export default function Search() {
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
+  const calendarRef = useRef(null);
+  const roomCardRef = useRef(null);
+  
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
   const [roomsModalOpen, setRoomsModalOpen] = useState(false);
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
+  useScrollToRef(dateModalOpen, calendarRef);
+  useScrollToRef(roomsModalOpen, roomCardRef);
 
   const { state, dispatch } = useSearch();
   const { startDate, endDate, guests, roomsInSearch, isLoading } = state;
@@ -75,6 +81,7 @@ export default function Search() {
     };
     getAllAgeGroup();
   }, [sendRequest, dispatch]);
+
 
   //Handle Date and Rooms Modal
   const handleDateModalOpen = () => {
@@ -136,7 +143,8 @@ export default function Search() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [page, isBottom]);
+
+  }, [page, isBottom, dateModalOpen]);
 
   const handleSearch = async () => {
     navigate("/searchresults");
@@ -177,7 +185,7 @@ export default function Search() {
                   </div>
                 </div>
                 {dateModalOpen && (
-                  <StyledDateRangePicker
+                  <StyledDateRangePicker calendarRef={calendarRef}
                     handleCloseModal={handleCloseModal}
                   />
                 )}
@@ -205,6 +213,7 @@ export default function Search() {
                   </div>
                   {roomsModalOpen && (
                     <AddRoomCard
+                      roomCardRef={roomCardRef}
                       handleCloseModal={handleCloseModal}
                       checkAgeGroupEnabled={checkAgeGroupEnabled}
                       allAgeGroupsList={allAgeGroupsList}

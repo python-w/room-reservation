@@ -138,46 +138,44 @@ export default function CheckAvailability({ open, handleClose }) {
     return (
         <Modal
             container={document.querySelector('section.portlet')}
-            className="mui_modal"
+            className="mui_modal check_availability"
             open={open}
             onClose={handleClose}
             aria-labelledby="check-availability"
             aria-describedby="check-availability"
         >
-            <div className="check_availability">
-                <div className='modal_dialog'>
-                    <div className="modal_header">
-                        <h2>Check Availability</h2>
-                        {renderMonthTitle()}
-                    </div>
-                    <div className="modal_body">
-                        <div className="room_sidebar">
-                            <h3>Rooms</h3>
-                            <div className="room_listing">
-                                <p><strong>Accessibility</strong></p>
-                                <ul>
-                                    <li>
-                                        <img src="https://lipsum.app/id/73/100x100" loading="lazy" alt="" width={48} height={48} />
-                                        <span>Room # 411</span>
-                                    </li>
-                                    <li>
-                                        <img src="https://lipsum.app/id/61/100x100" loading="lazy" alt="" width={48} height={48} />
-                                        <span>Room # 412</span>
-                                    </li>
-                                </ul>
-                            </div>
+            <div className='modal_dialog'>
+                <div className="modal_header">
+                    <h2>Check Availability</h2>
+                    {renderMonthTitle()}
+                </div>
+                <div className="modal_body">
+                    <div className="room_sidebar">
+                        <p><strong>Rooms</strong></p>
+                        <div className="room_listing">
+                            <p><strong>Accessibility</strong></p>
+                            <ul>
+                                <li>
+                                    <img src="https://lipsum.app/id/73/100x100" loading="lazy" alt="" width={48} height={48} />
+                                    <span>Room # 411</span>
+                                </li>
+                                <li>
+                                    <img src="https://lipsum.app/id/61/100x100" loading="lazy" alt="" width={48} height={48} />
+                                    <span>Room # 412</span>
+                                </li>
+                            </ul>
                         </div>
-                        <div className="room_aside">
-                            <div className="month_calendar check_availability_calendar">
-                                {renderCalendar()}
+                    </div>
+                    <div className="room_aside">
+                        <div className="month_calendar check_availability_calendar">
+                            {renderCalendar()}
+                        </div>
+                        <div className="calendar_outer">
+                            <div className="check_availability_calendar">
+                                {renderRoomCalendar("Room411")}
                             </div>
-                            <div className="calendar_outer">
-                                <div className="check_availability_calendar">
-                                    {renderRoomCalendar("Room411")}
-                                </div>
-                                <div className="check_availability_calendar">
-                                    {renderRoomCalendar("Room412")}
-                                </div>
+                            <div className="check_availability_calendar">
+                                {renderRoomCalendar("Room412")}
                             </div>
                         </div>
                     </div>

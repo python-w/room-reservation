@@ -3,13 +3,13 @@ import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useRef } from "react";
 import { Box } from "@material-ui/core";
 
-export default function AddRoomCard({ handleCloseModal, ageGroupLoading, checkAgeGroupEnabled, allAgeGroupsList, error }) {
+export default function AddRoomCard({ handleCloseModal, roomCardRef, ageGroupLoading, checkAgeGroupEnabled, allAgeGroupsList, error }) {
     const refRoomModal = useRef();
     useOnClickOutside(refRoomModal, () => {
         handleCloseModal()
     })
     return (
-        <Box ref={refRoomModal} className='inline_modal'>
+        <Box ref={(refRoomModal, roomCardRef)} className='inline_modal'>
             <RoomCard
                 checkAgeGroupEnabled={checkAgeGroupEnabled}
                 allAgeGroupsList={allAgeGroupsList}

@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import useWindowWidth from "../../hooks/useWindowWidth";
 
-export default function StyledDateRangePicker({ handleCloseModal }) {
+export default function StyledDateRangePicker({ handleCloseModal, calendarRef, dateModalOpen }) {
   const { isTabletSMScreen } = useWindowWidth();
   const refDateModal = useRef();
   const { state, dispatch } = useSearch();
@@ -32,8 +32,8 @@ export default function StyledDateRangePicker({ handleCloseModal }) {
             <strong>Select Dates</strong>
           </p>
         </div>
-        <Box className="inline_modal_body">
-          <DateRangePicker staticRanges={[]} inputRanges={[]} minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={isTabletSMScreen ? 1 : 2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
+        <Box className="inline_modal_body" ref={calendarRef}>
+          <DateRangePicker staticRanges={[]} inputRanges={[]}  minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={isTabletSMScreen ? 1 : 2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
         </Box>
         <Box className="inline_modal_footer">
           <button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
