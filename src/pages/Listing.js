@@ -69,7 +69,7 @@ export function RoomListing() {
                   {availableRooms.map((room, index) => (
                     <RoomListTile room={room} index={index} key={index} />
                   ))}
-                  {selectedRooms.length === searchedRooms.length && (
+                  {selectedRooms.length > 0 && (
                     <div className="d-flex justify-content-end rl_btn_wrap">
                       <Link to="/reservation-summary" className="btn btn-wc-primary">
                         Proceed

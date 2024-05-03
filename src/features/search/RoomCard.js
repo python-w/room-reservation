@@ -38,8 +38,8 @@ export default function RoomCard({
 
 	const handleIncrement = (roomIndex, ageGroupIndex) => {
 		const updatedRooms = [...roomsInSearch];
-		const ageGroupId = allAgeGroupsList[ageGroupIndex].ageGroupId;
-		const maxCount = ageGroupTypeMaxOccupants[ageGroupId];
+		const ageGroupId = allAgeGroupsList[ageGroupIndex].ageGroupId || 0;
+		const maxCount = ageGroupTypeMaxOccupants[ageGroupId] || 0;
 		if (updatedRooms[roomIndex].ageGroups[ageGroupIndex].count < maxCount) {
 			updatedRooms[roomIndex].ageGroups[ageGroupIndex].count++;
 			dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: updatedRooms })
@@ -93,13 +93,13 @@ export default function RoomCard({
 						{checkAgeGroupEnabled &&
 							<div className={`${ageGroupLoading ? "loading" : ""} room_card_body`}>
 								{ageGroupLoading && !error && <div className="circularProgress_wrap"><CircularProgress /></div>}
-								{room.ageGroups.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup.ageGroupId] !== 0).map((ageGroup, ageGroupIndex) => (
+								{room.ageGroups.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup?.ageGroupId] !== 0).map((ageGroup, ageGroupIndex) => (
 									<Box className="room_row" key={ageGroupIndex}>
 										<span className="p-0">{ageGroup.name}</span>
 										<Box className="room_counter">
 											<Button variant="outlined" onClick={() => handleDecrement(roomIndex, ageGroupIndex)} disabled={(roomIndex === 0 && ageGroupIndex === 0 && ageGroup.count === 1) || (ageGroup.count === 0)}><FontAwesomeIcon icon={faMinus} /></Button>
 											<span>{ageGroup.count || 0}</span>
-											<Button variant="outlined" onClick={() => handleIncrement(roomIndex, ageGroupIndex)} disabled={ageGroup.count === ageGroupTypeMaxOccupants[allAgeGroupsList[ageGroupIndex].ageGroupId]}><FontAwesomeIcon icon={faPlus} /></Button>
+											<Button variant="outlined" onClick={() => handleIncrement(roomIndex, ageGroupIndex)} disabled={ageGroup.count === ageGroupTypeMaxOccupants[allAgeGroupsList[ageGroupIndex]?.ageGroupId]}><FontAwesomeIcon icon={faPlus} /></Button>
 										</Box>
 									</Box>
 								))}

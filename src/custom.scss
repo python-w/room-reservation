@@ -18,6 +18,7 @@ p {
     );
 }
 }
+
 /* moved to basetheme at the end */
 body.wcprop-2 .btn.btn-wc-outlined,
 body.wcprop-2 section.portlet .btn.btn-wc-outlined {
@@ -36,15 +37,18 @@ body.wcprop-2 section.portlet .btn.btn-wc-transparent {
 }
 
 body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled).active,
-body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active, body.wcprop-2 section.portlet .btn.btn-wc-transparent:hover {
+body.wcprop-2 section.portlet .btn.btn-wc-transparent:not([disabled]):not(.disabled):active,
+body.wcprop-2 section.portlet .btn.btn-wc-transparent:hover {
   background: transparent;
   color: var(--primary-color);
 }
 
 body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled).active,
-body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active, body.wcprop-2 section.portlet .btn.btn-wc-outlined:hover {
+body.wcprop-2 section.portlet .btn.btn-wc-outlined:not([disabled]):not(.disabled):active,
+body.wcprop-2 section.portlet .btn.btn-wc-outlined:hover {
   border-color: var(--primary-color-hover);
 }
+
 /* moved to basetheme at the end */
 body {
   &.wcprop-2 {
@@ -128,15 +132,15 @@ body {
         padding: 8rem var(--container-padding);
 
         @media #{$mq-4k} {
-          padding: get4k(128px)  var(--container-padding);
+          padding: get4k(128px) var(--container-padding);
         }
 
         @media #{$mq-tablet-md} {
-          padding: 5rem  var(--container-padding);
+          padding: 5rem var(--container-padding);
         }
 
         @media #{$mq-mobile-sm} {
-          padding: 4rem 2rem  var(--container-padding);
+          padding: 4rem 2rem var(--container-padding);
         }
 
         .indexp-icon {
@@ -345,7 +349,8 @@ body {
 
       .search_wrap_fixed {
         position: fixed;
-        top: var(--headerHeight);
+        top: 0;
+        // top: var(--headerHeight);
         left: 0;
         width: 100%;
         z-index: 999;
@@ -806,22 +811,22 @@ body {
             border-bottom: 1px solid var(--wc-border-color);
 
             button {
-                background: transparent;
-                height: auto;
-                color: var(--primary-color);
-                text-decoration: underline;
+              background: transparent;
+              height: auto;
+              color: var(--primary-color);
+              text-decoration: underline;
             }
-        }
+          }
 
           .room_card_body {
             padding: 1rem;
 
             @media #{$mq-4k} {
-                padding: get4k(16px);
+              padding: get4k(16px);
             }
-        }
+          }
 
-        .room_row {
+          .room_row {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -829,28 +834,28 @@ body {
             line-height: normal;
 
             @media #{$mq-4k} {
-                padding-bottom: get4k(16px);
+              padding-bottom: get4k(16px);
             }
 
             &:last-child {
-                padding-bottom: 0;
+              padding-bottom: 0;
 
-                @media #{$mq-4k} {
-                    padding-bottom: 0;
-                }
+              @media #{$mq-4k} {
+                padding-bottom: 0;
+              }
             }
 
             small {
-                font-size: 80%;
-                color: #898989;
+              font-size: 80%;
+              color: #898989;
             }
 
             span {
-                padding: 0 10px;
+              padding: 0 10px;
 
-                @media #{$mq-4k} {
-                    padding: 0 get4k(10px);
-                }
+              @media #{$mq-4k} {
+                padding: 0 get4k(10px);
+              }
 
               &.required {
                 padding: 0;
@@ -1251,13 +1256,40 @@ body {
             margin-bottom: get4k(24px);
           }
 
-          h2 {
-            font-size: calc((var(--wc-font-size) + 2) * 1px);
-            font-weight: 800;
-            color: var(--primary-color);
+          .card_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
 
-            @media #{$mq-4k} {
-              font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+            h2 {
+              font-size: calc((var(--wc-font-size) + 4) * 1px);
+              font-weight: 800;
+              color: var(--primary-color);
+
+              @media #{$mq-4k} {
+                font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+              }
+            }
+
+            button.btn_remove_room {
+              background: transparent;
+              display: inline-flex;
+              align-items: center;
+              border-radius: calc(var(--borderRadius) * 1px);
+              border: 0;
+              opacity: 0.8;
+              border: 1px solid  var(--primary-color);
+              padding: 2px 10px;
+              color: var(--primary-color);
+              @media #{$mq-4k}{
+                padding:  get4k(2px) get4k(10px);
+              }
+              &:hover{
+                opacity: 1;
+              }
+              span{
+                font-size: 90%;
+              }
             }
           }
 
@@ -1276,6 +1308,14 @@ body {
 
               &::before {
                 display: none;
+              }
+
+              &:last-child {
+                margin-bottom: 0;
+
+                @media #{$mq-4k} {
+                  margin-bottom: 0;
+                }
               }
 
               strong {
@@ -1311,21 +1351,50 @@ body {
                 }
               }
 
-              &>ul {
+              .guest_card {
+                display: flex;
+                justify-content: space-between;
                 flex: 0 0 100%;
                 width: 100%;
                 background: var(--wc-body-bg);
                 border-radius: calc(var(--borderRadius) * 1px);
-                padding: 1rem;
                 margin-top: 20px;
+                overflow: hidden;
 
-                &>li {
-                  strong {
-                    color: var(--wc-font-color);
+                @media #{$mq-4k} {
+                  margin-top: get4k(20px);
+                }
+
+                ul {
+                  padding: 1rem;
+
+                  @media #{$mq-4k} {
+                    padding: get4k(16px);
                   }
 
-                  &:last-child {
-                    margin-bottom: 0;
+                  li {
+                    strong {
+                      color: var(--wc-font-color);
+                    }
+
+                    &:last-child {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+
+                button.guest_remove {
+                  border: 0;
+                  background: var(--secondary-color);
+                  color: #fff;
+                  padding: 10px;
+
+                  @media #{$mq-4k} {
+                    padding: get4k(10px);
+                  }
+
+                  &:hover {
+                    background: var(--primary-color);
                   }
                 }
               }
@@ -1378,7 +1447,7 @@ body {
           @media #{$mq-4k} {
             margin-bottom: get4k(32px);
           }
-        }      
+        }
       }
 
       //Phone Input
@@ -1731,6 +1800,7 @@ body {
                 margin: 0 auto;
               }
             }
+
             &.rdrDayDisabled {
               background: transparent;
             }
@@ -1900,13 +1970,14 @@ body {
         }
 
         /* filter */
-        .filter_outer{
+        .filter_outer {
           position: sticky;
           top: 50px;
           left: 0;
           max-height: 90vh;
-          overflow-y: auto;      
+          overflow-y: auto;
         }
+
         .lfilter-heading {
           border-bottom: 1px solid var(--wc-border-color);
           padding-bottom: 0.75rem;
@@ -3067,11 +3138,12 @@ body {
     }
 
     //MUI Customizations
-    .MuiInput-root{
-      .MuiInput-input{
-      margin-bottom: 0;
+    .MuiInput-root {
+      .MuiInput-input {
+        margin-bottom: 0;
       }
     }
+
     .MuiButton-root {
       min-width: unset;
     }
@@ -3409,13 +3481,16 @@ body {
           .modal_body {
             display: flex;
             padding: 0 0 16px 24px;
-            @media #{$mq-4k}{
+
+            @media #{$mq-4k} {
               padding: 0 0 get4k(16px) get4k(24px);
             }
+
             .room_sidebar {
               display: flex;
               flex-direction: column;
-              & > p {
+
+              &>p {
                 height: 64px;
                 display: inline-flex;
                 align-items: center;

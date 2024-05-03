@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { addDays } from "date-fns";
+import { addDays, differenceInDays } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
 
 const today = new Date();
@@ -24,13 +24,10 @@ const initialState = {
   filterToggle: false,
   isFilterNoMatch: false,
   selectedFilters: [],
-  adultsCount: {},
-  childrenCount: {},
   totalGuests: 1,
   isLoading: false,
   isLoadingMore: false,
   selectedRooms: [],
-  isDetailView: false,
   bookingCount: 0,
 };
 
@@ -40,10 +37,12 @@ function reducer(state, action) {
       const item = action.payload;
       const start = item.selection.startDate;
       const end = item.selection.endDate;
+      const numberOfNights = differenceInDays(end, start);
       return {
         ...state,
         startDate: start,
         endDate: end,
+        numberOfNights,
         selectedRange: [item.selection],
       };
     case "UPDATE_ROOM_IN_SEARCH":
@@ -74,19 +73,6 @@ function reducer(state, action) {
         ...state,
         searchedRooms: searchRoomsArray,
       };
-    case "UPDATE_GUESTS":
-      const totalGuests = state.roomsInSearch.reduce((total, room) => {
-        if (room.ageGroups) {
-          const roomTotal = room.ageGroups.reduce((acc, ageGroup) => acc + ageGroup.count, 0);
-          return total + roomTotal;
-        } else {
-          return total;
-        }
-      }, 0);
-      return {
-        ...state,
-        totalGuests: totalGuests,
-      }
     case "SEARCH_LOADING":
       return {
         ...state,
@@ -165,21 +151,46 @@ function reducer(state, action) {
         selectedRooms: updatedselectedRooms,
       };
     case "ADD_GUEST":
-      const { guestRoomId, formData } = action.payload;
+      const { guestBookingId, formData } = action.payload;
       return {
         ...state,
         selectedRooms: state.selectedRooms.map((room) => {
-          if (room.id === guestRoomId) {
-            const updatedGuests = Array.isArray(room.guests) ? room.guests : [];
+          if (room.bookingId === guestBookingId) {
+            const updatedGuest = Array.isArray(room.guest) ? room.guest : [];
             return {
               ...room,
-              guests: [...updatedGuests, formData],
+              guest: [...updatedGuest, formData],
             };
           } else {
             return room;
           }
         }),
       };
+    case "UPDATE_GUESTS":
+      const totalGuests = state.roomsInSearch.reduce((total, room) => {
+        if (room.ageGroups) {
+          const roomTotal = room.ageGroups.reduce((acc, ageGroup) => acc + ageGroup.count, 0);
+          return total + roomTotal;
+        } else {
+          return total;
+        }
+      }, 0);
+      return {
+        ...state,
+        totalGuests: totalGuests,
+      }
+    case "REMOVE_GUEST":
+      const removedGuest = action.payload;
+      return {
+        ...state,
+        selectedRooms: removedGuest
+      }
+      case "REMOVE_SELECTED_ROOM":
+      const revmoedRoom = action.payload;
+      return {
+        ...state,
+        selectedRooms: revmoedRoom
+      }
     case "SEARCH_AGAIN":
       return initialState;
     default:

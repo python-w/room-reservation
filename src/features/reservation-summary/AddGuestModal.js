@@ -6,9 +6,9 @@ import "react-international-phone/style.css";
 import { PhoneInput } from "react-international-phone";
 import { Modal, TextField } from "@material-ui/core";
 import Error from "../../ui/Error";
-import { PhoneNumberUtil  } from 'google-libphonenumber';
+import { PhoneNumberUtil } from 'google-libphonenumber';
 
-export default function AddGuestModal({ open, handleClose, roomId }) {
+export default function AddGuestModal({ open, handleClose, bookingId }) {
   const { dispatch } = useSearch();
 
   const [formData, setFormData] = useState({
@@ -29,8 +29,6 @@ export default function AddGuestModal({ open, handleClose, roomId }) {
     }
   };
 
-  console.log(isPhoneValid(formData.phone))
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -45,8 +43,6 @@ export default function AddGuestModal({ open, handleClose, roomId }) {
       phone: value,
     }));
   };
-
-
 
   const validate = () => {
     const newErrors = {};
@@ -73,7 +69,7 @@ export default function AddGuestModal({ open, handleClose, roomId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      dispatch({ type: "ADD_GUEST", payload: { guestRoomId: roomId, formData } });
+      dispatch({ type: "ADD_GUEST", payload: { guestBookingId: bookingId, formData } });
       handleClose();
     }
   };
@@ -86,6 +82,9 @@ export default function AddGuestModal({ open, handleClose, roomId }) {
       onClose={handleClose}
       aria-labelledby="add-guest"
       aria-describedby="add-guest"
+      BackdropProps={{
+        onClick: (event) => event.stopPropagation()
+      }}
     >
       <div className="modal_dialog">
         <div className="modal_header">
@@ -131,7 +130,7 @@ export default function AddGuestModal({ open, handleClose, roomId }) {
               </div>
               <div className="d-flex justify-content-end">
                 <button className="btn btn-wc-primary">
-                  <FontAwesomeIcon icon={faCheck} />
+                  <FontAwesomeIcon icon={faCheck} className="mr-2" />
                   Add Guest
                 </button>
               </div>

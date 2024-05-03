@@ -23,7 +23,7 @@ const memberlist = [
 ];
 
 
-export default function GuestsSelection({ roomId }) {
+export default function GuestsSelection({ bookingId }) {
 
     const { dispatch } = useSearch();
     const [selectedOption, setSelectedOption] = useState(null);
@@ -43,7 +43,7 @@ export default function GuestsSelection({ roomId }) {
     ]
 
     const handleChange = (event, value) => {
-        dispatch({ type: "ADD_GUEST", payload: { guestRoomId: roomId,  value } });
+        // dispatch({ type: "ADD_GUEST", payload: { guestBookingId: bookingId,  value } });
 
         console.log(value)
         // setSelectedOption(value)
@@ -86,7 +86,7 @@ export default function GuestsSelection({ roomId }) {
                 }}
             />
 
-            <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} roomId={roomId} />
+            <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} bookingId={bookingId} />
 
         </>
     );
