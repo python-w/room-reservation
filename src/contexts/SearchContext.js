@@ -112,10 +112,10 @@ function reducer(state, action) {
         ...state,
         filterToggle: !state.filterToggle,
       };
-    case "UPDATE_BOOKED_ROOMS":
+    case "UPDATE_SELECTED_ROOMS":
       const removeActiveRoom = state.availableRooms.map((room) => ({ ...room, isRoomViewed: false }));
       return { ...state, availableRooms: removeActiveRoom, selectedRooms: action.payload };
-    case "UPDATE_BOOKED_ROOM_COUNT":
+    case "UPDATE_SELECTED_ROOM_COUNT":
       const { roomId, count } = action.payload;
       const updatedRooms = state.availableRooms.map((room) =>
         room.roomId === roomId

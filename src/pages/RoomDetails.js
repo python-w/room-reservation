@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
@@ -11,6 +11,9 @@ import { additionalIcons, amenityIcons, featureIcons, restrictionIcons } from '.
 import RateDetails from "../features/room-details/RateDetails";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 import extractAmenities from "../utils/extractAmenities";
+import { CircularProgress } from "@material-ui/core";
+import Axios from "axios";
+import { Alert } from "@material-ui/lab";
 
 
 export default function RoomDetails() {
@@ -18,7 +21,30 @@ export default function RoomDetails() {
   const { roomId } = useParams();
   const { state } = useSearch();
   const { availableRooms } = state;
-  const room = availableRooms.filter(room => room.roomId === roomId)[0];
+  const [room, setRoom] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (availableRooms.length === 0) {
+      const fetchData = async () => {
+        setIsLoading(true)
+        try {
+          const response = await Axios.get(
+            `http://localhost:5000/rooms?roomId=${roomId}`
+          );
+          setRoom(response.data[0]); 
+          setIsLoading(false)
+        } catch (error) {
+          setIsLoading(false)
+          setError(error.message)
+        }
+      };
+      fetchData();
+    } else {
+      setRoom(availableRooms.find(room => room.roomId === roomId));
+    }
+  }, [roomId, availableRooms]);
 
   //Google Maps
   const googleMapsUrl = generateGoogleMapsUrl(room?.address);
@@ -29,12 +55,20 @@ export default function RoomDetails() {
 
   return (
     <>
+      {isLoading && !error && <div className="circularProgress_wrap"><CircularProgress /></div>}
+      {error && (
+        <Alert severity="error" className="mt-5">
+          {error}
+        </Alert>
+      )}
       {room &&
         <div className="detail_page">
-          <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
-            <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
-            See Other Options
-          </button>
+          {availableRooms.length > 0 &&
+            <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
+              <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
+              See Other Options
+            </button>
+          }
           <div className="roomThumb">
             <RoomDetailsFancybox>
               <ListingCarousel showPageCount={true} options={{ infinite: false, Thumbs: false }}>

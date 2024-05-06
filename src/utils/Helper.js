@@ -1,15 +1,19 @@
-// Get 4k
-export function get4k(target) {
-    const vwContext = 2201 * 0.01 * 1;
-    return (target / vwContext) * 1 + "vw";
+// Calculate Discounted Amount
+export const calculateDiscountedAmount = (roomRate, discountPercentage) => {
+    const discountAmount = roomRate * (discountPercentage / 100);
+    return discountAmount;
 }
 
-// Breakpoints
-export const mediaQueries = {
-    xs: 0,
-    sm: 576,
-    md: 768,
-    lg: 1025,
-    xl: 1366,
-    xxxl: 2201,
-};
+// Calculate Discounted Room Rate
+export const calculateDiscountedRoomRate = (roomRate, discountPercentage) => {
+    const discountAmount = roomRate * (discountPercentage / 100);
+    const discountedRoomRate = roomRate - discountAmount;
+    return discountedRoomRate;
+}
+
+//Calculate VAT On Discounted Rate
+export const calculateVATOnDiscountedRate = (originalPrice, discountPercentage, vatPercentage) => {
+    const discountedPrice = originalPrice * (1 - discountPercentage / 100);
+    const vatAmount = discountedPrice * (vatPercentage / 100);
+    return vatAmount;
+}

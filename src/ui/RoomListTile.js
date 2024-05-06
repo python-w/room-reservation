@@ -15,7 +15,7 @@ export default function RoomListTile({ room, index }) {
   const amenitiesRef = useRef();
   const [amenitiesWidth, setAmenitiesWidth] = useState(0);
   const { state: searchState, dispatch } = useSearch();
-  const { selectedRooms, searchedRooms, bookingCount } = searchState;
+  const { selectedRooms, searchedRooms, roomsInSearch, bookingCount } = searchState;
   useLayoutEffect(() => {
     if (amenitiesRef.current) {
       setAmenitiesWidth(amenitiesRef.current.offsetWidth);
@@ -42,10 +42,10 @@ export default function RoomListTile({ room, index }) {
         rates: room.rateMap,
         bookedRoomCount: 1,
       });
-      dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedselectedRooms });
+      dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });
       const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
       dispatch({
-        type: "UPDATE_BOOKED_ROOM_COUNT",
+        type: "UPDATE_SELECTED_ROOM_COUNT",
         payload: { roomId: room.roomId, count },
       });
       dispatch({ type: "BOOK_ROOM_ADD" });
@@ -57,6 +57,8 @@ export default function RoomListTile({ room, index }) {
 
   const handleRoomAdd = (room) => {
     const newId = uuidv4();
+    const occupants = roomsInSearch[index]?.ageGroups;
+    console.log(occupants)
     const updatedselectedRooms = [
       ...selectedRooms,
       {
@@ -66,14 +68,15 @@ export default function RoomListTile({ room, index }) {
         thumbnail: room?.images.thumbs[0],
         rates: room.rateMap,
         bookedRoomCount: Math.min(room.bookedRoomCount + 1),
-        isSelected: true
+        isSelected: true,
+        occupants
       },
     ];
-    dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedselectedRooms });
+    dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });
     const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
 
     dispatch({
-      type: "UPDATE_BOOKED_ROOM_COUNT",
+      type: "UPDATE_SELECTED_ROOM_COUNT",
       payload: { roomId: room.roomId, count },
     });
     dispatch({ type: "BOOK_ROOM_ADD", roomId: room.roomId });
@@ -88,11 +91,11 @@ export default function RoomListTile({ room, index }) {
           : room
       )
       .filter((room) => room.bookedRoomCount > 0);
-    dispatch({ type: "UPDATE_BOOKED_ROOMS", payload: updatedselectedRooms });
+    dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });
 
     const count = currentRoom ? (currentRoom.bookedRoomCount || 0) - 1 : 1;
     dispatch({
-      type: "UPDATE_BOOKED_ROOM_COUNT",
+      type: "UPDATE_SELECTED_ROOM_COUNT",
       payload: { roomId: room.roomId, count },
     });
     dispatch({ type: "BOOK_ROOM_SUB", roomId: roomId });

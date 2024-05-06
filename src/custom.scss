@@ -354,8 +354,16 @@ body {
         left: 0;
         width: 100%;
         z-index: 999;
-        background: var(--primary-color);
         padding: 0 var(--container-padding);
+      }
+
+      .search_listing {
+        .search_wrap {
+          background: var(--primary-color);
+          margin-left: calc(var(--container-padding)* -1);
+          margin-right: calc(var(--container-padding)* -1);
+          padding: 0 var(--container-padding);
+        }
 
         .search_wrap_inner {
           box-shadow: none;
@@ -380,6 +388,10 @@ body {
           .label_group {
             position: relative;
             margin-bottom: 0;
+
+            .btn.btn-checkavail {
+              color: var(--white-color);
+            }
 
             label {
               font-size: calc((var(--wc-font-size) - 2) * 1px);
@@ -1278,16 +1290,19 @@ body {
               border-radius: calc(var(--borderRadius) * 1px);
               border: 0;
               opacity: 0.8;
-              border: 1px solid  var(--primary-color);
+              border: 1px solid var(--primary-color);
               padding: 2px 10px;
               color: var(--primary-color);
-              @media #{$mq-4k}{
-                padding:  get4k(2px) get4k(10px);
+
+              @media #{$mq-4k} {
+                padding: get4k(2px) get4k(10px);
               }
-              &:hover{
+
+              &:hover {
                 opacity: 1;
               }
-              span{
+
+              span {
                 font-size: 90%;
               }
             }
@@ -2525,14 +2540,18 @@ body {
 
         .rl_btn_wrap {
           border-top: 1px solid var(--wc-border-color);
-          padding: 12px 12px 12px 0;
+          padding: 12px 16px;
+          margin-left: -10px;
+          margin-right: -10px;
           position: sticky;
           bottom: 0;
           background: #fff;
           z-index: 9;
 
           @media #{$mq-4k} {
-            padding: get4k(12px) get4k(12px) get4k(12px) 0;
+            padding: get4k(12px) get4k(16px);
+            margin-left: get4k(-10px);
+            margin-right: get4k(-10px);
           }
 
           a {
@@ -3429,11 +3448,104 @@ body {
       }
     }
 
-    // modal
-    @import "modal";
+    // Modal
+    .mui_modal {
+      margin: 15px;
 
-    // form elements
-    @import "formElements";
+      @media #{$mq-4k} {
+        margin: get4k(15px);
+      }
+
+      .modal_dialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 570px;
+        max-width: 100%;
+        background-color: #fff;
+        border: 1px solid var(--wc-border-color);
+        box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.1);
+        border-radius: calc(var(--borderRadius) * 1px);
+
+        @media #{$mq-4k} {
+          width: get4k(570px);
+          padding: get4k(24px);
+        }
+
+        .modal_header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 24px;
+          border-bottom: 1px solid var(--wc-border-color);
+
+          @media #{$mq-4k} {
+            padding: get4k(16px) get4k(24px);
+          }
+
+          h2 {
+            font-size: calc((var(--wc-font-size) + 2) * 1px);
+            margin: 0;
+
+            @media #{$mq-4k} {
+              font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+              margin: 0;
+            }
+          }
+        }
+
+        .modal_body {
+          padding: 16px 24px;
+
+          @media #{$mq-4k} {
+            padding: get4k(24px);
+          }
+        }
+      }
+    }
+
+
+    // Form Elements
+    .form_group {
+      margin-bottom: 20px;
+
+      @media #{$mq-4k} {
+        margin-bottom: get4k(20px);
+      }
+
+      input {
+        width: 100%;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
+
+        @media #{$mq-4k} {
+          margin-bottom: get4k(20px);
+        }
+      }
+
+      button {
+        display: inline-flex;
+        align-items: center;
+
+        svg {
+          margin-right: 10px;
+
+          @media #{$mq-4k} {
+            margin-right: get4k(10px);
+          }
+        }
+      }
+
+      .error_msg {
+        p {
+          color: #cf2000;
+          font-size: 90%;
+          line-height: 1;
+          margin-bottom: 0;
+          padding: 0.5rem;
+        }
+      }
+    }
 
     //Check Availability
     .mui_modal {

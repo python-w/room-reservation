@@ -11,36 +11,7 @@ export default function ReservationSummary() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
-  const { selectedRooms, searchedRooms } = state;
-
-  function adjustRooms(searchedRooms, selectedRooms) {
-    for (let searchedRoom of searchedRooms) {
-      let maxOccupancy = -1;
-      let targetRoomIndex = -1;
-
-      for (let i = 0; i < selectedRooms.length; i++) {
-        if (
-          !selectedRooms[i].adults &&
-          !selectedRooms[i].children &&
-          searchedRoom.adults + searchedRoom.children <=
-          selectedRooms[i].maxOccupancy
-        ) {
-          if (selectedRooms[i].maxOccupancy > maxOccupancy) {
-            maxOccupancy = selectedRooms[i].maxOccupancy;
-            targetRoomIndex = i;
-          }
-        }
-      }
-
-      if (targetRoomIndex !== -1) {
-        selectedRooms[targetRoomIndex].adults = searchedRoom.adults;
-        selectedRooms[targetRoomIndex].children = searchedRoom.children;
-      }
-    }
-  }
-
-  // Adjust rooms
-  adjustRooms(searchedRooms, selectedRooms);
+  const { selectedRooms} = state;  
 
   const handleSearchAgain = () => {
     navigate("/");

@@ -5,7 +5,7 @@ const useScrollToRef = (handleOpen, ref) => {
     if (handleOpen && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [handleOpen]);
+  }, [handleOpen, ref]);
 };
 
 export default useScrollToRef;

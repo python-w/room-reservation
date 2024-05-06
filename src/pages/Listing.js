@@ -9,6 +9,7 @@ import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
 import { Alert } from "@material-ui/lab";
 import useScrollToTop from "../hooks/useScrollToTop ";
+import IndexPlaceholder from "../ui/IndexPlaceholder"
 
 export function RoomListing() {
   const { state } = useSearch();
@@ -28,17 +29,20 @@ export function RoomListing() {
     isSearchFixed
   } = state;
 
+
+
   return (
     <>
-      <div
-        className={`${isSearchFixed && isLargeScreen ? (isTop ? "search_wrap_fixed" : "") : ""
-      } search_listing`}>
+      <div className={`search_listing ${isSearchFixed && isTop ? "search_wrap_fixed" : ""}`}>
         <Search />
       </div>
       {error && (
         <Alert severity="error" className="mt-5">
           {error}
         </Alert>
+      )}
+      {availableRooms.length === 0 && (
+        <IndexPlaceholder />
       )}
       <div
         className="room_listing"
@@ -70,7 +74,10 @@ export function RoomListing() {
                     <RoomListTile room={room} index={index} key={index} />
                   ))}
                   {selectedRooms.length > 0 && (
-                    <div className="d-flex justify-content-end rl_btn_wrap">
+                    <div className={`${searchedRooms.length > 1 ? 'justify-content-between' : 'justify-content-end'}  d-flex rl_btn_wrap align-items-center`}>
+                      {searchedRooms.length > 1 &&
+                        <p className="mb-0">You have selected {selectedRooms.length} of {searchedRooms.length} rooms.</p>
+                      }
                       <Link to="/reservation-summary" className="btn btn-wc-primary">
                         Proceed
                       </Link>

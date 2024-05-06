@@ -14,7 +14,7 @@ export default function AddRoomCard({ handleCloseModal, roomCardRef, ageGroupLoa
             refRoomModal.current = node;
             roomCardRef.current = node;
         }
-    }, []);
+    }, [roomCardRef]);
     
     return (
         <Box ref={combinedRef} className='inline_modal'>

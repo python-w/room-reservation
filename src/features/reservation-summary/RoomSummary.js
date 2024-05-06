@@ -14,6 +14,8 @@ export default function RoomSummary({ room, index }) {
   const { state, dispatch } = useSearch();
   const { selectedRooms } = state;
 
+  console.log(room.occupants)
+
   const selectedRate = room.selectedRate?.value || 0;
   const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
   const discountedRate = calculateDiscountedRoomRate(selectedRate, room.discount || 0)
@@ -76,8 +78,14 @@ export default function RoomSummary({ room, index }) {
           <li>
             No of persons:{" "}
             <strong>
-              {room.adults} {room.adults > 1 ? "Adults" : "Adult"},{" "}
-              {room.children} {room.children > 1 ? "Children" : "Child"}
+              {room.occupants &&
+                room.occupants.filter(occupant => occupant.count > 0)
+                  .map((occupant, index, array) => (
+                    <span key={index}>
+                      {occupant.count} {occupant.count > 1 ? (occupant.name === "Child" ? "Children" : occupant.name + "s") : occupant.name}
+                      {index === array.length - 1 ? "" : ", "}
+                    </span>
+                  ))}
             </strong>
           </li>
           <li>

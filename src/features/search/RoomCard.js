@@ -4,7 +4,6 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useSearch } from "../../contexts/SearchContext";
 import { CircularProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { useEffect } from "react";
 
 
 export default function RoomCard({
@@ -16,7 +15,7 @@ export default function RoomCard({
 	error }) {
 
 	const { state, dispatch } = useSearch();
-	const { roomsInSearch } = state;
+	const { roomsInSearch, searchedRooms } = state;
 	const handleAddRoom = () => {
 		const newRoomNumber = roomsInSearch.length + 1;
 		const newRoom = {
@@ -31,14 +30,16 @@ export default function RoomCard({
 		dispatch({ type: "UPDATE_GUESTS" })
 	};
 
-	const handleRemoveRoom = (id) => {
+	const handleRemoveRoom = (id, roomIndex) => {
+		const updatedSearchedRooms = searchedRooms.filter((_, index) => index !== roomIndex);
 		dispatch({ type: "REMOVE_ROOM_IN_SEARCH", payload: id });
+		dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: updatedSearchedRooms })
 		dispatch({ type: "UPDATE_GUESTS" })
 	};
 
 	const handleIncrement = (roomIndex, ageGroupIndex) => {
 		const updatedRooms = [...roomsInSearch];
-		const ageGroupId = allAgeGroupsList[ageGroupIndex].ageGroupId || 0;
+		const ageGroupId = allAgeGroupsList[ageGroupIndex]?.ageGroupId || 0;
 		const maxCount = ageGroupTypeMaxOccupants[ageGroupId] || 0;
 		if (updatedRooms[roomIndex].ageGroups[ageGroupIndex].count < maxCount) {
 			updatedRooms[roomIndex].ageGroups[ageGroupIndex].count++;
@@ -56,27 +57,6 @@ export default function RoomCard({
 		}
 	};
 
-	// useEffect(() => {
-	// 	const handleRoomSearchData = (roomSearchData) => {
-	// 		console.log(roomSearchData);
-	// 		dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: roomSearchData })
-	// 	};
-
-	// 	const collectRoomSearchData = () => {
-	// 		const roomSearchData = roomsInSearch.map((room) => {
-	// 			const roomData = {};
-	// 			room.ageGroups.forEach((ageGroup) => {
-	// 				roomData[ageGroup.ageGroupId] = ageGroup.count;
-	// 			});
-	// 			return roomData;
-	// 		});
-	// 		return roomSearchData;
-	// 	};
-
-	// 	const roomSearchData = collectRoomSearchData();
-	// 	handleRoomSearchData(roomSearchData);
-	// }, [roomsInSearch, dispatch]);
-
 
 	return (
 		<>
@@ -87,7 +67,7 @@ export default function RoomCard({
 						<div className="room_card_header">
 							<p><strong>Room # {roomIndex + 1}</strong></p>
 							{roomsInSearch.length > 1 && (
-								<button className="btn btn-wc-transparent" onClick={() => handleRemoveRoom(room.id)}>Remove Room</button>
+								<button className="btn btn-wc-transparent" onClick={() => handleRemoveRoom(room.id, roomIndex)}>Remove Room</button>
 							)}
 						</div>
 						{checkAgeGroupEnabled &&
