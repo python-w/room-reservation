@@ -8,13 +8,11 @@ import { Link } from "react-router-dom";
 import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
 import { Alert } from "@material-ui/lab";
-import useScrollToTop from "../hooks/useScrollToTop ";
 import IndexPlaceholder from "../ui/IndexPlaceholder"
 
 export function RoomListing() {
   const { state } = useSearch();
   const { isLargeScreen } = useWindowWidth();
-  const isTop = useScrollToTop();
   const {
     availableRooms,
     filterToggle,
@@ -25,15 +23,14 @@ export function RoomListing() {
     error,
     isSearchActive,
     selectedRooms,
-    searchedRooms,
-    isSearchFixed
+    searchedRooms
   } = state;
 
 
 
   return (
     <>
-      <div className={`search_listing ${isSearchFixed && isTop ? "search_wrap_fixed" : ""}`}>
+      <div className="search_listing">
         <Search />
       </div>
       {error && (

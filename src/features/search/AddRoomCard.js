@@ -4,7 +4,7 @@ import { useCallback, useRef } from "react";
 import { Box } from "@material-ui/core";
 
 export default function AddRoomCard({ handleCloseModal, roomCardRef, ageGroupLoading, checkAgeGroupEnabled, allAgeGroupsList, error }) {
-    const refRoomModal = useRef();
+    const refRoomModal = useRef(null);
     useOnClickOutside(refRoomModal, () => {
         handleCloseModal()
     })

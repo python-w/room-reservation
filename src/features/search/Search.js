@@ -19,13 +19,11 @@ import useScrollToRef from "../../hooks/ScrollToRef";
 export default function Search() {
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
-  const calendarRef = useRef(null);
-  const roomCardRef = useRef(null);  
+  const roomCardRef = useRef(null);
 
   const [dateModalOpen, setDateModalOpen] = useState(false);
   const [roomsModalOpen, setRoomsModalOpen] = useState(false);
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
-  useScrollToRef(dateModalOpen, calendarRef);
   useScrollToRef(roomsModalOpen, roomCardRef);
 
   const { state, dispatch } = useSearch();
@@ -41,43 +39,41 @@ export default function Search() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const isAgeGroupEnabled = async () => {
-        try {
-            const res = await sendRequest({
-                url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
-            });
-            setCheckAgeGroupEnabled(res)
-        } catch (error) {
-            setError(error.message)
-        }
-    };
-    isAgeGroupEnabled();
-
-    const getAllAgeGroup = async () => {
+    const fetchData = async () => {
       try {
-        const req = await sendRequest({
-          url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
+        const res = await sendRequest({
+          url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
         });
-        const res = await req.json();
-        const data = res.response;
-        const initialRoom = {
-          id: uuidv4(),
-          name: "Room # 1",
-          ageGroups: data.map((ageGroup, index) => ({
-            name: ageGroup.ageGroupName,
-            ageGroupId: ageGroup.ageGroupId,
-            count: index === 0 ? 1 : 0
-          }))
-        };
-        dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom })
-        setAllAgeGroupsList(data);
+        setCheckAgeGroupEnabled(res);
+
+        if (res.ok === true) {
+          if (ageGroupLoading && roomsInSearch.length === 0) {
+            const req = await sendRequest({
+              url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
+            });
+            const res = await req.json();
+            const data = res.response;
+            const initialRoom = {
+              id: uuidv4(),
+              name: "Room # 1",
+              ageGroups: data.map((ageGroup, index) => ({
+                name: ageGroup.ageGroupName,
+                ageGroupId: ageGroup.ageGroupId,
+                count: index === 0 ? 1 : 0
+              }))
+            };
+            dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
+            setAllAgeGroupsList(data);
+          } 
+        } else {
+          setError("Age group message goes here.");
+        }
       } catch (error) {
-        setError(error.message)
+        setError(error.message);
       }
     };
-    if (ageGroupLoading && roomsInSearch.length === 0) {
-      getAllAgeGroup();
-    }
+
+    fetchData();
   }, []);
 
 
@@ -182,7 +178,7 @@ export default function Search() {
                   </div>
                 </div>
                 {dateModalOpen && (
-                  <StyledDateRangePicker calendarRef={calendarRef}
+                  <StyledDateRangePicker
                     handleCloseModal={handleCloseModal}
                   />
                 )}

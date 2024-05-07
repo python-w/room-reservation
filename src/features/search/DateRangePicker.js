@@ -3,13 +3,17 @@ import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { Box, Button, Typography } from "@material-ui/core";
 import { useSearch } from "../../contexts/SearchContext";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import useScrollToRef from "../../hooks/ScrollToRef";
 
-export default function StyledDateRangePicker({ handleCloseModal, calendarRef }) {
+export default function StyledDateRangePicker({ handleCloseModal }) {
   const { isTabletSMScreen } = useWindowWidth();
-  const refDateModal = useRef();
+  const refDateModal = useRef(null);
+  const calendarRef = useRef(null);
+  useScrollToRef(refDateModal, calendarRef);
+
   const { state, dispatch } = useSearch();
   const { selectedRange } = state;
 
@@ -24,15 +28,23 @@ export default function StyledDateRangePicker({ handleCloseModal, calendarRef })
     handleCloseModal()
   });
 
+  const combinedRef = useCallback(node => {
+    if (node !== null) {
+      refDateModal.current = node;
+      calendarRef.current = node;
+    }
+}, [calendarRef]);
+
+
   return (
     <>
-      <Box ref={refDateModal} className="inline_modal">
+      <Box ref={combinedRef} className="inline_modal">
         <div className="room_card_header">
           <p>
             <strong>Select Dates</strong>
           </p>
         </div>
-        <Box className="inline_modal_body" ref={calendarRef}>
+        <Box className="inline_modal_body">
           <DateRangePicker staticRanges={[]} inputRanges={[]}  minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={isTabletSMScreen ? 1 : 2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
         </Box>
         <Box className="inline_modal_footer">

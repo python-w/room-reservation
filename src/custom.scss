@@ -52,6 +52,10 @@ body.wcprop-2 section.portlet .btn.btn-wc-outlined:hover {
 /* moved to basetheme at the end */
 body {
   &.wcprop-2 {
+    .header-main-wrapper {
+      position: relative !important;
+    }
+
     section.portlet {
       ul {
         padding: 0;
@@ -129,18 +133,18 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 8rem var(--container-padding);
+        padding: 6rem var(--container-padding);
 
         @media #{$mq-4k} {
           padding: get4k(128px) var(--container-padding);
         }
 
         @media #{$mq-tablet-md} {
-          padding: 5rem var(--container-padding);
+          padding: 4rem var(--container-padding);
         }
 
         @media #{$mq-mobile-sm} {
-          padding: 4rem 2rem var(--container-padding);
+          padding: 3rem 2rem var(--container-padding);
         }
 
         .indexp-icon {
@@ -358,26 +362,41 @@ body {
       }
 
       .search_listing {
+        display: inline;
+
         .search_wrap {
-          background: var(--primary-color);
           margin-left: calc(var(--container-padding)* -1);
           margin-right: calc(var(--container-padding)* -1);
           padding: 0 var(--container-padding);
+          position: sticky;
+          top: 0;
+          left: 0;
+          z-index: 999;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            height: 100%;
+            opacity: 0.9;
+          }
         }
 
         .search_wrap_inner {
           box-shadow: none;
           margin-bottom: 0;
           position: relative;
-          padding: 15px 0;
+          padding: 10px 0;
           z-index: 9;
           border: 0;
           border-radius: 0;
           background: transparent;
 
           @media #{$mq-4k} {
-            padding: get4k(30px) 0;
-            margin-bottom: get4k(32px);
+            padding: get4k(10px) 0;
             border-radius: 0;
           }
 
@@ -408,20 +427,20 @@ body {
           .customInputBox {
             background: var(--white-color);
             border-color: transparent;
-            height: calc(var(--field-height) * 1px);
+            height: calc((var(--field-height) - 4) * 1px);
 
             @media #{$mq-4k} {
-              height: calc(var(--field-height) / var(--4k-ratio) * 1vw);
+              height: calc((var(--field-height) / var(--4k-ratio) - 4) * 1vw);
             }
           }
 
           .search_btn_wrap {
             .btn.btn-wc-primary {
               background: #03b0fa;
-              height: calc(var(--field-height) * 1px);
+              height: calc((var(--field-height) - 4) * 1px);
 
               @media #{$mq-4k} {
-                height: calc(var(--field-height) / var(--4k-ratio) * 1vw);
+                height: calc((var(--field-height) / var(--4k-ratio) - 4) * 1vw);
               }
             }
           }
@@ -1987,7 +2006,7 @@ body {
         /* filter */
         .filter_outer {
           position: sticky;
-          top: 50px;
+          top: 100px;
           left: 0;
           max-height: 90vh;
           overflow-y: auto;
@@ -2554,6 +2573,16 @@ body {
             margin-right: get4k(-10px);
           }
 
+          &::before {
+            content: '';
+            box-shadow: 0px -15px 15px -10px rgba(0, 0, 0, 0.05);
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            left: 0;
+          }
+
           a {
             text-decoration: none;
             margin: 0;
@@ -2640,7 +2669,6 @@ body {
 
         .room-details {
           border: 1px solid var(--wc-border-color);
-          min-height: 100%;
 
           @media #{$mq-tablet-md} {
             margin-bottom: 2rem;
@@ -2766,6 +2794,7 @@ body {
 
         .rate-details {
           border: 1px solid var(--wc-border-color);
+          min-height: 100%;
 
           .card-body {
             padding: 0;
@@ -3275,237 +3304,6 @@ body {
       }
     }
 
-    .MuiAutocomplete-popper {
-      .MuiPaper-root {
-        border-radius: calc(var(--borderRadius) * 1px);
-        border: 1px solid var(--wc-border-color);
-        overflow: hidden;
-        margin-top: 3px;
-        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
-      }
-
-      ul.MuiAutocomplete-listbox {
-        padding-bottom: 0;
-
-        &>li.MuiAutocomplete-option {
-          border-bottom: 1px solid var(--wc-border-color);
-          padding: 10px 16px;
-
-          &:last-child {
-            border-bottom: 0;
-          }
-        }
-      }
-    }
-
-    //Guests Selection
-    .guest_selection_outer {
-      .add_guest_btn {
-        padding: 12px 16px 0 16px;
-
-        button {
-          font-size: calc((var(--wc-font-size) - 2) * 1px);
-          width: 100%;
-          border-radius: 100px;
-        }
-      }
-
-      .guest_group_title {
-        position: sticky;
-        top: -8px;
-        padding: 10px 16px;
-        background-color: #fff;
-        font-weight: 800;
-        color: #000;
-      }
-
-      .guest_group_members {
-        padding: 0;
-
-        li.MuiAutocomplete-option {
-          border-bottom: 1px solid var(--wc-border-color);
-          padding: 10px 16px;
-        }
-      }
-
-      ul.MuiAutocomplete-listbox {
-        padding-bottom: 0;
-
-        &>li:first-child {
-          &>div {
-            display: none;
-          }
-        }
-
-        &>li:last-child {
-          ul {
-            li:last-child {
-              border-bottom: 0;
-            }
-          }
-        }
-      }
-    }
-
-    //Rate Selection
-    .rate_selection_listbox {
-      display: flex;
-      justify-content: space-between;
-      flex: 1;
-
-      span {
-        &:last-child {
-          font-weight: bold;
-          color: var(--primary-color);
-        }
-      }
-    }
-
-    //MUI Customizations
-    .MuiAutocomplete-popper {
-      .MuiPaper-root {
-        border-radius: calc(var(--borderRadius) * 1px);
-        border: 1px solid var(--wc-border-color);
-        overflow: hidden;
-        margin-top: 3px;
-        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
-      }
-
-      ul.MuiAutocomplete-listbox {
-        padding-bottom: 0;
-
-        &>li.MuiAutocomplete-option {
-          border-bottom: 1px solid var(--wc-border-color);
-          padding: 10px 16px;
-          font-size: calc((var(--wc-font-size) - 1) * 1px);
-          letter-spacing: 0;
-
-          &:last-child {
-            border-bottom: 0;
-          }
-        }
-      }
-    }
-
-    .MuiAutocomplete-endAdornment {
-      padding-right: 6px;
-
-      @media #{$mq-4k} {
-        padding-right: get4k(6px);
-      }
-
-      .MuiSvgIcon-root {
-        color: var(--body-text-color);
-      }
-    }
-
-    //Guests Selection
-    .guest_selection_outer {
-      .add_guest_btn {
-        padding: 12px 16px 0 16px;
-
-        button {
-          font-size: calc((var(--wc-font-size) - 2) * 1px);
-          width: 100%;
-          border-radius: 100px;
-        }
-      }
-
-      .guest_group_title {
-        position: sticky;
-        top: -8px;
-        padding: 10px 16px;
-        background-color: #fff;
-        font-weight: 800;
-        color: #000;
-      }
-
-      .guest_group_members {
-        padding: 0;
-
-        li.MuiAutocomplete-option {
-          border-bottom: 1px solid var(--wc-border-color);
-          padding: 10px 16px;
-        }
-      }
-
-      ul.MuiAutocomplete-listbox {
-        padding-bottom: 0;
-
-        &>li:first-child {
-          &>div {
-            display: none;
-          }
-        }
-
-        &>li:last-child {
-          ul {
-            li:last-child {
-              border-bottom: 0;
-            }
-          }
-        }
-      }
-    }
-
-    // Modal
-    .mui_modal {
-      margin: 15px;
-
-      @media #{$mq-4k} {
-        margin: get4k(15px);
-      }
-
-      .modal_dialog {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 570px;
-        max-width: 100%;
-        background-color: #fff;
-        border: 1px solid var(--wc-border-color);
-        box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.1);
-        border-radius: calc(var(--borderRadius) * 1px);
-
-        @media #{$mq-4k} {
-          width: get4k(570px);
-          padding: get4k(24px);
-        }
-
-        .modal_header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 16px 24px;
-          border-bottom: 1px solid var(--wc-border-color);
-
-          @media #{$mq-4k} {
-            padding: get4k(16px) get4k(24px);
-          }
-
-          h2 {
-            font-size: calc((var(--wc-font-size) + 2) * 1px);
-            margin: 0;
-
-            @media #{$mq-4k} {
-              font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
-              margin: 0;
-            }
-          }
-        }
-
-        .modal_body {
-          padding: 16px 24px;
-
-          @media #{$mq-4k} {
-            padding: get4k(24px);
-          }
-        }
-      }
-    }
-
-
     // Form Elements
     .form_group {
       margin-bottom: 20px;
@@ -3788,4 +3586,163 @@ body {
       }
     }
   }
+
+  //Rate Selection
+  .rate_selection_listbox {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+
+    span {
+      &:last-child {
+        font-weight: bold;
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  //MUI Customizations
+  .MuiAutocomplete-popper {
+    .MuiPaper-root {
+      border-radius: calc(var(--borderRadius) * 1px);
+      border: 1px solid var(--wc-border-color);
+      overflow: hidden;
+      margin-top: 3px;
+      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    ul.MuiAutocomplete-listbox {
+      padding-bottom: 0;
+
+      &>li.MuiAutocomplete-option {
+        border-bottom: 1px solid var(--wc-border-color);
+        padding: 10px 16px;
+        font-size: calc((var(--wc-font-size) - 1) * 1px);
+        letter-spacing: 0;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .MuiAutocomplete-endAdornment {
+    padding-right: 6px;
+
+    @media #{$mq-4k} {
+      padding-right: get4k(6px);
+    }
+
+    .MuiSvgIcon-root {
+      color: var(--body-text-color);
+    }
+  }
+
+  //Guests Selection
+  .guest_selection_outer {
+    .add_guest_btn {
+      padding: 12px 16px 0 16px;
+
+      button {
+        font-size: calc((var(--wc-font-size) - 2) * 1px);
+        width: 100%;
+        border-radius: 100px;
+      }
+    }
+
+    .guest_group_title {
+      position: sticky;
+      top: -8px;
+      padding: 10px 16px;
+      background-color: #fff;
+      font-weight: 800;
+      color: #000;
+    }
+
+    .guest_group_members {
+      padding: 0;
+
+      li.MuiAutocomplete-option {
+        border-bottom: 1px solid var(--wc-border-color);
+        padding: 10px 16px;
+      }
+    }
+
+    ul.MuiAutocomplete-listbox {
+      padding-bottom: 0;
+
+      &>li:first-child {
+        &>div {
+          display: none;
+        }
+      }
+
+      &>li:last-child {
+        ul {
+          li:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Modal
+  .mui_modal {
+    margin: 15px;
+
+    @media #{$mq-4k} {
+      margin: get4k(15px);
+    }
+
+    .modal_dialog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 570px;
+      max-width: 100%;
+      background-color: #fff;
+      border: 1px solid var(--wc-border-color);
+      box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.1);
+      border-radius: calc(var(--borderRadius) * 1px);
+
+      @media #{$mq-4k} {
+        width: get4k(570px);
+        padding: get4k(24px);
+      }
+
+      .modal_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--wc-border-color);
+
+        @media #{$mq-4k} {
+          padding: get4k(16px) get4k(24px);
+        }
+
+        h2 {
+          font-size: calc((var(--wc-font-size) + 2) * 1px);
+          margin: 0;
+
+          @media #{$mq-4k} {
+            font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+            margin: 0;
+          }
+        }
+      }
+
+      .modal_body {
+        padding: 16px 24px;
+
+        @media #{$mq-4k} {
+          padding: get4k(24px);
+        }
+      }
+    }
+  }
+
 }
