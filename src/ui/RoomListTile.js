@@ -58,7 +58,6 @@ export default function RoomListTile({ room, index }) {
   const handleRoomAdd = (room) => {
     const newId = uuidv4();
     const occupants = roomsInSearch[index]?.ageGroups;
-    console.log(occupants)
     const updatedselectedRooms = [
       ...selectedRooms,
       {

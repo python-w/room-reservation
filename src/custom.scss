@@ -2006,10 +2006,13 @@ body {
         /* filter */
         .filter_outer {
           position: sticky;
-          top: 100px;
+          top: 132px;
           left: 0;
           max-height: 90vh;
           overflow-y: auto;
+          @media #{$mq-4k}{
+          top: get4k(132px);
+          }
         }
 
         .lfilter-heading {
@@ -2581,6 +2584,7 @@ body {
             width: 100%;
             height: 100%;
             left: 0;
+            z-index: -1;
           }
 
           a {
@@ -2794,7 +2798,6 @@ body {
 
         .rate-details {
           border: 1px solid var(--wc-border-color);
-          min-height: 100%;
 
           .card-body {
             padding: 0;
