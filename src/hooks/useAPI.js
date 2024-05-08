@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-const useHttp = () => {
+const useAPI = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const sendRequest = useCallback(async (requestConfig) => {
@@ -40,4 +40,4 @@ const useHttp = () => {
     };
 };
 
-export default useHttp;
+export default useAPI;

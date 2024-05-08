@@ -72,9 +72,9 @@ export default function RoomDetails() {
           <div className="roomThumb">
             <RoomDetailsFancybox>
               <ListingCarousel showPageCount={true} options={{ infinite: false, Thumbs: false }}>
-                {room.images.thumbs.map((thumb, i) => (
+                {room.images.large.map((img, i) => (
                   <div className="f-carousel__slide" data-fancybox="gallery" data-src={room.images.large[i]} key={i}>
-                    <img className="dcard-img img-fluid" alt="" src={thumb} width="100" height="300" />
+                    <img className="dcard-img img-fluid" alt="" src={img} width="100" height="300" />
                   </div>
                 ))}
               </ListingCarousel>

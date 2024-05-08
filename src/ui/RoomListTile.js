@@ -32,6 +32,7 @@ export default function RoomListTile({ room, index }) {
       (r) => r.roomId === room.roomId
     );
     const newId = uuidv4();
+    const occupants = roomsInSearch[index]?.ageGroups;
 
     if (roomIndex === -1) {
       updatedselectedRooms.push({
@@ -41,6 +42,7 @@ export default function RoomListTile({ room, index }) {
         thumbnail: room?.images.thumbs[0],
         rates: room.rateMap,
         bookedRoomCount: 1,
+        occupants
       });
       dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });
       const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
@@ -89,7 +91,7 @@ export default function RoomListTile({ room, index }) {
           ? { ...room, bookedRoomCount: Math.max(room.bookedRoomCount - 1, 0) }
           : room
       )
-      .filter((room) => room.bookedRoomCount > 0);
+      .filter((room) => room.roomId !== roomId || room.bookedRoomCount > 0);
     dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });
 
     const count = currentRoom ? (currentRoom.bookedRoomCount || 0) - 1 : 1;

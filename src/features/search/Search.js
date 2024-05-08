@@ -12,7 +12,7 @@ import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Typography } from "@material-ui/core";
-import useHttp from '../../hooks/useHttp';
+import useAPI from '../../hooks/useAPI';
 import { v4 as uuidv4 } from "uuid";
 import useScrollToRef from "../../hooks/ScrollToRef";
 
@@ -33,10 +33,9 @@ export default function Search() {
   const checkOutDate = format(endDate, 'E, d MMM');
 
   //Fetch Age Group List
-  const { loading: ageGroupLoading, sendRequest } = useHttp();
-  const [checkAgeGroupEnabled, setCheckAgeGroupEnabled] = useState(true);
+  const { loading: ageGroupLoading, sendRequest } = useAPI();
+  const [checkAgeGroupEnabled, setCheckAgeGroupEnabled] = useState(false);
   const [allAgeGroupsList, setAllAgeGroupsList] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,11 +64,9 @@ export default function Search() {
             dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
             setAllAgeGroupsList(data);
           } 
-        } else {
-          setError("Age group message goes here.");
         }
       } catch (error) {
-        setError(error.message);
+        console.log(error.message)
       }
     };
 
@@ -211,7 +208,6 @@ export default function Search() {
                       checkAgeGroupEnabled={checkAgeGroupEnabled}
                       allAgeGroupsList={allAgeGroupsList}
                       ageGroupLoading={ageGroupLoading}
-                      error={error}
                     />
                   )}
                 </div>

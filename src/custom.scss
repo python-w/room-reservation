@@ -344,21 +344,15 @@ body {
 
           &.room_field {
             .inline_modal {
+              overflow: hidden;
+              .inline_modal_body{                
               max-height: 60vh;
               overflow-y: auto;
+              padding-bottom: 2px;
+              }
             }
           }
         }
-      }
-
-      .search_wrap_fixed {
-        position: fixed;
-        top: 0;
-        // top: var(--headerHeight);
-        left: 0;
-        width: 100%;
-        z-index: 999;
-        padding: 0 var(--container-padding);
       }
 
       .search_listing {
@@ -774,10 +768,10 @@ body {
         }
 
         .inline_modal_body {
-          margin: 0 1rem;
+          padding: 0 1rem;
 
           @media #{$mq-4k} {
-            margin: 0 get4k(16px);
+            padding: 0 get4k(16px);
           }
 
           .rdrDefinedRangesWrapper {
@@ -1024,7 +1018,7 @@ body {
 
           &::before {
             content: '';
-            opacity: 0.075;
+            opacity: 0.05;
             background: var(--primary-color);
             display: block;
             position: absolute;
@@ -2262,6 +2256,7 @@ body {
         }
 
         .lcard-img {
+          width: 100%;
           height: 100%;
           aspect-ratio: 320/280;
           object-fit: cover;
