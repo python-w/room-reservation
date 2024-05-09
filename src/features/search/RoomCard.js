@@ -61,7 +61,7 @@ export default function RoomCard({
     }
   };
 
-
+  
   return (
     <>
       <div ref={modalBodyRef} className="inline_modal_body">
@@ -73,7 +73,7 @@ export default function RoomCard({
                 <button className="btn btn-wc-transparent" onClick={() => handleRemoveRoom(room.id, roomIndex)}>Remove Room</button>
               )}
             </div>
-            {checkAgeGroupEnabled &&
+            {checkAgeGroupEnabled && room.ageGroups.length > 0 &&
               <div className="room_card_body">
                 {ageGroupLoading && <div className="circularProgress_wrap"><CircularProgress /></div>}
                 {room.ageGroups.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup?.ageGroupId] !== 0).map((ageGroup, ageGroupIndex) => (

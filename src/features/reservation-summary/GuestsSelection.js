@@ -23,7 +23,7 @@ const memberlist = [
 ];
 
 
-export default function GuestsSelection({ bookingId }) {
+export default function GuestsSelection({ bookingId, validate }) {
 
     const { dispatch } = useSearch();
     const [selectedOption, setSelectedOption] = useState(null);
@@ -43,15 +43,13 @@ export default function GuestsSelection({ bookingId }) {
     ]
 
     const handleChange = (event, value) => {
-        // dispatch({ type: "ADD_GUEST", payload: { guestBookingId: bookingId,  value } });
-
-        console.log(value)
-        // setSelectedOption(value)
-        // dispatch({
-        //   type: "SELECT_RATE",
-        //   payload: { rateRoomId: bookingId, value },
-        // });
-      };
+        setSelectedOption(value)
+        validate();
+        dispatch({
+            type: "RESERVED_FOR",
+            payload: { bookingId, value },
+        });
+    };
 
     return (
         <>

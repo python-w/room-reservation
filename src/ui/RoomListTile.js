@@ -26,13 +26,21 @@ export default function RoomListTile({ room, index }) {
     (r) => r.roomId === room.roomId
   );
 
+  const occupants = roomsInSearch.reduce((acc, room, index) => {
+    const roomLabel = room.ageGroups
+      .filter(group => group.count > 0)
+      .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+      .join(', ');
+    acc[index] = roomLabel;
+    return acc;
+  }, {});
+
   const handleSelectProperty = (room) => {
     const updatedselectedRooms = [...selectedRooms];
     const roomIndex = updatedselectedRooms.findIndex(
       (r) => r.roomId === room.roomId
     );
     const newId = uuidv4();
-    const occupants = roomsInSearch[index]?.ageGroups;
 
     if (roomIndex === -1) {
       updatedselectedRooms.push({
@@ -59,7 +67,6 @@ export default function RoomListTile({ room, index }) {
 
   const handleRoomAdd = (room) => {
     const newId = uuidv4();
-    const occupants = roomsInSearch[index]?.ageGroups;
     const updatedselectedRooms = [
       ...selectedRooms,
       {
@@ -70,7 +77,7 @@ export default function RoomListTile({ room, index }) {
         rates: room.rateMap,
         bookedRoomCount: Math.min(room.bookedRoomCount + 1),
         isSelected: true,
-        occupants
+        occupants: occupants[index]
       },
     ];
     dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });

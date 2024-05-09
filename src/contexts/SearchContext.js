@@ -135,6 +135,22 @@ function reducer(state, action) {
           : { ...room, isRoomViewed: false }
       );
       return { ...state, availableRooms: updateViewedRoom };
+    case "RESERVED_FOR": {
+      const { bookingId, value } = action.payload;
+      const updatedselectedRooms = state.selectedRooms.map((room) => {
+        if (room.bookingId === bookingId) {
+          return {
+            ...room,
+            reservedFor: value,
+          };
+        }
+        return room;
+      });
+      return {
+        ...state,
+        selectedRooms: updatedselectedRooms,
+      };
+    }
     case "SELECT_RATE":
       const { rateRoomId, value } = action.payload;
       const updatedselectedRooms = state.selectedRooms.map((room) => {
@@ -160,6 +176,7 @@ function reducer(state, action) {
             return {
               ...room,
               guest: [...updatedGuest, formData],
+              reservedFor: "Guest"
             };
           } else {
             return room;
@@ -183,7 +200,23 @@ function reducer(state, action) {
       const removedGuest = action.payload;
       return {
         ...state,
-        selectedRooms: removedGuest
+        selectedRooms: removedGuest,
+        reservedFor: null
+      }
+    case "SELECT_AGEGROUP":
+      const { bookingId, ageGroup } = action.payload;
+      return {
+        ...state,
+        selectedRooms: state.selectedRooms.map((room) => {
+          if (room.bookingId === bookingId) {
+            return {
+              ...room,
+              occupants: ageGroup
+            };
+          } else {
+            return room;
+          }
+        }),
       }
       case "REMOVE_SELECTED_ROOM":
       const revmoedRoom = action.payload;

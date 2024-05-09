@@ -14,6 +14,7 @@ import extractAmenities from "../utils/extractAmenities";
 import { CircularProgress } from "@material-ui/core";
 import Axios from "axios";
 import { Alert } from "@material-ui/lab";
+import AgeGroupSelection from "../features/reservation-summary/AgeGroupSelection";
 
 
 export default function RoomDetails() {
@@ -33,7 +34,7 @@ export default function RoomDetails() {
           const response = await Axios.get(
             `http://localhost:5000/rooms?roomId=${roomId}`
           );
-          setRoom(response.data[0]); 
+          setRoom(response.data[0]);
           setIsLoading(false)
         } catch (error) {
           setIsLoading(false)
@@ -66,7 +67,7 @@ export default function RoomDetails() {
           {availableRooms.length > 0 &&
             <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
               <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
-              See Other Options
+              Go Back
             </button>
           }
           <div className="roomThumb">
@@ -153,6 +154,14 @@ export default function RoomDetails() {
             </div>
             <div className="col-lg-4">
               <div className="card rate-details">
+                <div className="card-body">
+                  <div className="rate-dInner">
+                    <h6 className="card-heading">
+                      Guest
+                    </h6>
+                    <AgeGroupSelection bookingId={roomId} />
+                  </div>
+                </div>
                 <RateDetails room={room} key={room.roomId} />
               </div>
             </div>

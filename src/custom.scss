@@ -105,6 +105,16 @@ body {
         }
       }
 
+      .error_msg {
+        p {
+          color: #cf2000 !important;
+          font-size: 90%;
+          line-height: 1;
+          margin-bottom: 0;
+          padding: 0.5rem;
+        }
+      }
+
       .btn-wc-primary {
         .svg-inline--fa {
           color: #fff;
@@ -345,10 +355,11 @@ body {
           &.room_field {
             .inline_modal {
               overflow: hidden;
-              .inline_modal_body{                
-              max-height: 60vh;
-              overflow-y: auto;
-              padding-bottom: 2px;
+
+              .inline_modal_body {
+                max-height: 60vh;
+                overflow-y: auto;
+                padding-bottom: 2px;
               }
             }
           }
@@ -833,7 +844,6 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid var(--wc-border-color);
 
             button {
               background: transparent;
@@ -845,6 +855,7 @@ body {
 
           .room_card_body {
             padding: 1rem;
+            border-top: 1px solid var(--wc-border-color);
 
             @media #{$mq-4k} {
               padding: get4k(16px);
@@ -1197,8 +1208,6 @@ body {
         }
 
         .btn.btn-back {
-          display: flex;
-          align-items: center;
           padding: 0;
           font-size: calc(var(--wc-font-size) * 1px);
           margin: 2rem 0;
@@ -1236,7 +1245,6 @@ body {
             font-size: calc((var(--wc-font-size) + 6) * 1px);
             min-width: 32px;
             height: 32px;
-            line-height: 32px;
             text-align: center;
             background: var(--primary-color);
             color: #ffff;
@@ -1424,6 +1432,13 @@ body {
                   &:hover {
                     background: var(--primary-color);
                   }
+                }
+              }
+
+              .age_group_autocomplete {
+                input {
+                  font-weight: bold;
+                  color: var(--primary-color);
                 }
               }
             }
@@ -2004,8 +2019,9 @@ body {
           left: 0;
           max-height: 90vh;
           overflow-y: auto;
-          @media #{$mq-4k}{
-          top: get4k(132px);
+
+          @media #{$mq-4k} {
+            top: get4k(132px);
           }
         }
 
@@ -2237,7 +2253,6 @@ body {
           }
 
           .card-address {
-            text-decoration: none;
             color: inherit;
 
             .svg-inline--fa {
@@ -2592,8 +2607,6 @@ body {
       /* Detail */
       .detail_page {
         .btn.btn-back {
-          display: flex;
-          align-items: center;
           padding: 0;
           font-size: calc(var(--wc-font-size) * 1px);
           margin: 2rem 0;
@@ -2652,8 +2665,11 @@ body {
           }
 
           .card-address {
-            text-decoration: none;
             color: inherit;
+
+            &:hover {
+              text-decoration: none;
+            }
 
             .svg-inline--fa {
               color: var(--wc-font-color);
@@ -2806,25 +2822,25 @@ body {
 
             .rate-dInner {
               padding: 2rem;
+              padding-bottom: 0;
 
               @media #{$mq-4k} {
                 padding: get4k(32px);
+                padding-bottom: 0;
+
               }
 
               @media #{$mq-mobile-sm} {
                 padding: 1rem;
+                padding-bottom: 0;
               }
             }
 
             .card-heading {
-              margin-bottom: 1.5rem;
+              margin-bottom: 0.5rem;
 
               @media #{$mq-4k} {
-                margin-bottom: get4k(24px);
-              }
-
-              @media #{$mq-tablet-md} {
-                margin-bottom: calc(var(--wc-h-margin) * 1px);
+                margin-bottom: get4k(8px);
               }
             }
 
@@ -2901,7 +2917,16 @@ body {
             }
 
             .breakDMain {
-              margin-top: auto;
+              margin-top: 2rem;
+              
+              @media #{$mq-4k} {
+                margin-top: get4k(32px);
+
+              }
+
+              @media #{$mq-mobile-sm} {
+                margin-top: 1rem;
+              }
             }
 
             .drateBreakDown {
@@ -3248,7 +3273,6 @@ body {
     .MuiRadio-root {
       color: var(--primary-color);
       padding: 0;
-      margin-top: -1px;
 
       @media #{$mq-4k} {
         margin-top: get4k(-1px);
@@ -3332,15 +3356,6 @@ body {
         }
       }
 
-      .error_msg {
-        p {
-          color: #cf2000;
-          font-size: 90%;
-          line-height: 1;
-          margin-bottom: 0;
-          padding: 0.5rem;
-        }
-      }
     }
 
     //Check Availability
@@ -3599,6 +3614,13 @@ body {
     }
   }
 
+  //Age Group Selection
+  .age_group_selection_listbox {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+
   //MUI Customizations
   .MuiAutocomplete-popper {
     .MuiPaper-root {
@@ -3611,6 +3633,7 @@ body {
 
     ul.MuiAutocomplete-listbox {
       padding-bottom: 0;
+      padding-top: 0;
 
       &>li.MuiAutocomplete-option {
         border-bottom: 1px solid var(--wc-border-color);

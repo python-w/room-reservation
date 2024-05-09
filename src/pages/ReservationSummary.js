@@ -9,25 +9,50 @@ import CheckInOutCard from "../ui/CheckInOutCard";
 
 export default function ReservationSummary() {
   const [error, setError] = useState(null);
+  const [formErrors, setFormError] = useState({});
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
-  const { selectedRooms} = state;  
+  const { selectedRooms } = state;
 
   const handleSearchAgain = () => {
     navigate("/");
     dispatch({ type: "SEARCH_AGAIN" });
   };
 
+  const validate = () => {
+    const newErrors = {};
+    selectedRooms.forEach(room => {
+      const roomErrors = {};
+      if (!room.guest) {
+        roomErrors.guest = 'This field is required';
+      }
+      if (!room.reservedFor) {
+        roomErrors.reservedFor = 'This field is required';
+      }
+      if (!room.selectedRate) {
+        roomErrors.selectedRate = 'This field is required';
+      }
+      if (Object.keys(roomErrors).length > 0) {
+        newErrors[room.bookingId] = roomErrors;
+      }
+    });
+    setFormError(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      await createBooking(selectedRooms);
-      navigate("/bookings");
+      if (validate()) {
+        await createBooking(selectedRooms);
+        navigate("/bookings");
+      }
     } catch (error) {
       setError(error);
     }
   };
+
 
   return (
     <div className="res_sum">
@@ -46,7 +71,7 @@ export default function ReservationSummary() {
       </div>
       <div className="row">
         {selectedRooms.map((room, index) => (
-          <RoomSummary key={index} room={room} index={index + 1} />
+          <RoomSummary key={index} room={room} index={index + 1} formErrors={formErrors} validate={validate} />
         ))}
       </div>
 
@@ -74,7 +99,7 @@ export default function ReservationSummary() {
         </button>
       </form>
       {error && (
-        <div classNam="alert alert-danget" role="alert">
+        <div classNam="alert alert-danger" role="alert">
           {error}
         </div>
       )}

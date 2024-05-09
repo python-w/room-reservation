@@ -8,13 +8,14 @@ import { taxRate } from "../../utils/TaxRate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import { useSearch } from "../../contexts/SearchContext";
+import AgeGroupSelection from "./AgeGroupSelection"
+import Error from "../../ui/Error";
 
-export default function RoomSummary({ room, index }) {
+export default function RoomSummary({ room, index, formErrors, validate }) {
 
+  console.log(formErrors)
   const { state, dispatch } = useSearch();
-  const { selectedRooms } = state;
-
-  console.log(room.occupants)
+  const { selectedRooms, roomsInSearch } = state;
 
   const selectedRate = room.selectedRate?.value || 0;
   const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
@@ -22,6 +23,14 @@ export default function RoomSummary({ room, index }) {
   const vat = calculateVATOnDiscountedRate(selectedRate, room.discount || 0, taxRate || 0);
   const formattedVAT = formatCurrency(vat);
   const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
+
+  const ageGroup = roomsInSearch.reduce((acc, room) => {
+    const roomLabel = room.ageGroups
+      .filter(group => group.count > 0)
+      .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+      .join(', ');
+    return roomLabel;
+  }, [])
 
   const handleRemoveGuest = (bookingId) => {
     const updateSelectedRooms = selectedRooms.map((room) => {
@@ -52,9 +61,10 @@ export default function RoomSummary({ room, index }) {
         </div>
         <ul>
           <li>
-            Reservation for: {!room.guest ? <GuestsSelection bookingId={room.bookingId} /> : <p className="mb-0"><strong>Guest</strong></p>}
+            Reservation for: {!room.guest ? <GuestsSelection bookingId={room.bookingId} validate={validate} /> : <p className="mb-0"><strong>Guest</strong></p>}
             {room.guest &&
               room.guest.map((g, index) => (
+                <>
                 <div key={index} className="guest_card">
                   <ul>
                     <li>
@@ -73,24 +83,35 @@ export default function RoomSummary({ room, index }) {
                   </ul>
                   <button className="guest_remove" onClick={() => handleRemoveGuest(room.bookingId)}><FontAwesomeIcon icon={faRemove} /></button>
                 </div>
+                  {formErrors[room.bookingId]?.guest && <Error message={formErrors[room.bookingId].guest} />}
+                  </>
               ))}
+            {formErrors[room.bookingId]?.reservedFor && <Error message={formErrors[room.bookingId].reservedFor} />}
+
           </li>
           <li>
             No of persons:{" "}
-            <strong>
-              {room.occupants &&
-                room.occupants.filter(occupant => occupant.count > 0)
+            {roomsInSearch.length > 1 ?
+              <>
+                <AgeGroupSelection bookingId={room.bookingId} roomIndex={index} />
+              </>
+              :
+              <strong>
+                {ageGroup}
+                {/* {roomsInSearch.ageGroups.map(occupant => occupant.count > 0)
                   .map((occupant, index, array) => (
                     <span key={index}>
                       {occupant.count} {occupant.count > 1 ? (occupant.name === "Child" ? "Children" : occupant.name + "s") : occupant.name}
                       {index === array.length - 1 ? "" : ", "}
                     </span>
-                  ))}
-            </strong>
+                  ))} */}
+              </strong>
+            }
           </li>
           <li>
             Per Day Room Charges:{" "}
-            <RateSelection bookingId={room.bookingId} roomRates={room.rates} />
+            <RateSelection bookingId={room.bookingId} roomRates={room.rates}  validate={validate} />
+            {formErrors[room.bookingId]?.selectedRate && <Error message={formErrors[room.bookingId].selectedRate} />}
           </li>
           <li>
             Value Added Tax (VAT): <strong>{formattedVAT}</strong>
