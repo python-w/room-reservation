@@ -1,7 +1,7 @@
 import AddGuestModal from './AddGuestModal';
 import { Autocomplete } from '@material-ui/lab';
 import { Paper, TextField } from '@material-ui/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearch } from '../../contexts/SearchContext';
 
 const memberlist = [
@@ -23,7 +23,7 @@ const memberlist = [
 ];
 
 
-export default function GuestsSelection({ bookingId, validate }) {
+export default function GuestsSelection({ bookingId, validateReservation }) {    
 
     const { dispatch } = useSearch();
     const [selectedOption, setSelectedOption] = useState(null);
@@ -42,9 +42,12 @@ export default function GuestsSelection({ bookingId, validate }) {
         })
     ]
 
+    useEffect(() => {
+        validateReservation();
+    }, [selectedOption]);
+
     const handleChange = (event, value) => {
         setSelectedOption(value)
-        validate();
         dispatch({
             type: "RESERVED_FOR",
             payload: { bookingId, value },
@@ -57,6 +60,8 @@ export default function GuestsSelection({ bookingId, validate }) {
                 id="guest_selection"
                 options={options.sort((a, b) => -b + a)}
                 groupBy={(option) => option.groupTitle}
+                value={selectedOption}
+                getOptionSelected={(option, value) => option.id === value.id}
                 getOptionLabel={(option) => option.id === 1234567 ? option.name : `${option.id} - ${option.name}`}
                 renderInput={(params) => <TextField {...params} placeholder="Search and select member" />}
                 onChange={handleChange}
@@ -84,7 +89,7 @@ export default function GuestsSelection({ bookingId, validate }) {
                 }}
             />
 
-            <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} bookingId={bookingId} />
+            <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} bookingId={bookingId} validateReservation={validateReservation} />
 
         </>
     );

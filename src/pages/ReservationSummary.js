@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../services/apiRooms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckInOutCard from "../ui/CheckInOutCard";
 
 export default function ReservationSummary() {
   const [error, setError] = useState(null);
   const [formErrors, setFormError] = useState({});
+  const [showErrors, setShowErrors] = useState(false)
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
   const { selectedRooms } = state;
@@ -19,13 +20,10 @@ export default function ReservationSummary() {
     dispatch({ type: "SEARCH_AGAIN" });
   };
 
-  const validate = () => {
+  const validateReservation = () => {
     const newErrors = {};
     selectedRooms.forEach(room => {
       const roomErrors = {};
-      if (!room.guest) {
-        roomErrors.guest = 'This field is required';
-      }
       if (!room.reservedFor) {
         roomErrors.reservedFor = 'This field is required';
       }
@@ -39,12 +37,16 @@ export default function ReservationSummary() {
     setFormError(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (Object.keys(formErrors).length > 0) {
+      setShowErrors(true);
+    } else {
+      setShowErrors(false);
+    }
     try {
-      if (validate()) {
+      if (validateReservation()) {
         await createBooking(selectedRooms);
         navigate("/bookings");
       }
@@ -71,7 +73,7 @@ export default function ReservationSummary() {
       </div>
       <div className="row">
         {selectedRooms.map((room, index) => (
-          <RoomSummary key={index} room={room} index={index + 1} formErrors={formErrors} validate={validate} />
+          <RoomSummary key={index} room={room} index={index + 1} formErrors={formErrors} validateReservation={validateReservation} showErrors={showErrors} />
         ))}
       </div>
 

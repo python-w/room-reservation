@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useSearch } from "../../contexts/SearchContext";
@@ -8,7 +8,7 @@ import { Modal, TextField } from "@material-ui/core";
 import Error from "../../ui/Error";
 import { PhoneNumberUtil } from 'google-libphonenumber';
 
-export default function AddGuestModal({ open, handleClose, bookingId }) {
+export default function AddGuestModal({ open, handleClose, bookingId, validateReservation }) {
   const { dispatch } = useSearch();
 
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ export default function AddGuestModal({ open, handleClose, bookingId }) {
     } catch (error) {
       return false;
     }
-  };
+  }; 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,14 +37,14 @@ export default function AddGuestModal({ open, handleClose, bookingId }) {
     }));
   };
 
-  const handlePhoneChange = (value, countryData) => {
+  const handlePhoneChange = (value) => {
     setFormData((prevState) => ({
       ...prevState,
       phone: value,
     }));
   };
 
-  const validate = () => {
+  const validateReservationGuestForm = () => {
     const newErrors = {};
     if (!formData.guestname) {
       newErrors.guestname = 'Please enter your guest name';
@@ -63,14 +63,15 @@ export default function AddGuestModal({ open, handleClose, bookingId }) {
 
 
   const handleBlur = () => {
-    validate();
+    validateReservationGuestForm();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
+    if (validateReservationGuestForm()) {
       dispatch({ type: "ADD_GUEST", payload: { guestBookingId: bookingId, formData } });
       handleClose();
+      validateReservation()
     }
   };
 

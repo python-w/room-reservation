@@ -64,8 +64,13 @@ export default function Search() {
             dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
             setAllAgeGroupsList(data);
           } 
-        }
+        } 
       } catch (error) {
+        const initialRoom = {
+          id: uuidv4(),
+          name: "Room # 1",
+        };
+        dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
         console.log(error.message)
       }
     };
@@ -195,7 +200,11 @@ export default function Search() {
                     <div>
                       <FontAwesomeIcon icon={faUser} />{" "}
                       <Typography component="span">
-                        {totalGuests || 1} {totalGuests > 1 ? "Guests" : "Guest"},{" "}
+                        {checkAgeGroupEnabled &&
+                          <>
+                            {totalGuests || 1} {totalGuests > 1 ? "Guests" : "Guest"},{" "}
+                          </>
+                        }
                         {roomsInSearch.length || 1}{" "}
                         {roomsInSearch.length > 1 ? "Rooms" : "Room"}
                       </Typography>

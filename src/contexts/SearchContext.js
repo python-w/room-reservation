@@ -29,6 +29,7 @@ const initialState = {
   isLoadingMore: false,
   selectedRooms: [],
   bookingCount: 0,
+  selectedRoomIndex: 0,
 };
 
 function reducer(state, action) {
@@ -49,11 +50,13 @@ function reducer(state, action) {
       const roomspayload = action.payload;
       const updatedRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }];
       const roomSearchData = updatedRoomsInSearch.map((room) => {
-        const roomData = {};
-        room.ageGroups.forEach((ageGroup) => {
-          roomData[ageGroup.ageGroupId] = ageGroup.count;
-        });
-        return roomData;
+        if (room.ageGroups) {
+          const roomData = {};
+          room.ageGroups.forEach((ageGroup) => {
+            roomData[ageGroup.ageGroupId] = ageGroup.count;
+          });
+          return roomData;
+        }
       });
       return {
         ...state,
@@ -124,9 +127,9 @@ function reducer(state, action) {
       );
       return { ...state, availableRooms: updatedRooms };
     case "BOOK_ROOM_ADD":
-      return { ...state, bookingCount: state.bookingCount + 1 };
+      return { ...state, bookingCount: state.bookingCount + 1, selectedRoomIndex: state.selectedRoomIndex + 1 };
     case "BOOK_ROOM_SUB":
-      return { ...state, bookingCount: state.bookingCount - 1 };
+      return { ...state, bookingCount: state.bookingCount - 1, selectedRoomIndex: state.selectedRoomIndex - 1 };
     case "VIEWED_ROOM":
       const viewedRoomId = action.payload;
       const updateViewedRoom = state.availableRooms.map((room) =>

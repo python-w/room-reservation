@@ -11,10 +11,13 @@ export default function AgeGroupSelection({ roomIndex, bookingId }) {
   const { state, dispatch } = useSearch()
   const { roomsInSearch } = state;
   const options = roomsInSearch.reduce((acc, room) => {
-    const roomLabel = room.ageGroups
-      .filter(group => group.count > 0)
-      .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
-      .join(', ');
+    let roomLabel = "";
+    if (room.ageGroups) {
+      roomLabel = room.ageGroups
+        .filter(group => group.count > 0)
+        .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+        .join(', ');
+    }
     if (roomLabel) {
       acc.push({
         label: roomLabel,

@@ -15,7 +15,7 @@ export default function RoomListTile({ room, index }) {
   const amenitiesRef = useRef();
   const [amenitiesWidth, setAmenitiesWidth] = useState(0);
   const { state: searchState, dispatch } = useSearch();
-  const { selectedRooms, searchedRooms, roomsInSearch, bookingCount } = searchState;
+  const { selectedRooms, searchedRooms, roomsInSearch, bookingCount, selectedRoomIndex } = searchState;
   useLayoutEffect(() => {
     if (amenitiesRef.current) {
       setAmenitiesWidth(amenitiesRef.current.offsetWidth);
@@ -26,14 +26,19 @@ export default function RoomListTile({ room, index }) {
     (r) => r.roomId === room.roomId
   );
 
-  const occupants = roomsInSearch.reduce((acc, room, index) => {
-    const roomLabel = room.ageGroups
-      .filter(group => group.count > 0)
-      .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
-      .join(', ');
-    acc[index] = roomLabel;
-    return acc;
-  }, {});
+  console.log(selectedRoomIndex)
+  
+  const occupants = roomsInSearch.map((room) => {
+    let roomLabel = ""; 
+    if (room.ageGroups) {
+      roomLabel = room.ageGroups
+        .filter(group => group.count > 0)
+        .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+        .join(', ');
+    }
+  
+    return roomLabel;
+  });
 
   const handleSelectProperty = (room) => {
     const updatedselectedRooms = [...selectedRooms];
@@ -50,7 +55,7 @@ export default function RoomListTile({ room, index }) {
         thumbnail: room?.images.thumbs[0],
         rates: room.rateMap,
         bookedRoomCount: 1,
-        occupants
+        occupants: occupants[selectedRoomIndex]
       });
       dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });
       const count = currentRoom ? (currentRoom.bookedRoomCount || 0) + 1 : 1;
@@ -77,7 +82,7 @@ export default function RoomListTile({ room, index }) {
         rates: room.rateMap,
         bookedRoomCount: Math.min(room.bookedRoomCount + 1),
         isSelected: true,
-        occupants: occupants[index]
+        occupants: occupants[selectedRoomIndex]
       },
     ];
     dispatch({ type: "UPDATE_SELECTED_ROOMS", payload: updatedselectedRooms });

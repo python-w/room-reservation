@@ -5,11 +5,11 @@ import {
   Radio,
   TextField,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function RateSelection({ bookingId, roomRates, validate }) {
+export default function RateSelection({ bookingId, roomRates, validateReservation }) {
+
   const { dispatch } = useSearch();
-
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = Object.entries(roomRates).map(([key, value], index) => ({
@@ -18,9 +18,12 @@ export default function RateSelection({ bookingId, roomRates, validate }) {
     index,
   }));
 
+  useEffect(() => {
+    validateReservation();
+  }, [selectedOption]);
+
   const handleChange = (event, value) => {
     setSelectedOption(value)
-    validate();
     dispatch({
       type: "SELECT_RATE",
       payload: { rateRoomId: bookingId, value },
@@ -33,7 +36,7 @@ export default function RateSelection({ bookingId, roomRates, validate }) {
       options={options}
       getOptionLabel={(option) => option.label}
       renderInput={(params) => (
-        <TextField {...params} placeholder="Select an option" />
+        <TextField {...params} onBlur={() => validateReservation()} placeholder="Select an option" />
       )}
       onChange={handleChange}
       value={selectedOption}

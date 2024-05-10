@@ -11,9 +11,8 @@ import { useSearch } from "../../contexts/SearchContext";
 import AgeGroupSelection from "./AgeGroupSelection"
 import Error from "../../ui/Error";
 
-export default function RoomSummary({ room, index, formErrors, validate }) {
+export default function RoomSummary({ room, index, formErrors, showErrors, validateReservation }) {
 
-  console.log(formErrors)
   const { state, dispatch } = useSearch();
   const { selectedRooms, roomsInSearch } = state;
 
@@ -25,10 +24,13 @@ export default function RoomSummary({ room, index, formErrors, validate }) {
   const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
 
   const ageGroup = roomsInSearch.reduce((acc, room) => {
-    const roomLabel = room.ageGroups
-      .filter(group => group.count > 0)
-      .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
-      .join(', ');
+    let roomLabel;
+    if (room.ageGroups) {
+      roomLabel = room.ageGroups
+        .filter(group => group.count > 0)
+        .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+        .join(', ');
+    }
     return roomLabel;
   }, [])
 
@@ -37,6 +39,7 @@ export default function RoomSummary({ room, index, formErrors, validate }) {
       if (room.bookingId === bookingId) {
         return {
           ...room,
+          reservedFor: null,
           guest: null
         };
       }
@@ -61,10 +64,9 @@ export default function RoomSummary({ room, index, formErrors, validate }) {
         </div>
         <ul>
           <li>
-            Reservation for: {!room.guest ? <GuestsSelection bookingId={room.bookingId} validate={validate} /> : <p className="mb-0"><strong>Guest</strong></p>}
+            Reservation for: {!room.guest ? <GuestsSelection bookingId={room.bookingId} validateReservation={validateReservation} /> : <p className="mb-0"><strong>Guest</strong></p>}
             {room.guest &&
               room.guest.map((g, index) => (
-                <>
                 <div key={index} className="guest_card">
                   <ul>
                     <li>
@@ -83,35 +85,27 @@ export default function RoomSummary({ room, index, formErrors, validate }) {
                   </ul>
                   <button className="guest_remove" onClick={() => handleRemoveGuest(room.bookingId)}><FontAwesomeIcon icon={faRemove} /></button>
                 </div>
-                  {formErrors[room.bookingId]?.guest && <Error message={formErrors[room.bookingId].guest} />}
-                  </>
               ))}
-            {formErrors[room.bookingId]?.reservedFor && <Error message={formErrors[room.bookingId].reservedFor} />}
-
-          </li>
-          <li>
-            No of persons:{" "}
-            {roomsInSearch.length > 1 ?
-              <>
-                <AgeGroupSelection bookingId={room.bookingId} roomIndex={index} />
-              </>
-              :
-              <strong>
-                {ageGroup}
-                {/* {roomsInSearch.ageGroups.map(occupant => occupant.count > 0)
-                  .map((occupant, index, array) => (
-                    <span key={index}>
-                      {occupant.count} {occupant.count > 1 ? (occupant.name === "Child" ? "Children" : occupant.name + "s") : occupant.name}
-                      {index === array.length - 1 ? "" : ", "}
-                    </span>
-                  ))} */}
-              </strong>
-            }
-          </li>
+            {showErrors && formErrors[room.bookingId]?.reservedFor && !room.guest && <Error message={formErrors[room.bookingId].reservedFor} />}
+          </li>          
+          {room.occupants && room.occupants[0] !== "" &&
+            <li>
+              No of persons:{" "}
+              {roomsInSearch.length > 1 ?
+                <>
+                  <AgeGroupSelection bookingId={room.bookingId} roomIndex={index} />
+                </>
+                :
+                <strong>
+                  {ageGroup}
+                </strong>
+              }
+            </li>
+          }
           <li>
             Per Day Room Charges:{" "}
-            <RateSelection bookingId={room.bookingId} roomRates={room.rates}  validate={validate} />
-            {formErrors[room.bookingId]?.selectedRate && <Error message={formErrors[room.bookingId].selectedRate} />}
+            <RateSelection bookingId={room.bookingId} roomRates={room.rates} validateReservation={validateReservation} />
+            {showErrors && formErrors[room.bookingId]?.selectedRate && <Error message={formErrors[room.bookingId].selectedRate} />}
           </li>
           <li>
             Value Added Tax (VAT): <strong>{formattedVAT}</strong>

@@ -375,7 +375,6 @@ body {
           padding: 0 var(--container-padding);
           position: sticky;
           top: 0;
-          left: 0;
           z-index: 999;
 
           &::before {
@@ -2809,7 +2808,9 @@ body {
 
         .rate-details {
           border: 1px solid var(--wc-border-color);
-
+          position: sticky;
+          top: 0;
+          
           .card-body {
             padding: 0;
             height: 100%;
