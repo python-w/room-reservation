@@ -30,6 +30,7 @@ const initialState = {
   selectedRooms: [],
   bookingCount: 0,
   selectedRoomIndex: 0,
+  checkAgeGroupEnabled: false,
 };
 
 function reducer(state, action) {
@@ -60,6 +61,7 @@ function reducer(state, action) {
       });
       return {
         ...state,
+        checkAgeGroupEnabled: true,
         roomsInSearch: updatedRoomsInSearch,
         searchedRooms: roomSearchData,
       };

@@ -137,7 +137,6 @@ export default function CheckAvailability({ open, handleClose }) {
 
     return (
         <Modal
-            container={document.querySelector('section.portlet')}
             className="mui_modal check_availability"
             open={open}
             onClose={handleClose}

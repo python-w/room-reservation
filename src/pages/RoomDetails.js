@@ -21,7 +21,7 @@ export default function RoomDetails() {
   const navigate = useNavigate();
   const { roomId } = useParams();
   const { state } = useSearch();
-  const { availableRooms } = state;
+  const { availableRooms, checkAgeGroupEnabled } = state;
   const [room, setRoom] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -154,14 +154,16 @@ export default function RoomDetails() {
             </div>
             <div className="col-lg-4">
               <div className="card rate-details">
-                <div className="card-body">
-                  <div className="rate-dInner">
-                    <h6 className="card-heading">
-                      Guest
-                    </h6>
-                    <AgeGroupSelection bookingId={roomId} />
+                {checkAgeGroupEnabled &&
+                  <div className="card-body">
+                    <div className="rate-dInner">
+                      <h6 className="card-heading">
+                        Guest
+                      </h6>
+                      <AgeGroupSelection bookingId={roomId} />
+                    </div>
                   </div>
-                </div>
+                }
                 <RateDetails room={room} key={room.roomId} />
               </div>
             </div>

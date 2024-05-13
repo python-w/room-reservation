@@ -31,9 +31,9 @@ export default function Filters() {
       {error && <Alert severity="error">{error}</Alert>}
       {roomFilters.map((item, index) => (
         <div className="filter" key={index}>
-          <p>
-            <strong>{item.categoryName}</strong>
-          </p>
+          <h5>
+            {item.categoryName}
+          </h5>
           <FormGroup>
             {item.filters.map((filter, index) => (
               <FormControlLabel

@@ -2058,10 +2058,12 @@ body {
             }
           }
 
-          p {
-            strong {
-              color: var(--heading-color6);
-              font-weight: 600;
+          h5 {
+            font-size: calc(var(--wc-font-size) * 1px);
+            color: var(--heading-color6);
+            font-weight: 600;
+            @media #{$mq-tablet-lg}{
+              font-size: calc((var(--wc-font-size) - 2) * 1px);
             }
           }
 
@@ -2810,7 +2812,7 @@ body {
           border: 1px solid var(--wc-border-color);
           position: sticky;
           top: 0;
-          
+
           .card-body {
             padding: 0;
             height: 100%;
@@ -2919,7 +2921,7 @@ body {
 
             .breakDMain {
               margin-top: 2rem;
-              
+
               @media #{$mq-4k} {
                 margin-top: get4k(32px);
 

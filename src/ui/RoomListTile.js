@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import extractAmenities from "../utils/extractAmenities";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 
-export default function RoomListTile({ room, index }) {
+export default function RoomListTile({ room, index }) {  
   const amenitiesRef = useRef();
   const [amenitiesWidth, setAmenitiesWidth] = useState(0);
   const { state: searchState, dispatch } = useSearch();
@@ -26,17 +26,15 @@ export default function RoomListTile({ room, index }) {
     (r) => r.roomId === room.roomId
   );
 
-  console.log(selectedRoomIndex)
-  
   const occupants = roomsInSearch.map((room) => {
-    let roomLabel = ""; 
+    let roomLabel = "";
     if (room.ageGroups) {
       roomLabel = room.ageGroups
         .filter(group => group.count > 0)
         .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
         .join(', ');
     }
-  
+
     return roomLabel;
   });
 
@@ -135,11 +133,16 @@ export default function RoomListTile({ room, index }) {
   return (
     <div className={cardClass} key={index}>
       <div className="row">
-        {room.defaultRate !== null && (
-          <div className="price-container">
-            <div className="price-text"><span>{formatCurrency(room.defaultRate)}</span> <small>/ night</small></div>
+        <div className="price-container">
+          <div className="price-text">
+            {room.defaultRate !== null ?
+              <span>{formatCurrency(room.defaultRate)}</span>
+              :
+              <span>{formatCurrency(Object.values(room.rateMap)[0])}</span>
+            }
+            <small>/ night</small>
           </div>
-        )}
+        </div>
         <div className="col-xl-4 col-lg-5 col-md-4 mb-md-0 mb-4 col-12">
           <div className="roomThumb">
             <ListingCarousel showPageCount={false}>
@@ -164,9 +167,6 @@ export default function RoomListTile({ room, index }) {
               <div className="status-badges">
                 <span className="badge badge-pill badge-primary">
                   Executive Room
-                </span>
-                <span className="badge badge-pill badge-success">
-                  Available
                 </span>
               </div>
               <h6 className="card-title">{room?.name}</h6>
