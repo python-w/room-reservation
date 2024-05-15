@@ -12,7 +12,6 @@ import AgeGroupSelection from "./AgeGroupSelection"
 import Error from "../../ui/Error";
 
 export default function RoomSummary({ room, index, formErrors, showErrors, validateReservation }) {
-
   const { state, dispatch } = useSearch();
   const { selectedRooms, roomsInSearch } = state;
 
@@ -54,7 +53,7 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
   }
 
   return (
-    <div className="col-md-6">
+    <div className={selectedRooms.length > 2 ? "col-md-6" : "col-md-12"}>
       <div className="booked_room_card">
         <div className="card_header">
           <h2>
@@ -64,33 +63,34 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
         </div>
         <ul>
           <li>
-            Reservation for: {!room.guest ? <GuestsSelection bookingId={room.bookingId} validateReservation={validateReservation} /> : <p className="mb-0"><strong>Guest</strong></p>}
+            <div>Reservation for:</div> {!room.guest ? <GuestsSelection bookingId={room.bookingId} validateReservation={validateReservation} /> : <p className="mb-0"><strong>Guest</strong></p>}
             {room.guest &&
               room.guest.map((g, index) => (
                 <div key={index} className="guest_card">
                   <ul>
                     <li>
-                      Name: <strong>{g?.guestname}</strong>
+                      <p><span>Name:</span><strong>{g?.guestname}</strong></p>
                     </li>
                     {g.email &&
                       <li>
-                        Email: <strong>{g?.email}</strong>
+                        <p><span>Email:</span><strong>{g?.email}</strong></p>
                       </li>
                     }
                     {g.phone &&
                       <li>
-                        Phone Number: <strong>{g?.phone}</strong>
+                        <p><span>Phone Number:</span><strong>{g?.phone}</strong></p>
                       </li>
                     }
                   </ul>
                   <button className="guest_remove" onClick={() => handleRemoveGuest(room.bookingId)}><FontAwesomeIcon icon={faRemove} /></button>
                 </div>
               ))}
-            {showErrors && formErrors[room.bookingId]?.reservedFor && !room.guest && <Error message={formErrors[room.bookingId].reservedFor} />}
-          </li>          
+            {showErrors && formErrors[room.bookingId]?.reservedFor && !room.guest && <Error message={formErrors[room.bookingId]?.reservedFor} />}
+
+          </li>
           {room.occupants && room.occupants[0] !== "" &&
             <li>
-              No of persons:{" "}
+              <div>No of persons:</div>
               {roomsInSearch.length > 1 ?
                 <>
                   <AgeGroupSelection bookingId={room.bookingId} roomIndex={index} />
@@ -103,18 +103,21 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
             </li>
           }
           <li>
-            Per Day Room Charges:{" "}
+            <div>Per Day Room Charges:</div>
             <RateSelection bookingId={room.bookingId} roomRates={room.rates} validateReservation={validateReservation} />
-            {showErrors && formErrors[room.bookingId]?.selectedRate && <Error message={formErrors[room.bookingId].selectedRate} />}
+            {showErrors && formErrors[room.bookingId]?.selectedRate && <Error message={formErrors[room.bookingId]?.selectedRate} />}
           </li>
           <li>
-            Value Added Tax (VAT): <strong>{formattedVAT}</strong>
+            <div>Value Added Tax (VAT):</div>
+            <p><strong>{formattedVAT}</strong></p>
           </li>
           <li>
-            Discount Amount: <strong>{discountedAmount}</strong>
+            <div>Discount Amount:</div>
+            <p><strong>{discountedAmount}</strong></p>
           </li>
           <li>
-            Total: <strong>{totalAmount}</strong>
+            <div>Total:</div>
+            <p><strong>{totalAmount}</strong></p>
           </li>
         </ul>
       </div>

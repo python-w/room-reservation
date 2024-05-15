@@ -1,52 +1,49 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { addDays, differenceInDays } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
-
-const today = new Date();
-const tomorrow = new Date(today);
-tomorrow.setDate(today.getDate() + 1);
+import {differenceInDays} from "date-fns"
 
 const initialState = {
-  selectedRange: [
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 0),
-      key: "selection",
-    },
-  ],
-  startDate: null || today,
-  endDate: null || tomorrow,
   searchedRooms: [],
   roomsInSearch: [],
-  roomListing: [],
-  isFilterShow: false,
   availableRooms: [],
+  selectedRooms: [],
+  isFilterShow: false,
   filterToggle: false,
   isFilterNoMatch: false,
   selectedFilters: [],
   totalGuests: 1,
   isLoading: false,
   isLoadingMore: false,
-  selectedRooms: [],
   bookingCount: 0,
   selectedRoomIndex: 0,
   checkAgeGroupEnabled: false,
+  isDateInitialized: false
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case "DATE_INITIALIZED":
+      return {
+        ...state,
+        isDateInitialized: true,
+      }
     case "DATE_RANGE":
       const item = action.payload;
-      const start = item.selection.startDate;
-      const end = item.selection.endDate;
+      const start = item.startDate;
+      const end = item.endDate;
       const numberOfNights = differenceInDays(end, start);
       return {
         ...state,
         startDate: start,
         endDate: end,
         numberOfNights,
-        selectedRange: [item.selection],
+        selectedRange: item,
       };
+    case "CHECK_AGEGROUP_ENABLED":
+      return {
+        ...state,
+        checkAgeGroupEnabled: action.payload
+      }
     case "UPDATE_ROOM_IN_SEARCH":
       const roomspayload = action.payload;
       const updatedRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }];
@@ -61,7 +58,6 @@ function reducer(state, action) {
       });
       return {
         ...state,
-        checkAgeGroupEnabled: true,
         roomsInSearch: updatedRoomsInSearch,
         searchedRooms: roomSearchData,
       };
@@ -223,7 +219,7 @@ function reducer(state, action) {
           }
         }),
       }
-      case "REMOVE_SELECTED_ROOM":
+    case "REMOVE_SELECTED_ROOM":
       const revmoedRoom = action.payload;
       return {
         ...state,

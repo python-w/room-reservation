@@ -1,19 +1,31 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Box, Button } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from "@material-ui/core";
 import { useSearch } from "../../contexts/SearchContext";
+import { v4 as uuidv4 } from "uuid";
 
 export default function RoomCard({
-  checkAgeGroupEnabled,
   allAgeGroupsList,
   ageGroupTypeMaxOccupants,
   handleCloseModal,
-  ageGroupLoading}) {
+  ageGroupLoading }) {
   const modalBodyRef = useRef(null);
   const { state, dispatch } = useSearch();
-  const { roomsInSearch, searchedRooms } = state;
+  const { roomsInSearch, searchedRooms, checkAgeGroupEnabled } = state;
+
+
+  useEffect(() => {
+    if (!checkAgeGroupEnabled && roomsInSearch.length === 0) {
+      const initialRoom = {
+        id: uuidv4(),
+        name: "Room # 1",
+      };
+      dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
+    }
+  }, [checkAgeGroupEnabled, dispatch, roomsInSearch.length])
+
   const handleAddRoom = () => {
     const newRoomNumber = roomsInSearch.length + 1;
     const newRoom = {
@@ -27,11 +39,11 @@ export default function RoomCard({
     dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: newRoom })
     dispatch({ type: "UPDATE_GUESTS" })
     setTimeout(() => {
-			modalBodyRef.current.scrollTo({
-				top: modalBodyRef.current.scrollHeight,
-				behavior: 'smooth'
-			});
-		}, 10);
+      modalBodyRef.current.scrollTo({
+        top: modalBodyRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 10);
   };
 
   const handleRemoveRoom = (id, roomIndex) => {
@@ -61,7 +73,7 @@ export default function RoomCard({
     }
   };
 
-  
+
   return (
     <>
       <div ref={modalBodyRef} className="inline_modal_body">
@@ -89,13 +101,13 @@ export default function RoomCard({
               </div>}
           </div>
         ))}
-      </div>
-      <Box className="add_room_btn" >
-        <button className="btn btn-wc-outlined" onClick={handleAddRoom}>
-          <FontAwesomeIcon icon={faPlus} className="mr-2" />
-          Add Another Room
-        </button>
-      </Box>
+      </div>      
+        <Box className="add_room_btn" >
+          <button className="btn btn-wc-outlined" onClick={handleAddRoom}>
+            <FontAwesomeIcon icon={faPlus} className="mr-2" />
+            Add Another Room
+          </button>
+        </Box>
       <Box className='inline_modal_footer'>
         <button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
       </Box>

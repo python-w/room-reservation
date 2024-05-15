@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { format } from 'date-fns';
+import { format, addDays, differenceInDays } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck, faCalendar, faUser } from '@fortawesome/free-regular-svg-icons';
@@ -26,15 +26,29 @@ export default function Search() {
   const [openChkAvlModal, setOpenChkAvlModal] = useState(false);
   useScrollToRef(roomsModalOpen, roomCardRef);
 
-  const { state, dispatch } = useSearch();
-  const { startDate, endDate, totalGuests, roomsInSearch, isLoading } = state;
+  const [dateRange, setDateRange] = useState(
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 2),
+      key: "selection",
+    }
+  );
 
-  const checkInDate = format(startDate, 'E, d MMM');
-  const checkOutDate = format(endDate, 'E, d MMM');
+  const { state, dispatch } = useSearch();
+  const { startDate, endDate, totalGuests, roomsInSearch, isLoading, checkAgeGroupEnabled, isDateInitialized } = state;
+
+  const checkInDate = format(startDate || dateRange.startDate, 'E, d MMM');
+  const checkOutDate = format(endDate || dateRange.endDate, 'E, d MMM');
+
+  useEffect(() => {
+    if (!isDateInitialized) {
+      dispatch({ type: "DATE_RANGE", payload: dateRange });
+      dispatch({ type: "DATE_INITIALIZED" });
+    }
+  }, [])
 
   //Fetch Age Group List
   const { loading: ageGroupLoading, sendRequest } = useAPI();
-  const [checkAgeGroupEnabled, setCheckAgeGroupEnabled] = useState(false);
   const [allAgeGroupsList, setAllAgeGroupsList] = useState([]);
 
   useEffect(() => {
@@ -43,7 +57,8 @@ export default function Search() {
         const res = await sendRequest({
           url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
         });
-        setCheckAgeGroupEnabled(res);
+
+        dispatch({ type: "CHECK_AGEGROUP_ENABLED", payload: res.ok });
 
         if (res.ok === true) {
           if (ageGroupLoading && roomsInSearch.length === 0) {
@@ -63,20 +78,14 @@ export default function Search() {
             };
             dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
             setAllAgeGroupsList(data);
-          } 
-        } 
+          }
+        }
       } catch (error) {
-        const initialRoom = {
-          id: uuidv4(),
-          name: "Room # 1",
-        };
-        dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
         console.log(error.message)
       }
     };
-
     fetchData();
-  }, []);
+  }, [sendRequest]);
 
 
   //Handle Date and Rooms Modal
@@ -181,6 +190,8 @@ export default function Search() {
                 </div>
                 {dateModalOpen && (
                   <StyledDateRangePicker
+                    dateRange={dateRange}
+                    setDateRange={setDateRange}
                     handleCloseModal={handleCloseModal}
                   />
                 )}
@@ -214,7 +225,6 @@ export default function Search() {
                     <AddRoomCard
                       roomCardRef={roomCardRef}
                       handleCloseModal={handleCloseModal}
-                      checkAgeGroupEnabled={checkAgeGroupEnabled}
                       allAgeGroupsList={allAgeGroupsList}
                       ageGroupLoading={ageGroupLoading}
                     />

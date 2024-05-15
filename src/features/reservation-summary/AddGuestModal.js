@@ -27,7 +27,7 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
     } catch (error) {
       return false;
     }
-  }; 
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,18 +44,25 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
     }));
   };
 
-  const validateReservationGuestForm = () => {
+  const emailMandatoryForGuestCreation = true;
+  const phoneMandatoryForGuestCreation = false;
+
+  const validateGuestForm = () => {
     const newErrors = {};
     if (!formData.guestname) {
       newErrors.guestname = 'Please enter your guest name';
     }
-    if (!formData.email) {
-      newErrors.email = 'Please enter your email';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+    if (emailMandatoryForGuestCreation) {
+      if (!formData.email) {
+        newErrors.email = 'Please enter your email';
+      } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        newErrors.email = 'Please enter a valid email';
+      }
     }
-    if (!isPhoneValid(formData.phone)) {
-      newErrors.phone = 'Please enter your phone number';
+    if (phoneMandatoryForGuestCreation) {
+      if (!isPhoneValid(formData.phone)) {
+        newErrors.phone = 'Please enter your phone number';
+      }
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -63,12 +70,12 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
 
 
   const handleBlur = () => {
-    validateReservationGuestForm();
+    validateGuestForm();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateReservationGuestForm()) {
+    if (validateGuestForm()) {
       dispatch({ type: "ADD_GUEST", payload: { guestBookingId: bookingId, formData } });
       handleClose();
       validateReservation()

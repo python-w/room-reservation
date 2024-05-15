@@ -1353,23 +1353,30 @@ body {
                 }
               }
 
+              &>div {
+                &:first-child {
+                  flex: 0 0 220px;
+                  width: 220px;
+                  padding-right: 15px;
+
+                  @media #{$mq-4k} {
+                    flex: 0 0 get4k(220px);
+                    width: get4k(220px);
+                    padding-left: get4k(15px);
+                  }
+                }
+              }
+
               strong {
                 display: inline-block;
-                margin-left: 10px;
                 color: var(--primary-color);
-
-                @media #{$mq-4k} {
-                  margin-left: get4k(10px);
-                }
               }
 
               .MuiAutocomplete-inputRoot {
                 width: 250px;
-                margin-left: 10px;
 
                 @media #{$mq-4k} {
                   width: get4k(250px);
-                  margin-left: get4k(10px);
                 }
 
                 @media #{$mq-tablet-lg} {
@@ -1377,10 +1384,10 @@ body {
                 }
 
                 input.MuiAutocomplete-input {
-                  height: calc(var(--field-height) * 1px);
+                  height: calc((var(--field-height) - 6) * 1px);
 
                   @media #{$mq-4k} {
-                    height: calc(var(--field-height) / var(--4k-ratio) * 1vw);
+                    height: calc((var(--field-height) - 6 ) / var(--4k-ratio) * 1vw);
                     border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw) !important;
                   }
                 }
@@ -1408,9 +1415,18 @@ body {
                   }
 
                   li {
+                    p{
+                      span{
+                        display: inline-block;
+                        padding-right: 12px;
+                        @media #{$mq-4k}{
+                        padding-right: get4k(12px);
+                        }
+                      }
                     strong {
                       color: var(--wc-font-color);
                     }
+                  }
 
                     &:last-child {
                       margin-bottom: 0;
@@ -2062,7 +2078,8 @@ body {
             font-size: calc(var(--wc-font-size) * 1px);
             color: var(--heading-color6);
             font-weight: 600;
-            @media #{$mq-tablet-lg}{
+
+            @media #{$mq-tablet-lg} {
               font-size: calc((var(--wc-font-size) - 2) * 1px);
             }
           }
@@ -2255,7 +2272,10 @@ body {
 
           .card-address {
             color: inherit;
-
+            text-decoration: underline;
+            &:hover {
+              text-decoration: none;
+            }
             .svg-inline--fa {
               color: var(--wc-font-color);
               opacity: 0.8;
@@ -2461,6 +2481,10 @@ body {
           .btn-wc-transparent {
             padding: 0;
             margin: 0;
+            text-decoration: underline;
+            &:hover{
+              text-decoration: none;
+            }
 
             @media #{$mq-4k} {
               padding: 0;
@@ -2610,12 +2634,17 @@ body {
         .btn.btn-back {
           padding: 0;
           font-size: calc(var(--wc-font-size) * 1px);
-          margin: 2rem 0;
+          margin-bottom: 2rem;
 
           @media #{$mq-4k} {
-            margin: get4k(32px) 0;
+            margin-bottom: get4k(32px);
             padding: 0;
             font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
+          }
+
+          @media #{$mq-tablet-sm} {
+            font-size: calc((var(--wc-font-size) - 4) * 1px);
+            margin-bottom: 16px;
           }
         }
 
@@ -2667,7 +2696,7 @@ body {
 
           .card-address {
             color: inherit;
-
+            text-decoration: underline;
             &:hover {
               text-decoration: none;
             }
@@ -3731,6 +3760,7 @@ body {
       border: 1px solid var(--wc-border-color);
       box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.1);
       border-radius: calc(var(--borderRadius) * 1px);
+      overflow: hidden;
 
       @media #{$mq-4k} {
         width: get4k(570px);

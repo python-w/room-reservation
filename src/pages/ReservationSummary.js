@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { createBooking } from "../services/apiRooms";
 import { useEffect, useState } from "react";
 import CheckInOutCard from "../ui/CheckInOutCard";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal } from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 export default function ReservationSummary() {
   const [error, setError] = useState(null);
@@ -13,7 +15,7 @@ export default function ReservationSummary() {
   const [showErrors, setShowErrors] = useState(false)
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
-  const { selectedRooms } = state;
+  const { selectedRooms, selectedRange } = state;
 
   const handleSearchAgain = () => {
     navigate("/");
@@ -48,16 +50,15 @@ export default function ReservationSummary() {
     try {
       if (validateReservation()) {
         await createBooking(selectedRooms);
-        navigate("/bookings");
+        navigate("/reservation-confirmation");
       }
     } catch (error) {
       setError(error);
     }
   };
 
-
   return (
-    <div className="res_sum">
+    <div className="res_sum">      
       <button
         onClick={() => navigate("/searchresults")}
         className="btn btn-wc-transparent btn-back"
@@ -66,7 +67,7 @@ export default function ReservationSummary() {
         Go Back
       </button>
       <h3>Reservation Summary</h3>
-      <CheckInOutCard />
+      {selectedRange && <CheckInOutCard />}
       <div className="room_count">
         <span>{selectedRooms.length}</span>{" "}
         {selectedRooms.length > 1 ? "Rooms" : "Room"} selected
@@ -85,7 +86,7 @@ export default function ReservationSummary() {
       <form onSubmit={handleSubmit} className="d-flex justify-content-end">
         <input
           type="hidden"
-          name="bookedRoom"
+          name="selectedRooms"
           value={JSON.stringify(selectedRooms)}
         />
         <button

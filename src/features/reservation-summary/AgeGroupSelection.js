@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Autocomplete } from "@material-ui/lab";
 import {
-  FormControl,
   Radio,
   TextField,
 } from "@material-ui/core";

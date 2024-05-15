@@ -158,7 +158,7 @@ export default function RoomDetails() {
                   <div className="card-body">
                     <div className="rate-dInner">
                       <h6 className="card-heading">
-                        Guest
+                        Guests
                       </h6>
                       <AgeGroupSelection bookingId={roomId} />
                     </div>

@@ -3,25 +3,34 @@ import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { Box, Button, Typography } from "@material-ui/core";
 import { useSearch } from "../../contexts/SearchContext";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrollToRef from "../../hooks/ScrollToRef";
+import { differenceInDays } from "date-fns";
+import AlertModal from "../../ui/AlertModal";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
-export default function StyledDateRangePicker({ handleCloseModal }) {
+
+export default function StyledDateRangePicker({ handleCloseModal, dateRange, setDateRange, minDate }) {
   const { isTabletSMScreen } = useWindowWidth();
   const refDateModal = useRef(null);
   const calendarRef = useRef(null);
   useScrollToRef(refDateModal, calendarRef);
 
   const { state, dispatch } = useSearch();
-  const { selectedRange } = state;
+  const { numberOfNights } = state;
 
-  const today = new Date();
-  const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const [isNightsExceed, setIsNightsExceed] = useState(false)
 
   const handleDateChange = (item) => {
-    dispatch({ type: "DATE_RANGE", payload: item });
+    const numberOfNights = differenceInDays(item.selection.endDate, item.selection.startDate);
+    if (numberOfNights > 30) {
+      setIsNightsExceed(true)
+    } else {
+      setDateRange(item.selection)
+      dispatch({ type: "DATE_RANGE", payload: item.selection });
+    }
   };
 
   useOnClickOutside(refDateModal, () => {
@@ -33,11 +42,17 @@ export default function StyledDateRangePicker({ handleCloseModal }) {
       refDateModal.current = node;
       calendarRef.current = node;
     }
-}, [calendarRef]);
+  }, [calendarRef]);
 
 
   return (
     <>
+      <AlertModal isShow={isNightsExceed} handleClose={() => setIsNightsExceed(false)}>
+        <Alert severity="warning" >
+          <AlertTitle>Warning</AlertTitle>
+          {`No. of nights are exceeding the limit, more than ${numberOfNights} nights are not allowed.`}
+        </Alert>
+      </AlertModal>
       <Box ref={combinedRef} className="inline_modal">
         <div className="room_card_header">
           <p>
@@ -45,7 +60,11 @@ export default function StyledDateRangePicker({ handleCloseModal }) {
           </p>
         </div>
         <Box className="inline_modal_body">
-          <DateRangePicker staticRanges={[]} inputRanges={[]}  minDate={minSelectableDate} onChange={handleDateChange} showSelectionPreview={false} moveRangeOnFirstSelection={false} months={isTabletSMScreen ? 1 : 2} ranges={selectedRange} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
+          <DateRangePicker
+            minDate={minDate}
+            onChange={handleDateChange}
+            showSelectionPreview={false}
+            moveRangeOnFirstSelection={false} months={isTabletSMScreen ? 1 : 2} ranges={[dateRange]} direction="horizontal" showMonthAndYearPickers={false} dateDisplayFormat="E, MMM d" showDateDisplay={false} />
         </Box>
         <Box className="inline_modal_footer">
           <button className="btn btn-wc-primary" onClick={handleCloseModal}>Done</button>
