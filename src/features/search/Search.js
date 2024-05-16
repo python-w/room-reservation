@@ -49,43 +49,38 @@ export default function Search() {
 
   //Fetch Age Group List
   const { loading: ageGroupLoading, sendRequest } = useAPI();
-  const [allAgeGroupsList, setAllAgeGroupsList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await sendRequest({
-          url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
-        });
+      const res = await sendRequest({
+        url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
+      });
 
-        dispatch({ type: "CHECK_AGEGROUP_ENABLED", payload: res.ok });
+      dispatch({ type: "CHECK_AGEGROUP_ENABLED", payload: res.ok });
 
-        if (res.ok === true) {
-          if (ageGroupLoading && roomsInSearch.length === 0) {
-            const req = await sendRequest({
-              url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
-            });
-            const res = await req.json();
-            const data = res.response;
-            const initialRoom = {
-              id: uuidv4(),
-              name: "Room # 1",
-              ageGroups: data.map((ageGroup, index) => ({
-                name: ageGroup.ageGroupName,
-                ageGroupId: ageGroup.ageGroupId,
-                count: index === 0 ? 1 : 0
-              }))
-            };
-            dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
-            setAllAgeGroupsList(data);
-          }
+      if (res.ok === true) {
+        if (roomsInSearch.length === 0) {
+          const req = await sendRequest({
+            url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
+          });
+          const res = await req.json();
+          const data = res.response;
+          const initialRoom = {
+            id: uuidv4(),
+            name: "Room # 1",
+            ageGroups: data.map((ageGroup, index) => ({
+              name: ageGroup.ageGroupName,
+              ageGroupId: ageGroup.ageGroupId,
+              count: index === 0 ? 1 : 0
+            }))
+          };
+          dispatch({ type: "ROOM_INITIALIZED", payload: initialRoom });
+          dispatch({ type: "AGE_GROUP_LIST", payload: data });
         }
-      } catch (error) {
-        console.log(error.message)
       }
     };
     fetchData();
-  }, [sendRequest]);
+  }, []);
 
 
   //Handle Date and Rooms Modal
@@ -225,7 +220,6 @@ export default function Search() {
                     <AddRoomCard
                       roomCardRef={roomCardRef}
                       handleCloseModal={handleCloseModal}
-                      allAgeGroupsList={allAgeGroupsList}
                       ageGroupLoading={ageGroupLoading}
                     />
                   )}

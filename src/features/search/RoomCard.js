@@ -7,13 +7,12 @@ import { useSearch } from "../../contexts/SearchContext";
 import { v4 as uuidv4 } from "uuid";
 
 export default function RoomCard({
-  allAgeGroupsList,
   ageGroupTypeMaxOccupants,
   handleCloseModal,
   ageGroupLoading }) {
   const modalBodyRef = useRef(null);
   const { state, dispatch } = useSearch();
-  const { roomsInSearch, searchedRooms, checkAgeGroupEnabled } = state;
+  const { allAgeGroupsList, roomsInSearch, searchedRooms, checkAgeGroupEnabled } = state;
 
 
   useEffect(() => {
@@ -22,9 +21,9 @@ export default function RoomCard({
         id: uuidv4(),
         name: "Room # 1",
       };
-      dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: initialRoom });
+      dispatch({ type: "ROOM_INITIALIZED", payload: initialRoom });
     }
-  }, [checkAgeGroupEnabled, dispatch, roomsInSearch.length])
+  }, [])
 
   const handleAddRoom = () => {
     const newRoomNumber = roomsInSearch.length + 1;

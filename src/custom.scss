@@ -1387,7 +1387,7 @@ body {
                   height: calc((var(--field-height) - 6) * 1px);
 
                   @media #{$mq-4k} {
-                    height: calc((var(--field-height) - 6 ) / var(--4k-ratio) * 1vw);
+                    height: calc((var(--field-height) - 6) / var(--4k-ratio) * 1vw);
                     border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw) !important;
                   }
                 }
@@ -1415,18 +1415,20 @@ body {
                   }
 
                   li {
-                    p{
-                      span{
+                    p {
+                      span {
                         display: inline-block;
                         padding-right: 12px;
-                        @media #{$mq-4k}{
-                        padding-right: get4k(12px);
+
+                        @media #{$mq-4k} {
+                          padding-right: get4k(12px);
                         }
                       }
-                    strong {
-                      color: var(--wc-font-color);
+
+                      strong {
+                        color: var(--wc-font-color);
+                      }
                     }
-                  }
 
                     &:last-child {
                       margin-bottom: 0;
@@ -1762,8 +1764,7 @@ body {
             }
 
             .rdrInRange {
-              color: var(--primary-color) !important;
-              opacity: 0.1;
+              color: #deedff !important;
             }
 
             .rdrStartEdge {
@@ -1823,8 +1824,7 @@ body {
 
             .rdrStartEdge,
             .rdrEndEdge {
-              color: #cadff9 !important;
-
+              color: #deedff !important;
               &::after {
                 content: "";
                 background: var(--primary-color) !important;
@@ -2273,9 +2273,11 @@ body {
           .card-address {
             color: inherit;
             text-decoration: underline;
+
             &:hover {
               text-decoration: none;
             }
+
             .svg-inline--fa {
               color: var(--wc-font-color);
               opacity: 0.8;
@@ -2482,7 +2484,8 @@ body {
             padding: 0;
             margin: 0;
             text-decoration: underline;
-            &:hover{
+
+            &:hover {
               text-decoration: none;
             }
 
@@ -2697,6 +2700,7 @@ body {
           .card-address {
             color: inherit;
             text-decoration: underline;
+
             &:hover {
               text-decoration: none;
             }
@@ -3794,6 +3798,34 @@ body {
 
         @media #{$mq-4k} {
           padding: get4k(24px);
+        }
+      }
+    }
+
+    &.alert_modal {
+      .MuiAlert-root {
+        font-family: inherit;
+        font-size: calc(var(--wc-font-size) * 1px);
+        padding: 20px 24px;
+
+        @media #{$mq-4k} {
+          font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
+          padding: get4k(20px) get4k(24px);
+        }
+
+        .MuiAlert-icon {
+          font-size: calc((var(--wc-font-size) + 12) * 1px);
+          @media #{$mq-4k}{
+            font-size: calc((var(--wc-font-size) + 12) / var(--4k-ratio) * 1vw);
+          }
+        }
+
+        .MuiAlertTitle-root {
+          font-size: calc((var(--wc-font-size) + 4) * 1px);
+          font-family: inherit;
+          @media #{$mq-4k}{
+            font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
+          }
         }
       }
     }

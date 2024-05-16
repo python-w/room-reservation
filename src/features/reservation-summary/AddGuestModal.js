@@ -45,7 +45,7 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
   };
 
   const emailMandatoryForGuestCreation = true;
-  const phoneMandatoryForGuestCreation = false;
+  const phoneMandatoryForGuestCreation = true;
 
   const validateGuestForm = () => {
     const newErrors = {};
@@ -54,14 +54,16 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
     }
     if (emailMandatoryForGuestCreation) {
       if (!formData.email) {
-        newErrors.email = 'Please enter your email';
+        newErrors.email = 'Please enter your guest email';
       } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
         newErrors.email = 'Please enter a valid email';
       }
     }
     if (phoneMandatoryForGuestCreation) {
-      if (!isPhoneValid(formData.phone)) {
-        newErrors.phone = 'Please enter your phone number';
+      if (formData.phone === "" || formData.phone.length < 6) {
+        newErrors.phone = 'Please enter your guest phone number';
+      } else if (formData.phone && !isPhoneValid(formData.phone)) {
+        newErrors.phone = 'Please enter a valid phone number';        
       }
     }
     setErrors(newErrors);

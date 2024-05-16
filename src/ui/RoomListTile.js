@@ -91,7 +91,6 @@ export default function RoomListTile({ room, index }) {
       payload: { roomId: room.roomId, count },
     });
     dispatch({ type: "BOOK_ROOM_ADD", roomId: room.roomId });
-
   };
 
   const handleRoomSub = (roomId) => {
@@ -207,7 +206,8 @@ export default function RoomListTile({ room, index }) {
                 View More Details
               </Link>
 
-              {room.websiteView === 0 && room.isSelected ? (
+              {room.websiteView === 0 && 
+                room.isSelected ? (
                 <div className="room_counter">
                   <p>Rooms</p>
                   <Button
@@ -227,7 +227,7 @@ export default function RoomListTile({ room, index }) {
                   </Button>
                 </div>
               ) : (
-                room.websiteView === 0 && !room.isSelected &&
+                !room.isSelected &&
                 bookingCount !== searchedRooms.length && (
                   <div className="room_counter">
                     <p>Rooms</p>

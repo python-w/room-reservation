@@ -44,6 +44,30 @@ function reducer(state, action) {
         ...state,
         checkAgeGroupEnabled: action.payload
       }
+    case "AGE_GROUP_LIST": 
+      return {
+        ...state,
+        allAgeGroupsList: action.payload
+      }
+    case "ROOM_INITIALIZED": 
+      const initRoom = action.payload;
+    const initRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...initRoom }];
+    const roomInitData = initRoomsInSearch.map((room) => {
+      if (room.ageGroups) {
+        const roomData = {};
+        room.ageGroups.forEach((ageGroup) => {
+          roomData[ageGroup.ageGroupId] = ageGroup.count;
+        });
+        return roomData;
+      } else {
+        return room;
+      }
+    });
+    return {
+      ...state,
+      roomsInSearch: initRoomsInSearch,
+      searchedRooms: roomInitData,
+    };
     case "UPDATE_ROOM_IN_SEARCH":
       const roomspayload = action.payload;
       const updatedRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }];
@@ -87,6 +111,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         availableRooms: searchrooms,
+        selectedRooms: [],
         isSearchFixed: true,
       };
     case "LOADING_ROOMS":
