@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { createBooking } from "../services/apiRooms";
 import { useEffect, useState } from "react";
 import CheckInOutCard from "../ui/CheckInOutCard";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal } from "@material-ui/core";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import useScrollToTop from '../hooks/useScrollToTop'; 
 
 export default function ReservationSummary() {
+  useScrollToTop();
   const [error, setError] = useState(null);
   const [formErrors, setFormError] = useState({});
   const [showErrors, setShowErrors] = useState(false)

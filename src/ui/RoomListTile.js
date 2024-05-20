@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import extractAmenities from "../utils/extractAmenities";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 
-export default function RoomListTile({ room, index }) {  
+export default function RoomListTile({ room, index }) {
   const amenitiesRef = useRef();
   const [amenitiesWidth, setAmenitiesWidth] = useState(0);
   const { state: searchState, dispatch } = useSearch();
@@ -206,7 +206,7 @@ export default function RoomListTile({ room, index }) {
                 View More Details
               </Link>
 
-              {room.websiteView === 0 && 
+              {room.websiteView === 0 &&
                 room.isSelected ? (
                 <div className="room_counter">
                   <p>Rooms</p>
@@ -227,7 +227,7 @@ export default function RoomListTile({ room, index }) {
                   </Button>
                 </div>
               ) : (
-                !room.isSelected &&
+                room.websiteView === 0 && !room.isSelected &&
                 bookingCount !== searchedRooms.length && (
                   <div className="room_counter">
                     <p>Rooms</p>

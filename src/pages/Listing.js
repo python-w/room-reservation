@@ -9,8 +9,11 @@ import ListingSkeleton from "../ui/ListingSkeleton";
 import Search from "../features/search/Search";
 import { Alert } from "@material-ui/lab";
 import IndexPlaceholder from "../ui/IndexPlaceholder"
+import useScrollToTop from "../hooks/useScrollToTop";
 
 export function RoomListing() {
+  useScrollToTop();
+
   const { state } = useSearch();
   const { isLargeScreen } = useWindowWidth();
   const {

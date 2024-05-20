@@ -16,6 +16,7 @@ import useAPI from '../../hooks/useAPI';
 import { v4 as uuidv4 } from "uuid";
 import useScrollToRef from "../../hooks/ScrollToRef";
 
+
 export default function Search() {
   const navigate = useNavigate();
   const isBottom = useInfiniteScroll();
@@ -175,11 +176,11 @@ export default function Search() {
                   onClick={handleDateModalOpen}
                 >
                   <div>
-                    <FontAwesomeIcon icon={faCalendar} />{" "}
+                  <FontAwesomeIcon icon={faCalendar} />
                     <Typography component="span">{checkInDate}</Typography>
                   </div>
                   <div>
-                    <FontAwesomeIcon icon={faCalendar} />{" "}
+                  <FontAwesomeIcon icon={faCalendar} />
                     <Typography component="span">{checkOutDate}</Typography>
                   </div>
                 </div>

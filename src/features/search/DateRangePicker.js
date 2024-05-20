@@ -21,7 +21,7 @@ export default function StyledDateRangePicker({ handleCloseModal, dateRange, set
   const { state, dispatch } = useSearch();
   const { numberOfNights } = state;
 
-  const [isNightsExceed, setIsNightsExceed] = useState(false)
+  const [isNightsExceed, setIsNightsExceed] = useState(true)
 
   const handleDateChange = (item) => {
     const numberOfNights = differenceInDays(item.selection.endDate, item.selection.startDate);
@@ -47,12 +47,12 @@ export default function StyledDateRangePicker({ handleCloseModal, dateRange, set
 
   return (
     <>
-      <AlertModal isShow={isNightsExceed} handleClose={() => setIsNightsExceed(false)}>
-        <Alert severity="warning" >
-          <AlertTitle>Warning</AlertTitle>
-          {`No. of nights are exceeding the limit, more than ${numberOfNights} nights are not allowed.`}
-        </Alert>
-      </AlertModal>
+      <AlertModal
+        isShow={isNightsExceed}        
+        severity="warning"
+        alertTitle="Warning"
+        alertmsg={`No. of nights are exceeding the limit, more than ${numberOfNights} nights are not allowed.`}
+        handleClose={() => setIsNightsExceed(false)} />
       <Box ref={combinedRef} className="inline_modal">
         <div className="room_card_header">
           <p>

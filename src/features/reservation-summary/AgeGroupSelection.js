@@ -1,32 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Autocomplete } from "@material-ui/lab";
 import {
-  Radio,
   TextField,
 } from "@material-ui/core";
 import { useSearch } from '../../contexts/SearchContext';
 
 export default function AgeGroupSelection({ roomIndex, bookingId }) {
-  const { state, dispatch } = useSearch()
+  const { state, dispatch } = useSearch();
   const { roomsInSearch } = state;
-  const options = roomsInSearch.reduce((acc, room) => {
-    let roomLabel = "";
-    if (room.ageGroups) {
-      roomLabel = room.ageGroups
-        .filter(group => group.count > 0)
-        .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
-        .join(', ');
-    }
-    if (roomLabel) {
-      acc.push({
-        label: roomLabel,
-        value: room.id
-      });
-    }
-    return acc;
-  }, []);
+  const [options, setOptions] = useState([]);
 
-  const [selectedOption, setSelectedOption] = useState(options[roomIndex - 1]);
+  useEffect(() => {
+    const newOptions = roomsInSearch.reduce((acc, room) => {
+      let roomLabel = "";
+      if (room.ageGroups) {
+        roomLabel = room.ageGroups
+          .filter(group => group.count > 0)
+          .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+          .join(', ');
+      }
+      if (roomLabel) {
+        acc.push({
+          label: roomLabel,
+          value: room.id
+        });
+      }
+      return acc;
+    }, []);
+    setOptions(newOptions);
+  }, [roomsInSearch]);
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  useEffect(() => {
+    if (options.length > 0 && roomIndex > 0 && roomIndex <= options.length) {
+      setSelectedOption(options[roomIndex - 1]);
+    }
+  }, [options, roomIndex]);
 
   const handleChange = (event, value) => {
     setSelectedOption(value);
@@ -46,20 +56,7 @@ export default function AgeGroupSelection({ roomIndex, bookingId }) {
         <TextField {...params} placeholder="Select an option" />
       )}
       onChange={handleChange}
-      value={selectedOption}
-      getOptionSelected={(option, value) => option.label === value.label}
-      renderOption={(option) => (
-        <>
-          <Radio
-            style={{ marginRight: 12 }}
-            checked={selectedOption && selectedOption.label === option.label}
-            inputProps={{ "aria-label": `Age Group ${option.label}` }}
-          />
-          <div className="age_group_selection_listbox">
-            <span>{option.label}</span>
-          </div>
-        </>
-      )}
+      value={selectedOption}      
     />
   );
 }

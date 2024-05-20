@@ -1,10 +1,11 @@
 import React from 'react'
-import { Modal } from '@material-ui/core'
+import { Button, Modal } from '@material-ui/core'
+import { Alert, AlertTitle } from '@material-ui/lab'
 
-export default function AlertModal({isShow, handleClose, children}) {  
+export default function AlertModal({ isShow, handleClose, severity, alertTitle, alertmsg }) {
 
     return (
-        <Modal            
+        <Modal
             className="mui_modal alert_modal"
             open={isShow}
             onClose={handleClose}
@@ -15,7 +16,15 @@ export default function AlertModal({isShow, handleClose, children}) {
             }}
         >
             <div className="modal_dialog">
-                {children}               
+                <Alert severity={severity} >
+                    <AlertTitle>{alertTitle}</AlertTitle>
+                    <p>{alertmsg}</p>
+                    <div className="alertModal_footer">
+                        <Button onClick={() => handleClose} color="primary">
+                            Close
+                        </Button>
+                    </div>
+                </Alert>
             </div>
         </Modal>
     )

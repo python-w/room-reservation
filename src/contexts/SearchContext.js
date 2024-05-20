@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
-import {differenceInDays} from "date-fns"
+import { differenceInDays } from "date-fns"
 
 const initialState = {
   searchedRooms: [],
@@ -44,30 +44,30 @@ function reducer(state, action) {
         ...state,
         checkAgeGroupEnabled: action.payload
       }
-    case "AGE_GROUP_LIST": 
+    case "AGE_GROUP_LIST":
       return {
         ...state,
         allAgeGroupsList: action.payload
       }
-    case "ROOM_INITIALIZED": 
+    case "ROOM_INITIALIZED":
       const initRoom = action.payload;
-    const initRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...initRoom }];
-    const roomInitData = initRoomsInSearch.map((room) => {
-      if (room.ageGroups) {
-        const roomData = {};
-        room.ageGroups.forEach((ageGroup) => {
-          roomData[ageGroup.ageGroupId] = ageGroup.count;
-        });
-        return roomData;
-      } else {
-        return room;
-      }
-    });
-    return {
-      ...state,
-      roomsInSearch: initRoomsInSearch,
-      searchedRooms: roomInitData,
-    };
+      const initRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...initRoom }];
+      const roomInitData = initRoomsInSearch.map((room) => {
+        if (room.ageGroups) {
+          const roomData = {};
+          room.ageGroups.forEach((ageGroup) => {
+            roomData[ageGroup.ageGroupId] = ageGroup.count;
+          });
+          return roomData;
+        } else {
+          return room;
+        }
+      });
+      return {
+        ...state,
+        roomsInSearch: initRoomsInSearch,
+        searchedRooms: roomInitData,
+      };
     case "UPDATE_ROOM_IN_SEARCH":
       const roomspayload = action.payload;
       const updatedRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }];
@@ -112,7 +112,7 @@ function reducer(state, action) {
         isLoading: false,
         availableRooms: searchrooms,
         selectedRooms: [],
-        isSearchFixed: true,
+        bookingCount: 0,
       };
     case "LOADING_ROOMS":
       return {

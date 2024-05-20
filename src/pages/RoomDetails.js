@@ -15,9 +15,11 @@ import { CircularProgress } from "@material-ui/core";
 import Axios from "axios";
 import { Alert } from "@material-ui/lab";
 import AgeGroupSelection from "../features/reservation-summary/AgeGroupSelection";
-
+import useScrollToTop from "../hooks/useScrollToTop";
 
 export default function RoomDetails() {
+  useScrollToTop();
+
   const navigate = useNavigate();
   const { roomId } = useParams();
   const { state } = useSearch();

@@ -15,6 +15,7 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
     guestname: "",
     email: "",
     phone: "",
+    homePhone: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -37,15 +38,16 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
     }));
   };
 
-  const handlePhoneChange = (value) => {
+  const handlePhoneChange = (fieldName, value) => {
     setFormData((prevState) => ({
       ...prevState,
-      phone: value,
+      [fieldName]: value,
     }));
   };
 
   const emailMandatoryForGuestCreation = true;
   const phoneMandatoryForGuestCreation = true;
+  const showHomePhoneForGuestCreation = true;
 
   const validateGuestForm = () => {
     const newErrors = {};
@@ -61,10 +63,13 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
     }
     if (phoneMandatoryForGuestCreation) {
       if (formData.phone === "" || formData.phone.length < 6) {
-        newErrors.phone = 'Please enter your guest phone number';
+        newErrors.phone = 'Please enter your guest cell number';
       } else if (formData.phone && !isPhoneValid(formData.phone)) {
-        newErrors.phone = 'Please enter a valid phone number';        
+        newErrors.phone = 'Please enter a valid cell number';
       }
+    }
+    if (formData.phone.length > 6 && !isPhoneValid(formData.homePhone)) {
+      newErrors.homePhone = 'Please enter a valid phone number';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -104,7 +109,7 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
           <div className="add_guest_form">
             <form onSubmit={handleSubmit}>
               <div className="form_group">
-                <label>Name</label>
+                <label>Full Name</label>
                 <input
                   type="text"
                   name="guestname"
@@ -128,16 +133,29 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
                 {errors.email && <Error message={errors.email} />}
               </div>
               <div className="form_group">
-                <label>Phone Number</label>
+                <label>Cell Number</label>
                 <PhoneInput
                   defaultCountry="us"
                   value={formData.phone}
-                  onChange={handlePhoneChange}
-                  placeholder="Enter phone number"
+                  onChange={(value) => handlePhoneChange('phone', value)}
+                  placeholder="Enter cell number"
                   onBlur={handleBlur}
                 />
                 {errors.phone && <Error message={errors.phone} />}
               </div>
+              {showHomePhoneForGuestCreation &&
+                <div className="form_group">
+                  <label>Home Phone Number</label>
+                  <PhoneInput
+                    defaultCountry="us"
+                    value={formData.homePhone}
+                    onChange={(value) => handlePhoneChange('homePhone', value)}
+                    placeholder="Enter home phone number"
+                    onBlur={handleBlur}
+                  />
+                  {errors.homePhone && <Error message={errors.homePhone} />}
+                </div>
+              }
               <div className="d-flex justify-content-end">
                 <button className="btn btn-wc-primary">
                   <FontAwesomeIcon icon={faCheck} className="mr-2" />

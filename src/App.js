@@ -15,7 +15,7 @@ const router = (
       <Route path="/searchresults" element={<RoomListing />} />
       <Route path="/room/:roomId/:roomName" element={<RoomDetails />} />
       <Route path="/reservation-summary" element={<ReservationSummary />} />
-      <Route path="/bookings" element={<Confirmation />} />
+      <Route path="/reservation-confirmation" element={<Confirmation />} />
     </Routes>
   </Router>
 );

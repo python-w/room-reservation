@@ -13,7 +13,7 @@ import Error from "../../ui/Error";
 
 export default function RoomSummary({ room, index, formErrors, showErrors, validateReservation }) {
   const { state, dispatch } = useSearch();
-  const { selectedRooms, roomsInSearch } = state;
+  const { selectedRooms, roomsInSearch, checkAgeGroupEnabled } = state;
 
   const selectedRate = room.selectedRate?.value || 0;
   const discountedAmount = formatCurrency(calculateDiscountedAmount(selectedRate, room.discount || 0));
@@ -78,7 +78,12 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
                     }
                     {g.phone &&
                       <li>
-                        <p><span>Phone Number:</span><strong>{g?.phone}</strong></p>
+                        <p><span>Cell Number:</span><strong>{g?.phone}</strong></p>
+                      </li>
+                    }
+                    {g.homePhone && g.homePhone.length > 6 &&
+                      <li>
+                        <p><span>Home Phone Number:</span><strong>{g?.homePhone}</strong></p>
                       </li>
                     }
                   </ul>
@@ -88,7 +93,7 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
             {showErrors && formErrors[room.bookingId]?.reservedFor && !room.guest && <Error message={formErrors[room.bookingId]?.reservedFor} />}
 
           </li>
-          {room.occupants && room.occupants[0] !== "" &&
+          {checkAgeGroupEnabled &&
             <li>
               <div>No of persons:</div>
               {roomsInSearch.length > 1 ?

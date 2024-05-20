@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useSearch } from "../contexts/SearchContext";
 import CheckInOutCard from "../ui/CheckInOutCard";
+import useScrollToTop from '../hooks/useScrollToTop';
 
 export default function Confirmation() {
+  useScrollToTop();
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
   const { selectedRooms } = state;

@@ -506,12 +506,12 @@ body {
         }
 
         svg {
-          font-size: 18px;
+          font-size: calc((var(--wc-font-size) + 2) * 1px);
           margin-right: 8px;
           color: var(--primary-color);
 
           @media #{$mq-4k} {
-            font-size: get4k(18px);
+            font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
             margin-right: get4k(8px);
           }
         }
@@ -588,6 +588,9 @@ body {
           svg {
             font-size: calc((var(--wc-font-size) + 2) * 1px);
             color: var(--primary-color);
+            display: inline-block;
+            overflow: visible;
+            vertical-align: -0.155em;
 
             @media #{$mq-4k} {
               font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
@@ -1240,7 +1243,7 @@ body {
           }
 
           span {
-            font-weight: 800;
+            font-weight: 700;
             font-size: calc((var(--wc-font-size) + 6) * 1px);
             min-width: 32px;
             height: 32px;
@@ -1249,6 +1252,9 @@ body {
             color: #ffff;
             border-radius: 100px;
             margin-right: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
             @media #{$mq-4k} {
               font-size: calc((var(--wc-font-size) + 6) / var(--4k-ratio) * 1vw);
@@ -1384,10 +1390,10 @@ body {
                 }
 
                 input.MuiAutocomplete-input {
-                  height: calc((var(--field-height) - 6) * 1px);
+                  height: calc(var(--field-height) * 1px);
 
                   @media #{$mq-4k} {
-                    height: calc((var(--field-height) - 6) / var(--4k-ratio) * 1vw);
+                    height: calc(var(--field-height) / var(--4k-ratio) * 1vw);
                     border-radius: calc(var(--borderRadius) / var(--4k-ratio) * 1vw) !important;
                   }
                 }
@@ -1825,6 +1831,7 @@ body {
             .rdrStartEdge,
             .rdrEndEdge {
               color: #deedff !important;
+
               &::after {
                 content: "";
                 background: var(--primary-color) !important;
@@ -2266,6 +2273,7 @@ body {
               right: -2px;
               bottom: -2px;
               border: 1px solid var(--primary-color);
+              box-shadow: 0 0 0 5px #eee;
               border-radius: calc(var(--borderRadius) * 1px);
             }
           }
@@ -3244,6 +3252,25 @@ body {
       }
     }
 
+    //Custom Icons
+    svg.custom_icon {
+      font-size: calc((var(--wc-font-size) + 2) * 1px);
+      color: var(--primary-color);
+      display: inline-block;
+      vertical-align: -0.125em;
+      overflow: visible;
+      box-sizing: content-box;
+      height: 1em;
+
+      @media #{$mq-4k} {
+        font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+      }
+
+      path {
+        fill: currentColor;
+      }
+    }
+
     //MUI Customizations
     .MuiInput-root {
       .MuiInput-input {
@@ -3815,7 +3842,8 @@ body {
 
         .MuiAlert-icon {
           font-size: calc((var(--wc-font-size) + 12) * 1px);
-          @media #{$mq-4k}{
+
+          @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 12) / var(--4k-ratio) * 1vw);
           }
         }
@@ -3823,8 +3851,44 @@ body {
         .MuiAlertTitle-root {
           font-size: calc((var(--wc-font-size) + 4) * 1px);
           font-family: inherit;
-          @media #{$mq-4k}{
+
+          @media #{$mq-4k} {
             font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
+          }
+        }
+
+        .alertModal_footer {
+          display: flex;
+          justify-content: flex-end;
+
+          button {
+            color: var(--primary-color);
+            border: 1px solid;
+            line-height: 1.25;
+          }
+        }
+
+        &.MuiAlert-standardInfo {
+          button {
+            color: #2196f3;
+          }
+        }
+
+        &.MuiAlert-standardSuccess {
+          button {
+            color: #4caf50;
+          }
+        }
+
+        &.MuiAlert-standardWarning {
+          button {
+            color: #ff9800;
+          }
+        }
+
+        &.MuiAlert-standardError {
+          button {
+            color: #f44336;
           }
         }
       }
