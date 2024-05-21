@@ -1,9 +1,8 @@
 
 import { useState } from "react";
 import { format, isWithinInterval } from 'date-fns';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from "@material-ui/core";
+import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 export default function CheckAvailability({ open, handleClose }) {
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -21,9 +20,9 @@ export default function CheckAvailability({ open, handleClose }) {
 
         return (
             <div className="month_title">
-                {!isFirstMonth && <button onClick={handlePrevMonth}><FontAwesomeIcon icon={faChevronLeft} /></button>}
+                {!isFirstMonth && <button onClick={handlePrevMonth}><TbChevronLeft className="react-icon" /></button>}
                 <h3>{format(currentDate, 'MMMM yyyy')}</h3>
-                <button onClick={handleNextMonth}><FontAwesomeIcon icon={faChevronRight} /></button>
+                <button onClick={handleNextMonth}><TbChevronRight className="react-icon" /></button>
             </div>
         );
     };

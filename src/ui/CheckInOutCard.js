@@ -1,7 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarCheck } from '@fortawesome/free-regular-svg-icons';
 import { useSearch } from '../contexts/SearchContext';
 import { format } from 'date-fns';
+import { TbCalendarEvent } from 'react-icons/tb';
 
 export default function CheckInOutCard() {
     const { state } = useSearch();
@@ -17,7 +16,7 @@ export default function CheckInOutCard() {
                     <div className="res_date_card">
                         <div className="res_date_title">
                             <span>
-                                <FontAwesomeIcon icon={faCalendarCheck} />
+                                <TbCalendarEvent className="react-icon" />
                             </span>
                             <p><strong>Check in:</strong></p>
                         </div>
@@ -32,7 +31,7 @@ export default function CheckInOutCard() {
                     <div className="res_date_card">
                         <div className="res_date_title">
                             <span>
-                                <FontAwesomeIcon icon={faCalendarCheck} />
+                                <TbCalendarEvent className="react-icon" />
                             </span>
                             <p><strong>Check Out:</strong></p>
                         </div>

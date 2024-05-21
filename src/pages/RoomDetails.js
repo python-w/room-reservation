@@ -1,8 +1,5 @@
 
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import RoomDetailsFancybox from "../ui/RoomDetailsFancyBox";
 import ListingCarousel from "../ui/ListingCarousel";
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,6 +13,7 @@ import Axios from "axios";
 import { Alert } from "@material-ui/lab";
 import AgeGroupSelection from "../features/reservation-summary/AgeGroupSelection";
 import useScrollToTop from "../hooks/useScrollToTop";
+import { TbChevronLeft, TbCircleCheck, TbMapPin } from "react-icons/tb";
 
 export default function RoomDetails() {
   useScrollToTop();
@@ -68,7 +66,7 @@ export default function RoomDetails() {
         <div className="detail_page">
           {availableRooms.length > 0 &&
             <button onClick={() => navigate(-1)} className="btn btn-wc-transparent btn-back">
-              <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
+              <TbChevronLeft className="react-icon mr-2" />
               Go Back
             </button>
           }
@@ -89,7 +87,7 @@ export default function RoomDetails() {
             </h3>
             {room?.address?.addressLine1 &&
               <a href={googleMapsUrl} target="_blank" rel="noreferrer" className="card-address">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+                <TbMapPin className="react-icon mr-2" />
                 {`${room?.address?.addressLine1}, ${room?.address?.state}, ${room?.address?.postalCode}`}
               </a>
             }
@@ -108,7 +106,7 @@ export default function RoomDetails() {
                       <ul>
                         {amenities.map((el, index) =>
                           <li key={index}>
-                            {el in amenityIcons ? amenityIcons[el] : <FontAwesomeIcon icon={faCheckCircle} />}
+                            {el in amenityIcons ? amenityIcons[el] : <TbCircleCheck className="react-icon" />}
                             {el}
                           </li>
                         )}
@@ -133,7 +131,7 @@ export default function RoomDetails() {
                       <ul>
                         {room.roomFeatures.map((el, index) =>
                           <li key={index}>
-                            {el in featureIcons ? featureIcons[el] : <FontAwesomeIcon icon={faCheckCircle} />}
+                            {el in featureIcons ? featureIcons[el] : <TbCircleCheck className="react-icon" />}
                             {el}
                           </li>)}
                       </ul>
@@ -145,7 +143,7 @@ export default function RoomDetails() {
                       <ul>
                         {room.additionalDetails.map((el, index) =>
                           <li key={index}>
-                            {el in additionalIcons ? additionalIcons[el] : <FontAwesomeIcon icon={faCheckCircle} />}
+                            {el in additionalIcons ? additionalIcons[el] : <TbCircleCheck className="react-icon" />}
                             {el}
                           </li>)}
                       </ul>

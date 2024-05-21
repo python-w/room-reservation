@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import { amenityIcons } from '../utils/Icons'
 import { Icon } from "@material-ui/core";
+import { TbCircleCheck, TbPlus } from "react-icons/tb";
 
 export default function ListWithSummary({ items, maxWidth }) {
   const listRef = useRef(null);
@@ -46,7 +44,7 @@ export default function ListWithSummary({ items, maxWidth }) {
           }
         }
         const remainingCount = items.length - summarized.length;
-        summarized.push({ label: `${remainingCount} more...`, icon: <FontAwesomeIcon icon={faPlus} />, lastSpan: true });
+        summarized.push({ label: `${remainingCount} more...`, icon: <TbPlus className="react-icon" />, lastSpan: true });
         setSummarizedList(summarized);
         setIsSummarized(true);
       }
@@ -79,7 +77,7 @@ export default function ListWithSummary({ items, maxWidth }) {
           </span>
           :
           <span key={index} data-index={index} className="badge badge-pill badge-light lbadge-light">
-            {amenityIcons[summarizeitem] ? amenityIcons[summarizeitem] : <FontAwesomeIcon icon={faCheckCircle} />}
+            {amenityIcons[summarizeitem] ? amenityIcons[summarizeitem] : <TbCircleCheck className="react-icon" />}
             {summarizeitem}
           </span>
       ))}

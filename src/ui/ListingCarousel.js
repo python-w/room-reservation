@@ -1,11 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 import { Carousel as NativeCarousel } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/carousel/carousel.css';
 
 import '@fancyapps/ui/dist/carousel/carousel.thumbs.css';
+import { TbPhoto } from 'react-icons/tb';
 
 const defaults = {
   transition: "slide"
@@ -52,7 +51,7 @@ function Carousel({ children, showPageCount }) {
 function PageCountDisplay({ currentPage, totalPages }) {
   return (
     <div className='total-slides-count'>
-      <FontAwesomeIcon icon={faImage} /> {currentPage} of {totalPages}
+      <TbPhoto className='react-icon' /> {currentPage} of {totalPages}
     </div>
   );
 }

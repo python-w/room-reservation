@@ -1,12 +1,11 @@
 import { useSearch } from "../contexts/SearchContext";
 import RoomSummary from "../features/reservation-summary/RoomSummary";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import { createBooking } from "../services/apiRooms";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CheckInOutCard from "../ui/CheckInOutCard";
 import useScrollToTop from '../hooks/useScrollToTop'; 
+import { TbCheck, TbChevronLeft, TbSearch } from "react-icons/tb";
 
 export default function ReservationSummary() {
   useScrollToTop();
@@ -63,7 +62,7 @@ export default function ReservationSummary() {
         onClick={() => navigate("/searchresults")}
         className="btn btn-wc-transparent btn-back"
       >
-        <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
+        <TbChevronLeft className="react-icon mr-2" />
         Go Back
       </button>
       <h3>Reservation Summary</h3>
@@ -93,11 +92,11 @@ export default function ReservationSummary() {
           onClick={handleSearchAgain}
           className="btn btn-wc-outlined mr-3"
         >
-          <FontAwesomeIcon icon={faSearch} className="mr-2" />
+          <TbSearch className="react-icon mr-2" />
           Search Again
         </button>
         <button type="submit" className="btn">
-          <FontAwesomeIcon icon={faCheck} className="mr-2" />
+          <TbCheck className="react-icon mr-2" />
           Book Now
         </button>
       </form>

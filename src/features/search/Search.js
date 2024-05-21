@@ -1,8 +1,5 @@
 import { useRef } from "react";
-import { format, addDays, differenceInDays } from 'date-fns';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faCalendarCheck, faCalendar, faUser } from '@fortawesome/free-regular-svg-icons';
+import { format, addDays } from 'date-fns';
 import StyledDateRangePicker from "./DateRangePicker";
 import AddRoomCard from "./AddRoomCard";
 import { useSearch } from "../../contexts/SearchContext";
@@ -15,6 +12,7 @@ import { Grid, Typography } from "@material-ui/core";
 import useAPI from '../../hooks/useAPI';
 import { v4 as uuidv4 } from "uuid";
 import useScrollToRef from "../../hooks/ScrollToRef";
+import { TbCalendarEvent, TbCalendarQuestion, TbSearch, TbUser } from "react-icons/tb";
 
 
 export default function Search() {
@@ -163,7 +161,7 @@ export default function Search() {
                   onClick={handleOpenChkAvlModal}
                   className="btn btn-wc-transparent btn-checkavail"
                 >
-                  <FontAwesomeIcon icon={faCalendarCheck} />
+                  <TbCalendarQuestion className="react-icon" />
                   <span className="d-none d-sm-inline-block">
                     Check Availability
                   </span>
@@ -176,11 +174,11 @@ export default function Search() {
                   onClick={handleDateModalOpen}
                 >
                   <div>
-                  <FontAwesomeIcon icon={faCalendar} />
+                  <TbCalendarEvent className="react-icon" />
                     <Typography component="span">{checkInDate}</Typography>
                   </div>
                   <div>
-                  <FontAwesomeIcon icon={faCalendar} />
+                  <TbCalendarEvent className="react-icon" />
                     <Typography component="span">{checkOutDate}</Typography>
                   </div>
                 </div>
@@ -205,7 +203,7 @@ export default function Search() {
                     className="customInputBox"
                   >
                     <div>
-                      <FontAwesomeIcon icon={faUser} />{" "}
+                      <TbUser className="react-icon" />{" "}
                       <Typography component="span">
                         {checkAgeGroupEnabled &&
                           <>
@@ -230,7 +228,7 @@ export default function Search() {
             <Grid item>
               <div className="search_btn_wrap">
                 <button onClick={handleSearch} className="btn btn-wc-primary">
-                  Search  <FontAwesomeIcon icon={faSearch} />
+                  Search  <TbSearch className="react-icon" />
                 </button>
               </div>
             </Grid>

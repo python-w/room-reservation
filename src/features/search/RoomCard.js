@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Button } from "@material-ui/core";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from "@material-ui/core";
 import { useSearch } from "../../contexts/SearchContext";
 import { v4 as uuidv4 } from "uuid";
+import { TbMinus, TbPlus } from "react-icons/tb";
 
 export default function RoomCard({
   ageGroupTypeMaxOccupants,
@@ -91,9 +90,9 @@ export default function RoomCard({
                   <Box className="room_row" key={ageGroupIndex}>
                     <span className="p-0">{ageGroup.name}</span>
                     <Box className="room_counter">
-                      <Button variant="outlined" onClick={() => handleDecrement(roomIndex, ageGroupIndex)} disabled={(roomIndex === 0 && ageGroupIndex === 0 && ageGroup.count === 1) || (ageGroup.count === 0)}><FontAwesomeIcon icon={faMinus} /></Button>
+                      <Button variant="outlined" onClick={() => handleDecrement(roomIndex, ageGroupIndex)} disabled={(roomIndex === 0 && ageGroupIndex === 0 && ageGroup.count === 1) || (ageGroup.count === 0)}><TbMinus className="react-icon" /></Button>
                       <span>{ageGroup.count || 0}</span>
-                      <Button variant="outlined" onClick={() => handleIncrement(roomIndex, ageGroupIndex)} disabled={ageGroup.count === ageGroupTypeMaxOccupants[allAgeGroupsList[ageGroupIndex]?.ageGroupId]}><FontAwesomeIcon icon={faPlus} /></Button>
+                      <Button variant="outlined" onClick={() => handleIncrement(roomIndex, ageGroupIndex)} disabled={ageGroup.count === ageGroupTypeMaxOccupants[allAgeGroupsList[ageGroupIndex]?.ageGroupId]}><TbPlus className="react-icon" /></Button>
                     </Box>
                   </Box>
                 ))}
@@ -103,7 +102,7 @@ export default function RoomCard({
       </div>      
         <Box className="add_room_btn" >
           <button className="btn btn-wc-outlined" onClick={handleAddRoom}>
-            <FontAwesomeIcon icon={faPlus} className="mr-2" />
+          <TbPlus className="react-icon mr-2" />
             Add Another Room
           </button>
         </Box>

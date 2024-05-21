@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useSearch } from "../../contexts/SearchContext";
 import "react-international-phone/style.css";
 import { PhoneInput } from "react-international-phone";
 import { Modal, TextField } from "@material-ui/core";
 import Error from "../../ui/Error";
 import { PhoneNumberUtil } from 'google-libphonenumber';
+import { TbCheck } from "react-icons/tb";
 
 export default function AddGuestModal({ open, handleClose, bookingId, validateReservation }) {
   const { dispatch } = useSearch();
@@ -158,7 +157,7 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
               }
               <div className="d-flex justify-content-end">
                 <button className="btn btn-wc-primary">
-                  <FontAwesomeIcon icon={faCheck} className="mr-2" />
+                  <TbCheck className="react-icon mr-2" />
                   Add Guest
                 </button>
               </div>

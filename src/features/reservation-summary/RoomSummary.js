@@ -5,11 +5,10 @@ import { calculateDiscountedAmount } from "../../utils/CalculateDiscountedAmount
 import { calculateDiscountedRoomRate } from "../../utils/CalculateDiscountedRoomRate";
 import { calculateVATOnDiscountedRate } from "../../utils/CalculateVATOnDiscountedRate";
 import { taxRate } from "../../utils/TaxRate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import { useSearch } from "../../contexts/SearchContext";
 import AgeGroupSelection from "./AgeGroupSelection"
 import Error from "../../ui/Error";
+import { TbX } from "react-icons/tb";
 
 export default function RoomSummary({ room, index, formErrors, showErrors, validateReservation }) {
   const { state, dispatch } = useSearch();
@@ -59,7 +58,7 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
           <h2>
             Room {index}: {room.title}
           </h2>
-          {selectedRooms.length > 1 && <button className="btn_remove_room" onClick={() => handleRemoveRoom(room.bookingId)}><FontAwesomeIcon icon={faRemove} className="mr-2" /> <span>Remove</span></button>}
+          {selectedRooms.length > 1 && <button className="btn_remove_room" onClick={() => handleRemoveRoom(room.bookingId)}><TbX className="react-icon mr-2" /> <span>Remove</span></button>}
         </div>
         <ul>
           <li>
@@ -87,7 +86,7 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
                       </li>
                     }
                   </ul>
-                  <button className="guest_remove" onClick={() => handleRemoveGuest(room.bookingId)}><FontAwesomeIcon icon={faRemove} /></button>
+                  <button className="guest_remove" onClick={() => handleRemoveGuest(room.bookingId)}><TbX className="react-icon" /></button>
                 </div>
               ))}
             {showErrors && formErrors[room.bookingId]?.reservedFor && !room.guest && <Error message={formErrors[room.bookingId]?.reservedFor} />}

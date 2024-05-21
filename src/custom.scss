@@ -56,6 +56,21 @@ body {
       position: relative !important;
     }
 
+    svg.react-icon {
+      font-size: calc((var(--wc-font-size) + 6) * 1px);
+      display: inline-block;
+      vertical-align: -0.25em;
+
+      @media #{$mq-4k} {
+        font-size: calc((var(--wc-font-size) + 6) / var(--4k-ratio) * 1vw);
+      }
+
+      @media #{$mq-tablet-sm} {
+        font-size: calc((var(--wc-font-size) + 2) * 1px);
+
+      }
+    }
+
     section.portlet {
       ul {
         padding: 0;
@@ -63,12 +78,12 @@ body {
       }
 
       .btn {
-        .svg-inline--fa {
+        .react-icon {
           color: inherit;
         }
 
         &:hover {
-          .svg-inline--fa {
+          .react-icon {
             color: inherit;
           }
         }
@@ -116,13 +131,13 @@ body {
       }
 
       .btn-wc-primary {
-        .svg-inline--fa {
+        .react-icon {
           color: #fff;
         }
       }
 
       .btn-wc-outlined {
-        .svg-inline--fa {
+        .react-icon {
           color: var(--primary-color);
         }
 
@@ -131,9 +146,28 @@ body {
           color: var(--btn-text-hover);
           border-color: transparent;
 
-          .svg-inline--fa {
+          .react-icon {
             color: #fff;
           }
+        }
+      }
+
+      .btn.btn-back {
+        padding: 0;
+        font-size: calc(var(--wc-font-size) * 1px);
+        margin-bottom: 2rem;
+        display: inline-flex;
+        align-items: center;
+
+        @media #{$mq-4k} {
+          margin-bottom: get4k(32px);
+          padding: 0;
+          font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
+        }
+
+        @media #{$mq-tablet-sm} {
+          font-size: calc((var(--wc-font-size) - 4) * 1px);
+          margin-bottom: 16px;
         }
       }
 
@@ -458,7 +492,7 @@ body {
               padding: 0 0 get4k(4px);
             }
 
-            .svg-inline--fa {
+            .react-icon {
               color: #fff;
 
               @media #{$mq-mobile-sm} {
@@ -506,12 +540,13 @@ body {
         }
 
         svg {
-          font-size: calc((var(--wc-font-size) + 2) * 1px);
           margin-right: 8px;
           color: var(--primary-color);
+          display: inline-block;
+          overflow: visible;
+          vertical-align: -0.155em;
 
           @media #{$mq-4k} {
-            font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
             margin-right: get4k(8px);
           }
         }
@@ -530,7 +565,7 @@ body {
             text-align: right;
           }
 
-          .svg-inline--fa {
+          .react-icon {
             @media #{$mq-mobile-sm} {
               margin-right: 0;
             }
@@ -545,7 +580,7 @@ body {
           &:hover {
             color: inherit;
 
-            .svg-inline--fa {
+            .react-icon {
               color: inherit;
             }
           }
@@ -586,15 +621,10 @@ body {
           flex: 1;
 
           svg {
-            font-size: calc((var(--wc-font-size) + 2) * 1px);
             color: var(--primary-color);
             display: inline-block;
             overflow: visible;
-            vertical-align: -0.155em;
-
-            @media #{$mq-4k} {
-              font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
-            }
+            vertical-align: -0.175em;
           }
 
           span {
@@ -888,7 +918,7 @@ body {
               color: #898989;
             }
 
-            span {
+            &>span {
               padding: 0 10px;
 
               @media #{$mq-4k} {
@@ -940,13 +970,11 @@ body {
               font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
             }
 
-            svg {
-              width: 1rem;
-              height: 1rem;
+            svg.react-icon {
+              font-size: calc((var(--wc-font-size) + 2) * 1px);
 
               @media #{$mq-4k} {
-                width: get4k(16px);
-                height: get4k(16px);
+                font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
               }
             }
           }
@@ -971,7 +999,7 @@ body {
           padding: 0;
           width: 32px;
           height: 32px;
-          color: var(--body-text-color);
+          color: var(--wc-font-color);
           border-color: var(--wc-border-color);
           border-radius: 100px;
 
@@ -990,7 +1018,12 @@ body {
           }
 
           svg {
-            color: var(--body-text-color);
+            font-size: calc((var(--wc-font-size) + 2) * 1px);
+            color: var(--wc-font-color);
+
+            @media #{$mq-4k} {
+              font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+            }
           }
         }
 
@@ -1206,18 +1239,6 @@ body {
 
           @media #{$mq-tablet-sm} {
             margin-bottom: 1.5rem;
-          }
-        }
-
-        .btn.btn-back {
-          padding: 0;
-          font-size: calc(var(--wc-font-size) * 1px);
-          margin: 2rem 0;
-
-          @media #{$mq-4k} {
-            margin: get4k(32px) 0;
-            padding: 0;
-            font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
           }
         }
 
@@ -2151,7 +2172,7 @@ body {
         .amenitiesList-inner {
           display: flex;
 
-          .svg-inline--fa {
+          .react-icon {
             color: inherit;
             opacity: 0.8;
           }
@@ -2189,8 +2210,13 @@ body {
             }
 
             svg {
-              font-size: calc(var(--wc-font-size) * 1px);
+              font-size: calc((var(--wc-font-size) + 2) * 1px);
               margin-right: 5px;
+
+              @media #{$mq-4k} {
+                font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+                margin-right: get4k(5px);
+              }
             }
           }
         }
@@ -2286,7 +2312,7 @@ body {
               text-decoration: none;
             }
 
-            .svg-inline--fa {
+            .react-icon {
               color: var(--wc-font-color);
               opacity: 0.8;
             }
@@ -2528,7 +2554,7 @@ body {
               color: #fff;
               font-weight: normal;
 
-              .svg-inline--fa {
+              .react-icon {
                 color: #fff;
               }
             }
@@ -2642,23 +2668,6 @@ body {
 
       /* Detail */
       .detail_page {
-        .btn.btn-back {
-          padding: 0;
-          font-size: calc(var(--wc-font-size) * 1px);
-          margin-bottom: 2rem;
-
-          @media #{$mq-4k} {
-            margin-bottom: get4k(32px);
-            padding: 0;
-            font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
-          }
-
-          @media #{$mq-tablet-sm} {
-            font-size: calc((var(--wc-font-size) - 4) * 1px);
-            margin-bottom: 16px;
-          }
-        }
-
         .roomThumb {
           height: auto;
           margin-bottom: 2rem;
@@ -2713,7 +2722,7 @@ body {
               text-decoration: none;
             }
 
-            .svg-inline--fa {
+            .react-icon {
               color: var(--wc-font-color);
               opacity: 0.8;
 
@@ -3719,7 +3728,7 @@ body {
     }
 
     .MuiSvgIcon-root {
-      color: var(--body-text-color);
+      color: var(--wc-font-color);
     }
   }
 

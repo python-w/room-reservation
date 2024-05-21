@@ -1,6 +1,4 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faCheck, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import ListWithSummary from "./AmenitiesList";
 import ListingCarousel from "./ListingCarousel";
 import { Button } from "@material-ui/core";
@@ -10,6 +8,7 @@ import { formatCurrency } from "../utils/FormatCurrency";
 import { v4 as uuidv4 } from "uuid";
 import extractAmenities from "../utils/extractAmenities";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
+import { TbCheck, TbMapPin, TbMinus, TbPlus } from "react-icons/tb";
 
 export default function RoomListTile({ room, index }) {
   const amenitiesRef = useRef();
@@ -177,7 +176,7 @@ export default function RoomListTile({ room, index }) {
                     target="_blank"
                     className="card-address"
                   >
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+                    <TbMapPin className="react-icon mr-2" />
                     {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
                   </a>
                 </p>
@@ -215,7 +214,7 @@ export default function RoomListTile({ room, index }) {
                     disabled={room.bookedRoomCount === undefined || room.bookedRoomCount === 0}
                     onClick={() => handleRoomSub(room.roomId)}
                   >
-                    <FontAwesomeIcon icon={faMinus} />
+                    <TbMinus className="react-icon" />
                   </Button>
                   <span>{room.bookedRoomCount || 0}</span>
                   <Button
@@ -223,7 +222,7 @@ export default function RoomListTile({ room, index }) {
                     disabled={bookingCount === searchedRooms.length}
                     onClick={() => handleRoomAdd(room)}
                   >
-                    <FontAwesomeIcon icon={faPlus} />
+                    <TbPlus className="react-icon" />
                   </Button>
                 </div>
               ) : (
@@ -236,7 +235,7 @@ export default function RoomListTile({ room, index }) {
                       disabled={room.bookedRoomCount === undefined || room.bookedRoomCount === 0}
                       onClick={() => handleRoomSub(room.roomId)}
                     >
-                      <FontAwesomeIcon icon={faMinus} />
+                      <TbMinus className="react-icon" />
                     </Button>
                     <span>{room.bookedRoomCount || 0}</span>
                     <Button
@@ -244,7 +243,7 @@ export default function RoomListTile({ room, index }) {
                       disabled={bookingCount === searchedRooms.length}
                       onClick={() => handleRoomAdd(room)}
                     >
-                      <FontAwesomeIcon icon={faPlus} />
+                      <TbPlus className="react-icon" />
                     </Button>
                   </div>
                 )
@@ -255,7 +254,7 @@ export default function RoomListTile({ room, index }) {
                   className="btn-selected btn btn-wc-outlined"
                   onClick={() => handleSelectProperty(room)}
                 >
-                  <FontAwesomeIcon icon={faCheck} className="mr-2" /> Selected
+                  <TbCheck className="react-icon mr-2" /> Selected
                 </button>
               ) : (
                 room.websiteView === 1 &&
