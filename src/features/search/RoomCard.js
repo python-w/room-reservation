@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Button } from "@material-ui/core";
-import { CircularProgress } from "@material-ui/core";
 import { useSearch } from "../../contexts/SearchContext";
 import { v4 as uuidv4 } from "uuid";
 import { TbMinus, TbPlus } from "react-icons/tb";
+import Spinner from "../../ui/Spinner";
 
 export default function RoomCard({
   ageGroupTypeMaxOccupants,
@@ -20,22 +20,30 @@ export default function RoomCard({
         id: uuidv4(),
         name: "Room # 1",
       };
+      console.log(initialRoom)
       dispatch({ type: "ROOM_INITIALIZED", payload: initialRoom });
     }
   }, [])
 
   const handleAddRoom = () => {
     const newRoomNumber = roomsInSearch.length + 1;
-    const newRoom = {
-      name: `Room # ${newRoomNumber}`,
-      ageGroups: allAgeGroupsList.map((ageGroup, index) => ({
-        name: ageGroup.ageGroupName,
-        ageGroupId: ageGroup.ageGroupId,
-        count: index === 0 ? 1 : 0
-      }))
-    };
-    dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: newRoom })
-    dispatch({ type: "UPDATE_GUESTS" })
+    if (checkAgeGroupEnabled) {
+      const newRoom = {
+        name: `Room # ${newRoomNumber}`,
+        ageGroups: allAgeGroupsList.map((ageGroup, index) => ({
+          name: ageGroup.ageGroupName,
+          ageGroupId: ageGroup.ageGroupId,
+          count: index === 0 ? 1 : 0
+        }))
+      };
+      dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: newRoom })
+      dispatch({ type: "UPDATE_GUESTS" })
+    } else {
+      const newRoom = {
+        name: `Room # ${newRoomNumber}`,
+      };
+      dispatch({ type: "UPDATE_ROOM_IN_SEARCH", payload: newRoom })
+    }
     setTimeout(() => {
       modalBodyRef.current.scrollTo({
         top: modalBodyRef.current.scrollHeight,
@@ -85,7 +93,7 @@ export default function RoomCard({
             </div>
             {checkAgeGroupEnabled && room.ageGroups.length > 0 &&
               <div className="room_card_body">
-                {ageGroupLoading && <div className="circularProgress_wrap"><CircularProgress /></div>}
+                {ageGroupLoading && <Spinner />}
                 {room.ageGroups.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup?.ageGroupId] !== 0).map((ageGroup, ageGroupIndex) => (
                   <Box className="room_row" key={ageGroupIndex}>
                     <span className="p-0">{ageGroup.name}</span>

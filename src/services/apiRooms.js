@@ -24,19 +24,22 @@ export async function getRooms(dispatch) {
   }
 }
 
-export async function createBooking(selectedRooms) {
+
+export async function createBooking(selectedRooms, comments) {
   try {
-    const res = await fetch('http://localhost:5000/bookings', {
-      method: "POST",
-      body: JSON.stringify(selectedRooms),
+    const requestBody = {
+      rooms: selectedRooms,
+      comments: comments
+    };
+
+    const res = await axios.post('http://localhost:5000/bookings', requestBody, {
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    if (!res.ok) throw Error();
-    const { data } = await res.json();
-    return data;
+    if (!res.data) throw Error();
+    return res.data;
   } catch {
     throw Error("Failed booking your room.");
   }

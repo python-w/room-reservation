@@ -14,6 +14,7 @@ import { Alert } from "@material-ui/lab";
 import AgeGroupSelection from "../features/reservation-summary/AgeGroupSelection";
 import useScrollToTop from "../hooks/useScrollToTop";
 import { TbChevronLeft, TbCircleCheck, TbMapPin } from "react-icons/tb";
+import Spinner from "../ui/Spinner";
 
 export default function RoomDetails() {
   useScrollToTop();
@@ -56,7 +57,7 @@ export default function RoomDetails() {
 
   return (
     <>
-      {isLoading && !error && <div className="circularProgress_wrap"><CircularProgress /></div>}
+      {isLoading && !error && <Spinner />}
       {error && (
         <Alert severity="error" className="mt-5">
           {error}

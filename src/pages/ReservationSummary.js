@@ -4,14 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { createBooking } from "../services/apiRooms";
 import { useState } from "react";
 import CheckInOutCard from "../ui/CheckInOutCard";
-import useScrollToTop from '../hooks/useScrollToTop'; 
+import useScrollToTop from '../hooks/useScrollToTop';
 import { TbCheck, TbChevronLeft, TbSearch } from "react-icons/tb";
+import AlertModal from "../ui/AlertModal";
 
 export default function ReservationSummary() {
   useScrollToTop();
   const [error, setError] = useState(null);
+  const [hasError, setHasError] = useState(false)
   const [formErrors, setFormError] = useState({});
   const [showErrors, setShowErrors] = useState(false)
+  const [comments, setComments] = useState("");
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
   const { selectedRooms, selectedRange } = state;
@@ -48,16 +51,17 @@ export default function ReservationSummary() {
     }
     try {
       if (validateReservation()) {
-        await createBooking(selectedRooms);
+        await createBooking(selectedRooms, comments);
         navigate("/reservation-confirmation");
       }
     } catch (error) {
-      setError(error);
+      setHasError(true);
+      setError(error.message);
     }
   };
 
   return (
-    <div className="res_sum">      
+    <div className="res_sum">
       <button
         onClick={() => navigate("/searchresults")}
         className="btn btn-wc-transparent btn-back"
@@ -66,6 +70,7 @@ export default function ReservationSummary() {
         Go Back
       </button>
       <h3>Reservation Summary</h3>
+
       {selectedRange && <CheckInOutCard />}
       <div className="room_count">
         <span>{selectedRooms.length}</span>{" "}
@@ -77,33 +82,39 @@ export default function ReservationSummary() {
         ))}
       </div>
 
-      <div className="comments_box">
-        <label>Comments</label>
-        <textarea placeholder="Write here..."></textarea>
-      </div>
-
-      <form onSubmit={handleSubmit} className="d-flex justify-content-end">
-        <input
-          type="hidden"
-          name="selectedRooms"
-          value={JSON.stringify(selectedRooms)}
-        />
-        <button
-          onClick={handleSearchAgain}
-          className="btn btn-wc-outlined mr-3"
-        >
-          <TbSearch className="react-icon mr-2" />
-          Search Again
-        </button>
-        <button type="submit" className="btn">
-          <TbCheck className="react-icon mr-2" />
-          Book Now
-        </button>
-      </form>
-      {error && (
-        <div classNam="alert alert-danger" role="alert">
-          {error}
-        </div>
+      {selectedRooms.length > 0 && (
+        <>
+          <form onSubmit={handleSubmit}>
+            <div className="comments_box">
+              <label>Comments</label>
+              <textarea onChange={(e) => setComments(e.target.value)} placeholder="Write here..."></textarea>
+            </div>
+            <input
+              type="hidden"
+              name="selectedRooms"
+              value={JSON.stringify(selectedRooms)}
+            />
+            <div className="d-flex justify-content-end flex-wrap">
+              <button
+                onClick={handleSearchAgain}
+                className="btn btn-wc-outlined mr-3"
+              >
+                <TbSearch className="react-icon mr-2" />
+                Search Again
+              </button>
+              <button type="submit" className="btn">
+                <TbCheck className="react-icon mr-2" />
+                Book Now
+              </button>
+            </div>
+          </form>
+          <AlertModal
+              isShow={hasError}
+              severity="error"
+              alertTitle="Error"
+              alertmsg={error}
+              handleClose={() => setHasError(false)} />
+        </>
       )}
     </div>
   );

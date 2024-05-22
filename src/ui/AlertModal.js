@@ -20,7 +20,7 @@ export default function AlertModal({ isShow, handleClose, severity, alertTitle, 
                     <AlertTitle>{alertTitle}</AlertTitle>
                     <p>{alertmsg}</p>
                     <div className="alertModal_footer">
-                        <Button onClick={() => handleClose} color="primary">
+                        <Button onClick={handleClose}>
                             Close
                         </Button>
                     </div>

@@ -2,17 +2,24 @@ import { useNavigate } from 'react-router-dom';
 import { useSearch } from "../contexts/SearchContext";
 import CheckInOutCard from "../ui/CheckInOutCard";
 import useScrollToTop from '../hooks/useScrollToTop';
+import { useEffect } from 'react';
 
 export default function Confirmation() {
   useScrollToTop();
   const navigate = useNavigate();
   const { state, dispatch } = useSearch();
-  const { selectedRooms } = state;
+  const { selectedRooms, selectedRange } = state;
 
   const handleSearchAgain = () => {
     navigate('/');
     dispatch({ type: "SEARCH_AGAIN" })
   }
+
+  useEffect(() => {
+  if (selectedRooms.length === 0) {
+    handleSearchAgain()
+    }
+  }, [])
 
   return (
     <div className="confirmation_summary">
@@ -25,7 +32,7 @@ export default function Confirmation() {
           Your reservation has been confirmed. A confirmation email for your reservation has been sent to you at <a href="mailto:john@gmail.com">john@gmail.com</a>
         </p>
       </div>
-      <CheckInOutCard />
+      {selectedRange && <CheckInOutCard />}
       <div className="confirmation_card">
         <p>Confirmation Code: 254624</p>
         <div className="booked_card">

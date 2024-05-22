@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import axios from "axios";
 
 const useAPI = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -10,23 +11,17 @@ const useAPI = () => {
             let response = null;
 
             if (requestConfig?.method && requestConfig?.method.toUpperCase() === 'POST') {
-                response = await fetch(requestConfig.url, {
-                    method: 'POST',
+                response = await axios.post(requestConfig.url, requestConfig.body, {
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestConfig.body)
+                    }
                 });
             } else {
-                response = await fetch(requestConfig.url);
-            }
-
-            if (!response.ok) {
-                throw new Error('Something went wrong. Please try again later.');
+                response = await axios.get(requestConfig.url);
             }
 
             setIsLoading(false);
-            return response; // Return the entire response object
+            return response.data; // Return response data instead of the entire response object
         } catch (err) {
             setIsLoading(false);
             throw new Error("Something went wrong. Please try again later.");

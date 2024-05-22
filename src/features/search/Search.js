@@ -34,7 +34,7 @@ export default function Search() {
   );
 
   const { state, dispatch } = useSearch();
-  const { startDate, endDate, totalGuests, roomsInSearch, isLoading, checkAgeGroupEnabled, isDateInitialized } = state;
+  const { startDate, endDate, totalGuests, roomsInSearch, isLoading, isDateInitialized } = state;
 
   const checkInDate = format(startDate || dateRange.startDate, 'E, d MMM');
   const checkOutDate = format(endDate || dateRange.endDate, 'E, d MMM');
@@ -48,22 +48,32 @@ export default function Search() {
 
   //Fetch Age Group List
   const { loading: ageGroupLoading, sendRequest } = useAPI();
+  const [checkAgeGroupEnabled, setCheckAgeGroupEnabled] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await sendRequest({
+      const response = await sendRequest({
         url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-check-age-group-enabled/",
+        method: 'GET'
       });
+      if (response.responseCode === "20") {
+        dispatch({ type: "CHECK_AGEGROUP_ENABLED", payload: response.response });
+        setCheckAgeGroupEnabled(response.response);
+      }
+    };
 
-      dispatch({ type: "CHECK_AGEGROUP_ENABLED", payload: res.ok });
+    fetchData();
+  }, []);
 
-      if (res.ok === true) {
-        if (roomsInSearch.length === 0) {
-          const req = await sendRequest({
-            url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
-          });
-          const res = await req.json();
-          const data = res.response;
+  useEffect(() => {
+    if (checkAgeGroupEnabled && roomsInSearch.length === 0) {
+      const fetchAgeGroupList = async () => {
+        const responseAgeGroupList = await sendRequest({
+          url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
+          method: 'GET'
+        });
+        if (responseAgeGroupList.responseCode === "20") {
+          const data = responseAgeGroupList.response;
           const initialRoom = {
             id: uuidv4(),
             name: "Room # 1",
@@ -73,13 +83,13 @@ export default function Search() {
               count: index === 0 ? 1 : 0
             }))
           };
-          dispatch({ type: "ROOM_INITIALIZED", payload: initialRoom });
           dispatch({ type: "AGE_GROUP_LIST", payload: data });
+          dispatch({ type: "ROOM_INITIALIZED", payload: initialRoom });
         }
-      }
-    };
-    fetchData();
-  }, []);
+      };
+      fetchAgeGroupList();
+    }
+  }, [checkAgeGroupEnabled]);
 
 
   //Handle Date and Rooms Modal
@@ -174,11 +184,11 @@ export default function Search() {
                   onClick={handleDateModalOpen}
                 >
                   <div>
-                  <TbCalendarEvent className="react-icon" />
+                    <TbCalendarEvent className="react-icon" />
                     <Typography component="span">{checkInDate}</Typography>
                   </div>
                   <div>
-                  <TbCalendarEvent className="react-icon" />
+                    <TbCalendarEvent className="react-icon" />
                     <Typography component="span">{checkOutDate}</Typography>
                   </div>
                 </div>

@@ -1,29 +1,26 @@
 import AddGuestModal from './AddGuestModal';
 import { Autocomplete } from '@material-ui/lab';
-import { Paper, TextField } from '@material-ui/core';
+import { CircularProgress, Paper, TextField } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useSearch } from '../../contexts/SearchContext';
+import useAPI from '../../hooks/useAPI'
+import Spinner from '../../ui/Spinner';
 
-const memberlist = [
-    { id: 8405409, name: 'Bob Smith', type: 'Dependents' },
-    { id: 8405410, name: 'John Doe', type: 'Dependents' },
-    { id: 8405411, name: 'Alice Johnson', type: 'Dependents' },
-    { id: 8405412, name: 'Eve Brown', type: 'Dependents' },
-    { id: 8405413, name: 'Max Williams', type: 'Dependents' },
-    { id: 8405414, name: 'Cob Smith', type: 'Dependents' },
-    { id: 8405415, name: 'Sam Lee', type: 'Dependents' },
-    { id: 8405416, name: 'Kate Miller', type: 'Dependents' },
-    { id: 8405417, name: 'Alex Thompson', type: 'Dependents' },
-    { id: 8405418, name: 'Chris White', type: 'Guests' },
-    { id: 8405419, name: 'Emma Davis', type: 'Guests' },
-    { id: 8405420, name: 'Sophia Wilson', type: 'Guests' },
-    { id: 8405421, name: 'Liam Taylor', type: 'Guests' },
-    { id: 8405422, name: 'Liam Taylor', type: 'Guests' },
-    { id: 8405423, name: 'Liam Taylor', type: 'Guests' },
-];
+export default function GuestsSelection({ bookingId, validateReservation }) {
+    const { loading, sendRequest } = useAPI();
+    const [dependents, setDependents] = useState([]);
+    const memberId = '2434';
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await sendRequest({
+                url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-dependents-by-type/member-id/2434",
+                method: 'GET'
+            });
+            setDependents(response.response)
+        };
 
-
-export default function GuestsSelection({ bookingId, validateReservation }) {    
+        fetchData();
+    }, []);
 
     const { dispatch } = useSearch();
     const [selectedOption, setSelectedOption] = useState(null);
@@ -32,13 +29,17 @@ export default function GuestsSelection({ bookingId, validateReservation }) {
     const handleClose = () => setOpen(false);
 
     const options = [
-        { id: 1234567, name: 'Book for myself', type: 'myself' },
-        ...memberlist.map((option) => {
-            const groupTitle = option.type;
-            return {
-                groupTitle,
-                ...option,
-            };
+        { memberId: 1234567, displayName: 'Book for myself', dependentType: 'myself' },
+        ...dependents.flatMap((option) => {
+            const groupTitle = option.dependentType;
+            if (option.dependentList) {
+                return option.dependentList.map(dependent => ({
+                    groupTitle,
+                    ...dependent,
+                }));
+            } else {
+                return [];
+            }
         })
     ]
 
@@ -56,39 +57,54 @@ export default function GuestsSelection({ bookingId, validateReservation }) {
 
     return (
         <>
-            <Autocomplete
-                id="guest_selection"
-                options={options.sort((a, b) => -b + a)}
-                groupBy={(option) => option.groupTitle}
-                value={selectedOption}
-                getOptionSelected={(option, value) => option.id === value.id}
-                getOptionLabel={(option) => option.id === 1234567 ? option.name : `${option.id} - ${option.name}`}
-                renderInput={(params) => <TextField {...params} placeholder="Search and select member" />}
-                onChange={handleChange}
-                renderGroup={(params) => (
-                    <li key={params.key}>
-                        <div className='guest_group_title'>{params.group}</div>
-                        <ul className='guest_group_members'>{params.children}</ul>
-                    </li>
-                )}
-                PaperComponent={({ children }) => {
-                    return (
-                        <Paper className='guest_selection_outer'>
-                            <div className='add_guest_btn'>
-                                <button className='btn btn-wc-outlined'
-                                    onMouseDown={() => {
-                                        handleOpen()
-                                    }}
-                                >
-                                    Add New Guest
-                                </button>
-                            </div>
-                            {children}
-                        </Paper>
-                    );
-                }}
-            />
-
+            {memberId === "0" ?
+                <button className='btn btn-wc-outlined mt-0'
+                    onMouseDown={() => {
+                        handleOpen()
+                    }}
+                >
+                    Add Guest
+                </button>
+                :
+                <Autocomplete
+                    id="guest_selection"
+                    options={options.sort((a, b) => -b + a)}
+                    groupBy={(option) => option.groupTitle}
+                    value={selectedOption}
+                    getOptionSelected={(option, value) => option.memberId === value.memberId}
+                    getOptionLabel={(option) => option.memberId === 1234567 ? option.displayName : `${option.memberId} - ${option.displayName}`}
+                    renderInput={(params) => <TextField {...params} placeholder="Search and select member" />}
+                    onChange={handleChange}
+                    renderGroup={(params) => (
+                        <li key={params.key}>
+                            <div className='guest_group_title'>{params.group}</div>
+                            <ul className='guest_group_members'>{params.children}</ul>
+                        </li>
+                    )}
+                    PaperComponent={({ children }) => {
+                        return (
+                            <Paper className='guest_selection_outer'>
+                                {loading ? (
+                                    <Spinner />
+                                ) : (
+                                    <>
+                                        <div className='add_guest_btn'>
+                                            <button className='btn btn-wc-outlined'
+                                                onMouseDown={() => {
+                                                    handleOpen()
+                                                }}
+                                            >
+                                                Add New Guest
+                                            </button>
+                                        </div>
+                                        {children}
+                                    </>
+                                )}
+                            </Paper>
+                        );
+                    }}
+                />
+            }
             <AddGuestModal open={open} handleOpen={handleOpen} handleClose={handleClose} bookingId={bookingId} validateReservation={validateReservation} />
 
         </>
