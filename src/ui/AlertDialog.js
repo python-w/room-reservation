@@ -1,31 +1,31 @@
 import React from 'react'
-import { Button, Modal } from '@material-ui/core'
+import { Button, Dialog } from '@material-ui/core'
 import { Alert, AlertTitle } from '@material-ui/lab'
 
-export default function AlertModal({ isShow, handleClose, severity, alertTitle, alertmsg }) {
+export default function AlertDialog({ isShow, handleClose, severity, alertTitle, alertmsg }) {
 
     return (
-        <Modal
-            className="mui_modal alert_modal"
+        <Dialog
+            className="mui_dialog alert_dialog"
             open={isShow}
             onClose={handleClose}
             aria-labelledby="alert"
             aria-describedby="alert"
-            BackdropProps={{
-                onClick: (event) => event.stopPropagation()
-            }}
+            scroll='body'
+            fullWidth={true}
+            maxWidth="sm"
         >
             <div className="modal_dialog">
                 <Alert severity={severity} >
                     <AlertTitle>{alertTitle}</AlertTitle>
                     <p>{alertmsg}</p>
-                    <div className="alertModal_footer">
+                    <div className="alertDialog_footer">
                         <Button onClick={handleClose}>
                             Close
                         </Button>
                     </div>
                 </Alert>
             </div>
-        </Modal>
+        </Dialog>
     )
 }

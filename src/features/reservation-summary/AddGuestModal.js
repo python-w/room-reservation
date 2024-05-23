@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearch } from "../../contexts/SearchContext";
 import "react-international-phone/style.css";
 import { PhoneInput } from "react-international-phone";
-import { Modal, TextField } from "@material-ui/core";
+import { Dialog } from "@material-ui/core";
 import Error from "../../ui/Error";
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import { TbCheck } from "react-icons/tb";
@@ -89,82 +89,87 @@ export default function AddGuestModal({ open, handleClose, bookingId, validateRe
   };
 
   return (
-    <Modal
-      container={document.querySelector("section.portlet")}
-      className="mui_modal"
+    <Dialog
+      className="mui_dialog add_guest_modal"
       open={open}
-      onClose={handleClose}
+      onClose={(event, reason) => {
+        if (reason !== 'backdropClick') {
+          handleClose(event, reason);
+        }
+      }}
       aria-labelledby="add-guest"
       aria-describedby="add-guest"
-      BackdropProps={{
-        onClick: (event) => event.stopPropagation()
-      }}
+      scroll='body'
+      fullWidth={true}
+      maxWidth="sm"
     >
-      <div className="modal_dialog">
-        <div className="modal_header">
-          <h2>Add New Guest</h2>
-        </div>
-        <div className="modal_body">
-          <div className="add_guest_form">
-            <form onSubmit={handleSubmit}>
-              <div className="form_group">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  name="guestname"
-                  value={formData.guestname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Enter full name"
-
-                />
-                {errors.guestname && <Error message={errors.guestname} />}
-              </div>
-              <div className="form_group">
-                <label>Email</label>
-                <input
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Enter email address"
-                />
-                {errors.email && <Error message={errors.email} />}
-              </div>
-              <div className="form_group">
-                <label>Cell Number</label>
-                <PhoneInput
-                  defaultCountry="us"
-                  value={formData.phone}
-                  onChange={(value) => handlePhoneChange('phone', value)}
-                  placeholder="Enter cell number"
-                  onBlur={handleBlur}
-                />
-                {errors.phone && <Error message={errors.phone} />}
-              </div>
-              {showHomePhoneForGuestCreation &&
+      <section className="portlet">
+        <div className="modal_dialog">
+          <div className="modal_header">
+            <h2>Add New Guest</h2>
+          </div>
+          <div className="modal_body">
+            <div className="add_guest_form">
+              <form onSubmit={handleSubmit}>
                 <div className="form_group">
-                  <label>Home Phone Number</label>
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    name="guestname"
+                    value={formData.guestname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Enter full name"
+
+                  />
+                  {errors.guestname && <Error message={errors.guestname} />}
+                </div>
+                <div className="form_group">
+                  <label>Email</label>
+                  <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Enter email address"
+                  />
+                  {errors.email && <Error message={errors.email} />}
+                </div>
+                <div className="form_group">
+                  <label>Cell Number</label>
                   <PhoneInput
                     defaultCountry="us"
-                    value={formData.homePhone}
-                    onChange={(value) => handlePhoneChange('homePhone', value)}
-                    placeholder="Enter home phone number"
+                    value={formData.phone}
+                    onChange={(value) => handlePhoneChange('phone', value)}
+                    placeholder="Enter cell number"
                     onBlur={handleBlur}
                   />
-                  {errors.homePhone && <Error message={errors.homePhone} />}
+                  {errors.phone && <Error message={errors.phone} />}
                 </div>
-              }
-              <div className="d-flex justify-content-end">
-                <button className="btn btn-wc-primary">
-                  <TbCheck className="react-icon mr-2" />
-                  Add Guest
-                </button>
-              </div>
-            </form>
+                {showHomePhoneForGuestCreation &&
+                  <div className="form_group">
+                    <label>Home Phone Number</label>
+                    <PhoneInput
+                      defaultCountry="us"
+                      value={formData.homePhone}
+                      onChange={(value) => handlePhoneChange('homePhone', value)}
+                      placeholder="Enter home phone number"
+                      onBlur={handleBlur}
+                    />
+                    {errors.homePhone && <Error message={errors.homePhone} />}
+                  </div>
+                }
+                <div className="d-flex justify-content-end">
+                  <button className="btn btn-wc-primary">
+                    <TbCheck className="react-icon mr-2" />
+                    Add Guest
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </Modal>
+      </section>
+    </Dialog>
   );
 }

@@ -19,7 +19,7 @@ p {
 }
 }
 
-/* moved to basetheme at the end */
+/* move to basetheme at the end */
 body.wcprop-2 .btn.btn-wc-outlined,
 body.wcprop-2 section.portlet .btn.btn-wc-outlined {
   background: transparent;
@@ -49,7 +49,7 @@ body.wcprop-2 section.portlet .btn.btn-wc-outlined:hover {
   border-color: var(--primary-color-hover);
 }
 
-/* moved to basetheme at the end */
+/* move to basetheme at the end */
 body {
   &.wcprop-2 {
     .header-main-wrapper {
@@ -335,6 +335,12 @@ body {
             margin-top: -8%;
           }
         }
+
+        .label_group {
+          svg {
+            vertical-align: -0.195em;
+          }
+        }
       }
 
       .search_wrap_inner {
@@ -480,8 +486,8 @@ body {
             }
 
             .react-icon {
+              font-size: calc((var(--wc-font-size) + 2) * 1px);
               color: #fff;
-
               @media #{$mq-mobile-sm} {
                 margin-right: 0;
               }
@@ -529,9 +535,6 @@ body {
         svg {
           margin-right: 8px;
           color: var(--primary-color);
-          display: inline-block;
-          overflow: visible;
-          vertical-align: -0.155em;
 
           @media #{$mq-4k} {
             margin-right: get4k(8px);
@@ -1881,6 +1884,30 @@ body {
         }
       }
 
+      .card-address {
+        font-size: calc(var(--wc-font-size) * 1px);
+        color: inherit;
+        text-decoration: underline;
+
+        @media #{$mq-4k} {
+          font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
+        }
+
+        @media #{$mq-tablet-sm} {
+          font-size: calc((var(--wc-font-size) - 2) * 1px);
+
+        }
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        .react-icon {
+          color: var(--wc-font-color);
+          opacity: 0.8;
+        }
+      }
+
       /* FancyBox */
       .roomThumb {
         display: flex;
@@ -2005,6 +2032,12 @@ body {
               padding: get4k(2px) get4k(8px);
               border-radius: get4k(100px);
               font-size: get4k(14px);
+            }
+
+            @media #{$mq-tablet-sm} {
+              font-size: 12px;
+              bottom: 0.5rem;
+              right: 0.5rem;
             }
 
             svg {
@@ -2288,20 +2321,6 @@ body {
               border: 1px solid var(--primary-color);
               box-shadow: 0 0 0 5px #eee;
               border-radius: calc(var(--borderRadius) * 1px);
-            }
-          }
-
-          .card-address {
-            color: inherit;
-            text-decoration: underline;
-
-            &:hover {
-              text-decoration: none;
-            }
-
-            .react-icon {
-              color: var(--wc-font-color);
-              opacity: 0.8;
             }
           }
 
@@ -2701,23 +2720,6 @@ body {
             }
           }
 
-          .card-address {
-            color: inherit;
-            text-decoration: underline;
-
-            &:hover {
-              text-decoration: none;
-            }
-
-            .react-icon {
-              color: var(--wc-font-color);
-              opacity: 0.8;
-
-              @media #{$mq-4k} {
-                font-size: get4k(24px);
-              }
-            }
-          }
         }
 
         .room-details {
@@ -3248,23 +3250,301 @@ body {
       }
     }
 
-    //Custom Icons
-    svg.custom_icon {
-      font-size: calc((var(--wc-font-size) + 2) * 1px);
-      color: var(--primary-color);
-      display: inline-block;
-      vertical-align: -0.125em;
-      overflow: visible;
-      box-sizing: content-box;
-      height: 1em;
+    // Form Elements
+    .form_group {
+      margin-bottom: 20px;
 
       @media #{$mq-4k} {
-        font-size: calc((var(--wc-font-size) + 2) / var(--4k-ratio) * 1vw);
+        margin-bottom: get4k(20px);
       }
 
-      path {
-        fill: currentColor;
+      input {
+        width: 100%;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
+        border-radius: calc(var(--borderRadius) * 1px);
+
+        @media #{$mq-4k} {
+          margin-bottom: get4k(20px);
+        }
       }
+
+      button {
+        display: inline-flex;
+        align-items: center;
+
+        svg {
+          margin-right: 10px;
+
+          @media #{$mq-4k} {
+            margin-right: get4k(10px);
+          }
+        }
+      }
+
+    }
+
+    //Check Availability
+    .mui_dialog {
+      &.check_availability {
+        .modal_dialog {
+
+          .modal_header {
+            .month_title {
+              display: inline-flex;
+              align-items: center;
+
+              h3 {
+                font-size: calc((var(--wc-font-size) - 2) * 1px);
+                text-transform: uppercase;
+                color: var(--primary-color);
+                margin-bottom: 0;
+                line-height: 1;
+
+                @media #{$mq-4k} {
+                  font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
+                  margin-bottom: 0;
+                }
+              }
+
+              button {
+                border: 0;
+                padding: 5px 10px;
+                background: transparent;
+                color: var(--primary-color);
+
+                @media #{$mq-4k} {
+                  padding: get4k(5px) get4k(10px);
+                }
+              }
+            }
+          }
+
+          .modal_body {
+            display: flex;
+            padding: 0 0 16px 24px;
+
+            @media #{$mq-4k} {
+              padding: 0 0 get4k(16px) get4k(24px);
+            }
+
+            .room_sidebar {
+              display: flex;
+              flex-direction: column;
+              user-select: none;
+
+              &>p {
+                height: 64px;
+                display: inline-flex;
+                align-items: center;
+                margin: 0;
+
+                @media #{$mq-4k} {
+                  height: get4k(64px);
+                  margin: 0;
+                }
+              }
+
+              .room_listing {
+                flex: 0 0 214px;
+                width: 214px;
+                padding: 16px;
+                margin-top: 0;
+                border: 1px solid var(--wc-border-color);
+                border-top-left-radius: calc(var(--borderRadius) * 1px);
+                border-bottom-left-radius: calc(var(--borderRadius) * 1px);
+
+                @media #{$mq-4k} {
+                  flex: 0 0 get4k(214px);
+                  width: get4k(214px);
+                  padding: get4k(16px);
+                  margin-top: 0;
+                }
+
+                ul {
+                  list-style: none;
+                  padding: 0;
+                  margin: 0;
+
+                  @media #{$mq-4k} {
+                    padding: 0;
+                    margin: 0;
+                  }
+
+                  li {
+                    margin: 0 0 15px 0;
+                    display: flex;
+                    align-items: center;
+
+                    @media #{$mq-4k} {
+                      margin: 0 0 get4k(15px) 0;
+                    }
+
+                    &::before {
+                      display: none;
+                    }
+
+                    img {
+                      border-radius: calc(var(--borderRadius) * 1px);
+                    }
+
+                    span {
+                      display: inline-block;
+                      padding: 10px 16px;
+
+                      @media #{$mq-4k} {
+                        padding: get4k(10px) get4k(16px);
+                        font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .room_aside {
+              overflow-x: auto;
+              position: relative;
+              user-select: none;
+            }
+
+            .check_availability_calendar {
+              display: flex;
+              white-space: nowrap;
+              border-bottom: 1px solid var(--wc-border-color);
+              height: 60px;
+              align-items: center;
+              padding: 0;
+
+              @media #{$mq-4k} {
+                height: get4k(60px);
+                padding: 0;
+              }
+
+              &.month_calendar {
+                position: absolute;
+                height: 65px;
+                border-bottom: 1px solid var(--wc-border-color);
+
+                @media #{$mq-4k} {
+                  height: get4k(65px);
+                }
+              }
+
+              .day {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                width: 122px;
+                flex: 0 0 122px;
+                align-items: center;
+                font-size: calc((var(--wc-font-size) - 2) * 1px);
+
+                @media #{$mq-4k} {
+                  width: get4k(122px);
+                  flex: 0 0 get4k(122px);
+                  font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
+                }
+
+                span {
+                  display: inline-block;
+
+                  &:first-child {
+                    line-height: 1;
+                    border-radius: 4px;
+                    margin-bottom: 4px;
+                    padding: 5px;
+                    background: rgba(248, 247, 247, 1);
+
+                    @media #{$mq-4k} {
+                      margin-bottom: get4k(4px);
+                      padding: get4k(5px);
+                      border-radius: get4k(4px);
+                      font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
+                    }
+                  }
+                }
+              }
+            }
+
+            .calendar_outer {
+              margin-top: 120px;
+
+              @media #{$mq-4k} {
+                margin-top: get4k(120px);
+              }
+
+              .check_availability_calendar {
+                &:first-child {
+                  border-top: 1px solid var(--wc-border-color);
+                }
+
+                .day {
+                  height: 46px;
+                  justify-content: center;
+                }
+
+                .available-days {
+                  span {
+                    display: inline-flex;
+                    align-items: center;
+                    background: #dffff4;
+                    color: #00a167;
+                  }
+                }
+
+                .notavailable-days {
+                  span {
+                    display: inline-flex;
+                    align-items: center;
+                    background: #ececec;
+                    color: #716f6f;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //fancybox
+    .fancybox__container {
+      .fancybox__carousel {
+        .fancybox__slide {
+          padding: 32px;
+
+          @media #{$mq-4k} {
+            padding: get4k(32px);
+          }
+
+          .fancybox__content {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+
+    //Rate Selection
+    .rate_selection_listbox {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+
+      span {
+        &:last-child {
+          font-weight: bold;
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    //Age Group Selection
+    .age_group_selection_listbox {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
     }
 
     //MUI Customizations
@@ -3385,417 +3665,101 @@ body {
       }
     }
 
-    // Form Elements
-    .form_group {
-      margin-bottom: 20px;
-
-      @media #{$mq-4k} {
-        margin-bottom: get4k(20px);
+    .MuiAutocomplete-popper {
+      .MuiPaper-root {
+        border-radius: calc(var(--borderRadius) * 1px);
+        border: 1px solid var(--wc-border-color);
+        overflow: hidden;
+        margin-top: 3px;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
       }
 
-      input {
-        width: 100%;
-        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
+      ul.MuiAutocomplete-listbox {
+        padding-bottom: 0;
+        padding-top: 0;
 
-        @media #{$mq-4k} {
-          margin-bottom: get4k(20px);
-        }
-      }
+        &>li.MuiAutocomplete-option {
+          border-bottom: 1px solid var(--wc-border-color);
+          padding: 10px 16px;
+          font-size: calc((var(--wc-font-size) - 1) * 1px);
+          letter-spacing: 0;
 
-      button {
-        display: inline-flex;
-        align-items: center;
-
-        svg {
-          margin-right: 10px;
-
-          @media #{$mq-4k} {
-            margin-right: get4k(10px);
-          }
-        }
-      }
-
-    }
-
-    //Check Availability
-    .mui_modal {
-      &.check_availability {
-        .modal_dialog {
-          width: 1200px;
-          padding: 0;
-
-          @media #{$mq-4k} {
-            width: get4k(1200px);
-            padding: 0;
-          }
-
-          .modal_header {
-            .month_title {
-              display: inline-flex;
-              align-items: center;
-
-              h3 {
-                font-size: calc((var(--wc-font-size) - 2) * 1px);
-                text-transform: uppercase;
-                color: var(--primary-color);
-                margin-bottom: 0;
-                line-height: 1;
-
-                @media #{$mq-4k} {
-                  font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
-                  margin-bottom: 0;
-                }
-              }
-
-              button {
-                border: 0;
-                padding: 5px 10px;
-                background: transparent;
-                color: var(--primary-color);
-
-                @media #{$mq-4k} {
-                  padding: get4k(5px) get4k(10px);
-                }
-              }
-            }
-          }
-
-          .modal_body {
-            display: flex;
-            padding: 0 0 16px 24px;
-
-            @media #{$mq-4k} {
-              padding: 0 0 get4k(16px) get4k(24px);
-            }
-
-            .room_sidebar {
-              display: flex;
-              flex-direction: column;
-
-              &>p {
-                height: 64px;
-                display: inline-flex;
-                align-items: center;
-                margin: 0;
-
-                @media #{$mq-4k} {
-                  height: get4k(64px);
-                  margin: 0;
-                }
-              }
-
-              .room_listing {
-                flex: 0 0 214px;
-                width: 214px;
-                padding: 16px;
-                margin-top: 0;
-                border: 1px solid var(--wc-border-color);
-                border-top-left-radius: calc(var(--borderRadius) * 1px);
-                border-bottom-left-radius: calc(var(--borderRadius) * 1px);
-
-                @media #{$mq-4k} {
-                  flex: 0 0 get4k(214px);
-                  width: get4k(214px);
-                  padding: get4k(16px);
-                  margin-top: 0;
-                }
-
-                ul {
-                  list-style: none;
-                  padding: 0;
-                  margin: 0;
-
-                  @media #{$mq-4k} {
-                    padding: 0;
-                    margin: 0;
-                  }
-
-                  li {
-                    margin: 0 0 15px 0;
-                    display: flex;
-                    align-items: center;
-
-                    @media #{$mq-4k} {
-                      margin: 0 0 get4k(15px) 0;
-                    }
-
-                    &::before {
-                      display: none;
-                    }
-
-                    img {
-                      border-radius: calc(var(--borderRadius) * 1px);
-                    }
-
-                    span {
-                      display: inline-block;
-                      padding: 10px 16px;
-
-                      @media #{$mq-4k} {
-                        padding: get4k(10px) get4k(16px);
-                        font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-
-            .room_aside {
-              overflow-x: auto;
-              position: relative;
-            }
-
-            .check_availability_calendar {
-              display: flex;
-              white-space: nowrap;
-              border-bottom: 1px solid var(--wc-border-color);
-              height: 60px;
-              align-items: center;
-              padding: 0;
-
-              @media #{$mq-4k} {
-                height: get4k(60px);
-                padding: 0;
-              }
-
-              &.month_calendar {
-                position: absolute;
-                height: 65px;
-                border-bottom: 1px solid var(--wc-border-color);
-
-                @media #{$mq-4k} {
-                  height: get4k(65px);
-                }
-              }
-
-              .day {
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-                width: 122px;
-                flex: 0 0 122px;
-                align-items: center;
-                font-size: calc((var(--wc-font-size) - 2) * 1px);
-
-                @media #{$mq-4k} {
-                  width: get4k(122px);
-                  flex: 0 0 get4k(122px);
-                  font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
-                }
-
-                span {
-                  display: inline-block;
-
-                  &:first-child {
-                    line-height: 1;
-                    border-radius: 4px;
-                    margin-bottom: 4px;
-                    padding: 5px;
-                    background: rgba(248, 247, 247, 1);
-
-                    @media #{$mq-4k} {
-                      margin-bottom: get4k(4px);
-                      padding: get4k(5px);
-                      border-radius: get4k(4px);
-                      font-size: calc((var(--wc-font-size) - 2) / var(--4k-ratio) * 1vw);
-                    }
-                  }
-                }
-              }
-            }
-
-            .calendar_outer {
-              margin-top: 120px;
-
-              @media #{$mq-4k} {
-                margin-top: get4k(120px);
-              }
-
-              .check_availability_calendar {
-                &:first-child {
-                  border-top: 1px solid var(--wc-border-color);
-                }
-
-                .day {
-                  height: 46px;
-                  justify-content: center;
-                }
-
-                .available-days {
-                  span {
-                    display: inline-flex;
-                    align-items: center;
-                    background: #dffff4;
-                    color: #00a167;
-                  }
-                }
-
-                .notavailable-days {
-                  span {
-                    display: inline-flex;
-                    align-items: center;
-                    background: #ececec;
-                    color: #716f6f;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    //fancybox
-    .fancybox__container {
-      .fancybox__carousel {
-        .fancybox__slide {
-          .fancybox__content {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  //Rate Selection
-  .rate_selection_listbox {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-
-    span {
-      &:last-child {
-        font-weight: bold;
-        color: var(--primary-color);
-      }
-    }
-  }
-
-  //Age Group Selection
-  .age_group_selection_listbox {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-  }
-
-  //MUI Customizations
-  .MuiAutocomplete-popper {
-    .MuiPaper-root {
-      border-radius: calc(var(--borderRadius) * 1px);
-      border: 1px solid var(--wc-border-color);
-      overflow: hidden;
-      margin-top: 3px;
-      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
-    }
-
-    ul.MuiAutocomplete-listbox {
-      padding-bottom: 0;
-      padding-top: 0;
-
-      &>li.MuiAutocomplete-option {
-        border-bottom: 1px solid var(--wc-border-color);
-        padding: 10px 16px;
-        font-size: calc((var(--wc-font-size) - 1) * 1px);
-        letter-spacing: 0;
-
-        &:last-child {
-          border-bottom: 0;
-        }
-      }
-    }
-  }
-
-  .MuiAutocomplete-endAdornment {
-    padding-right: 6px;
-
-    @media #{$mq-4k} {
-      padding-right: get4k(6px);
-    }
-
-    .MuiSvgIcon-root {
-      color: var(--wc-font-color);
-    }
-  }
-
-  //Guests Selection
-  .guest_selection_outer {
-    .add_guest_btn {
-      padding: 12px 16px 8px 16px;
-
-      @media #{$mq-4k} {
-        padding: get4k(12px) get4k(16px) get4k(8px) get4k(16px);
-      }
-
-      button {
-        font-size: calc((var(--wc-font-size) - 2) * 1px);
-        width: 100%;
-        border-radius: 100px;
-      }
-    }
-
-    .guest_group_title {
-      position: sticky;
-      top: -8px;
-      padding: 10px 16px;
-      background-color: #fff;
-      font-weight: 800;
-      color: #000;
-    }
-
-    .guest_group_members {
-      padding: 0;
-
-      li.MuiAutocomplete-option {
-        border-bottom: 1px solid var(--wc-border-color);
-        padding: 10px 16px;
-      }
-    }
-
-    ul.MuiAutocomplete-listbox {
-      padding-bottom: 0;
-
-      &>li:first-child {
-        &>div {
-          display: none;
-        }
-      }
-
-      &>li:last-child {
-        ul {
-          li:last-child {
+          &:last-child {
             border-bottom: 0;
           }
         }
       }
     }
-  }
 
-  // Modal
-  .mui_modal {
-    margin: 15px;
-
-    @media #{$mq-4k} {
-      margin: get4k(15px);
-    }
-
-    .modal_dialog {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 570px;
-      max-width: 100%;
-      background-color: #fff;
-      border: 1px solid var(--wc-border-color);
-      box-shadow: 0px 7px 12px 2px rgba(0, 0, 0, 0.1);
-      border-radius: calc(var(--borderRadius) * 1px);
-      overflow: hidden;
+    .MuiAutocomplete-endAdornment {
+      padding-right: 6px;
 
       @media #{$mq-4k} {
-        width: get4k(570px);
-        padding: get4k(24px);
+        padding-right: get4k(6px);
+      }
+
+      .MuiSvgIcon-root {
+        color: var(--wc-font-color);
+      }
+    }
+
+    //Guests Selection
+    .guest_selection_outer {
+      .add_guest_btn {
+        padding: 12px 16px 8px 16px;
+
+        @media #{$mq-4k} {
+          padding: get4k(12px) get4k(16px) get4k(8px) get4k(16px);
+        }
+
+        button {
+          font-size: calc((var(--wc-font-size) - 2) * 1px);
+          width: 100%;
+          border-radius: 100px;
+        }
+      }
+
+      .guest_group_title {
+        position: sticky;
+        top: -8px;
+        padding: 10px 16px;
+        background-color: #fff;
+        font-weight: 800;
+        color: #000;
+      }
+
+      .guest_group_members {
+        padding: 0;
+
+        li.MuiAutocomplete-option {
+          border-bottom: 1px solid var(--wc-border-color);
+          padding: 10px 16px;
+        }
+      }
+
+      ul.MuiAutocomplete-listbox {
+        padding-bottom: 0;
+
+        &>li:first-child {
+          &>div {
+            display: none;
+          }
+        }
+
+        &>li:last-child {
+          ul {
+            li:last-child {
+              border-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    //Dialog
+    .mui_dialog {
+      .MuiDialogContent-root {
+        padding: 0;
       }
 
       .modal_header {
@@ -3827,76 +3791,73 @@ body {
           padding: get4k(24px);
         }
       }
-    }
 
-    &.alert_modal {
-      .MuiAlert-root {
-        font-family: inherit;
-        font-size: calc(var(--wc-font-size) * 1px);
-        padding: 20px 24px;
-
-        @media #{$mq-4k} {
-          font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
-          padding: get4k(20px) get4k(24px);
-        }
-
-        .MuiAlert-message {
-          flex: 1;
-        }
-
-        .MuiAlert-icon {
-          font-size: calc((var(--wc-font-size) + 12) * 1px);
-
-          @media #{$mq-4k} {
-            font-size: calc((var(--wc-font-size) + 12) / var(--4k-ratio) * 1vw);
-          }
-        }
-
-        .MuiAlertTitle-root {
-          font-size: calc((var(--wc-font-size) + 4) * 1px);
+      &.alert_dialog {
+        .MuiAlert-root {
           font-family: inherit;
+          font-size: calc(var(--wc-font-size) * 1px);
+          padding: 20px 24px;
 
           @media #{$mq-4k} {
-            font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
+            font-size: calc(var(--wc-font-size) / var(--4k-ratio) * 1vw);
+            padding: get4k(20px) get4k(24px);
           }
-        }
 
-        .alertModal_footer {
-          display: flex;
-          justify-content: flex-end;
-
-          button {
-            color: var(--primary-color);
-            border: 1px solid;
-            line-height: 1.25;
+          .MuiAlert-message {
+            flex: 1;
           }
-        }
 
-        &.MuiAlert-standardInfo {
-          button {
-            color: #2196f3;
+          .MuiAlert-icon {
+            font-size: calc((var(--wc-font-size) + 12) * 1px);
+
+            @media #{$mq-4k} {
+              font-size: calc((var(--wc-font-size) + 12) / var(--4k-ratio) * 1vw);
+            }
           }
-        }
 
-        &.MuiAlert-standardSuccess {
-          button {
-            color: #4caf50;
+          .MuiAlertTitle-root {
+            font-size: calc((var(--wc-font-size) + 4) * 1px);
+            font-family: inherit;
+
+            @media #{$mq-4k} {
+              font-size: calc((var(--wc-font-size) + 4) / var(--4k-ratio) * 1vw);
+            }
           }
-        }
 
-        &.MuiAlert-standardWarning {
-          button {
-            color: #ff9800;
+          .alertDialog_footer {
+
+            button {
+              color: var(--primary-color);
+              border: 1px solid;
+              line-height: 1.25;
+            }
           }
-        }
 
-        &.MuiAlert-standardError {
-          button {
-            color: #f44336;
+          &.MuiAlert-standardInfo {
+            button {
+              color: #2196f3;
+            }
+          }
+
+          &.MuiAlert-standardSuccess {
+            button {
+              color: #4caf50;
+            }
+          }
+
+          &.MuiAlert-standardWarning {
+            button {
+              color: #ff9800;
+            }
+          }
+
+          &.MuiAlert-standardError {
+            button {
+              color: #f44336;
+            }
           }
         }
       }
     }
   }
-
 }

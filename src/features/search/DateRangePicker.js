@@ -8,7 +8,7 @@ import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useScrollToRef from "../../hooks/ScrollToRef";
 import { differenceInDays } from "date-fns";
-import AlertModal from "../../ui/AlertModal";
+import AlertDialog from "../../ui/AlertDialog";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 
@@ -47,7 +47,7 @@ export default function StyledDateRangePicker({ handleCloseModal, dateRange, set
 
   return (
     <>
-      <AlertModal
+      <AlertDialog
         isShow={isNightsExceed}        
         severity="warning"
         alertTitle="Warning"

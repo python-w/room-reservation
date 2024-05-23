@@ -1,11 +1,13 @@
 
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import { format, isWithinInterval } from 'date-fns';
-import { Modal } from "@material-ui/core";
+import { Dialog, Fade } from "@material-ui/core";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
-export default function CheckAvailability({ open, handleClose }) {
-    const [currentDate, setCurrentDate] = useState(new Date());
+import useDragToScroll from "../../hooks/useDragToScroll";
 
+export default function CheckAvailability({ open, handleClose }) {
+    const { divRef, isDragging, handleMouseDown, handleMouseMove, handleMouseUp } = useDragToScroll();
+    const [currentDate, setCurrentDate] = useState(new Date());
     const handlePrevMonth = () => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
     };
@@ -133,52 +135,63 @@ export default function CheckAvailability({ open, handleClose }) {
         return calendarDays;
     };
 
-
     return (
-        <Modal
-            className="mui_modal check_availability"
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="check-availability"
-            aria-describedby="check-availability"
-        >
-            <div className='modal_dialog'>
-                <div className="modal_header">
-                    <h2>Check Availability</h2>
-                    {renderMonthTitle()}
-                </div>
-                <div className="modal_body">
-                    <div className="room_sidebar">
-                        <p><strong>Rooms</strong></p>
-                        <div className="room_listing">
-                            <p><strong>Accessibility</strong></p>
-                            <ul>
-                                <li>
-                                    <img src="https://lipsum.app/id/73/100x100" loading="lazy" alt="" width={48} height={48} />
-                                    <span>Room # 411</span>
-                                </li>
-                                <li>
-                                    <img src="https://lipsum.app/id/61/100x100" loading="lazy" alt="" width={48} height={48} />
-                                    <span>Room # 412</span>
-                                </li>
-                            </ul>
-                        </div>
+        <>
+            <Dialog
+                className="mui_dialog check_availability"
+                open={open}
+                onClose={handleClose}
+                scroll='body'
+                fullWidth={true}
+                maxWidth="lg"
+                aria-labelledby="check availability"
+                TransitionComponent={Fade}
+            >
+                <div className='modal_dialog'>
+                    <div className="modal_header">
+                        <h2>Check Availability</h2>
+                        {renderMonthTitle()}
                     </div>
-                    <div className="room_aside">
-                        <div className="month_calendar check_availability_calendar">
-                            {renderCalendar()}
-                        </div>
-                        <div className="calendar_outer">
-                            <div className="check_availability_calendar">
-                                {renderRoomCalendar("Room411")}
-                            </div>
-                            <div className="check_availability_calendar">
-                                {renderRoomCalendar("Room412")}
+                    <div className="modal_body">
+                        <div className="room_sidebar">
+                            <p><strong>Rooms</strong></p>
+                            <div className="room_listing">
+                                <p><strong>Accessibility</strong></p>
+                                <ul>
+                                    <li>
+                                        <img src="https://lipsum.app/id/73/100x100" loading="lazy" alt="" width={48} height={48} />
+                                        <span>Room # 411</span>
+                                    </li>
+                                    <li>
+                                        <img src="https://lipsum.app/id/61/100x100" loading="lazy" alt="" width={48} height={48} />
+                                        <span>Room # 412</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                        <div
+                            ref={divRef}
+                            onMouseDown={handleMouseDown}
+                            onMouseMove={handleMouseMove}
+                            onMouseUp={handleMouseUp}
+                            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                            className="room_aside"
+                        >
+                            <div className="month_calendar check_availability_calendar">
+                                {renderCalendar()}
+                            </div>
+                            <div className="calendar_outer">
+                                <div className="check_availability_calendar">
+                                    {renderRoomCalendar("Room411")}
+                                </div>
+                                <div className="check_availability_calendar">
+                                    {renderRoomCalendar("Room412")}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Modal>
+            </Dialog >
+        </>
     )
 }

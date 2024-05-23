@@ -10,8 +10,10 @@ export default function Index() {
 
     return (
         <div className={`${hasBanner ? 'portlet_has_banner' : ''}`}>
-            {hasBanner &&
+            {hasBanner ?
                 <HeroBannner />
+            :
+            <h2>Room Reservation</h2>
             }
             <Search />
             <IndexPlaceholder />

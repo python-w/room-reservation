@@ -6,7 +6,7 @@ import { useState } from "react";
 import CheckInOutCard from "../ui/CheckInOutCard";
 import useScrollToTop from '../hooks/useScrollToTop';
 import { TbCheck, TbChevronLeft, TbSearch } from "react-icons/tb";
-import AlertModal from "../ui/AlertModal";
+import AlertDialog from "../ui/AlertDialog";
 
 export default function ReservationSummary() {
   useScrollToTop();
@@ -108,7 +108,7 @@ export default function ReservationSummary() {
               </button>
             </div>
           </form>
-          <AlertModal
+          <AlertDialog
               isShow={hasError}
               severity="error"
               alertTitle="Error"

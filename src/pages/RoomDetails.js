@@ -15,6 +15,7 @@ import AgeGroupSelection from "../features/reservation-summary/AgeGroupSelection
 import useScrollToTop from "../hooks/useScrollToTop";
 import { TbChevronLeft, TbCircleCheck, TbMapPin } from "react-icons/tb";
 import Spinner from "../ui/Spinner";
+import Fancybox from "../ui/Fancybox";
 
 export default function RoomDetails() {
   useScrollToTop();
@@ -87,10 +88,12 @@ export default function RoomDetails() {
               {room.name}
             </h3>
             {room?.address?.addressLine1 &&
-              <a href={googleMapsUrl} target="_blank" rel="noreferrer" className="card-address">
-                <TbMapPin className="react-icon mr-2" />
-                {`${room?.address?.addressLine1}, ${room?.address?.state}, ${room?.address?.postalCode}`}
-              </a>
+              <Fancybox>
+                  <a href={googleMapsUrl} data-fancybox data-type="iframe" rel="noreferrer" className="card-address">
+                    <TbMapPin className="react-icon mr-2" />
+                    {`${room?.address?.addressLine1}, ${room?.address?.state}, ${room?.address?.postalCode}`}
+                  </a>
+              </Fancybox>
             }
           </div>
           <div className="row">

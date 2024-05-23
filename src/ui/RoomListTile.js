@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import extractAmenities from "../utils/extractAmenities";
 import generateGoogleMapsUrl from "../utils/generateGoogleMapsUrl";
 import { TbCheck, TbMapPin, TbMinus, TbPlus } from "react-icons/tb";
+import Fancybox from "./Fancybox";
 
 export default function RoomListTile({ room, index }) {
   const amenitiesRef = useRef();
@@ -169,17 +170,19 @@ export default function RoomListTile({ room, index }) {
               </div>
               <h6 className="card-title">{room?.name}</h6>
               {room.address?.addressLine1 && (
-                <p>
-                  <a
-                    href={googleMapsUrl}
-                    rel="noreferrer"
-                    target="_blank"
-                    className="card-address"
-                  >
-                    <TbMapPin className="react-icon mr-2" />
-                    {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
-                  </a>
-                </p>
+                <div className="mb-3 mb-lg-3">
+                  <Fancybox>
+                    <a
+                      href={googleMapsUrl}
+                      rel="noreferrer"
+                      data-fancybox
+                      className="card-address"
+                    >
+                      <TbMapPin className="react-icon mr-2" />
+                      {`${room.address?.addressLine1}, ${room.address?.state}, ${room.address?.postalCode}`}
+                    </a>
+                  </Fancybox>
+                </div>
               )}
               {room.description && (
                 <p className="card-desc lcard-desc">{room?.description}</p>
