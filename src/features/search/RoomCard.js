@@ -13,6 +13,7 @@ export default function RoomCard({
   const { state, dispatch } = useSearch();
   const { allAgeGroupsList, roomsInSearch, searchedRooms, checkAgeGroupEnabled } = state;
 
+    console.log(allAgeGroupsList)
 
   useEffect(() => {
     if (!checkAgeGroupEnabled && roomsInSearch.length === 0) {
@@ -30,7 +31,7 @@ export default function RoomCard({
     if (checkAgeGroupEnabled) {
       const newRoom = {
         name: `Room # ${newRoomNumber}`,
-        ageGroups: allAgeGroupsList.map((ageGroup, index) => ({
+        ageGroups: allAgeGroupsList.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup.ageGroupId] > 0).map((ageGroup, index) => ({
           name: ageGroup.ageGroupName,
           ageGroupId: ageGroup.ageGroupId,
           count: index === 0 ? 1 : 0
@@ -58,11 +59,12 @@ export default function RoomCard({
     dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: updatedSearchedRooms })
     dispatch({ type: "UPDATE_GUESTS" })
   };
-
+  console.log(ageGroupTypeMaxOccupants)
   const handleIncrement = (roomIndex, ageGroupIndex) => {
     const updatedRooms = [...roomsInSearch];
     const ageGroupId = allAgeGroupsList[ageGroupIndex]?.ageGroupId || 0;
     const maxCount = ageGroupTypeMaxOccupants[ageGroupId] || 0;
+    console.log(ageGroupId, maxCount)
     if (updatedRooms[roomIndex].ageGroups[ageGroupIndex].count < maxCount) {
       updatedRooms[roomIndex].ageGroups[ageGroupIndex].count++;
       dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: updatedRooms })
@@ -93,8 +95,9 @@ export default function RoomCard({
             </div>
             {checkAgeGroupEnabled && room.ageGroups.length > 0 &&
               <div className="room_card_body">
+                
                 {ageGroupLoading && <Spinner />}
-                {room.ageGroups.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup?.ageGroupId] !== 0).map((ageGroup, ageGroupIndex) => (
+                {room.ageGroups.map((ageGroup, ageGroupIndex) => (
                   <Box className="room_row" key={ageGroupIndex}>
                     <span className="p-0">{ageGroup.name}</span>
                     <Box className="room_counter">

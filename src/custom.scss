@@ -3825,7 +3825,8 @@ body {
           }
 
           .alertDialog_footer {
-
+            display: flex;
+            justify-content: flex-end;
             button {
               color: var(--primary-color);
               border: 1px solid;

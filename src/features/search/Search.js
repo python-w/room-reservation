@@ -65,11 +65,19 @@ export default function Search() {
     fetchData();
   }, []);
 
+  const ageGroupTypeMaxOccupants = { 1: 0, 2: 3, 3: 4, 5: 6 }
+  
+  const filteredAgeGroupTypeMaxOccupants = Object.fromEntries(
+    Object.entries(ageGroupTypeMaxOccupants).filter(
+      ([ageGroupId, maxOccupancy]) => maxOccupancy !== 0
+    )
+  );
+
   useEffect(() => {
     if (checkAgeGroupEnabled && roomsInSearch.length === 0) {
       const fetchAgeGroupList = async () => {
         const responseAgeGroupList = await sendRequest({
-          url: "http://192.168.7.34:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
+          url: "http://localhost:8080/api/jsonws/northstar-react.roomreservation/get-all-age-groups",
           method: 'GET'
         });
         if (responseAgeGroupList.responseCode === "20") {
@@ -77,7 +85,7 @@ export default function Search() {
           const initialRoom = {
             id: uuidv4(),
             name: "Room # 1",
-            ageGroups: data.map((ageGroup, index) => ({
+            ageGroups: data.filter(ageGroup => ageGroupTypeMaxOccupants[ageGroup.ageGroupId] > 0).map((ageGroup, index) => ({
               name: ageGroup.ageGroupName,
               ageGroupId: ageGroup.ageGroupId,
               count: index === 0 ? 1 : 0
@@ -230,6 +238,7 @@ export default function Search() {
                       roomCardRef={roomCardRef}
                       handleCloseModal={handleCloseModal}
                       ageGroupLoading={ageGroupLoading}
+                      ageGroupTypeMaxOccupants={filteredAgeGroupTypeMaxOccupants}
                     />
                   )}
                 </div>

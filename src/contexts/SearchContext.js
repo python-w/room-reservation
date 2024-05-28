@@ -51,7 +51,7 @@ function reducer(state, action) {
       }
     case "ROOM_INITIALIZED":
       const initRoom = action.payload;
-      const initRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...initRoom }];
+      const initRoomsInSearch = [...state.roomsInSearch, { ...initRoom }];
       const roomInitData = initRoomsInSearch.map((room) => {
         if (room.ageGroups) {
           const roomData = {};
@@ -70,7 +70,7 @@ function reducer(state, action) {
       };
     case "UPDATE_ROOM_IN_SEARCH":
       const roomspayload = action.payload;
-      const updatedRoomsInSearch = [...state.roomsInSearch, { id: uuidv4(), ...roomspayload }];
+      const updatedRoomsInSearch = [...state.roomsInSearch, { ...roomspayload }];
       const roomSearchData = updatedRoomsInSearch.map((room) => {
         if (room.ageGroups) {
           const roomData = {};
@@ -78,6 +78,8 @@ function reducer(state, action) {
             roomData[ageGroup.ageGroupId] = ageGroup.count;
           });
           return roomData;
+        } else {
+          return room;
         }
       });
       return {
