@@ -65,14 +65,8 @@ export default function Search() {
     fetchData();
   }, []);
 
-  const ageGroupTypeMaxOccupants = { 1: 0, 2: 3, 3: 4, 5: 6 }
+  const ageGroupTypeMaxOccupants = { 1: 4, 2: 4, 3: 4, 5: 6 }
   
-  const filteredAgeGroupTypeMaxOccupants = Object.fromEntries(
-    Object.entries(ageGroupTypeMaxOccupants).filter(
-      ([ageGroupId, maxOccupancy]) => maxOccupancy !== 0
-    )
-  );
-
   useEffect(() => {
     if (checkAgeGroupEnabled && roomsInSearch.length === 0) {
       const fetchAgeGroupList = async () => {
@@ -238,7 +232,7 @@ export default function Search() {
                       roomCardRef={roomCardRef}
                       handleCloseModal={handleCloseModal}
                       ageGroupLoading={ageGroupLoading}
-                      ageGroupTypeMaxOccupants={filteredAgeGroupTypeMaxOccupants}
+                      ageGroupTypeMaxOccupants={ageGroupTypeMaxOccupants}
                     />
                   )}
                 </div>

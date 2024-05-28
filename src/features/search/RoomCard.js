@@ -59,11 +59,19 @@ export default function RoomCard({
     dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: updatedSearchedRooms })
     dispatch({ type: "UPDATE_GUESTS" })
   };
-  console.log(ageGroupTypeMaxOccupants)
+  
+  const filteredAgeGroupTypeMaxOccupants = Object.fromEntries(
+    Object.entries(ageGroupTypeMaxOccupants).filter(
+      ([ageGroupId, maxOccupancy]) => maxOccupancy !== 0
+    )
+  );
+  
+  console.log(filteredAgeGroupTypeMaxOccupants[Object.keys(filteredAgeGroupTypeMaxOccupants)[0]])
+
   const handleIncrement = (roomIndex, ageGroupIndex) => {
     const updatedRooms = [...roomsInSearch];
     const ageGroupId = allAgeGroupsList[ageGroupIndex]?.ageGroupId || 0;
-    const maxCount = ageGroupTypeMaxOccupants[ageGroupId] || 0;
+    const maxCount = filteredAgeGroupTypeMaxOccupants[Object.keys(filteredAgeGroupTypeMaxOccupants)[ageGroupIndex]] || 0;
     console.log(ageGroupId, maxCount)
     if (updatedRooms[roomIndex].ageGroups[ageGroupIndex].count < maxCount) {
       updatedRooms[roomIndex].ageGroups[ageGroupIndex].count++;
@@ -103,7 +111,7 @@ export default function RoomCard({
                     <Box className="room_counter">
                       <Button variant="outlined" onClick={() => handleDecrement(roomIndex, ageGroupIndex)} disabled={(roomIndex === 0 && ageGroupIndex === 0 && ageGroup.count === 1) || (ageGroup.count === 0)}><TbMinus className="react-icon" /></Button>
                       <span>{ageGroup.count || 0}</span>
-                      <Button variant="outlined" onClick={() => handleIncrement(roomIndex, ageGroupIndex)} disabled={ageGroup.count === ageGroupTypeMaxOccupants[allAgeGroupsList[ageGroupIndex]?.ageGroupId]}><TbPlus className="react-icon" /></Button>
+                      <Button variant="outlined" onClick={() => handleIncrement(roomIndex, ageGroupIndex)} disabled={ageGroup.count === filteredAgeGroupTypeMaxOccupants[Object.keys(filteredAgeGroupTypeMaxOccupants)[ageGroupIndex]]}><TbPlus className="react-icon" /></Button>
                     </Box>
                   </Box>
                 ))}
