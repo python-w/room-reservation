@@ -65,7 +65,7 @@ export default function Search() {
     fetchData();
   }, []);
 
-  const ageGroupTypeMaxOccupants = { 1: 4, 2: 4, 3: 4, 5: 6 }
+  const ageGroupTypeMaxOccupants = {1: 4, 2: 2, 3: 0, 5: 0}
   
   useEffect(() => {
     if (checkAgeGroupEnabled && roomsInSearch.length === 0) {

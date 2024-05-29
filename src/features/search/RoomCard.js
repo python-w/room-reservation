@@ -13,15 +13,12 @@ export default function RoomCard({
   const { state, dispatch } = useSearch();
   const { allAgeGroupsList, roomsInSearch, searchedRooms, checkAgeGroupEnabled } = state;
 
-    console.log(allAgeGroupsList)
-
   useEffect(() => {
     if (!checkAgeGroupEnabled && roomsInSearch.length === 0) {
       const initialRoom = {
         id: uuidv4(),
         name: "Room # 1",
       };
-      console.log(initialRoom)
       dispatch({ type: "ROOM_INITIALIZED", payload: initialRoom });
     }
   }, [])
@@ -66,13 +63,9 @@ export default function RoomCard({
     )
   );
   
-  console.log(filteredAgeGroupTypeMaxOccupants[Object.keys(filteredAgeGroupTypeMaxOccupants)[0]])
-
   const handleIncrement = (roomIndex, ageGroupIndex) => {
     const updatedRooms = [...roomsInSearch];
-    const ageGroupId = allAgeGroupsList[ageGroupIndex]?.ageGroupId || 0;
     const maxCount = filteredAgeGroupTypeMaxOccupants[Object.keys(filteredAgeGroupTypeMaxOccupants)[ageGroupIndex]] || 0;
-    console.log(ageGroupId, maxCount)
     if (updatedRooms[roomIndex].ageGroups[ageGroupIndex].count < maxCount) {
       updatedRooms[roomIndex].ageGroups[ageGroupIndex].count++;
       dispatch({ type: "UPDATE_SEARCHED_ROOM", payload: updatedRooms })

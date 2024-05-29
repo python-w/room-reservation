@@ -9,6 +9,7 @@ import { useSearch } from "../../contexts/SearchContext";
 import AgeGroupSelection from "./AgeGroupSelection"
 import Error from "../../ui/Error";
 import { TbX } from "react-icons/tb";
+import { useEffect, useState } from "react";
 
 export default function RoomSummary({ room, index, formErrors, showErrors, validateReservation }) {
   const { state, dispatch } = useSearch();
@@ -21,16 +22,35 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
   const formattedVAT = formatCurrency(vat);
   const totalAmount = formatCurrency(Math.ceil(discountedRate + vat));
 
-  const ageGroup = roomsInSearch.reduce((acc, room) => {
-    let roomLabel;
-    if (room.ageGroups) {
-      roomLabel = room.ageGroups
-        .filter(group => group.count > 0)
-        .map(group => `${group.count} ${group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name}`)
+  const [ageGroupOptions, setAgeGroupOptions] = useState([]);
+
+  useEffect(() => {
+    const seenLabels = new Set();
+    const newageGroupOptions = roomsInSearch.reduce((acc, room) => {
+      const roomLabel = room.ageGroups
+        ?.filter((group) => group.count > 0)
+        .map((group) => {
+          const name = group.count > 1 ? (group.name === "Child" ? "Children" : group.name + "s") : group.name;
+          return `${group.count} ${name}`;
+        })
         .join(', ');
+
+      if (roomLabel && !seenLabels.has(roomLabel)) {
+        seenLabels.add(roomLabel);
+        acc.push(roomLabel);
+      }
+      return acc;
+    }, []);
+
+    setAgeGroupOptions(newageGroupOptions);
+    
+    if (newageGroupOptions.length === 0 || newageGroupOptions.every(option => option === newageGroupOptions[0])) {
+      dispatch({
+        type: "SELECT_AGEGROUP",
+        payload: { bookingId: room.bookingId, ageGroup: newageGroupOptions[0] },
+      });
     }
-    return roomLabel;
-  }, [])
+  }, [roomsInSearch]);
 
   const handleRemoveGuest = (bookingId) => {
     const updateSelectedRooms = selectedRooms.map((room) => {
@@ -95,13 +115,14 @@ export default function RoomSummary({ room, index, formErrors, showErrors, valid
           {checkAgeGroupEnabled &&
             <li>
               <div>No of persons:</div>
-              {roomsInSearch.length > 1 ?
+              {ageGroupOptions.length > 1 ?
                 <>
-                  <AgeGroupSelection bookingId={room.bookingId} roomIndex={index} />
+                  <AgeGroupSelection bookingId={room.bookingId} roomIndex={index} validateReservation={validateReservation} ageGroupOptions={ageGroupOptions} />
+                  {showErrors && formErrors[room.bookingId]?.occupants && <Error message={formErrors[room.bookingId]?.occupants} />}
                 </>
                 :
                 <strong>
-                  {ageGroup}
+                  {ageGroupOptions[0]}
                 </strong>
               }
             </li>

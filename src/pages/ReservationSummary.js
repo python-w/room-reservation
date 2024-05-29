@@ -31,6 +31,9 @@ export default function ReservationSummary() {
       if (!room.reservedFor) {
         roomErrors.reservedFor = 'This field is required';
       }
+      if (!room.occupants) {
+        roomErrors.occupants = 'This field is required';
+      }
       if (!room.selectedRate) {
         roomErrors.selectedRate = 'This field is required';
       }
